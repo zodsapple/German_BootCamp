@@ -1,0 +1,43 @@
+{
+  "day": 22,
+  "title": "【第三周复盘测评】高级句型攻坚诊断",
+  "focus": "深度测试关系从句、形容词词尾变化与被动语态的组合拳。",
+  "vocab": [
+    {
+      "word": "die Herausforderung",
+      "gender": "die",
+      "plural": "-en",
+      "translation": "挑战",
+      "example": "Das Bestehen der B1-Prüfung ist eine Herausforderung.",
+      "category": "名词"
+    },
+    {
+      "word": "meistern",
+      "gender": "verb",
+      "plural": "meisterte, hat gemeistert",
+      "translation": "克服，掌握",
+      "example": "Gemeinsam können wir diese Krise meistern.",
+      "category": "动词"
+    }
+  ],
+  "dictations": [
+    {
+      "text": "Die schwierigen Aufgaben, die uns gestellt wurden, haben wir gut gelöst.",
+      "translation": "分配给我们的那些困难任务，我们都很好地解决了。",
+      "hint": "结合了形容词变化、关系从句和被动语态的 B1 典型综合长难句。"
+    }
+  ],
+  "grammars": [
+    {
+      "question": "Er spricht mit dem freundlich___ Polizisten auf der Straße.",
+      "options": [
+        "e",
+        "er",
+        "en",
+        "es"
+      ],
+      "correct": "en",
+      "explanation": "Polizist 是阳性，这里是第三格 (mit dem)，在定冠词后形容词词尾绝对是 -en。"
+    }
+  ]
+}

@@ -1,0 +1,269 @@
+{
+  "day": 1,
+  "title": "高强度极速唤醒：日常场景与完成时态",
+  "focus": "暴风吸入 B1 核心日常词汇，熟练掌握 3 个基础语法点，通过 5 组听力重塑语感。",
+  "vocab": [
+    {
+      "word": "der Alltag",
+      "gender": "der",
+      "plural": "-e",
+      "translation": "日常生活",
+      "example": "Der Alltag in Deutschland ist manchmal stressig.",
+      "category": "名词"
+    },
+    {
+      "word": "die Gewohnheit",
+      "gender": "die",
+      "plural": "-en",
+      "translation": "习惯",
+      "example": "Er hat die Gewohnheit, früh aufzustehen.",
+      "category": "名词"
+    },
+    {
+      "word": "aufstehen",
+      "gender": "verb",
+      "plural": "stand auf, ist aufgestanden",
+      "translation": "起床，起立",
+      "example": "Ich bin heute um 6 Uhr aufgestanden.",
+      "category": "分离动词 (sein)"
+    },
+    {
+      "word": "sich anziehen",
+      "gender": "verb",
+      "plural": "zog sich an, hat sich angezogen",
+      "translation": "穿衣服 (反身)",
+      "example": "Ich ziehe mich schnell an.",
+      "category": "反身动词"
+    },
+    {
+      "word": "frühstücken",
+      "gender": "verb",
+      "plural": "frühstückte, hat gefrühstückt",
+      "translation": "吃早餐",
+      "example": "Wir haben gemütlich auf dem Balkon gefrühstückt.",
+      "category": "规则动词"
+    },
+    {
+      "word": "der Verkehr",
+      "gender": "der",
+      "plural": "(Sg.)",
+      "translation": "交通",
+      "example": "Morgens gibt es viel Verkehr auf der Straße.",
+      "category": "名词"
+    },
+    {
+      "word": "verpassen",
+      "gender": "verb",
+      "plural": "verpasste, hat verpasst",
+      "translation": "错过",
+      "example": "Ich habe meinen Zug verpasst.",
+      "category": "不可分动词"
+    },
+    {
+      "word": "sich beeilen",
+      "gender": "verb",
+      "plural": "beeilte sich, hat sich beeilt",
+      "translation": "赶快，抓紧",
+      "example": "Wir müssen uns beeilen, sonst kommen wir zu spät.",
+      "category": "反身动词"
+    },
+    {
+      "word": "pünktlich",
+      "gender": "adj",
+      "plural": "",
+      "translation": "准时的",
+      "example": "In Deutschland ist es wichtig, pünktlich zu sein.",
+      "category": "形容词"
+    },
+    {
+      "word": "sich entschuldigen",
+      "gender": "verb",
+      "plural": "entschuldigte sich, hat sich entschuldigt",
+      "translation": "道歉",
+      "example": "Er hat sich für die Verspätung entschuldigt.",
+      "category": "反身动词"
+    },
+    {
+      "word": "die Besprechung",
+      "gender": "die",
+      "plural": "-en",
+      "translation": "会议，商讨",
+      "example": "Die Besprechung fängt um 10 Uhr an.",
+      "category": "名词"
+    },
+    {
+      "word": "teilnehmen (an)",
+      "gender": "verb",
+      "plural": "nahm teil, hat teilgenommen",
+      "translation": "参加 (+ Dativ)",
+      "example": "Ich nehme an dem Deutschkurs teil.",
+      "category": "可分动词"
+    },
+    {
+      "word": "erledigen",
+      "gender": "verb",
+      "plural": "erledigte, hat erledigt",
+      "translation": "完成，办理好",
+      "example": "Ich muss heute noch viele Aufgaben erledigen.",
+      "category": "不可分动词"
+    },
+    {
+      "word": "der Feierabend",
+      "gender": "der",
+      "plural": "-e",
+      "translation": "下班，休息时间",
+      "example": "Endlich Feierabend! Lass uns ein Bier trinken.",
+      "category": "名词"
+    },
+    {
+      "word": "sich entspannen",
+      "gender": "verb",
+      "plural": "entspannte sich, hat sich entspannt",
+      "translation": "放松",
+      "example": "Am Wochenende möchte ich mich nur entspannen.",
+      "category": "反身动词"
+    },
+    {
+      "word": "die Hausarbeit",
+      "gender": "die",
+      "plural": "-en",
+      "translation": "家务",
+      "example": "Wer macht bei euch die Hausarbeit?",
+      "category": "名词"
+    },
+    {
+      "word": "erschöpft",
+      "gender": "adj",
+      "plural": "",
+      "translation": "筋疲力尽的",
+      "example": "Nach der Arbeit bin ich oft völlig erschöpft.",
+      "category": "形容词"
+    },
+    {
+      "word": "einschlafen",
+      "gender": "verb",
+      "plural": "schlief ein, ist eingeschlafen",
+      "translation": "入睡",
+      "example": "Gestern bin ich sehr spät eingeschlafen.",
+      "category": "可分动词 (sein)"
+    },
+    {
+      "word": "träumen (von)",
+      "gender": "verb",
+      "plural": "träumte, hat geträumt",
+      "translation": "梦见，梦想 (+ Dativ)",
+      "example": "Ich träume von einem Urlaub am Meer.",
+      "category": "动词"
+    },
+    {
+      "word": "die Entscheidung",
+      "gender": "die",
+      "plural": "-en",
+      "translation": "决定",
+      "example": "Es ist eine schwere Entscheidung.",
+      "category": "名词"
+    },
+    {
+      "word": "entscheiden (sich)",
+      "gender": "verb",
+      "plural": "entschied, hat entschieden",
+      "translation": "做决定",
+      "example": "Ich habe mich für diesen Weg entschieden.",
+      "category": "反身动词"
+    },
+    {
+      "word": "die Vorbereitung",
+      "gender": "die",
+      "plural": "-en",
+      "translation": "准备",
+      "example": "Die Vorbereitung auf die B1-Prüfung dauert lange.",
+      "category": "名词"
+    },
+    {
+      "word": "vorbereiten (sich auf)",
+      "gender": "verb",
+      "plural": "bereitete vor, hat vorbereitet",
+      "translation": "准备 (+ Akkusativ)",
+      "example": "Ich bereite mich auf den Test vor.",
+      "category": "可分动词"
+    },
+    {
+      "word": "die Konzentration",
+      "gender": "die",
+      "plural": "(Sg.)",
+      "translation": "注意力，专注",
+      "example": "Für diese Aufgabe brauche ich volle Konzentration.",
+      "category": "名词"
+    },
+    {
+      "word": "konzentrieren (sich auf)",
+      "gender": "verb",
+      "plural": "konzentrierte, hat konzentriert",
+      "translation": "专注于 (+ Akkusativ)",
+      "example": "Bitte konzentriere dich auf die Aufgabe.",
+      "category": "反身动词"
+    }
+  ],
+  "dictations": [
+    {
+      "text": "Gestern bin ich um sechs Uhr aufgestanden und habe schnell gefrühstückt.",
+      "translation": "昨天我六点起床，并快速吃了早餐。",
+      "hint": "aufstehen 是位置/状态改变，用 sein；frühstücken 是一般动作，用 haben。"
+    },
+    {
+      "text": "Weil es stark geregnet hat, bin ich leider zu spät zur Arbeit gekommen.",
+      "translation": "因为雨下得很大，我很遗憾上班迟到了。",
+      "hint": "weil 引导从句，助动词 hat 放句末；主句紧跟在逗号后，变位动词 bin 放主句第一位。"
+    },
+    {
+      "text": "Er hat sich sofort beim Chef für seine Verspätung am Morgen entschuldigt.",
+      "translation": "他立刻为自己早上的迟到向老板道了歉。",
+      "hint": "sich entschuldigen bei (Dativ) für (Akkusativ) - 向某人因某事道歉。"
+    },
+    {
+      "text": "Nachdem ich alle wichtigen Aufgaben erledigt hatte, machte ich endlich Feierabend.",
+      "translation": "在我完成了所有重要任务之后，我终于下班了。",
+      "hint": "nachdem 引导的从句如果用过去完成时(hatte erledigt)，主句通常用过去时(machte)。"
+    },
+    {
+      "text": "Ich freue mich schon sehr darauf, am Wochenende einfach nur zu entspannen.",
+      "translation": "我已经非常期待在周末仅仅只是放松一下了。",
+      "hint": "sich freuen auf 的代副词形式 darauf，后接 zu 不定式短语。"
+    }
+  ],
+  "grammars": [
+    {
+      "question": "Sie ___ gestern erst sehr spät nach Hause gekommen.",
+      "options": [
+        "haben",
+        "sind",
+        "wurden",
+        "waren"
+      ],
+      "correct": "sind",
+      "explanation": "kommen 表示位置移动，现在完成时助动词用 sein (sie sind gekommen)。"
+    },
+    {
+      "question": "Ich wasche ___ jeden Morgen mit kaltem Wasser das Gesicht.",
+      "options": [
+        "mich",
+        "mir",
+        "uns",
+        "sich"
+      ],
+      "correct": "mir",
+      "explanation": "当清洗的目标（身体部位 das Gesicht）作为第四格直接宾语出现时，反身代词要用第三格 mir (sich Dativ etwas waschen)。"
+    },
+    {
+      "question": "Die U-Bahn war leider schon abgefahren, ___ wir am Bahnhof ankamen.",
+      "options": [
+        "wenn",
+        "als",
+        "wann",
+        "weil"
+      ],
+      "correct": "als",
+      "explanation": "表达过去发生的一次性事件（当我们到达火车站时），必须使用连词 als。"
+    }
+  ]
+}

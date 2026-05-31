@@ -1,0 +1,269 @@
+{
+  "day": 10,
+  "title": "Verben mit Präpositionen – 动词与介词固定搭配",
+  "focus": "掌握B1级别常见动词与特定介词的固定搭配，并能正确使用",
+  "vocab": [
+    {
+      "word": "sich freuen auf",
+      "gender": "verb",
+      "plural": "sich gefreut",
+      "translation": "期待",
+      "example": "Ich freue mich auf den Urlaub.",
+      "category": "反身动词"
+    },
+    {
+      "word": "sich interessieren für",
+      "gender": "verb",
+      "plural": "sich interessiert",
+      "translation": "对…感兴趣",
+      "example": "Er interessiert sich für Geschichte.",
+      "category": "反身动词"
+    },
+    {
+      "word": "warten auf",
+      "gender": "verb",
+      "plural": "gewartet",
+      "translation": "等待",
+      "example": "Wir warten auf den Bus.",
+      "category": "动词"
+    },
+    {
+      "word": "sich kümmern um",
+      "gender": "verb",
+      "plural": "sich gekümmert",
+      "translation": "照顾，操心",
+      "example": "Sie kümmert sich um ihre kranke Mutter.",
+      "category": "反身动词"
+    },
+    {
+      "word": "denken an",
+      "gender": "verb",
+      "plural": "gedacht",
+      "translation": "想到，想起",
+      "example": "Denkst du oft an deine Kindheit?",
+      "category": "动词"
+    },
+    {
+      "word": "sich erinnern an",
+      "gender": "verb",
+      "plural": "sich erinnert",
+      "translation": "回忆起",
+      "example": "Kannst du dich an den Namen erinnern?",
+      "category": "反身动词"
+    },
+    {
+      "word": "sich beschweren über",
+      "gender": "verb",
+      "plural": "sich beschwert",
+      "translation": "抱怨",
+      "example": "Die Kunden beschweren sich über den Service.",
+      "category": "反身动词"
+    },
+    {
+      "word": "sich ärgern über",
+      "gender": "verb",
+      "plural": "sich geärgert",
+      "translation": "对…生气",
+      "example": "Ich ärgere mich über die Verspätung.",
+      "category": "反身动词"
+    },
+    {
+      "word": "sich gewöhnen an",
+      "gender": "verb",
+      "plural": "sich gewöhnt",
+      "translation": "习惯于",
+      "example": "Er hat sich an das kalte Wetter gewöhnt.",
+      "category": "反身动词"
+    },
+    {
+      "word": "abhängen von",
+      "gender": "verb",
+      "plural": "abgehangen",
+      "translation": "取决于",
+      "example": "Das hängt von deiner Entscheidung ab.",
+      "category": "动词"
+    },
+    {
+      "word": "bestehen aus",
+      "gender": "verb",
+      "plural": "bestanden",
+      "translation": "由…组成",
+      "example": "Die Prüfung besteht aus vier Teilen.",
+      "category": "动词"
+    },
+    {
+      "word": "sich entscheiden für",
+      "gender": "verb",
+      "plural": "sich entschieden",
+      "translation": "决定做…",
+      "example": "Ich habe mich für den roten Pullover entschieden.",
+      "category": "反身动词"
+    },
+    {
+      "word": "sich konzentrieren auf",
+      "gender": "verb",
+      "plural": "sich konzentriert",
+      "translation": "集中注意力于",
+      "example": "Konzentrier dich auf die Aufgabe!",
+      "category": "反身动词"
+    },
+    {
+      "word": "anfangen mit",
+      "gender": "verb",
+      "plural": "angefangen",
+      "translation": "开始做",
+      "example": "Wir fangen mit der Arbeit an.",
+      "category": "动词"
+    },
+    {
+      "word": "aufhören mit",
+      "gender": "verb",
+      "plural": "aufgehört",
+      "translation": "停止做",
+      "example": "Hör endlich mit dem Lärm auf!",
+      "category": "动词"
+    },
+    {
+      "word": "teilnehmen an",
+      "gender": "verb",
+      "plural": "teilgenommen",
+      "translation": "参加",
+      "example": "Viele Studenten nehmen an dem Kurs teil.",
+      "category": "动词"
+    },
+    {
+      "word": "sich verabschieden von",
+      "gender": "verb",
+      "plural": "sich verabschiedet",
+      "translation": "向…告别",
+      "example": "Er verabschiedet sich von seinen Kollegen.",
+      "category": "反身动词"
+    },
+    {
+      "word": "sich vorbereiten auf",
+      "gender": "verb",
+      "plural": "sich vorbereitet",
+      "translation": "为…做准备",
+      "example": "Ich bereite mich auf die Prüfung vor.",
+      "category": "反身动词"
+    },
+    {
+      "word": "sorgen für",
+      "gender": "verb",
+      "plural": "gesorgt",
+      "translation": "确保，提供",
+      "example": "Die Eltern sorgen für ihre Kinder.",
+      "category": "动词"
+    },
+    {
+      "word": "verantwortlich sein für",
+      "gender": "verb",
+      "plural": "verantwortlich gewesen",
+      "translation": "对…负责",
+      "example": "Wer ist für das Projekt verantwortlich?",
+      "category": "动词短语"
+    },
+    {
+      "word": "sich unterscheiden von",
+      "gender": "verb",
+      "plural": "sich unterschieden",
+      "translation": "不同于",
+      "example": "Diese Version unterscheidet sich von der alten.",
+      "category": "反身动词"
+    },
+    {
+      "word": "sich schützen vor",
+      "gender": "verb",
+      "plural": "sich geschützt",
+      "translation": "保护免受",
+      "example": "Man sollte sich vor der Sonne schützen.",
+      "category": "反身动词"
+    },
+    {
+      "word": "sich wundern über",
+      "gender": "verb",
+      "plural": "sich gewundert",
+      "translation": "对…感到惊奇",
+      "example": "Ich wundere mich über sein Verhalten.",
+      "category": "反身动词"
+    },
+    {
+      "word": "sich sehnen nach",
+      "gender": "verb",
+      "plural": "sich gesehnt",
+      "translation": "渴望",
+      "example": "Sie sehnt sich nach Frieden.",
+      "category": "反身动词"
+    },
+    {
+      "word": "sich bewerben um",
+      "gender": "verb",
+      "plural": "sich beworben",
+      "translation": "申请",
+      "example": "Er hat sich um die Stelle beworben.",
+      "category": "反身动词"
+    }
+  ],
+  "dictations": [
+    {
+      "text": "Ich freue mich sehr auf das Konzert nächste Woche.",
+      "translation": "我非常期待下周的音乐会。",
+      "hint": "sich freuen auf + Akkusativ"
+    },
+    {
+      "text": "Er interessiert sich für Politik und liest jeden Tag die Zeitung.",
+      "translation": "他对政治感兴趣，每天读报纸。",
+      "hint": "sich interessieren für + Akkusativ"
+    },
+    {
+      "text": "Die Kunden beschweren sich ständig über den schlechten Service.",
+      "translation": "顾客们不断抱怨糟糕的服务。",
+      "hint": "sich beschweren über + Akkusativ"
+    },
+    {
+      "text": "Wir haben uns gestern Abend von unseren Freunden verabschiedet.",
+      "translation": "我们昨晚向朋友们告别了。",
+      "hint": "sich verabschieden von + Dativ"
+    },
+    {
+      "text": "Die Kinder müssen sich auf die Prüfung vorbereiten, sonst werden sie durchfallen.",
+      "translation": "孩子们必须为考试做准备，否则会不及格。",
+      "hint": "sich vorbereiten auf + Akkusativ"
+    }
+  ],
+  "grammars": [
+    {
+      "question": "Ich ärgere mich ___ den Fehler in der Rechnung.",
+      "options": [
+        "auf",
+        "über",
+        "an",
+        "für"
+      ],
+      "correct": "über",
+      "explanation": "sich ärgern über + Akkusativ是固定搭配，表示“对某事生气”。"
+    },
+    {
+      "question": "Er hat sich endlich ___ den Job beworben, den er schon lange wollte.",
+      "options": [
+        "um",
+        "auf",
+        "für",
+        "an"
+      ],
+      "correct": "um",
+      "explanation": "sich bewerben um + Akkusativ表示“申请某职位”。"
+    },
+    {
+      "question": "Das hängt nicht ___ mir ab, sondern von anderen Faktoren.",
+      "options": [
+        "auf",
+        "von",
+        "an",
+        "bei"
+      ],
+      "correct": "von",
+      "explanation": "abhängen von + Dativ是固定搭配，表示“取决于”。"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "day": 16,
+  "title": "关系从句：第一格与第四格 (Relativsätze im Nom. & Akk.)",
+  "focus": "熟练编写形容名词的修饰性关系从句。关系代词根据它在从句中的成分决定格位。",
+  "vocab": [
+    {
+      "word": "der Nachbar",
+      "gender": "der",
+      "plural": "-n",
+      "translation": "邻居",
+      "example": "Mein neuer Nachbar ist sehr freundlich.",
+      "category": "名词"
+    },
+    {
+      "word": "kennenlernen",
+      "gender": "verb",
+      "plural": "lernte kennen, kennengelernt",
+      "translation": "结识，认识",
+      "example": "Ich möchte neue Leute kennenlernen.",
+      "category": "动词"
+    }
+  ],
+  "dictations": [
+    {
+      "text": "Der Kaffee, den ich gestern in dem kleinen Café gekauft habe, schmeckt super.",
+      "translation": "我昨天在那个小咖啡馆买的咖啡，味道好极了。",
+      "hint": "Kaffee 是阳性单数。在从句中作为“我买”的直接宾语，所以用第四格阳性代词 den。"
+    }
+  ],
+  "grammars": [
+    {
+      "question": "Der Kollege, ___ dort drüben steht, kommt aus der Schweiz.",
+      "options": [
+        "den",
+        "dem",
+        "der",
+        "dessen"
+      ],
+      "correct": "der",
+      "explanation": "修饰单数阳性名词 Kollege，且关系代词在从句中作为主语（第一格），因此选 der。"
+    }
+  ]
+}

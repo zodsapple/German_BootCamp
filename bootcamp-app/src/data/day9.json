@@ -1,0 +1,269 @@
+{
+  "day": 9,
+  "title": "Verben mit Präpositionen – 动词与介词固定搭配",
+  "focus": "掌握德语中常见的动词与特定介词的固定搭配，并能正确使用其后格的支配关系（Akkusativ/Dativ）。",
+  "vocab": [
+    {
+      "word": "sich freuen auf",
+      "gender": "verb",
+      "plural": "",
+      "translation": "期待（某件事）",
+      "example": "Ich freue mich auf den Urlaub.",
+      "category": "动词"
+    },
+    {
+      "word": "sich freuen über",
+      "gender": "verb",
+      "plural": "",
+      "translation": "对（已发生的事）感到高兴",
+      "example": "Er freut sich über das Geschenk.",
+      "category": "动词"
+    },
+    {
+      "word": "warten auf",
+      "gender": "verb",
+      "plural": "",
+      "translation": "等待",
+      "example": "Wir warten auf den Bus.",
+      "category": "动词"
+    },
+    {
+      "word": "denken an",
+      "gender": "verb",
+      "plural": "",
+      "translation": "想到，想起",
+      "example": "Ich denke an meine Familie.",
+      "category": "动词"
+    },
+    {
+      "word": "sich erinnern an",
+      "gender": "verb",
+      "plural": "",
+      "translation": "回忆",
+      "example": "Kannst du dich an den Film erinnern?",
+      "category": "动词"
+    },
+    {
+      "word": "glauben an",
+      "gender": "verb",
+      "plural": "",
+      "translation": "相信",
+      "example": "Viele Menschen glauben an Gott.",
+      "category": "动词"
+    },
+    {
+      "word": "sich interessieren für",
+      "gender": "verb",
+      "plural": "",
+      "translation": "对…感兴趣",
+      "example": "Sie interessiert sich für Kunst.",
+      "category": "动词"
+    },
+    {
+      "word": "sich kümmern um",
+      "gender": "verb",
+      "plural": "",
+      "translation": "关心，照顾",
+      "example": "Sie kümmert sich um ihre kranke Mutter.",
+      "category": "动词"
+    },
+    {
+      "word": "bitten um",
+      "gender": "verb",
+      "plural": "",
+      "translation": "请求",
+      "example": "Er bittet um Hilfe.",
+      "category": "动词"
+    },
+    {
+      "word": "danken für",
+      "gender": "verb",
+      "plural": "",
+      "translation": "感谢",
+      "example": "Ich danke dir für deine Unterstützung.",
+      "category": "动词"
+    },
+    {
+      "word": "sich bedanken bei",
+      "gender": "verb",
+      "plural": "",
+      "translation": "（向某人）道谢",
+      "example": "Ich bedanke mich bei meinem Chef.",
+      "category": "动词"
+    },
+    {
+      "word": "sich bedanken für",
+      "gender": "verb",
+      "plural": "",
+      "translation": "（因某事）道谢",
+      "example": "Wir bedanken uns für die Einladung.",
+      "category": "动词"
+    },
+    {
+      "word": "sich entschuldigen bei",
+      "gender": "verb",
+      "plural": "",
+      "translation": "（向某人）道歉",
+      "example": "Er entschuldigt sich bei seiner Freundin.",
+      "category": "动词"
+    },
+    {
+      "word": "sich entschuldigen für",
+      "gender": "verb",
+      "plural": "",
+      "translation": "（因某事）道歉",
+      "example": "Ich entschuldige mich für die Verspätung.",
+      "category": "动词"
+    },
+    {
+      "word": "sich verabschieden von",
+      "gender": "verb",
+      "plural": "",
+      "translation": "告别",
+      "example": "Sie verabschiedet sich von ihren Kollegen.",
+      "category": "动词"
+    },
+    {
+      "word": "teilnehmen an",
+      "gender": "verb",
+      "plural": "",
+      "translation": "参加",
+      "example": "Er nimmt an dem Kurs teil.",
+      "category": "动词"
+    },
+    {
+      "word": "sich vorbereiten auf",
+      "gender": "verb",
+      "plural": "",
+      "translation": "为…做准备",
+      "example": "Ich bereite mich auf die Prüfung vor.",
+      "category": "动词"
+    },
+    {
+      "word": "sich beschweren über",
+      "gender": "verb",
+      "plural": "",
+      "translation": "抱怨",
+      "example": "Der Kunde beschwert sich über den Service.",
+      "category": "动词"
+    },
+    {
+      "word": "sich ärgern über",
+      "gender": "verb",
+      "plural": "",
+      "translation": "对…生气",
+      "example": "Sie ärgert sich über den Lärm.",
+      "category": "动词"
+    },
+    {
+      "word": "sich fürchten vor",
+      "gender": "verb",
+      "plural": "",
+      "translation": "害怕",
+      "example": "Das Kind fürchtet sich vor dem Hund.",
+      "category": "动词"
+    },
+    {
+      "word": "sorgen für",
+      "gender": "verb",
+      "plural": "",
+      "translation": "负责，保证",
+      "example": "Die Firma sorgt für die Unterkunft.",
+      "category": "动词"
+    },
+    {
+      "word": "verzichten auf",
+      "gender": "verb",
+      "plural": "",
+      "translation": "放弃",
+      "example": "Er verzichtet auf das Rauchen.",
+      "category": "动词"
+    },
+    {
+      "word": "hoffen auf",
+      "gender": "verb",
+      "plural": "",
+      "translation": "希望",
+      "example": "Wir hoffen auf gutes Wetter.",
+      "category": "动词"
+    },
+    {
+      "word": "sich gewöhnen an",
+      "gender": "verb",
+      "plural": "",
+      "translation": "习惯于",
+      "example": "Ich gewöhne mich an die neue Stadt.",
+      "category": "动词"
+    },
+    {
+      "word": "sich konzentrieren auf",
+      "gender": "verb",
+      "plural": "",
+      "translation": "集中注意力于",
+      "example": "Konzentriere dich auf die Aufgabe!",
+      "category": "动词"
+    }
+  ],
+  "dictations": [
+    {
+      "text": "Ich freue mich schon sehr auf die Reise nach Österreich.",
+      "translation": "我非常期待去奥地利的旅行。",
+      "hint": "动词sich freuen auf + Akk，期待某件未来的事。"
+    },
+    {
+      "text": "Kannst du dich noch an unsere Schulzeit erinnern?",
+      "translation": "你还记得我们的学生时代吗？",
+      "hint": "动词sich erinnern an + Akk，回忆。注意an后跟第四格。"
+    },
+    {
+      "text": "Der Professor dankt den Studenten für ihre aktive Teilnahme.",
+      "translation": "教授感谢学生们的积极参与。",
+      "hint": "danken + Dativ (人) + für + Akk (事)。"
+    },
+    {
+      "text": "Wir bereiten uns intensiv auf die B1-Prüfung vor.",
+      "translation": "我们正在为B1考试做密集的准备。",
+      "hint": "sich vorbereiten auf + Akk，为...做准备。vorbereiten是分离动词。"
+    },
+    {
+      "text": "Hast du dich bei deiner Nachbarin für die Hilfe bedankt?",
+      "translation": "你感谢过你的女邻居的帮助了吗？",
+      "hint": "sich bedanken bei + Dativ (人) + für + Akk (事)。"
+    }
+  ],
+  "grammars": [
+    {
+      "question": "Ich interessiere ___ mich sehr ___ moderne Kunst.",
+      "options": [
+        "für / für",
+        "an / für",
+        "für / für",
+        "auf / von"
+      ],
+      "correct": "für / für",
+      "explanation": "固定搭配：sich interessieren für + Akkusativ，表示对...感兴趣。两个空都是für。"
+    },
+    {
+      "question": "Er hat sich gestern ___ seinen Fehler entschuldigt.",
+      "options": [
+        "für",
+        "bei",
+        "über",
+        "an"
+      ],
+      "correct": "für",
+      "explanation": "sich entschuldigen für + Akkusativ（因某事道歉）；如果道歉的对象是人，则用bei + Dativ。这里说的是“为他的错误”，所以用für。"
+    },
+    {
+      "question": "Worauf wartest ___ du?",
+      "options": [
+        "auf",
+        "an",
+        "für",
+        "über"
+      ],
+      "correct": "auf",
+      "explanation": "动词warten auf + Akkusativ，意为等待。在疑问句中，介词和疑问词结合成worauf（当介词auf后跟事物时）。"
+    }
+  ]
+}

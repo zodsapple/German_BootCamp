@@ -1,0 +1,43 @@
+{
+  "day": 29,
+  "title": "易混淆词汇绝对辨析 (Problemverben: werden, bekommen etc.)",
+  "focus": "彻底厘清 bekommen（收到）、werden（变成、将要）和 sein/haben 各种时态词义。",
+  "vocab": [
+    {
+      "word": "erhalten",
+      "gender": "verb",
+      "plural": "erhielt, hat erhalten",
+      "translation": "收到，获得 (比 bekommen 正式)",
+      "example": "Ich habe Ihre Nachricht erhalten.",
+      "category": "动词"
+    },
+    {
+      "word": "die Wahrheit",
+      "gender": "die",
+      "plural": "-en",
+      "translation": "事实，真理",
+      "example": "Sagen Sie mir bitte die ganze Wahrheit.",
+      "category": "名词"
+    }
+  ],
+  "dictations": [
+    {
+      "text": "Es wird im Winter immer sehr früh dunkel, sodass wir oft drinnen bleiben.",
+      "translation": "冬天天黑得很早，以至于我们经常呆在室内。",
+      "hint": "werden 充当状态发生变化（变黑 dunkel werden）的实意动词。"
+    }
+  ],
+  "grammars": [
+    {
+      "question": "Ich ___ gestern ein wunderbares Geschenk von meiner Oma bekommen.",
+      "options": [
+        "bin",
+        "wurde",
+        "habe",
+        "hatte"
+      ],
+      "correct": "habe",
+      "explanation": "bekommen（收到）的现在完成时助动词用 haben (Ich habe bekommen)。千万不要和 become（变成 -> werden）混淆。"
+    }
+  ]
+}

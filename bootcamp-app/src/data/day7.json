@@ -1,0 +1,285 @@
+{
+  "day": 7,
+  "title": "Konjunktiv II: Wünsche und höfliche Bitten (第二虚拟式：愿望与礼貌请求)",
+  "focus": "学习第二虚拟式的构成（弱变化/强变化/混合动词）及其在表达非现实愿望、礼貌请求和委婉建议中的用法。",
+  "vocab": [
+    {
+      "word": "wünschen",
+      "gender": "verb",
+      "plural": "wünschte, hat gewünscht",
+      "translation": "希望，祝愿",
+      "example": "Ich wünschte, ich hätte mehr Zeit.",
+      "category": "动词"
+    },
+    {
+      "word": "würde",
+      "gender": "auxiliary verb",
+      "plural": "würde, würdest, würde, würden, würdet, würden",
+      "translation": "würden（构成第二虚拟式）",
+      "example": "Ich würde gern nach Deutschland reisen.",
+      "category": "助动词"
+    },
+    {
+      "word": "könnte",
+      "gender": "modal verb (präteritum Konjunktiv)",
+      "plural": "könnte, könntest, könnte, könnten, könntet, könnten",
+      "translation": "可能，可以（第二虚拟式）",
+      "example": "Könntest du mir bitte helfen?",
+      "category": "情态动词"
+    },
+    {
+      "word": "sollte",
+      "gender": "modal verb (präteritum Konjunktiv)",
+      "plural": "sollte, solltest, sollte, sollten, solltet, sollten",
+      "translation": "应该（第二虚拟式，表示建议）",
+      "example": "Du solltest mehr Wasser trinken.",
+      "category": "情态动词"
+    },
+    {
+      "word": "hätte",
+      "gender": "verb (haben Konjunktiv II)",
+      "plural": "hätte, hättest, hätte, hätten, hättet, hätten",
+      "translation": "有（第二虚拟式）",
+      "example": "Wenn ich mehr Geld hätte, würde ich ein neues Auto kaufen.",
+      "category": "动词"
+    },
+    {
+      "word": "wäre",
+      "gender": "verb (sein Konjunktiv II)",
+      "plural": "wäre, wärest, wäre, wären, wäret, wären",
+      "translation": "是（第二虚拟式）",
+      "example": "Es wäre schön, wenn du kommen könntest.",
+      "category": "动词"
+    },
+    {
+      "word": "das Geld",
+      "gender": "das",
+      "plural": "die Gelder",
+      "translation": "钱",
+      "example": "Ohne Geld wäre das Leben schwierig.",
+      "category": "名词"
+    },
+    {
+      "word": "der Wunsch",
+      "gender": "der",
+      "plural": "die Wünsche",
+      "translation": "愿望",
+      "example": "Mein größter Wunsch ist eine Weltreise.",
+      "category": "名词"
+    },
+    {
+      "word": "die Möglichkeit",
+      "gender": "die",
+      "plural": "die Möglichkeiten",
+      "translation": "可能性",
+      "example": "Wenn es eine Möglichkeit gäbe, würde ich sofort kommen.",
+      "category": "名词"
+    },
+    {
+      "word": "die Bitte",
+      "gender": "die",
+      "plural": "die Bitten",
+      "translation": "请求",
+      "example": "Hätten Sie vielleicht einen Moment Zeit für mich?",
+      "category": "名词"
+    },
+    {
+      "word": "endlich",
+      "gender": "adv",
+      "plural": "-",
+      "translation": "终于",
+      "example": "Endlich würde ich im Lotto gewinnen!",
+      "category": "副词"
+    },
+    {
+      "word": "vielleicht",
+      "gender": "adv",
+      "plural": "-",
+      "translation": "也许",
+      "example": "Vielleicht könntest du mir helfen.",
+      "category": "副词"
+    },
+    {
+      "word": "gern",
+      "gender": "adv",
+      "plural": "-",
+      "translation": "乐意地",
+      "example": "Ich würde gern einen Kaffee trinken.",
+      "category": "副词"
+    },
+    {
+      "word": "das Reisen",
+      "gender": "das",
+      "plural": "-",
+      "translation": "旅行",
+      "example": "Reisen wäre toll, wenn ich mehr Urlaub hätte.",
+      "category": "名词"
+    },
+    {
+      "word": "der Urlaub",
+      "gender": "der",
+      "plural": "die Urlaube",
+      "translation": "假期",
+      "example": "Ich wünschte, ich hätte länger Urlaub.",
+      "category": "名词"
+    },
+    {
+      "word": "das Studium",
+      "gender": "das",
+      "plural": "die Studien",
+      "translation": "学习，大学学业",
+      "example": "Ohne Studium wäre ich nicht so weit gekommen.",
+      "category": "名词"
+    },
+    {
+      "word": "die Prüfung",
+      "gender": "die",
+      "plural": "die Prüfungen",
+      "translation": "考试",
+      "example": "Die Prüfung wäre einfacher, wenn ich mehr gelernt hätte.",
+      "category": "名词"
+    },
+    {
+      "word": "schaffen",
+      "gender": "verb",
+      "plural": "schaffte, hat geschafft",
+      "translation": "完成，做到",
+      "example": "Ich schaffte die Prüfung nicht, aber wenn ich fleißiger gewesen wäre, hätte ich sie geschafft.",
+      "category": "动词"
+    },
+    {
+      "word": "fleißig",
+      "gender": "adj",
+      "plural": "fleißiger, am fleißigsten",
+      "translation": "勤奋的",
+      "example": "Wäre ich fleißiger, würde ich bessere Noten bekommen.",
+      "category": "形容词"
+    },
+    {
+      "word": "reich",
+      "gender": "adj",
+      "plural": "reicher, am reichsten",
+      "translation": "富有的",
+      "example": "Wenn ich reich wäre, würde ich ein Haus kaufen.",
+      "category": "形容词"
+    },
+    {
+      "word": "kostenlos",
+      "gender": "adj",
+      "plural": "-",
+      "translation": "免费的",
+      "example": "Kostenlose Proben wären schön.",
+      "category": "形容词"
+    },
+    {
+      "word": "sich freuen",
+      "gender": "reflexive verb",
+      "plural": "freute sich, hat sich gefreut",
+      "translation": "感到高兴",
+      "example": "Ich würde mich freuen, wenn du mich besuchst.",
+      "category": "反身动词"
+    },
+    {
+      "word": "besuchen",
+      "gender": "verb",
+      "plural": "besuchte, hat besucht",
+      "translation": "拜访，访问",
+      "example": "Ich würde dich besuchen, wenn ich Zeit hätte.",
+      "category": "动词"
+    },
+    {
+      "word": "mitkommen",
+      "gender": "verb",
+      "plural": "kam mit, ist mitgekommen",
+      "translation": "一起来，跟来",
+      "example": "Könntest du mitkommen?",
+      "category": "动词"
+    },
+    {
+      "word": "anfangen",
+      "gender": "verb",
+      "plural": "fing an, hat angefangen",
+      "translation": "开始",
+      "example": "Ich würde früher anfangen, wenn ich könnte.",
+      "category": "动词"
+    },
+    {
+      "word": "die Gelegenheit",
+      "gender": "die",
+      "plural": "die Gelegenheiten",
+      "translation": "机会",
+      "example": "Wenn ich die Gelegenheit hätte, würde ich verreisen.",
+      "category": "名词"
+    },
+    {
+      "word": "verbessern",
+      "gender": "verb",
+      "plural": "verbesserte, hat verbessert",
+      "translation": "改善，提高",
+      "example": "Ich würde mein Deutsch verbessern, wenn ich in Deutschland lebte.",
+      "category": "动词"
+    }
+  ],
+  "dictations": [
+    {
+      "text": "Ich wünschte, ich hätte mehr Zeit für meine Familie.",
+      "translation": "我希望我有更多时间给我的家人。",
+      "hint": "wünschen + Konjunktiv II（非现实愿望）"
+    },
+    {
+      "text": "Wenn ich im Lotto gewinnen würde, würde ich um die Welt reisen.",
+      "translation": "如果我中了彩票，我会环游世界。",
+      "hint": "条件句 mit würde + Infinitiv"
+    },
+    {
+      "text": "Könntest du mir bitte sagen, wie spät es ist?",
+      "translation": "你能告诉我几点了？",
+      "hint": "könntest（礼貌请求）"
+    },
+    {
+      "text": "Es wäre schön, wenn du morgen zu meiner Party kommen könntest.",
+      "translation": "如果你明天能来我的派对，那就太好了。",
+      "hint": "wäre + wenn-Satz"
+    },
+    {
+      "text": "Du solltest mehr Gemüse essen, dann wärst du gesünder.",
+      "translation": "你应该多吃蔬菜，那样会更健康。",
+      "hint": "solltest 用于建议；wärst (sein Konj.II)"
+    }
+  ],
+  "grammars": [
+    {
+      "question": "Ich ___ gern ein Auto kaufen, aber ich habe nicht genug Geld.",
+      "options": [
+        "würde",
+        "werde",
+        "hatte",
+        "hätte"
+      ],
+      "correct": "würde",
+      "explanation": "表示愿望或假设的动作，使用 'würde + Infinitiv'。这里'würde kaufen' 表示'想买'（非现实）。"
+    },
+    {
+      "question": "Wenn ich mehr Zeit ___, würde ich mehr Sport treiben.",
+      "options": [
+        "habe",
+        "hätte",
+        "hatte",
+        "haben"
+      ],
+      "correct": "hätte",
+      "explanation": "在非现实条件句中（wenn + Konjunktiv II），haben 的第二虚拟式是 hätte。"
+    },
+    {
+      "question": "___ du mir bitte das Salz geben?",
+      "options": [
+        "Kannst",
+        "Könntest",
+        "Kann",
+        "Konntest"
+      ],
+      "correct": "Könntest",
+      "explanation": "礼貌请求通常使用第二虚拟式 könntest（比kannst更礼貌）."
+    }
+  ]
+}

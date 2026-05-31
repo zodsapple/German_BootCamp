@@ -1,0 +1,43 @@
+{
+  "day": 21,
+  "title": "被动语态过去时 (Passiv Präteritum)",
+  "focus": "常用于书面报道、新闻或讲述过去发生的事情。构成：wurden (过去式变位) + Partizip II。",
+  "vocab": [
+    {
+      "word": "der Bahnhof",
+      "gender": "der",
+      "plural": "-e",
+      "translation": "火车站",
+      "example": "Der neue Bahnhof wurde gestern feierlich eröffnet.",
+      "category": "名词"
+    },
+    {
+      "word": "bauen",
+      "gender": "verb",
+      "plural": "baute, hat gebaut",
+      "translation": "建造，建设",
+      "example": "Hier wird ein neues Einkaufszentrum gebaut.",
+      "category": "动词"
+    }
+  ],
+  "dictations": [
+    {
+      "text": "Dieses historische Gebäude wurde im Jahr achtzehnhundert gebaut.",
+      "translation": "这座历史悠久的建筑建于 1800 年。",
+      "hint": "过去发生的被动事实，使用 werden 的过去式 wurde + 过去分词 gebaut。"
+    }
+  ],
+  "grammars": [
+    {
+      "question": "Die Briefe ___ gestern vom Postboten abgeholt.",
+      "options": [
+        "wurden",
+        "wurdet",
+        "warden",
+        "werden"
+      ],
+      "correct": "wurden",
+      "explanation": "主语是复数 Briefe，且时间词是 yesterday (gestern)，因此使用复数过去时被动助动词 wurden。"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "day": 17,
+  "title": "关系从句：第三格与介词结合 (Relativsätze im Dat. & mit Präp.)",
+  "focus": "攻克高难度的带介词关系从句，关系代词的格位由介词决定。",
+  "vocab": [
+    {
+      "word": "der Kollege",
+      "gender": "der",
+      "plural": "-n",
+      "translation": "同事",
+      "example": "Ich arbeite gerne mit meinen Kollegen.",
+      "category": "名词"
+    },
+    {
+      "word": "helfen",
+      "gender": "verb",
+      "plural": "half, hat geholfen",
+      "translation": "帮助 (+ Dativ)",
+      "example": "Er hilft mir bei den Hausaufgaben.",
+      "category": "动词"
+    }
+  ],
+  "dictations": [
+    {
+      "text": "Das ist das schöne Auto, von dem mein Mann schon seit Jahren träumt.",
+      "translation": "这就是我丈夫多年来一直梦寐以求的那辆漂亮跑车。",
+      "hint": "träumen von + Dativ。Auto 为中性单数，因此为 von dem。"
+    }
+  ],
+  "grammars": [
+    {
+      "question": "Die Frau, ___ ich beim Tragen der Taschen geholfen habe, war sehr dankbar.",
+      "options": [
+        "die",
+        "der",
+        "den",
+        "dem"
+      ],
+      "correct": "der",
+      "explanation": "helfen 接第三格宾语，修饰单数阴性名词 Frau，所以关系代词用阴性第三格 der。"
+    }
+  ]
+}

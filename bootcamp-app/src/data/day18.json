@@ -1,0 +1,43 @@
+{
+  "day": 18,
+  "title": "形容词词尾变化：定冠词修饰 (Adjektivdeklination mit best. Artikel)",
+  "focus": "在 der/die/das 之后，形容词词尾非常规整：主格和阴/中宾格加 -e，其他一律加 -en。",
+  "vocab": [
+    {
+      "word": "der Anzug",
+      "gender": "der",
+      "plural": "-e",
+      "translation": "西装",
+      "example": "Er trägt einen schicken blauen Anzug.",
+      "category": "名词"
+    },
+    {
+      "word": "schick",
+      "gender": "adj",
+      "plural": "",
+      "translation": "时髦的，潇洒的",
+      "example": "Das Kleid sieht wirklich schick aus.",
+      "category": "形容词"
+    }
+  ],
+  "dictations": [
+    {
+      "text": "Der neue Laptop, den ich mir gestern bestellt habe, ist unglaublich schnell.",
+      "translation": "我昨天订购的那台新笔记本电脑速度极其快。",
+      "hint": "bestimmter Artikel + Adjektiv (Der neue Laptop)。"
+    }
+  ],
+  "grammars": [
+    {
+      "question": "Ich mag den schwarz___ Tee aus Indien besonders gern.",
+      "options": [
+        "e",
+        "en",
+        "er",
+        "es"
+      ],
+      "correct": "en",
+      "explanation": "Tee为阳性第四格宾语，在定冠词 den 之后，形容词词尾必然是 -en。"
+    }
+  ]
+}

@@ -1,0 +1,269 @@
+{
+  "day": 5,
+  "title": "Nebensätze mit Konjunktionen / 复句连词",
+  "focus": "掌握 dass、weil、obwohl、wenn、als 等连词引导的从句语序和用法",
+  "vocab": [
+    {
+      "word": "dass",
+      "gender": "Konjunktion",
+      "plural": "",
+      "translation": "（引导从句）",
+      "example": "Ich glaube, dass er heute kommt.",
+      "category": "连词"
+    },
+    {
+      "word": "weil",
+      "gender": "Konjunktion",
+      "plural": "",
+      "translation": "因为",
+      "example": "Er bleibt zu Hause, weil er krank ist.",
+      "category": "连词"
+    },
+    {
+      "word": "obwohl",
+      "gender": "Konjunktion",
+      "plural": "",
+      "translation": "虽然",
+      "example": "Obwohl es regnet, gehen wir spazieren.",
+      "category": "连词"
+    },
+    {
+      "word": "wenn",
+      "gender": "Konjunktion",
+      "plural": "",
+      "translation": "如果/当",
+      "example": "Wenn ich Zeit habe, besuche ich dich.",
+      "category": "连词"
+    },
+    {
+      "word": "als",
+      "gender": "Konjunktion",
+      "plural": "",
+      "translation": "当……时（过去一次）",
+      "example": "Als ich klein war, wohnte ich in Berlin.",
+      "category": "连词"
+    },
+    {
+      "word": "da",
+      "gender": "Konjunktion",
+      "plural": "",
+      "translation": "因为（原因已知）",
+      "example": "Da es spät ist, gehen wir nach Hause.",
+      "category": "连词"
+    },
+    {
+      "word": "damit",
+      "gender": "Konjunktion",
+      "plural": "",
+      "translation": "为了",
+      "example": "Ich lerne Deutsch, damit ich in Deutschland arbeiten kann.",
+      "category": "连词"
+    },
+    {
+      "word": "ob",
+      "gender": "Konjunktion",
+      "plural": "",
+      "translation": "是否",
+      "example": "Ich weiß nicht, ob er kommt.",
+      "category": "连词"
+    },
+    {
+      "word": "bevor",
+      "gender": "Konjunktion",
+      "plural": "",
+      "translation": "在……之前",
+      "example": "Bevor wir essen, waschen wir die Hände.",
+      "category": "连词"
+    },
+    {
+      "word": "nachdem",
+      "gender": "Konjunktion",
+      "plural": "",
+      "translation": "在……之后",
+      "example": "Nachdem er gegessen hat, geht er schlafen.",
+      "category": "连词"
+    },
+    {
+      "word": "während",
+      "gender": "Konjunktion",
+      "plural": "",
+      "translation": "在……期间",
+      "example": "Während ich arbeite, höre ich Musik.",
+      "category": "连词"
+    },
+    {
+      "word": "seitdem",
+      "gender": "Konjunktion",
+      "plural": "",
+      "translation": "自从",
+      "example": "Seitdem er in Berlin wohnt, geht er oft ins Museum.",
+      "category": "连词"
+    },
+    {
+      "word": "bis",
+      "gender": "Konjunktion",
+      "plural": "",
+      "translation": "直到",
+      "example": "Ich warte, bis du kommst.",
+      "category": "连词"
+    },
+    {
+      "word": "indem",
+      "gender": "Konjunktion",
+      "plural": "",
+      "translation": "通过……方式",
+      "example": "Er spart Geld, indem er weniger ausgibt.",
+      "category": "连词"
+    },
+    {
+      "word": "sodass",
+      "gender": "Konjunktion",
+      "plural": "",
+      "translation": "以致于",
+      "example": "Er sprach leise, sodass ich ihn kaum hören konnte.",
+      "category": "连词"
+    },
+    {
+      "word": "trotzdem",
+      "gender": "Adverb",
+      "plural": "",
+      "translation": "尽管如此",
+      "example": "Es regnet, trotzdem gehen wir spazieren.",
+      "category": "副词"
+    },
+    {
+      "word": "denn",
+      "gender": "Konjunktion",
+      "plural": "",
+      "translation": "因为（并列句）",
+      "example": "Er geht ins Bett, denn er ist müde.",
+      "category": "连词"
+    },
+    {
+      "word": "deshalb",
+      "gender": "Adverb",
+      "plural": "",
+      "translation": "因此",
+      "example": "Er ist krank, deshalb bleibt er zu Hause.",
+      "category": "副词"
+    },
+    {
+      "word": "trotz",
+      "gender": "Präposition",
+      "plural": "",
+      "translation": "尽管（加名词）",
+      "example": "Trotz des Regens gehen wir spazieren.",
+      "category": "介词"
+    },
+    {
+      "word": "außerdem",
+      "gender": "Adverb",
+      "plural": "",
+      "translation": "此外",
+      "example": "Er ist intelligent, außerdem sehr fleißig.",
+      "category": "副词"
+    },
+    {
+      "word": "nämlich",
+      "gender": "Adverb",
+      "plural": "",
+      "translation": "也就是/因为",
+      "example": "Er kommt nicht, er ist nämlich krank.",
+      "category": "副词"
+    },
+    {
+      "word": "also",
+      "gender": "Adverb",
+      "plural": "",
+      "translation": "所以",
+      "example": "Sie hat viel gelernt, also besteht sie die Prüfung.",
+      "category": "副词"
+    },
+    {
+      "word": "entweder ... oder",
+      "gender": "Konjunktion",
+      "plural": "",
+      "translation": "要么……要么",
+      "example": "Entweder du kommst mit, oder du bleibst zu Hause.",
+      "category": "连词"
+    },
+    {
+      "word": "weder ... noch",
+      "gender": "Konjunktion",
+      "plural": "",
+      "translation": "既不……也不",
+      "example": "Er hat weder Zeit noch Geld.",
+      "category": "连词"
+    },
+    {
+      "word": "zwar ... aber",
+      "gender": "Konjunktion",
+      "plural": "",
+      "translation": "虽然……但是",
+      "example": "Sie ist zwar krank, aber sie arbeitet weiter.",
+      "category": "连词"
+    }
+  ],
+  "dictations": [
+    {
+      "text": "Obwohl es sehr kalt ist, gehen die Kinder jeden Morgen zu Fuß zur Schule.",
+      "translation": "虽然天气很冷，但孩子们每天早晨步行上学。",
+      "hint": "注意 obwohl 从句语序：动词放在句末；主句正常语序。"
+    },
+    {
+      "text": "Ich habe gehört, dass du nächstes Jahr nach Österreich reisen wirst.",
+      "translation": "我听说你明年要去奥地利旅行。",
+      "hint": "dass 从句动词放在最后；注意将来时 werden + Infinitiv。"
+    },
+    {
+      "text": "Nachdem sie das Abitur gemacht hatte, studierte sie Medizin an der Universität.",
+      "translation": "她高中毕业后，在大学学习医学。",
+      "hint": "nachdem 引导的从句用过去完成式（Plusquamperfekt），主句用过去式。"
+    },
+    {
+      "text": "Wenn ich mehr Zeit hätte, würde ich einen Sprachkurs in Deutschland besuchen.",
+      "translation": "如果我有更多时间，我会去德国参加一个语言课程。",
+      "hint": "虚拟式第二条件句：wenn + 过去式，主句用 würde + Infinitiv。"
+    },
+    {
+      "text": "Da er den Zug verpasst hatte, kam er zu spät zur Besprechung.",
+      "translation": "因为他错过了火车，所以开会迟到了。",
+      "hint": "da 表示已知原因，从句动词放在句末；主句正常语序。"
+    }
+  ],
+  "grammars": [
+    {
+      "question": "___ ich krank war, ging ich nicht zur Arbeit.",
+      "options": [
+        "Weil",
+        "Obwohl",
+        "Dass",
+        "Wenn"
+      ],
+      "correct": "Weil",
+      "explanation": "句子意思是'因为我病了，所以没去上班'，表示原因，用 weil。obwohl 表示虽然，dass 不表示原因，wenn 表示条件或时间。"
+    },
+    {
+      "question": "Ich freue mich, ___ du mich besuchst.",
+      "options": [
+        "wenn",
+        "als",
+        "ob",
+        "dass"
+      ],
+      "correct": "dass",
+      "explanation": "句子意思是'我很高兴你来拜访我'，sich freuen 后接 dass 从句表示内容。wenn 表条件或将来时间，als 表过去一次，ob 表是否。"
+    },
+    {
+      "question": "Er kann nicht kommen, ___ er keine Zeit hat.",
+      "options": [
+        "trotzdem",
+        "weil",
+        "denn",
+        "obwohl"
+      ],
+      "correct": "weil",
+      "explanation": "原因从句用 weil 引导，语序为动词放在句末。denn 也表原因，但用于并列句，语序正常。trotzdem 和 obwohl 表让步。"
+    }
+  ]
+}

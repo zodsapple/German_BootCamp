@@ -1,0 +1,56 @@
+name: Deploy to GitHub Pages
+
+on:
+  # Trigger the workflow on push to the main branch
+  push:
+    branches: ["main", "master"]
+  # Allow manual trigger
+  workflow_dispatch:
+
+# Set permissions for the GITHUB_TOKEN to allow deployment
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build the project
+        run: npm run build
+        # If your repository is not a root/user page (e.g. https://username.github.io/repo-name/), 
+        # you need to set the base path in vite.config.js or via command line.
+        # Example: run: npm run build -- --base=/repo-name/
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

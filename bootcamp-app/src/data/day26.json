@@ -1,0 +1,44 @@
+{
+  "day": 26,
+  "title": "名动结合固定搭配 (Nomen-Verb-Verbindungen)",
+  "focus": "在 B1 高级表达中，用名词+动词代替单动词。如 Interesse haben 代替 sich interessieren。",
+  "vocab": [
+    {
+      "word": "die Sorge",
+      "gender": "die",
+      "plural": "-n",
+      "translation": "担心，忧虑",
+      "example": "Machen Sie sich keine Sorgen um mich.",
+      "category": "名词"
+    },
+    {
+      "word": "lösen",
+      "gender": "verb",
+      "plural": "löste, hat gelöst",
+      "translation": "解决",
+      "example": "Wir müssen eine Lösung für dieses Problem finden.",
+      "category": "动词"
+    }
+  ],
+  "dictations": [
+    {
+      "text": "Ich möchte eine wichtige Frage zum Ablauf der heutigen Prüfung stellen.",
+      "screenshot": "",
+      "translation": "我想就今天考试的流程提一个重要问题。",
+      "hint": "eine Frage stellen 等同于 fragen (提问)。"
+    }
+  ],
+  "grammars": [
+    {
+      "question": "Sie müssen heute eine wichtige Entscheidung ___ .",
+      "options": [
+        "machen",
+        "haben",
+        "treffen",
+        "tun"
+      ],
+      "correct": "treffen",
+      "explanation": "eine Entscheidung treffen 属于固定名动搭配，意为“做出决定”。"
+    }
+  ]
+}

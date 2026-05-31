@@ -1,0 +1,43 @@
+{
+  "day": 25,
+  "title": "第二格与介词结合 (Genitiv & Präpositionen)",
+  "focus": "掌握 B1 标配的第二格 (Genitiv) 介词：wegen, trotz, während, statt。",
+  "vocab": [
+    {
+      "word": "das Wetter",
+      "gender": "das",
+      "plural": "(Sg.)",
+      "translation": "天气",
+      "example": "Trotz des schlechten Wetters gehen wir wandern.",
+      "category": "名词"
+    },
+    {
+      "word": "trotz",
+      "gender": "prep",
+      "plural": "",
+      "translation": "尽管 (+ Genitiv)",
+      "example": "Trotz der Grippe geht er zur Arbeit.",
+      "category": "介词"
+    }
+  ],
+  "dictations": [
+    {
+      "text": "Wegen des starken Regens mussten wir das geplante Fußballspiel absagen.",
+      "translation": "因为暴雨，我们不得不取消计划好的足球赛。",
+      "hint": "wegen 后面带第二格 (des starken Regens)，阳性/中性名词单数尾部要加 -s。"
+    }
+  ],
+  "grammars": [
+    {
+      "question": "Während ___ Deutschkurses dürfen die Teilnehmer kein Handy benutzen.",
+      "options": [
+        "den",
+        "dem",
+        "des",
+        "der"
+      ],
+      "correct": "des",
+      "explanation": "während 是第二格介词，Deutschkurs（阳性）的第二格定冠词是 des，且名词尾加 -es。"
+    }
+  ]
+}

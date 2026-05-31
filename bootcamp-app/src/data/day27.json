@@ -1,0 +1,43 @@
+{
+  "day": 27,
+  "title": "口语通关秘籍：展示结构 (Sprechen: Präsentation)",
+  "focus": "掌握 B1 口语第二部分（作简短陈述报告）的承上启下连接词（红利表达）。",
+  "vocab": [
+    {
+      "word": "der Vorteil",
+      "gender": "der",
+      "plural": "-e",
+      "translation": "优点，长处",
+      "example": "Ein großer Vorteil ist die Flexibilität.",
+      "category": "名词"
+    },
+    {
+      "word": "der Nachteil",
+      "gender": "der",
+      "plural": "-e",
+      "translation": "缺点，短处",
+      "example": "Ein Nachteil ist der hohe Preis.",
+      "category": "名词"
+    }
+  ],
+  "dictations": [
+    {
+      "text": "Meiner Meinung nach hat diese moderne Technologie sowohl Vorteile als auch Nachteile.",
+      "translation": "在我看来，这项现代技术既有优点也有缺点。",
+      "hint": "sowohl...als auch 是 B1 双重连词，意为“既...又...”。"
+    }
+  ],
+  "grammars": [
+    {
+      "question": "In meinem Heimatland ___ fast alle Leute mit dem eigenen Auto zur Arbeit.",
+      "options": [
+        "fahren",
+        "reisen",
+        "gehen",
+        "fliegen"
+      ],
+      "correct": "fahren",
+      "explanation": "口语陈述个人家乡情况。开着交通工具（Auto）上班变位用 fahren。"
+    }
+  ]
+}

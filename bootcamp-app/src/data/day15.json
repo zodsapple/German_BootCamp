@@ -1,0 +1,43 @@
+{
+  "day": 15,
+  "title": "【第二周复盘测评】主从句语序大阅兵",
+  "focus": "高频测试所有 B1 经典从句（weil, obwohl, damit, dass, wenn, als, ob）。",
+  "vocab": [
+    {
+      "word": "der Fehler",
+      "gender": "der",
+      "plural": "-",
+      "translation": "错误",
+      "example": "Das war ein großer Fehler von mir.",
+      "category": "名词"
+    },
+    {
+      "word": "korrigieren",
+      "gender": "verb",
+      "plural": "korrigierte, hat korrigiert",
+      "translation": "纠正，修改",
+      "example": "Bitte korrigieren Sie meinen Text.",
+      "category": "动词"
+    }
+  ],
+  "dictations": [
+    {
+      "text": "Obwohl die Übungen sehr kompliziert waren, habe ich keinen Fehler gemacht.",
+      "translation": "虽然这些练习很复杂，但我没有犯任何错误。",
+      "hint": "obwohl 从句动词 waren 置尾，主句在逗号后立刻接助动词 habe。"
+    }
+  ],
+  "grammars": [
+    {
+      "question": "Ich bin mir nicht sicher, ___ wir heute Unterricht haben oder nicht.",
+      "options": [
+        "ob",
+        "dass",
+        "wenn",
+        "weil"
+      ],
+      "correct": "ob",
+      "explanation": "这里有“...或者不（oder nicht）”，属于“是否（ob）”的选择判断式间接问句。"
+    }
+  ]
+}

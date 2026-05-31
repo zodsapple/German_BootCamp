@@ -1,0 +1,43 @@
+{
+  "day": 12,
+  "title": "时间从句三大天王 (als, wenn, während)",
+  "focus": "分清过去一次性事件 (als)，过去重复发生或现在/未来事件 (wenn)，以及同步进行 (während)。",
+  "vocab": [
+    {
+      "word": "die Kindheit",
+      "gender": "die",
+      "plural": "(Sg.)",
+      "translation": "童年",
+      "example": "In meiner Kindheit habe ich auf dem Land gelebt.",
+      "category": "名词"
+    },
+    {
+      "word": "damals",
+      "gender": "adv",
+      "plural": "",
+      "translation": "当时，那时",
+      "example": "Damals gab es noch keine Smartphones.",
+      "category": "副词"
+    }
+  ],
+  "dictations": [
+    {
+      "text": "Während ich für die Prüfung lernte, kochte meine Mitbewohnerin das Abendessen.",
+      "translation": "在我准备考试的同时，我的室友正在做晚饭。",
+      "hint": "während 引导表示两件事在同一时段内并行发生的从句。"
+    }
+  ],
+  "grammars": [
+    {
+      "question": "___ ich gestern auf den Bus wartete, traf ich einen alten Freund.",
+      "options": [
+        "Wenn",
+        "Als",
+        "Während",
+        "Weil"
+      ],
+      "correct": "Als",
+      "explanation": "昨天等公交车是一个过去的特定时间点动作，应使用 als（当...时）。"
+    }
+  ]
+}

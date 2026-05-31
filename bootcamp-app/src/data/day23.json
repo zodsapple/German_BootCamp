@@ -1,0 +1,43 @@
+{
+  "day": 23,
+  "title": "虚拟二式：礼貌与愿望 (Konjunktiv II: Höflichkeit & Wunsch)",
+  "focus": "用 hätte, wäre 和 würde + 不定式来表达极度礼貌的请求或虚拟愿望（口语高分项）。",
+  "vocab": [
+    {
+      "word": "die Hilfe",
+      "gender": "die",
+      "plural": "(Sg.)",
+      "translation": "帮助",
+      "example": "Ich danke Ihnen herzlich für Ihre große Hilfe.",
+      "category": "名词"
+    },
+    {
+      "word": "empfehlen",
+      "gender": "verb",
+      "plural": "empfahl, hat empfohlen",
+      "translation": "推荐",
+      "example": "Was können Sie mir empfehlen?",
+      "category": "动词"
+    }
+  ],
+  "dictations": [
+    {
+      "text": "Ich hätte gerne ein Glas Wasser, wenn es Ihnen keine Umstände macht.",
+      "translation": "如果给您不添麻烦的话，我想要一杯水。",
+      "hint": "Ich hätte gerne 是比 Ich möchte 更地道的餐厅/日常点单极其礼貌的虚拟表达。"
+    }
+  ],
+  "grammars": [
+    {
+      "question": "___ Sie mir bitte helfen? Ich kann den Weg nicht finden.",
+      "options": [
+        "Werden",
+        "Würden",
+        "Hatten",
+        "Wollten"
+      ],
+      "correct": "Würden",
+      "explanation": "Würden Sie... 是极度客气、礼貌询问他人是否能提供协助的标准句型。"
+    }
+  ]
+}

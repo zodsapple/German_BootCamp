@@ -1,0 +1,269 @@
+{
+  "day": 8,
+  "title": "Passiv und Verben mit Präpositionen / 被动语态与动词介词搭配",
+  "focus": "掌握被动语态的基本构成（werden + Partizip II）以及常见动词与固定介词的搭配，能够区分主动与被动并正确使用介词。",
+  "vocab": [
+    {
+      "word": "werden",
+      "gender": "verb",
+      "plural": "wurde, ist geworden",
+      "translation": "成为，被（构成被动）",
+      "example": "Das Haus wird gebaut.",
+      "category": "助动词"
+    },
+    {
+      "word": "das Passiv",
+      "gender": "das",
+      "plural": "-",
+      "translation": "被动语态",
+      "example": "Im Passiv steht das Objekt im Vordergrund.",
+      "category": "语法术语"
+    },
+    {
+      "word": "der Satz",
+      "gender": "der",
+      "plural": "die Sätze",
+      "translation": "句子",
+      "example": "Dieser Satz ist im Passiv.",
+      "category": "名词"
+    },
+    {
+      "word": "bauen",
+      "gender": "verb",
+      "plural": "baute, hat gebaut",
+      "translation": "建造",
+      "example": "Das Haus wird gebaut.",
+      "category": "动词"
+    },
+    {
+      "word": "reparieren",
+      "gender": "verb",
+      "plural": "reparierte, hat repariert",
+      "translation": "修理",
+      "example": "Das Auto wird repariert.",
+      "category": "动词"
+    },
+    {
+      "word": "verkaufen",
+      "gender": "verb",
+      "plural": "verkaufte, hat verkauft",
+      "translation": "出售",
+      "example": "Die Tickets werden verkauft.",
+      "category": "动词"
+    },
+    {
+      "word": "liefern",
+      "gender": "verb",
+      "plural": "lieferte, hat geliefert",
+      "translation": "递送",
+      "example": "Die Pizza wird geliefert.",
+      "category": "动词"
+    },
+    {
+      "word": "öffnen",
+      "gender": "verb",
+      "plural": "öffnete, hat geöffnet",
+      "translation": "打开",
+      "example": "Die Tür wird geöffnet.",
+      "category": "动词"
+    },
+    {
+      "word": "schließen",
+      "gender": "verb",
+      "plural": "schloss, hat geschlossen",
+      "translation": "关闭",
+      "example": "Das Geschäft wird geschlossen.",
+      "category": "动词"
+    },
+    {
+      "word": "wählen",
+      "gender": "verb",
+      "plural": "wählte, hat gewählt",
+      "translation": "选择",
+      "example": "Der Präsident wird gewählt.",
+      "category": "动词"
+    },
+    {
+      "word": "prüfen",
+      "gender": "verb",
+      "plural": "prüfte, hat geprüft",
+      "translation": "检查，考试",
+      "example": "Die Schüler werden geprüft.",
+      "category": "动词"
+    },
+    {
+      "word": "achten auf",
+      "gender": "verb",
+      "plural": "achtete, hat geachtet",
+      "translation": "注意",
+      "example": "Ich achte auf die Details.",
+      "category": "动词+介词"
+    },
+    {
+      "word": "sich ärgern über",
+      "gender": "verb",
+      "plural": "ärgerte, hat geärgert",
+      "translation": "对...生气",
+      "example": "Er ärgert sich über den Fehler.",
+      "category": "反身动词+介词"
+    },
+    {
+      "word": "sich freuen auf",
+      "gender": "verb",
+      "plural": "freute, hat gefreut",
+      "translation": "期待",
+      "example": "Wir freuen uns auf den Urlaub.",
+      "category": "反身动词+介词"
+    },
+    {
+      "word": "sich interessieren für",
+      "gender": "verb",
+      "plural": "interessierte, hat interessiert",
+      "translation": "对...感兴趣",
+      "example": "Ich interessiere mich für Kunst.",
+      "category": "反身动词+介词"
+    },
+    {
+      "word": "sich kümmern um",
+      "gender": "verb",
+      "plural": "kümmerte, hat gekümmert",
+      "translation": "关心，照顾",
+      "example": "Sie kümmert sich um die Kinder.",
+      "category": "反身动词+介词"
+    },
+    {
+      "word": "denken an",
+      "gender": "verb",
+      "plural": "dachte, hat gedacht",
+      "translation": "想到",
+      "example": "Ich denke an dich.",
+      "category": "动词+介词"
+    },
+    {
+      "word": "glauben an",
+      "gender": "verb",
+      "plural": "glaubte, hat geglaubt",
+      "translation": "相信",
+      "example": "Er glaubt an die Zukunft.",
+      "category": "动词+介词"
+    },
+    {
+      "word": "warten auf",
+      "gender": "verb",
+      "plural": "wartete, hat gewartet",
+      "translation": "等待",
+      "example": "Wir warten auf den Bus.",
+      "category": "动词+介词"
+    },
+    {
+      "word": "bestehen aus",
+      "gender": "verb",
+      "plural": "bestand, hat bestanden",
+      "translation": "由...组成",
+      "example": "Das Team besteht aus fünf Personen.",
+      "category": "动词+介词"
+    },
+    {
+      "word": "sich entschuldigen bei",
+      "gender": "verb",
+      "plural": "entschuldigte, hat entschuldigt",
+      "translation": "向...道歉",
+      "example": "Er entschuldigt sich bei der Lehrerin.",
+      "category": "反身动词+介词"
+    },
+    {
+      "word": "sich bedanken bei",
+      "gender": "verb",
+      "plural": "bedankte, hat bedankt",
+      "translation": "感谢",
+      "example": "Ich bedanke mich bei dir.",
+      "category": "反身动词+介词"
+    },
+    {
+      "word": "verzichten auf",
+      "gender": "verb",
+      "plural": "verzichtete, hat verzichtet",
+      "translation": "放弃",
+      "example": "Er verzichtet auf das Rauchen.",
+      "category": "动词+介词"
+    },
+    {
+      "word": "sich erinnern an",
+      "gender": "verb",
+      "plural": "erinnerte, hat erinnert",
+      "translation": "回忆起",
+      "example": "Ich erinnere mich an den Urlaub.",
+      "category": "反身动词+介词"
+    },
+    {
+      "word": "leiden unter",
+      "gender": "verb",
+      "plural": "litt, hat gelitten",
+      "translation": "遭受",
+      "example": "Er leidet unter Kopfschmerzen.",
+      "category": "动词+介词"
+    }
+  ],
+  "dictations": [
+    {
+      "text": "Das neue Krankenhaus wird nächstes Jahr gebaut werden.",
+      "translation": "新医院明年将被建造。",
+      "hint": "被动语态将来时：werden + Partizip II + werden"
+    },
+    {
+      "text": "In dieser Firma wird viel Wert auf Teamarbeit gelegt.",
+      "translation": "这家公司很重视团队合作。",
+      "hint": "被动语态：werden + gelegt + auf（固定搭配）"
+    },
+    {
+      "text": "Er ärgert sich über die Verspätung des Zuges.",
+      "translation": "他对火车晚点感到生气。",
+      "hint": "反身动词+介词：sich ärgern über"
+    },
+    {
+      "text": "Wir freuen uns schon sehr auf das Konzert am Samstag.",
+      "translation": "我们已经非常期待周六的音乐会了。",
+      "hint": "反身动词+介词：sich freuen auf"
+    },
+    {
+      "text": "Die Kinder werden von ihrer Großmutter liebevoll umsorgt.",
+      "translation": "孩子们被他们的祖母悉心照料。",
+      "hint": "被动语态 mit von + Dativ"
+    }
+  ],
+  "grammars": [
+    {
+      "question": "Der Brief ___ gestern von mir geschrieben.",
+      "options": [
+        "wird",
+        "wurde",
+        "ist",
+        "hat"
+      ],
+      "correct": "wurde",
+      "explanation": "句子为过去时被动，用 werden 的过去式 wurde + Partizip II。"
+    },
+    {
+      "question": "Ich interessiere ___ für dieses Buch.",
+      "options": [
+        "mich",
+        "dich",
+        "sich",
+        "mir"
+      ],
+      "correct": "mich",
+      "explanation": "sich interessieren für 是反身动词，主语 Ich 对应反身代词 mich。"
+    },
+    {
+      "question": "Die Prüfung ___ jedes Jahr von vielen Studenten abgelegt.",
+      "options": [
+        "wird abgelegt",
+        "werde abgelegt",
+        "haben abgelegt",
+        "ist abgelegt worden"
+      ],
+      "correct": "wird abgelegt",
+      "explanation": "一般现在时被动：werden + Partizip II。Prüfung 单数三单，所以用 wird。"
+    }
+  ]
+}

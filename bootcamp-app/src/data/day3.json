@@ -1,0 +1,277 @@
+{
+  "day": 3,
+  "title": "Reflexive Verben – 反身动词",
+  "focus": "掌握反身动词的构成、使用以及常见反身动词的搭配。",
+  "vocab": [
+    {
+      "word": "sich entschuldigen",
+      "gender": "v",
+      "plural": "",
+      "translation": "道歉",
+      "example": "Ich muss mich bei dir entschuldigen.",
+      "category": "反身动词"
+    },
+    {
+      "word": "sich freuen",
+      "gender": "v",
+      "plural": "",
+      "translation": "高兴",
+      "example": "Wir freuen uns auf den Urlaub.",
+      "category": "反身动词"
+    },
+    {
+      "word": "sich treffen",
+      "gender": "v",
+      "plural": "",
+      "translation": "见面",
+      "example": "Wann treffen wir uns?",
+      "category": "反身动词"
+    },
+    {
+      "word": "sich interessieren",
+      "gender": "v",
+      "plural": "",
+      "translation": "感兴趣",
+      "example": "Ich interessiere mich für Musik.",
+      "category": "反身动词"
+    },
+    {
+      "word": "sich setzen",
+      "gender": "v",
+      "plural": "",
+      "translation": "坐下",
+      "example": "Setz dich bitte!",
+      "category": "反身动词"
+    },
+    {
+      "word": "sich waschen",
+      "gender": "v",
+      "plural": "",
+      "translation": "洗（自己）",
+      "example": "Er wäscht sich die Hände.",
+      "category": "反身动词"
+    },
+    {
+      "word": "sich anziehen",
+      "gender": "v",
+      "plural": "",
+      "translation": "穿衣",
+      "example": "Zieh dich warm an!",
+      "category": "反身动词"
+    },
+    {
+      "word": "sich erinnern",
+      "gender": "v",
+      "plural": "",
+      "translation": "记得",
+      "example": "Ich erinnere mich an dich.",
+      "category": "反身动词"
+    },
+    {
+      "word": "sich vorstellen",
+      "gender": "v",
+      "plural": "",
+      "translation": "想象；自我介绍",
+      "example": "Kannst du dich vorstellen?",
+      "category": "反身动词"
+    },
+    {
+      "word": "sich kümmern",
+      "gender": "v",
+      "plural": "",
+      "translation": "关心，照料",
+      "example": "Sie kümmert sich um die Kinder.",
+      "category": "反身动词"
+    },
+    {
+      "word": "sich bedanken",
+      "gender": "v",
+      "plural": "",
+      "translation": "感谢",
+      "example": "Ich bedanke mich für Ihre Hilfe.",
+      "category": "反身动词"
+    },
+    {
+      "word": "sich beeilen",
+      "gender": "v",
+      "plural": "",
+      "translation": "赶紧",
+      "example": "Beeil dich, wir haben wenig Zeit!",
+      "category": "反身动词"
+    },
+    {
+      "word": "sich ärgern",
+      "gender": "v",
+      "plural": "",
+      "translation": "生气",
+      "example": "Er ärgert sich über den Fehler.",
+      "category": "反身动词"
+    },
+    {
+      "word": "sich einigen",
+      "gender": "v",
+      "plural": "",
+      "translation": "达成一致",
+      "example": "Wir einigen uns auf einen Preis.",
+      "category": "反身动词"
+    },
+    {
+      "word": "sich gewöhnen",
+      "gender": "v",
+      "plural": "",
+      "translation": "习惯",
+      "example": "Ich gewöhne mich an das neue Klima.",
+      "category": "反身动词"
+    },
+    {
+      "word": "sich bemühen",
+      "gender": "v",
+      "plural": "",
+      "translation": "努力",
+      "example": "Er bemüht sich um eine Lösung.",
+      "category": "反身动词"
+    },
+    {
+      "word": "sich verabreden",
+      "gender": "v",
+      "plural": "",
+      "translation": "约会，约定",
+      "example": "Wir verabreden uns für morgen.",
+      "category": "反身动词"
+    },
+    {
+      "word": "sich verhalten",
+      "gender": "v",
+      "plural": "",
+      "translation": "行为，表现",
+      "example": "Wie verhält er sich in Stress?",
+      "category": "反身动词"
+    },
+    {
+      "word": "sich entscheiden",
+      "gender": "v",
+      "plural": "",
+      "translation": "决定",
+      "example": "Ich entscheide mich für den Job.",
+      "category": "反身动词"
+    },
+    {
+      "word": "sich verlieben",
+      "gender": "v",
+      "plural": "",
+      "translation": "爱上",
+      "example": "Sie verliebt sich in ihn.",
+      "category": "反身动词"
+    },
+    {
+      "word": "sich ausruhen",
+      "gender": "v",
+      "plural": "",
+      "translation": "休息",
+      "example": "Wir ruhen uns nach der Arbeit aus.",
+      "category": "反身动词"
+    },
+    {
+      "word": "sich bewerben",
+      "gender": "v",
+      "plural": "",
+      "translation": "申请",
+      "example": "Er bewirbt sich um die Stelle.",
+      "category": "反身动词"
+    },
+    {
+      "word": "sich beschweren",
+      "gender": "v",
+      "plural": "",
+      "translation": "抱怨",
+      "example": "Sie beschwert sich über den Service.",
+      "category": "反身动词"
+    },
+    {
+      "word": "sich wundern",
+      "gender": "v",
+      "plural": "",
+      "translation": "感到惊讶",
+      "example": "Ich wundere mich über seine Reaktion.",
+      "category": "反身动词"
+    },
+    {
+      "word": "sich verspäten",
+      "gender": "v",
+      "plural": "",
+      "translation": "迟到",
+      "example": "Der Zug verspätet sich um 10 Minuten.",
+      "category": "反身动词"
+    },
+    {
+      "word": "sich fühlen",
+      "gender": "v",
+      "plural": "",
+      "translation": "感觉",
+      "example": "Ich fühle mich heute nicht wohl.",
+      "category": "反身动词"
+    }
+  ],
+  "dictations": [
+    {
+      "text": "Ich muss mich bei meinem Kollegen für den Fehler entschuldigen.",
+      "translation": "我必须为那个错误向我的同事道歉。",
+      "hint": "反身动词 entschuldigen + bei + Dativ"
+    },
+    {
+      "text": "Wir freuen uns sehr auf den gemeinsamen Urlaub im Sommer.",
+      "translation": "我们非常期待夏天共同的假期。",
+      "hint": "反身动词 freuen auf + Akkusativ"
+    },
+    {
+      "text": "Hast du dich schon für den Deutschkurs angemeldet?",
+      "translation": "你已经报名参加德语课程了吗？",
+      "hint": "反身动词 anmelden für + Akkusativ"
+    },
+    {
+      "text": "Er ärgert sich jedes Mal über die Verspätung des Busses.",
+      "translation": "他每次都因公交车晚点而生气。",
+      "hint": "反身动词 ärgern über + Akkusativ"
+    },
+    {
+      "text": "Wir müssen uns beeilen, sonst verpassen wir den Zug.",
+      "translation": "我们必须赶紧，否则就赶不上火车了。",
+      "hint": "反身动词 beeilen + Akkusativ"
+    }
+  ],
+  "grammars": [
+    {
+      "question": "Ich ___ mich auf das Konzert.",
+      "options": [
+        "freue",
+        "freust",
+        "freut",
+        "freuen"
+      ],
+      "correct": "freue",
+      "explanation": "主语是Ich，所以反身动词freuen要变位为freue，反身代词是mich。"
+    },
+    {
+      "question": "Warum ___ du dich über das schlechte Wetter?",
+      "options": [
+        "ärgerst",
+        "ärgert",
+        "ärgere",
+        "ärgern"
+      ],
+      "correct": "ärgerst",
+      "explanation": "主语是du，所以反身动词ärgern要变位为ärgerst，反身代词是dich。"
+    },
+    {
+      "question": "Die Kinder ___ sich auf die Ferien.",
+      "options": [
+        "freut",
+        "freust",
+        "freue",
+        "freuen"
+      ],
+      "correct": "freuen",
+      "explanation": "主语是Die Kinder（复数），所以反身动词freuen变位为freuen，反身代词是sich。"
+    }
+  ]
+}

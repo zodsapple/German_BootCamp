@@ -1,0 +1,43 @@
+{
+  "day": 24,
+  "title": "虚拟二式：反事实假设 (Konjunktiv II: Wenn-Sätze)",
+  "focus": "表达与现在或过去事实相反的假设。Wenn ich reich wäre, würde ich...（如果我有钱...）。",
+  "vocab": [
+    {
+      "word": "die Million",
+      "gender": "die",
+      "plural": "-en",
+      "translation": "百万",
+      "example": "Er hat eine Million Euro im Lotto gewonnen.",
+      "category": "名词"
+    },
+    {
+      "word": "reisen",
+      "gender": "verb",
+      "plural": "reiste, ist gereist",
+      "translation": "旅行",
+      "example": "Ich reise sehr gerne in asiatische Länder.",
+      "category": "动词"
+    }
+  ],
+  "dictations": [
+    {
+      "text": "Wenn ich mehr Zeit hätte, würde ich eine lange Weltreise machen.",
+      "translation": "如果我有更多时间，我会进行一次长途环球旅行。",
+      "hint": "事实是现在没时间。虚拟二式用 haben -> hätte 以及 würde + 不定式 machen。"
+    }
+  ],
+  "grammars": [
+    {
+      "question": "Wenn ich du ___ , würde ich sofort zum Arzt gehen.",
+      "options": [
+        "bin",
+        "war",
+        "wäre",
+        "hätte"
+      ],
+      "correct": "wäre",
+      "explanation": "“如果我是你”（事实不可能是），表示与事实相反的虚拟状态，sein 变为 wäre。"
+    }
+  ]
+}

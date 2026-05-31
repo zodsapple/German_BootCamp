@@ -1,0 +1,277 @@
+{
+  "day": 6,
+  "title": "Konjunktiv II – Wünsche und höfliche Bitten (第二虚拟式 – 愿望与礼貌请求)",
+  "focus": "掌握第二虚拟式的构成（弱变化与强变化动词）及其在表达愿望、礼貌请求和 unreal 条件句中的用法。",
+  "vocab": [
+    {
+      "word": "wünschen",
+      "gender": "verb",
+      "plural": "gewünscht",
+      "translation": "希望，祝愿",
+      "example": "Ich wünschte, ich hätte mehr Zeit.",
+      "category": "动词"
+    },
+    {
+      "word": "hätten",
+      "gender": "verb",
+      "plural": "hätten (Konj. II)",
+      "translation": "有（第二虚拟式）",
+      "example": "Wenn ich Geld hätte, würde ich reisen.",
+      "category": "助动词"
+    },
+    {
+      "word": "wären",
+      "gender": "verb",
+      "plural": "wären (Konj. II)",
+      "translation": "是（第二虚拟式）",
+      "example": "Ich wäre gern in Berlin.",
+      "category": "助动词"
+    },
+    {
+      "word": "könnten",
+      "gender": "verb",
+      "plural": "könnten (Konj. II)",
+      "translation": "能够（第二虚拟式）",
+      "example": "Könnten Sie mir bitte helfen?",
+      "category": "情态动词"
+    },
+    {
+      "word": "würden",
+      "gender": "verb",
+      "plural": "würden (Konj. II)",
+      "translation": "会（第二虚拟式，用于构成将来时或意愿）",
+      "example": "Ich würde das nicht tun.",
+      "category": "情态动词"
+    },
+    {
+      "word": "möchten",
+      "gender": "verb",
+      "plural": "möchten (Konj. II von mögen)",
+      "translation": "想要（委婉形式）",
+      "example": "Ich möchte ein Glas Wasser.",
+      "category": "情态动词"
+    },
+    {
+      "word": "dürften",
+      "gender": "verb",
+      "plural": "dürften (Konj. II)",
+      "translation": "允许（第二虚拟式）",
+      "example": "Dürfte ich Sie etwas fragen?",
+      "category": "情态动词"
+    },
+    {
+      "word": "sollten",
+      "gender": "verb",
+      "plural": "sollten (Konj. II)",
+      "translation": "应该（第二虚拟式，用于建议）",
+      "example": "Du solltest zum Arzt gehen.",
+      "category": "情态动词"
+    },
+    {
+      "word": "würde",
+      "gender": "verb",
+      "plural": "würde (Konj. II)",
+      "translation": "会（用于替代其他动词的虚拟式）",
+      "example": "Ich würde kommen, wenn ich Zeit hätte.",
+      "category": "助动词"
+    },
+    {
+      "word": "hätte",
+      "gender": "verb",
+      "plural": "hätte (Konj. II)",
+      "translation": "有（第二虚拟式单数）",
+      "example": "Hätte ich doch mehr gelernt!",
+      "category": "助动词"
+    },
+    {
+      "word": "wäre",
+      "gender": "verb",
+      "plural": "wäre (Konj. II)",
+      "translation": "是（第二虚拟式单数）",
+      "example": "Wäre ich doch reich!",
+      "category": "助动词"
+    },
+    {
+      "word": "könnte",
+      "gender": "verb",
+      "plural": "könnte (Konj. II)",
+      "translation": "能够（第二虚拟式单数）",
+      "example": "Könnte ich bitte das Fenster öffnen?",
+      "category": "情态动词"
+    },
+    {
+      "word": "müsste",
+      "gender": "verb",
+      "plural": "müsste (Konj. II)",
+      "translation": "必须（第二虚拟式，用于假设）",
+      "example": "Ich müsste mehr Sport treiben.",
+      "category": "情态动词"
+    },
+    {
+      "word": "bräuchte",
+      "gender": "verb",
+      "plural": "bräuchte (Konj. II)",
+      "translation": "需要（第二虚拟式）",
+      "example": "Ich bräuchte deine Hilfe.",
+      "category": "动词"
+    },
+    {
+      "word": "täte",
+      "gender": "verb",
+      "plural": "täte (Konj. II von tun)",
+      "translation": "做（第二虚拟式）",
+      "example": "Was tätest du in meiner Situation?",
+      "category": "动词"
+    },
+    {
+      "word": "ginge",
+      "gender": "verb",
+      "plural": "ginge (Konj. II von gehen)",
+      "translation": "去（第二虚拟式）",
+      "example": "Ich ginge gern ins Kino.",
+      "category": "动词"
+    },
+    {
+      "word": "käme",
+      "gender": "verb",
+      "plural": "käme (Konj. II von kommen)",
+      "translation": "来（第二虚拟式）",
+      "example": "Käme er doch endlich!",
+      "category": "动词"
+    },
+    {
+      "word": "schlüge",
+      "gender": "verb",
+      "plural": "schlüge (Konj. II von schlagen)",
+      "translation": "打（第二虚拟式）",
+      "example": "Ich schlüge vor, morgen zu treffen.",
+      "category": "动词"
+    },
+    {
+      "word": "trüge",
+      "gender": "verb",
+      "plural": "trüge (Konj. II von tragen)",
+      "translation": "穿，承担（第二虚拟式）",
+      "example": "Ich trüge gern dieses Kleid.",
+      "category": "动词"
+    },
+    {
+      "word": "wüste",
+      "gender": "verb",
+      "plural": "wüsste (Konj. II von wissen)",
+      "translation": "知道（第二虚拟式）",
+      "example": "Ich wüsste gern, ob er kommt.",
+      "category": "动词"
+    },
+    {
+      "word": "fände",
+      "gender": "verb",
+      "plural": "fände (Konj. II von finden)",
+      "translation": "找到，觉得（第二虚拟式）",
+      "example": "Ich fände es schön, wenn du mitkommst.",
+      "category": "动词"
+    },
+    {
+      "word": "ließe",
+      "gender": "verb",
+      "plural": "ließe (Konj. II von lassen)",
+      "translation": "让（第二虚拟式）",
+      "example": "Ließe sich das ändern?",
+      "category": "动词"
+    },
+    {
+      "word": "hörte",
+      "gender": "verb",
+      "plural": "hörte (Konj. II von hören)",
+      "translation": "听（第二虚拟式）",
+      "example": "Wenn ich dich hörte, würde ich weinen.",
+      "category": "动词"
+    },
+    {
+      "word": "sähe",
+      "gender": "verb",
+      "plural": "sähe (Konj. II von sehen)",
+      "translation": "看见（第二虚拟式）",
+      "example": "Sähe ich ihn, würde ich ihm helfen.",
+      "category": "动词"
+    },
+    {
+      "word": "gäbe",
+      "gender": "verb",
+      "plural": "gäbe (Konj. II von geben)",
+      "translation": "给（第二虚拟式）",
+      "example": "Gäbe es doch mehr Zeit!",
+      "category": "动词"
+    },
+    {
+      "word": "nähme",
+      "gender": "verb",
+      "plural": "nähme (Konj. II von nehmen)",
+      "translation": "拿（第二虚拟式）",
+      "example": "Ich nähme gern ein Stück Kuchen.",
+      "category": "动词"
+    }
+  ],
+  "dictations": [
+    {
+      "text": "Ich wünschte, ich hätte mehr Zeit für meine Hobbys.",
+      "translation": "我希望我有更多时间用于我的爱好。",
+      "hint": "使用第二虚拟式表达愿望（wünschte + hätte）"
+    },
+    {
+      "text": "Könnten Sie mir bitte sagen, wie spät es ist?",
+      "translation": "您能告诉我现在几点了吗？",
+      "hint": "礼貌请求：Könnten Sie + 不定式"
+    },
+    {
+      "text": "Wenn ich genug Geld hätte, würde ich um die Welt reisen.",
+      "translation": "如果我有足够的钱，我就会环球旅行。",
+      "hint": "条件句（wenn + 虚拟式，主句用 würde + 不定式）"
+    },
+    {
+      "text": "Wäre ich doch früher aufgestanden, dann hätte ich den Bus nicht verpasst.",
+      "translation": "我要是早点起床就好了，那样就不会错过公交车了。",
+      "hint": "愿望句用 wäre/hätte + Partizip II，表达未实现的过去愿望"
+    },
+    {
+      "text": "An deiner Stelle würde ich das Angebot annehmen.",
+      "translation": "如果我是你，我会接受这个提议。",
+      "hint": "An deiner Stelle + würde + Infinitiv (建议)"
+    }
+  ],
+  "grammars": [
+    {
+      "question": "Wenn ich mehr Zeit ___, würde ich dir helfen.",
+      "options": [
+        "hätte",
+        "habe",
+        "hatte",
+        "haben würde"
+      ],
+      "correct": "hätte",
+      "explanation": "在条件句中，从句用第二虚拟式（hätte）表达非现实条件，主句用 würde + 不定式。"
+    },
+    {
+      "question": "___ Sie mir bitte das Salz reichen?",
+      "options": [
+        "Könnten",
+        "Könnt",
+        "Können",
+        "Konnten"
+      ],
+      "correct": "Könnten",
+      "explanation": "礼貌请求常用第二虚拟式 können 的虚拟式 Könnten，比 können 更委婉。"
+    },
+    {
+      "question": "Ich ___ gern in einem Schloss wohnen.",
+      "options": [
+        "würde",
+        "werde",
+        "will",
+        "wollte"
+      ],
+      "correct": "würde",
+      "explanation": "表达愿望时，常用 würde + 不定式，相当于‘想要/会’。"
+    }
+  ]
+}

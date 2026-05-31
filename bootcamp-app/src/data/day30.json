@@ -1,0 +1,43 @@
+{
+  "day": 30,
+  "title": "【终极毕业挑战】B1 真实考题全真模拟",
+  "focus": "全覆盖语法和高强度多角度听写，检验 30 天的高强度冲刺终极成果！",
+  "vocab": [
+    {
+      "word": "der Erfolg",
+      "gender": "der",
+      "plural": "-e",
+      "translation": "成功",
+      "example": "Ich drücke Ihnen die Daumen für die Prüfung!",
+      "category": "名词"
+    },
+    {
+      "word": "bestehen",
+      "gender": "verb",
+      "plural": "bestand, hat bestanden",
+      "translation": "考过，克服",
+      "example": "Sie haben die B1-Hürde erfolgreich bestanden!",
+      "category": "动词"
+    }
+  ],
+  "dictations": [
+    {
+      "text": "Wenn ich die B1-Prüfung bestehe, werde ich mich sofort um einen Studienplatz bewerben.",
+      "translation": "如果我通过了 B1 考试，我将立刻去申请大学学位。",
+      "hint": "终极句型：条件从句 + 双主语控制 + 复合将来时结构。"
+    }
+  ],
+  "grammars": [
+    {
+      "question": "Wenn wir jeden Tag fleißig gelernt ___, hätten wir die Prüfung noch leichter bestanden.",
+      "options": [
+        "haben",
+        "hätten",
+        "hast",
+        "hätte"
+      ],
+      "correct": "hätten",
+      "explanation": "本句是对过去事实的虚拟假设（如果当初学了的话...），在过去完成时虚拟式中助动词用 hätten。"
+    }
+  ]
+}

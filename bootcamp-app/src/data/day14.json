@@ -1,0 +1,43 @@
+{
+  "day": 14,
+  "title": "间接引语与间接疑问句 (ob / W-Fragen)",
+  "focus": "口语与写作中经常询问或转述他人的问题。掌握 ob (是否) 及 W-疑问词的从句顺序。",
+  "vocab": [
+    {
+      "word": "die Auskunft",
+      "gender": "die",
+      "plural": "-e",
+      "translation": "信息，咨询",
+      "example": "Können Sie mir eine Auskunft geben?",
+      "category": "名词"
+    },
+    {
+      "word": "fragen",
+      "gender": "verb",
+      "plural": "fragte, hat gefragt",
+      "translation": "询问，提问",
+      "example": "Darf ich Sie etwas fragen?",
+      "category": "动词"
+    }
+  ],
+  "dictations": [
+    {
+      "text": "Ich möchte gerne wissen, ob der Zug nach München pünktlich ankommt.",
+      "translation": "我想知道开往慕尼黑的火车是否能准点到达。",
+      "hint": "间接一般疑问句使用 ob（是否）引导，动词 ankommt 在末尾。"
+    }
+  ],
+  "grammars": [
+    {
+      "question": "Können Sie mir sagen, ___ der nächste Bus abfährt?",
+      "options": [
+        "ob",
+        "wann",
+        "was",
+        "dass"
+      ],
+      "correct": "wann",
+      "explanation": "询问特定时间，间接疑问句由疑问词 wann（什么时候）引导。"
+    }
+  ]
+}

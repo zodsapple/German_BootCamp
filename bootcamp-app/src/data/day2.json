@@ -1,0 +1,293 @@
+{
+  "day": 2,
+  "title": "B1 Berufsinterview: Fortgeschrittener Wortschatz und Ausdrücke / B1 职场面试：高级词汇与表达",
+  "focus": "掌握职场面试中常用的高级词汇、动词短语及礼貌表达，能够描述自身能力与经验，并理解面试官的复杂问题。",
+  "vocab": [
+    {
+      "word": "die Bewerbung",
+      "gender": "die",
+      "plural": "die Bewerbungen",
+      "translation": "申请",
+      "example": "Meine Bewerbung wurde angenommen.",
+      "category": "名词"
+    },
+    {
+      "word": "das Vorstellungsgespräch",
+      "gender": "das",
+      "plural": "die Vorstellungsgespräche",
+      "translation": "面试",
+      "example": "Das Vorstellungsgespräch findet morgen statt.",
+      "category": "名词"
+    },
+    {
+      "word": "die Qualifikation",
+      "gender": "die",
+      "plural": "die Qualifikationen",
+      "translation": "资格，资质",
+      "example": "Welche Qualifikationen bringen Sie mit?",
+      "category": "名词"
+    },
+    {
+      "word": "die Berufserfahrung",
+      "gender": "die",
+      "plural": "die Berufserfahrungen",
+      "translation": "工作经验",
+      "example": "Ich habe fünf Jahre Berufserfahrung in der IT-Branche.",
+      "category": "名词"
+    },
+    {
+      "word": "die Fähigkeit",
+      "gender": "die",
+      "plural": "die Fähigkeiten",
+      "translation": "能力",
+      "example": "Meine kommunikativen Fähigkeiten sind sehr gut.",
+      "category": "名词"
+    },
+    {
+      "word": "die Stellenanzeige",
+      "gender": "die",
+      "plural": "die Stellenanzeigen",
+      "translation": "招聘广告",
+      "example": "Die Stellenanzeige beschreibt die Anforderungen genau.",
+      "category": "名词"
+    },
+    {
+      "word": "das Anschreiben",
+      "gender": "das",
+      "plural": "die Anschreiben",
+      "translation": "求职信",
+      "example": "Im Anschreiben sollte man seine Motivation darlegen.",
+      "category": "名词"
+    },
+    {
+      "word": "der Lebenslauf",
+      "gender": "der",
+      "plural": "die Lebensläufe",
+      "translation": "简历",
+      "example": "Bitte senden Sie mir Ihren Lebenslauf zu.",
+      "category": "名词"
+    },
+    {
+      "word": "das Gehalt",
+      "gender": "das",
+      "plural": "die Gehälter",
+      "translation": "薪水",
+      "example": "Können Sie mir etwas über das Gehalt sagen?",
+      "category": "名词"
+    },
+    {
+      "word": "der Arbeitsvertrag",
+      "gender": "der",
+      "plural": "die Arbeitsverträge",
+      "translation": "劳动合同",
+      "example": "Wir unterschreiben den Arbeitsvertrag nächste Woche.",
+      "category": "名词"
+    },
+    {
+      "word": "die Probezeit",
+      "gender": "die",
+      "plural": "die Probezeiten",
+      "translation": "试用期",
+      "example": "Die Probezeit beträgt sechs Monate.",
+      "category": "名词"
+    },
+    {
+      "word": "die Teamfähigkeit",
+      "gender": "die",
+      "plural": "die Teamfähigkeiten",
+      "translation": "团队合作能力",
+      "example": "Teamfähigkeit ist in diesem Job sehr wichtig.",
+      "category": "名词"
+    },
+    {
+      "word": "die Kommunikationsfähigkeit",
+      "gender": "die",
+      "plural": "die Kommunikationsfähigkeiten",
+      "translation": "沟通能力",
+      "example": "Ihre Kommunikationsfähigkeit hat mich beeindruckt.",
+      "category": "名词"
+    },
+    {
+      "word": "die Eigeninitiative",
+      "gender": "die",
+      "plural": "die Eigeninitiativen",
+      "translation": "主动性",
+      "example": "Wir suchen jemanden mit Eigeninitiative.",
+      "category": "名词"
+    },
+    {
+      "word": "die Belastbarkeit",
+      "gender": "die",
+      "plural": "die Belastbarkeiten",
+      "translation": "抗压能力",
+      "example": "Belastbarkeit ist eine wichtige Eigenschaft.",
+      "category": "名词"
+    },
+    {
+      "word": "die Flexibilität",
+      "gender": "die",
+      "plural": "die Flexibilitäten",
+      "translation": "灵活性",
+      "example": "Flexibilität wird bei uns großgeschrieben.",
+      "category": "名词"
+    },
+    {
+      "word": "das Ziel",
+      "gender": "das",
+      "plural": "die Ziele",
+      "translation": "目标",
+      "example": "Mein berufliches Ziel ist es, Führungskraft zu werden.",
+      "category": "名词"
+    },
+    {
+      "word": "die Karriere",
+      "gender": "die",
+      "plural": "die Karrieren",
+      "translation": "职业生涯",
+      "example": "Ich möchte meine Karriere in diesem Unternehmen fortsetzen.",
+      "category": "名词"
+    },
+    {
+      "word": "die Verhandlung",
+      "gender": "die",
+      "plural": "die Verhandlungen",
+      "translation": "谈判",
+      "example": "Die Gehaltsverhandlung war erfolgreich.",
+      "category": "名词"
+    },
+    {
+      "word": "sich bewerben",
+      "gender": "verb",
+      "plural": "sich bewarb / hat sich beworben",
+      "translation": "申请",
+      "example": "Ich habe mich auf eine Stelle als Ingenieur beworben.",
+      "category": "反身动词"
+    },
+    {
+      "word": "einladen",
+      "gender": "verb",
+      "plural": "lud ein / hat eingeladen",
+      "translation": "邀请",
+      "example": "Der Chef hat mich zum Vorstellungsgespräch eingeladen.",
+      "category": "动词"
+    },
+    {
+      "word": "sich vorstellen",
+      "gender": "verb",
+      "plural": "stellte sich vor / hat sich vorgestellt",
+      "translation": "自我介绍",
+      "example": "Bitte stellen Sie sich kurz vor.",
+      "category": "反身动词"
+    },
+    {
+      "word": "überzeugen",
+      "gender": "verb",
+      "plural": "überzeugte / hat überzeugt",
+      "translation": "说服，使信服",
+      "example": "Sie hat mich mit ihren Argumenten überzeugt.",
+      "category": "动词"
+    },
+    {
+      "word": "verhandeln",
+      "gender": "verb",
+      "plural": "verhandelte / hat verhandelt",
+      "translation": "谈判",
+      "example": "Wir müssen über das Gehalt verhandeln.",
+      "category": "动词"
+    },
+    {
+      "word": "motiviert",
+      "gender": "adj",
+      "plural": "-",
+      "translation": "有动力的",
+      "example": "Ich bin sehr motiviert, diese Aufgabe zu übernehmen.",
+      "category": "形容词"
+    },
+    {
+      "word": "qualifiziert",
+      "gender": "adj",
+      "plural": "-",
+      "translation": "有资格的，合格的",
+      "example": "Sind Sie für diese Position qualifiziert?",
+      "category": "形容词"
+    },
+    {
+      "word": "erfahren",
+      "gender": "adj",
+      "plural": "-",
+      "translation": "有经验的",
+      "example": "Wir suchen einen erfahrenen Projektmanager.",
+      "category": "形容词"
+    },
+    {
+      "word": "teamfähig",
+      "gender": "adj",
+      "plural": "-",
+      "translation": "有团队精神的",
+      "example": "Er ist sehr teamfähig und arbeitet gern mit anderen zusammen.",
+      "category": "形容词"
+    }
+  ],
+  "dictations": [
+    {
+      "text": "Ich habe mich auf die Stelle als Marketingmanagerin beworben und wurde zu einem Vorstellungsgespräch eingeladen.",
+      "translation": "我申请了市场营销经理的职位，并被邀请参加面试。",
+      "hint": "注意 sich bewerben auf + Akk. 和 einladen zu + Dat. 的用法。"
+    },
+    {
+      "text": "Können Sie mir etwas über Ihre bisherige Berufserfahrung und Ihre Qualifikationen erzählen?",
+      "translation": "您能谈谈您之前的工作经验和资质吗？",
+      "hint": "Können Sie ...? 是礼貌疑问句；über + Akk. 表示“关于”。"
+    },
+    {
+      "text": "Ich bin überzeugt, dass ich mit meiner Teamfähigkeit und Eigeninitiative einen wertvollen Beitrag leisten kann.",
+      "translation": "我相信凭借我的团队合作能力和主动性，我能做出有价值的贡献。",
+      "hint": "überzeugt sein, dass ... 相信自己；einen Beitrag leisten 做出贡献。"
+    },
+    {
+      "text": "In der Verhandlung über das Gehalt sollten Sie Ihre Erwartungen klar formulieren, aber auch flexibel bleiben.",
+      "translation": "在薪资谈判中，您应该清楚地表达您的期望，但也要保持灵活。",
+      "hint": "in der Verhandlung über ... 在...谈判中；sollten 是第二虚拟式，表示建议。"
+    },
+    {
+      "text": "Nach der Probezeit wird ein unbefristeter Arbeitsvertrag angeboten, wenn die Leistung überzeugt.",
+      "translation": "试用期后，如果表现令人满意，将提供无固定期限的劳动合同。",
+      "hint": "Passiv：wird angeboten；wenn 引导条件从句。"
+    }
+  ],
+  "grammars": [
+    {
+      "question": "Ich bin sicher, dass ich mich ___ die Stelle sehr gut eigne.",
+      "options": [
+        "für",
+        "auf",
+        "um",
+        "an"
+      ],
+      "correct": "für",
+      "explanation": "sich eignen für + Akk. 表示“适合……”，是固定搭配。"
+    },
+    {
+      "question": "___ Sie bitte Ihre Fähigkeiten und Erfahrungen im Vorstellungsgespräch darlegen?",
+      "options": [
+        "Würden",
+        "Hätten",
+        "Könnten",
+        "Möchten"
+      ],
+      "correct": "Könnten",
+      "explanation": "Könnten Sie ...? 是礼貌的请求，意为“您能否……？”；其他选项不符合语境。"
+    },
+    {
+      "question": "Der Bewerber, ___ Lebenslauf sehr gut aussieht, hat gute Chancen.",
+      "options": [
+        "dessen",
+        "deren",
+        "dem",
+        "den"
+      ],
+      "correct": "dessen",
+      "explanation": "关系代词 dessen 指代男性单数（der Bewerber）的所有格，意为“他的”。"
+    }
+  ]
+}

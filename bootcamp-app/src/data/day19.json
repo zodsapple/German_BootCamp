@@ -1,0 +1,43 @@
+{
+  "day": 19,
+  "title": "形容词词尾变化：不定冠词修饰 (Adjektivdeklination mit unbest. Artikel)",
+  "focus": "在 ein/eine 之后，形容词要补足冠词没体现出来的性、数、格特征（如 ein neuer Wagen）。",
+  "vocab": [
+    {
+      "word": "die Wohnung",
+      "gender": "die",
+      "plural": "-en",
+      "translation": "公寓",
+      "example": "Sie haben eine gemütliche Wohnung gefunden.",
+      "category": "名词"
+    },
+    {
+      "word": "gemütlich",
+      "gender": "adj",
+      "plural": "",
+      "translation": "温馨舒适的",
+      "example": "Hier ist es sehr gemütlich.",
+      "category": "形容词"
+    }
+  ],
+  "dictations": [
+    {
+      "text": "Wir haben ein großes Zimmer in einer netten Wohngemeinschaft gemietet.",
+      "translation": "我们在一个友好的合租公寓里租了一间大单间。",
+      "hint": "ein großes Zimmer (中性单数第四格不定冠词修饰，加 -es)。"
+    }
+  ],
+  "grammars": [
+    {
+      "question": "Sie hat gestern ein schick___ Kleid für das Fest gekauft.",
+      "options": [
+        "e",
+        "es",
+        "en",
+        "er"
+      ],
+      "correct": "es",
+      "explanation": "Kleid为中性单数第四格宾语，在不定冠词 ein 后面，形容词需显示中性特征，词尾为 -es。"
+    }
+  ]
+}

@@ -1,0 +1,152 @@
+[
+  {
+    "day": 1,
+    "title": "高强度极速唤醒：日常场景与完成时态",
+    "focus": "暴风吸入 B1 核心日常词汇，熟练掌握 3 个基础语法点，通过 5 组听力重塑语感。"
+  },
+  {
+    "day": 2,
+    "title": "反身代词与反身动词 (Reflexive Verben)",
+    "focus": "牢记自复动词，区分第三格(Dativ)与第四格(Akkusativ)反身代词的应用场景。"
+  },
+  {
+    "day": 3,
+    "title": "情态动词过去式 (Modalverben im Präteritum)",
+    "focus": "在德语口语和写作中，情态动词的过去式（musste, durfte 等）比完成时更为常用。"
+  },
+  {
+    "day": 4,
+    "title": "静三动四方位介词 (Wechselpräpositionen)",
+    "focus": "攻克 9 个双介词的格位选择：静止状态用第三格，位置移动用第四格。"
+  },
+  {
+    "day": 5,
+    "title": "时间介词专项突破 (Temporale Präpositionen)",
+    "focus": "理清 seit, vor, in, nach, für, ab 等高频时间介词后面接什么格，代表什么时态。"
+  },
+  {
+    "day": 6,
+    "title": "职场起航：求职与实习 (Bewerbung & Praktikum)",
+    "focus": "学会德语 B1 核心商务交际词汇，掌握申请职位的标准搭配。"
+  },
+  {
+    "day": 7,
+    "title": "【第一周复盘测评】A2 阶梯整合训练",
+    "focus": "综合检测前六天所学的动词、时态与介词混用，检验扎实度。"
+  },
+  {
+    "day": 8,
+    "title": "原因与让步从句 (weil & obwohl)",
+    "focus": "在 B1 中灵活交替使用原因 (weil) 与让步 (obwohl) 从句，注意动词永远在句尾。"
+  },
+  {
+    "day": 9,
+    "title": "宾语从句的绝对王牌 (Nebensatz mit dass)",
+    "focus": "表达观点、感受、声明时必用 dass 从句，如 Ich finde, dass..."
+  },
+  {
+    "day": 10,
+    "title": "目的从句大作战 (damit & um...zu)",
+    "focus": "当主从句主语相同时用 um...zu，主语不同时必须使用 damit 从句。"
+  },
+  {
+    "day": 11,
+    "title": "条件与假设从句 (wenn & falls)",
+    "focus": "熟练使用 wenn 与 falls。如果从句在句首，主句需要倒装且以动词开头。"
+  },
+  {
+    "day": 12,
+    "title": "时间从句三大天王 (als, wenn, während)",
+    "focus": "分清过去一次性事件 (als)，过去重复发生或现在/未来事件 (wenn)，以及同步进行 (während)。"
+  },
+  {
+    "day": 13,
+    "title": "结果与替代连词 (sodass, ohne dass)",
+    "focus": "掌握描述不可避免结果 (sodass) 与伴随否定情况 (ohne zu / ohne dass) 的句式。"
+  },
+  {
+    "day": 14,
+    "title": "间接引语与间接疑问句 (ob / W-Fragen)",
+    "focus": "口语与写作中经常询问或转述他人的问题。掌握 ob (是否) 及 W-疑问词的从句顺序。"
+  },
+  {
+    "day": 15,
+    "title": "【第二周复盘测评】主从句语序大阅兵",
+    "focus": "高频测试所有 B1 经典从句（weil, obwohl, damit, dass, wenn, als, ob）。"
+  },
+  {
+    "day": 16,
+    "title": "关系从句：第一格与第四格 (Relativsätze im Nom. & Akk.)",
+    "focus": "熟练编写形容名词的修饰性关系从句。关系代词根据它在从句中的成分决定格位。"
+  },
+  {
+    "day": 17,
+    "title": "关系从句：第三格与介词结合 (Relativsätze im Dat. & mit Präp.)",
+    "focus": "攻克高难度的带介词关系从句，关系代词的格位由介词决定。"
+  },
+  {
+    "day": 18,
+    "title": "形容词词尾变化：定冠词修饰 (Adjektivdeklination mit best. Artikel)",
+    "focus": "在 der/die/das 之后，形容词词尾非常规整：主格和阴/中宾格加 -e，其他一律加 -en。"
+  },
+  {
+    "day": 19,
+    "title": "形容词词尾变化：不定冠词修饰 (Adjektivdeklination mit unbest. Artikel)",
+    "focus": "在 ein/eine 之后，形容词要补足冠词没体现出来的性、数、格特征（如 ein neuer Wagen）。"
+  },
+  {
+    "day": 20,
+    "title": "被动语态现在时 (Passiv Präsens)",
+    "focus": "被动语态强调动作本身。构成公式：werden (变位) + Partizip II (过去分词放句末)。"
+  },
+  {
+    "day": 21,
+    "title": "被动语态过去时 (Passiv Präteritum)",
+    "focus": "常用于书面报道、新闻或讲述过去发生的事情。构成：wurden (过去式变位) + Partizip II。"
+  },
+  {
+    "day": 22,
+    "title": "【第三周复盘测评】高级句型攻坚诊断",
+    "focus": "深度测试关系从句、形容词词尾变化与被动语态的组合拳。"
+  },
+  {
+    "day": 23,
+    "title": "虚拟二式：礼貌与愿望 (Konjunktiv II: Höflichkeit & Wunsch)",
+    "focus": "用 hätte, wäre 和 würde + 不定式来表达极度礼貌的请求或虚拟愿望（口语高分项）。"
+  },
+  {
+    "day": 24,
+    "title": "虚拟二式：反事实假设 (Konjunktiv II: Wenn-Sätze)",
+    "focus": "表达与现在或过去事实相反的假设。Wenn ich reich wäre, würde ich...（如果我有钱...）。"
+  },
+  {
+    "day": 25,
+    "title": "第二格与介词结合 (Genitiv & Präpositionen)",
+    "focus": "掌握 B1 标配的第二格 (Genitiv) 介词：wegen, trotz, während, statt。"
+  },
+  {
+    "day": 26,
+    "title": "名动结合固定搭配 (Nomen-Verb-Verbindungen)",
+    "focus": "在 B1 高级表达中，用名词+动词代替单动词。如 Interesse haben 代替 sich interessieren。"
+  },
+  {
+    "day": 27,
+    "title": "口语通关秘籍：展示结构 (Sprechen: Präsentation)",
+    "focus": "掌握 B1 口语第二部分（作简短陈述报告）的承上启下连接词（红利表达）。"
+  },
+  {
+    "day": 28,
+    "title": "写作高分模板：求职信与请假条 (Schreiben: Formelle Briefe)",
+    "focus": "背诵公文、邮件写作的标准句型，拿下写作第一大题与第二大题的格式分。"
+  },
+  {
+    "day": 29,
+    "title": "易混淆词汇绝对辨析 (Problemverben: werden, bekommen etc.)",
+    "focus": "彻底厘清 bekommen（收到）、werden（变成、将要）和 sein/haben 各种时态词义。"
+  },
+  {
+    "day": 30,
+    "title": "【终极毕业挑战】B1 真实考题全真模拟",
+    "focus": "全覆盖语法和高强度多角度听写，检验 30 天的高强度冲刺终极成果！"
+  }
+]

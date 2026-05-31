@@ -1,0 +1,43 @@
+{
+  "day": 11,
+  "title": "条件与假设从句 (wenn & falls)",
+  "focus": "熟练使用 wenn 与 falls。如果从句在句首，主句需要倒装且以动词开头。",
+  "vocab": [
+    {
+      "word": "die Gelegenheit",
+      "gender": "die",
+      "plural": "-en",
+      "translation": "机会，时机",
+      "example": "Das ist eine fantastische Gelegenheit.",
+      "category": "名词"
+    },
+    {
+      "word": "nutzen",
+      "gender": "verb",
+      "plural": "nutzte, hat genutzt",
+      "translation": "利用，使用",
+      "example": "Wir sollten diese Chance nutzen.",
+      "category": "动词"
+    }
+  ],
+  "dictations": [
+    {
+      "text": "Falls Sie Fragen haben, können Sie mich jederzeit telefonisch erreichen.",
+      "translation": "如果您有任何疑问，可以随时拨打电话联系我。",
+      "hint": "Falls 引导从句置于句首，主句首词必须是情态动词 können。"
+    }
+  ],
+  "grammars": [
+    {
+      "question": "___ das Wetter morgen schön ist, machen wir ein gemütliches Picknick.",
+      "options": [
+        "Obwohl",
+        "Dass",
+        "Wenn",
+        "Weil"
+      ],
+      "correct": "Wenn",
+      "explanation": "根据后文“我们将举行野餐”，此处是“如果（Wenn）天气好”的条件关系。"
+    }
+  ]
+}

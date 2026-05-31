@@ -1,0 +1,43 @@
+{
+  "day": 28,
+  "title": "写作高分模板：求职信与请假条 (Schreiben: Formelle Briefe)",
+  "focus": "背诵公文、邮件写作的标准句型，拿下写作第一大题与第二大题的格式分。",
+  "vocab": [
+    {
+      "word": "die Einladung",
+      "gender": "die",
+      "plural": "-en",
+      "translation": "邀请，请帖",
+      "example": "Vielen Dank für die nette Einladung.",
+      "category": "名词"
+    },
+    {
+      "word": "entschuldigen",
+      "gender": "verb",
+      "plural": "entschuldigte, hat entschuldigt",
+      "translation": "原谅，请假",
+      "example": "Bitte entschuldigen Sie mein verspätetes Erscheinen.",
+      "category": "动词"
+    }
+  ],
+  "dictations": [
+    {
+      "text": "Ich schreibe Ihnen, weil ich am kommenden Montag leider nicht zum Dienst kommen kann.",
+      "translation": "我给您写信是因为下周一我实在无法来上班了。",
+      "hint": "正式请假条开篇语。注意 weil 引导从句，动词置尾。"
+    }
+  ],
+  "grammars": [
+    {
+      "question": "Ich freue mich sehr ___ Ihre baldige und positive Antwort.",
+      "options": [
+        "auf",
+        "über",
+        "an",
+        "für"
+      ],
+      "correct": "auf",
+      "explanation": "写信落款常用客套句。freuen auf 表示对未来回复（Antwort）的期盼。"
+    }
+  ]
+}

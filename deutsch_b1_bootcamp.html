@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deutsch B1 30-Day Boot Camp - 德语B1 30天冲刺特训营</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- React and ReactDOM -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #f1f5f9;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        const bootCampCurriculum = {
+            1: {
+                title: "高强度极速唤醒：日常场景与完成时态",
+                focus: "暴风吸入 B1 核心日常词汇，熟练掌握 3 个基础语法点，通过 5 组听力重塑语感。",
+                vocab: [
+                    { word: "der Alltag", gender: "der", plural: "-e", translation: "日常生活", example: "Der Alltag in Deutschland ist manchmal stressig.", category: "名词" },
+                    { word: "die Gewohnheit", gender: "die", plural: "-en", translation: "习惯", example: "Er hat die Gewohnheit, früh aufzustehen.", category: "名词" },
+                    { word: "aufstehen", gender: "verb", plural: "stand auf, ist aufgestanden", translation: "起床，起立", example: "Ich bin heute um 6 Uhr aufgestanden.", category: "分离动词 (sein)" },
+                    { word: "sich anziehen", gender: "verb", plural: "zog sich an, hat sich angezogen", translation: "穿衣服 (反身)", example: "Ich ziehe mich schnell an.", category: "反身动词" },
+                    { word: "frühstücken", gender: "verb", plural: "frühstückte, hat gefrühstückt", translation: "吃早餐", example: "Wir haben gemütlich auf dem Balkon gefrühstückt.", category: "规则动词" },
+                    { word: "der Verkehr", gender: "der", plural: "(Sg.)", translation: "交通", example: "Morgens gibt es viel Verkehr auf der Straße.", category: "名词" },
+                    { word: "verpassen", gender: "verb", plural: "verpasste, hat verpasst", translation: "错过", example: "Ich habe meinen Zug verpasst.", category: "不可分动词" },
+                    { word: "sich beeilen", gender: "verb", plural: "beeilte sich, hat sich beeilt", translation: "赶快，抓紧", example: "Wir müssen uns beeilen, sonst kommen wir zu spät.", category: "反身动词" },
+                    { word: "pünktlich", gender: "adj", plural: "", translation: "准时的", example: "In Deutschland ist es wichtig, pünktlich zu sein.", category: "形容词" },
+                    { word: "sich entschuldigen", gender: "verb", plural: "entschuldigte sich, hat sich entschuldigt", translation: "道歉", example: "Er hat sich für die Verspätung entschuldigt.", category: "反身动词" },
+                    { word: "die Besprechung", gender: "die", plural: "-en", translation: "会议，商讨", example: "Die Besprechung fängt um 10 Uhr an.", category: "名词" },
+                    { word: "teilnehmen (an)", gender: "verb", plural: "nahm teil, hat teilgenommen", translation: "参加 (+ Dativ)", example: "Ich nehme an dem Deutschkurs teil.", category: "可分动词" },
+                    { word: "erledigen", gender: "verb", plural: "erledigte, hat erledigt", translation: "完成，办理好", example: "Ich muss heute noch viele Aufgaben erledigen.", category: "不可分动词" },
+                    { word: "der Feierabend", gender: "der", plural: "-e", translation: "下班，休息时间", example: "Endlich Feierabend! Lass uns ein Bier trinken.", category: "名词" },
+                    { word: "sich entspannen", gender: "verb", plural: "entspannte sich, hat sich entspannt", translation: "放松", example: "Am Wochenende möchte ich mich nur entspannen.", category: "反身动词" },
+                    { word: "die Hausarbeit", gender: "die", plural: "-en", translation: "家务", example: "Wer macht bei euch die Hausarbeit?", category: "名词" },
+                    { word: "erschöpft", gender: "adj", plural: "", translation: "筋疲力尽的", example: "Nach der Arbeit bin ich oft völlig erschöpft.", category: "形容词" },
+                    { word: "einschlafen", gender: "verb", plural: "schlief ein, ist eingeschlafen", translation: "入睡", example: "Gestern bin ich sehr spät eingeschlafen.", category: "可分动词 (sein)" },
+                    { word: "träumen (von)", gender: "verb", plural: "träumte, hat geträumt", translation: "梦见，梦想 (+ Dativ)", example: "Ich träume von einem Urlaub am Meer.", category: "动词" },
+                    { word: "die Entscheidung", gender: "die", plural: "-en", translation: "决定", example: "Es ist eine schwere Entscheidung.", category: "名词" },
+                    { word: "entscheiden (sich)", gender: "verb", plural: "entschied, hat entschieden", translation: "做决定", example: "Ich habe mich für diesen Weg entschieden.", category: "反身动词" },
+                    { word: "die Vorbereitung", gender: "die", plural: "-en", translation: "准备", example: "Die Vorbereitung auf die B1-Prüfung dauert lange.", category: "名词" },
+                    { word: "vorbereiten (sich auf)", gender: "verb", plural: "bereitete vor, hat vorbereitet", translation: "准备 (+ Akkusativ)", example: "Ich bereite mich auf den Test vor.", category: "可分动词" },
+                    { word: "die Konzentration", gender: "die", plural: "(Sg.)", translation: "注意力，专注", example: "Für diese Aufgabe brauche ich volle Konzentration.", category: "名词" },
+                    { word: "konzentrieren (sich auf)", gender: "verb", plural: "konzentrierte, hat konzentriert", translation: "专注于 (+ Akkusativ)", example: "Bitte konzentriere dich auf die Aufgabe.", category: "反身动词" }
+                ],
+                dictations: [
+                    {
+                        text: "Gestern bin ich um sechs Uhr aufgestanden und habe schnell gefrühstückt.",
+                        translation: "昨天我六点起床，并快速吃了早餐。",
+                        hint: "aufstehen 是位置/状态改变，用 sein；frühstücken 是一般动作，用 haben。"
+                    },
+                    {
+                        text: "Weil es stark geregnet hat, bin ich leider zu spät zur Arbeit gekommen.",
+                        translation: "因为雨下得很大，我很遗憾上班迟到了。",
+                        hint: "weil 引导从句，助动词 hat 放句末；主句紧跟在逗号后，变位动词 bin 放主句第一位。"
+                    },
+                    {
+                        text: "Er hat sich sofort beim Chef für seine Verspätung am Morgen entschuldigt.",
+                        translation: "他立刻为自己早上的迟到向老板道了歉。",
+                        hint: "sich entschuldigen bei (Dativ) für (Akkusativ) - 向某人因某事道歉。"
+                    },
+                    {
+                        text: "Nachdem ich alle wichtigen Aufgaben erledigt hatte, machte ich endlich Feierabend.",
+                        translation: "在我完成了所有重要任务之后，我终于下班了。",
+                        hint: "nachdem 引导的从句如果用过去完成时(hatte erledigt)，主句通常用过去时(machte)。"
+                    },
+                    {
+                        text: "Ich freue mich schon sehr darauf, am Wochenende einfach nur zu entspannen.",
+                        translation: "我已经非常期待在周末仅仅只是放松一下了。",
+                        hint: "sich freuen auf 的代副词形式 darauf，后接 zu 不定式短语。"
+                    }
+                ],
+                grammars: [
+                    {
+                        question: "Sie ___ gestern erst sehr spät nach Hause gekommen.",
+                        options: ["haben", "sind", "wurden", "waren"],
+                        correct: "sind",
+                        explanation: "kommen 表示位置移动，现在完成时助动词用 sein (sie sind gekommen)。"
+                    },
+                    {
+                        question: "Ich wasche ___ jeden Morgen mit kaltem Wasser das Gesicht.",
+                        options: ["mich", "mir", "uns", "sich"],
+                        correct: "mir",
+                        explanation: "当清洗的目标（身体部位 das Gesicht）作为第四格直接宾语出现时，反身代词要用第三格 mir (sich Dativ etwas waschen)。"
+                    },
+                    {
+                        question: "Die U-Bahn war leider schon abgefahren, ___ wir am Bahnhof ankamen.",
+                        options: ["wenn", "als", "wann", "weil"],
+                        correct: "als",
+                        explanation: "表达过去发生的一次性事件（当我们到达火车站时），必须使用连词 als。"
+                    }
+                ]
+            },
+            2: {
+                title: "反身代词与反身动词 (Reflexive Verben)",
+                focus: "牢记自复动词，区分第三格(Dativ)与第四格(Akkusativ)反身代词的应用场景。",
+                vocab: [
+                    { word: "interessieren (sich für)", gender: "verb", plural: "interessierte, hat interessiert", translation: "对...感兴趣", example: "Ich interessiere mich für deutsche Geschichte.", category: "动词搭配" },
+                    { word: "die Interesse", gender: "die", plural: "-n", translation: "兴趣", example: "Ich habe kein Interesse an diesem Fach.", category: "名词" }
+                ],
+                dictation: {
+                    text: "Ich freue mich sehr auf das Treffen am nächsten Wochenende.",
+                    translation: "我非常期待下周末的见面。",
+                    hint: "sich freuen auf 表示期待未来尚未发生的事；sich freuen über 表示为已发生或当下的事高兴。"
+                },
+                grammar: {
+                    question: "Ich wasche ___ die Hände, bevor ich esse.",
+                    options: ["mich", "mir", "uns", "sich"],
+                    correct: "mir",
+                    explanation: "当清洗的目标（身体部位 Hände）作为第四格直接宾语出现时，反身代词要用第三格 mir。"
+                }
+            },
+            3: {
+                title: "情态动词过去式 (Modalverben im Präteritum)",
+                focus: "在德语口语和写作中，情态动词的过去式（musste, durfte 等）比完成时更为常用。",
+                vocab: [
+                    { word: "die Erlaubnis", gender: "die", plural: "-se", translation: "许可，准许", example: "Der Chef hat mir die Erlaubnis gegeben.", category: "名词" },
+                    { word: "erlauben", gender: "verb", plural: "erlaubte, hat erlaubt", translation: "允许", example: "Meine Eltern erlauben mir die Reise.", category: "动词" }
+                ],
+                dictation: {
+                    text: "Als Kind durfte ich abends nie so lange fernsehen wie mein Bruder.",
+                    translation: "作为孩子，我晚上绝对不允许像我哥哥那样看那么久电视。",
+                    hint: "dürfen 的过去式是 durfte。注意 als 引导过去一次性事件从句。"
+                },
+                grammar: {
+                    question: "Als ich jünger war, ___ ich jeden Tag Klavier spielen.",
+                    options: ["muss", "musste", "habe gemusst", "müsste"],
+                    correct: "musste",
+                    explanation: "叙述过去（Als ich jünger war）需要用过去时 Präteritum，müssen 变位为 musste。"
+                }
+            },
+            4: {
+                title: "静三动四方位介词 (Wechselpräpositionen)",
+                focus: "攻克 9 个双介词的格位选择：静止状态用第三格，位置移动用第四格。",
+                vocab: [
+                    { word: "der Schreibtisch", gender: "der", plural: "-e", translation: "书桌", example: "Der Brief liegt auf dem Schreibtisch.", category: "名词" },
+                    { word: "legen", gender: "verb", plural: "legte, hat gelegt", translation: "平放(动)", example: "Bitte legen Sie das Buch auf den Tisch.", category: "动词" }
+                ],
+                dictation: {
+                    text: "Er stellt die schöne Blumenvase mitten auf den großen Esstisch.",
+                    translation: "他把漂亮的花瓶摆到大餐桌正中间。",
+                    hint: "stellen 是动作移动，搭配 auf + 第四格 (den Esstisch)。"
+                },
+                grammar: {
+                    question: "Das Buch liegt seit gestern auf ___ Tisch.",
+                    options: ["den", "dem", "der", "des"],
+                    correct: "dem",
+                    explanation: "liegen（躺、放着）表示静止状态，介词 auf 需接第三格（dem Tisch）。"
+                }
+            },
+            5: {
+                title: "时间介词专项突破 (Temporale Präpositionen)",
+                focus: "理清 seit, vor, in, nach, für, ab 等高频时间介词后面接什么格，代表什么时态。",
+                vocab: [
+                    { word: "die Zukunft", gender: "die", plural: "(Sg.)", translation: "未来", example: "In der Zukunft möchte ich als Arzt arbeiten.", category: "名词" },
+                    { word: "zukünftig", gender: "adj", plural: "", translation: "未来的", example: "Das ist meine zukünftige Kollegin.", category: "形容词" }
+                ],
+                dictation: {
+                    text: "Vor einem Jahr habe ich angefangen, intensiv Deutsch zu lernen.",
+                    translation: "一年前，我开始高强度学习德语。",
+                    hint: "vor（...之前）接第三格（einem Jahr），固定表示过去，常与过去时或完成时搭配。"
+                },
+                grammar: {
+                    question: "Ich lerne ___ einem halben Jahr Deutsch und mache bald die B1-Prüfung.",
+                    options: ["vor", "in", "seit", "für"],
+                    correct: "seit",
+                    explanation: "seit 表示“从过去某时开始一直持续到现在的状态”，接第三格，句子用现在时。"
+                }
+            },
+            6: {
+                title: "职场起航：求职与实习 (Bewerbung & Praktikum)",
+                focus: "学会德语 B1 核心商务交际词汇，掌握申请职位的标准搭配。",
+                vocab: [
+                    { word: "bewerben (sich um)", gender: "verb", plural: "bewirbt, hat beworben", translation: "申请，应聘", example: "Ich bewerbe mich um eine Stelle als Ingenieur.", category: "动词搭配" },
+                    { word: "die Bewerbungsunterlagen", gender: "die", plural: "(Pl.)", translation: "申请材料", example: "Senden Sie Ihre Bewerbungsunterlagen per E-Mail.", category: "名词" }
+                ],
+                dictation: {
+                    text: "Ich möchte ein Praktikum machen, um wertvolle Berufserfahrung zu sammeln.",
+                    translation: "我希望做一份实习，以便积累宝贵的工作经验。",
+                    hint: "sammele 习惯表达：Berufserfahrung sammeln（积累工作经验）。"
+                },
+                grammar: {
+                    question: "Er bewirbt sich ___ eine freie Stelle in unserer Marketing-Abteilung.",
+                    options: ["für", "an", "auf", "um"],
+                    correct: "um",
+                    explanation: "sich bewerben um + Akkusativ 为求职、申请职位的固定搭配。"
+                }
+            },
+            7: {
+                title: "【第一周复盘测评】A2 阶梯整合训练",
+                focus: "综合检测前六天所学的动词、时态与介词混用，检验扎实度。",
+                vocab: [
+                    { word: "die Prüfung", gender: "die", plural: "-en", translation: "考试，测试", example: "Ich bereite mich auf die B1-Prüfung vor.", category: "名词" },
+                    { word: "bestehen", gender: "verb", plural: "bestand, hat bestanden", translation: "通过(考试)", example: "Er hat die Fahrprüfung bestanden.", category: "动词" }
+                ],
+                dictation: {
+                    text: "Wenn man fleißig lernt, kann man jede schwierige Prüfung bestehen.",
+                    translation: "只要勤奋学习，就能通过任何困难的考试。",
+                    hint: "wenn 引导条件状语从句，主句首位一般是变位动词（这里用 kann）。"
+                },
+                grammar: {
+                    question: "Wir freuen uns schon sehr ___ den bevorstehenden Urlaub.",
+                    options: ["über", "an", "auf", "vor"],
+                    correct: "auf",
+                    explanation: "sich freuen auf 表示期待将来尚未发生的休假（Urlaub）。"
+                }
+            },
+            8: {
+                title: "原因与让步从句 (weil & obwohl)",
+                focus: "在 B1 中灵活交替使用原因 (weil) 与让步 (obwohl) 从句，注意动词永远在句尾。",
+                vocab: [
+                    { word: "die Gesundheit", gender: "die", plural: "(Sg.)", translation: "健康", example: "Sport ist wichtig für die Gesundheit.", category: "名词" },
+                    { word: "gesund", gender: "adj", plural: "gesünder, am gesündesten", translation: "健康的", example: "Er ernährt sich sehr gesund.", category: "形容词" }
+                ],
+                dictation: {
+                    text: "Ich gehe heute im Park joggen, obwohl es draußen stark regnet.",
+                    translation: "虽然外面雨很大，但我今天依然去公园慢跑。",
+                    hint: "obwohl 引导让步从句，其从句中的变位动词 regnet 置于句末。"
+                },
+                grammar: {
+                    question: "Ich kann nicht zur Party kommen, ___ ich heute lange arbeiten muss.",
+                    options: ["trotzdem", "weil", "obwohl", "deshalb"],
+                    correct: "weil",
+                    explanation: "这里需要表达原因，且后面是副词从句结构（变位动词muss在句末），故填 weil。"
+                }
+            },
+            9: {
+                title: "宾语从句的绝对王牌 (Nebensatz mit dass)",
+                focus: "表达观点、感受、声明时必用 dass 从句，如 Ich finde, dass...",
+                vocab: [
+                    { word: "die Meinung", gender: "die", plural: "-en", translation: "看法，意见", example: "Meiner Meinung nach ist das ein großer Vorteil.", category: "名词" },
+                    { word: "meinen", gender: "verb", plural: "meinte, hat gemeint", translation: "认为，意思指", example: "Was meinen Sie zu diesem Thema?", category: "动词" }
+                ],
+                dictation: {
+                    text: "Ich bin fest davon überzeugt, dass diese Methode am besten funktioniert.",
+                    translation: "我坚信，这种方法起到了最好的作用。",
+                    hint: "überzeugt sein + davon + dass从句，代表深信不疑。"
+                },
+                grammar: {
+                    question: "Es ist sehr wichtig, ___ wir Deutsch jeden Tag aktiv sprechen.",
+                    options: ["weil", "wenn", "dass", "um"],
+                    correct: "dass",
+                    explanation: "Es ist wichtig, dass... 属于主语/宾语从句的标准过渡句型。“...是很重要的”。"
+                }
+            },
+            10: {
+                title: "目的从句大作战 (damit & um...zu)",
+                focus: "当主从句主语相同时用 um...zu，主语不同时必须使用 damit 从句。",
+                vocab: [
+                    { word: "die Weiterbildung", gender: "die", plural: "-en", translation: "深造，进修", example: "Er nimmt an einer Weiterbildung teil.", category: "名词" },
+                    { word: "verbessern", gender: "verb", plural: "verbesserte, hat verbessert", translation: "改进，提高", example: "Ich will meine Aussprache verbessern.", category: "动词" }
+                ],
+                dictation: {
+                    text: "Meine Eltern schicken mich nach Berlin, damit ich dort studieren kann.",
+                    translation: "我父母送我去柏林，为了让我在那里能够上大学。",
+                    hint: "主语是 Eltern，从句主语是 ich。主语不一致，必须用 damit 引导。"
+                },
+                grammar: {
+                    question: "Ich lerne Grammatik, ___ fehlerfreie E-Mails zu schreiben.",
+                    options: ["damit", "dass", "um", "weil"],
+                    correct: "um",
+                    explanation: "后面有 zu + 动词不定式 (schreiben)，这是典型的 um...zu 目的不定式结构。"
+                }
+            },
+            11: {
+                title: "条件与假设从句 (wenn & falls)",
+                focus: "熟练使用 wenn 与 falls。如果从句在句首，主句需要倒装且以动词开头。",
+                vocab: [
+                    { word: "die Gelegenheit", gender: "die", plural: "-en", translation: "机会，时机", example: "Das ist eine fantastische Gelegenheit.", category: "名词" },
+                    { word: "nutzen", gender: "verb", plural: "nutzte, hat genutzt", translation: "利用，使用", example: "Wir sollten diese Chance nutzen.", category: "动词" }
+                ],
+                dictation: {
+                    text: "Falls Sie Fragen haben, können Sie mich jederzeit telefonisch erreichen.",
+                    translation: "如果您有任何疑问，可以随时拨打电话联系我。",
+                    hint: "Falls 引导从句置于句首，主句首词必须是情态动词 können。"
+                },
+                grammar: {
+                    question: "___ das Wetter morgen schön ist, machen wir ein gemütliches Picknick.",
+                    options: ["Obwohl", "Dass", "Wenn", "Weil"],
+                    correct: "Wenn",
+                    explanation: "根据后文“我们将举行野餐”，此处是“如果（Wenn）天气好”的条件关系。"
+                }
+            },
+            12: {
+                title: "时间从句三大天王 (als, wenn, während)",
+                focus: "分清过去一次性事件 (als)，过去重复发生或现在/未来事件 (wenn)，以及同步进行 (während)。",
+                vocab: [
+                    { word: "die Kindheit", gender: "die", plural: "(Sg.)", translation: "童年", example: "In meiner Kindheit habe ich auf dem Land gelebt.", category: "名词" },
+                    { word: "damals", gender: "adv", plural: "", translation: "当时，那时", example: "Damals gab es noch keine Smartphones.", category: "副词" }
+                ],
+                dictation: {
+                    text: "Während ich für die Prüfung lernte, kochte meine Mitbewohnerin das Abendessen.",
+                    translation: "在我准备考试的同时，我的室友正在做晚饭。",
+                    hint: "während 引导表示两件事在同一时段内并行发生的从句。"
+                },
+                grammar: {
+                    question: "___ ich gestern auf den Bus wartete, traf ich einen alten Freund.",
+                    options: ["Wenn", "Als", "Während", "Weil"],
+                    correct: "Als",
+                    explanation: "昨天等公交车是一个过去的特定时间点动作，应使用 als（当...时）。"
+                }
+            },
+            13: {
+                title: "结果与替代连词 (sodass, ohne dass)",
+                focus: "掌握描述不可避免结果 (sodass) 与伴随否定情况 (ohne zu / ohne dass) 的句式。",
+                vocab: [
+                    { word: "der Erfolg", gender: "der", plural: "-e", translation: "成功", example: "Ich wünsche Ihnen viel Erfolg!", category: "名词" },
+                    { word: "erfolgreich", gender: "adj", plural: "", translation: "成功的", example: "Sie ist eine erfolgreiche Managerin.", category: "形容词" }
+                ],
+                dictation: {
+                    text: "Er ist aus dem Raum gegangen, ohne ein einziges Wort zu sagen.",
+                    translation: "他一言不发地走出了房间。",
+                    hint: "ohne...zu 表示“没有做某事就...”。主语一致才能用 ohne...zu。"
+                },
+                grammar: {
+                    question: "Das Auto war sehr teuer, ___ ich mir kein neues Smartphone leisten konnte.",
+                    options: ["sodass", "obwohl", "damit", "weil"],
+                    correct: "sodass",
+                    explanation: "“车子太贵了，结果/以至于（sodass）我无法负担新手机。”"
+                }
+            },
+            14: {
+                title: "间接引语与间接疑问句 (ob / W-Fragen)",
+                focus: "口语与写作中经常询问或转述他人的问题。掌握 ob (是否) 及 W-疑问词的从句顺序。",
+                vocab: [
+                    { word: "die Auskunft", gender: "die", plural: "-e", translation: "信息，咨询", example: "Können Sie mir eine Auskunft geben?", category: "名词" },
+                    { word: "fragen", gender: "verb", plural: "fragte, hat gefragt", translation: "询问，提问", example: "Darf ich Sie etwas fragen?", category: "动词" }
+                ],
+                dictation: {
+                    text: "Ich möchte gerne wissen, ob der Zug nach München pünktlich ankommt.",
+                    translation: "我想知道开往慕尼黑的火车是否能准点到达。",
+                    hint: "间接一般疑问句使用 ob（是否）引导，动词 ankommt 在末尾。"
+                },
+                grammar: {
+                    question: "Können Sie mir sagen, ___ der nächste Bus abfährt?",
+                    options: ["ob", "wann", "was", "dass"],
+                    correct: "wann",
+                    explanation: "询问特定时间，间接疑问句由疑问词 wann（什么时候）引导。"
+                }
+            },
+            15: {
+                title: "【第二周复盘测评】主从句语序大阅兵",
+                focus: "高频测试所有 B1 经典从句（weil, obwohl, damit, dass, wenn, als, ob）。",
+                vocab: [
+                    { word: "der Fehler", gender: "der", plural: "-", translation: "错误", example: "Das war ein großer Fehler von mir.", category: "名词" },
+                    { word: "korrigieren", gender: "verb", plural: "korrigierte, hat korrigiert", translation: "纠正，修改", example: "Bitte korrigieren Sie meinen Text.", category: "动词" }
+                ],
+                dictation: {
+                    text: "Obwohl die Übungen sehr kompliziert waren, habe ich keinen Fehler gemacht.",
+                    translation: "虽然这些练习很复杂，但我没有犯任何错误。",
+                    hint: "obwohl 从句动词 waren 置尾，主句在逗号后立刻接助动词 habe。"
+                },
+                grammar: {
+                    question: "Ich bin mir nicht sicher, ___ wir heute Unterricht haben oder nicht.",
+                    options: ["ob", "dass", "wenn", "weil"],
+                    correct: "ob",
+                    explanation: "这里有“...或者不（oder nicht）”，属于“是否（ob）”的选择判断式间接问句。"
+                }
+            },
+            16: {
+                title: "关系从句：第一格与第四格 (Relativsätze im Nom. & Akk.)",
+                focus: "熟练编写形容名词的修饰性关系从句。关系代词根据它在从句中的成分决定格位。",
+                vocab: [
+                    { word: "der Nachbar", gender: "der", plural: "-n", translation: "邻居", example: "Mein neuer Nachbar ist sehr freundlich.", category: "名词" },
+                    { word: "kennenlernen", gender: "verb", plural: "lernte kennen, kennengelernt", translation: "结识，认识", example: "Ich möchte neue Leute kennenlernen.", category: "动词" }
+                ],
+                dictation: {
+                    text: "Der Kaffee, den ich gestern in dem kleinen Café gekauft habe, schmeckt super.",
+                    translation: "我昨天在那个小咖啡馆买的咖啡，味道好极了。",
+                    hint: "Kaffee 是阳性单数。在从句中作为“我买”的直接宾语，所以用第四格阳性代词 den。"
+                },
+                grammar: {
+                    question: "Der Kollege, ___ dort drüben steht, kommt aus der Schweiz.",
+                    options: ["den", "dem", "der", "dessen"],
+                    correct: "der",
+                    explanation: "修饰单数阳性名词 Kollege，且关系代词在从句中作为主语（第一格），因此选 der。"
+                }
+            },
+            17: {
+                title: "关系从句：第三格与介词结合 (Relativsätze im Dat. & mit Präp.)",
+                focus: "攻克高难度的带介词关系从句，关系代词的格位由介词决定。",
+                vocab: [
+                    { word: "der Kollege", gender: "der", plural: "-n", translation: "同事", example: "Ich arbeite gerne mit meinen Kollegen.", category: "名词" },
+                    { word: "helfen", gender: "verb", plural: "half, hat geholfen", translation: "帮助 (+ Dativ)", example: "Er hilft mir bei den Hausaufgaben.", category: "动词" }
+                ],
+                dictation: {
+                    text: "Das ist das schöne Auto, von dem mein Mann schon seit Jahren träumt.",
+                    translation: "这就是我丈夫多年来一直梦寐以求的那辆漂亮跑车。",
+                    hint: "träumen von + Dativ。Auto 为中性单数，因此为 von dem。"
+                },
+                grammar: {
+                    question: "Die Frau, ___ ich beim Tragen der Taschen geholfen habe, war sehr dankbar.",
+                    options: ["die", "der", "den", "dem"],
+                    correct: "der",
+                    explanation: "helfen 接第三格宾语，修饰单数阴性名词 Frau，所以关系代词用阴性第三格 der。"
+                }
+            },
+            18: {
+                title: "形容词词尾变化：定冠词修饰 (Adjektivdeklination mit best. Artikel)",
+                focus: "在 der/die/das 之后，形容词词尾非常规整：主格和阴/中宾格加 -e，其他一律加 -en。",
+                vocab: [
+                    { word: "der Anzug", gender: "der", plural: "-e", translation: "西装", example: "Er trägt einen schicken blauen Anzug.", category: "名词" },
+                    { word: "schick", gender: "adj", plural: "", translation: "时髦的，潇洒的", example: "Das Kleid sieht wirklich schick aus.", category: "形容词" }
+                ],
+                dictation: {
+                    text: "Der neue Laptop, den ich mir gestern bestellt habe, ist unglaublich schnell.",
+                    translation: "我昨天订购的那台新笔记本电脑速度极其快。",
+                    hint: "bestimmter Artikel + Adjektiv (Der neue Laptop)。"
+                },
+                grammar: {
+                    question: "Ich mag den schwarz___ Tee aus Indien besonders gern.",
+                    options: ["e", "en", "er", "es"],
+                    correct: "en",
+                    explanation: "Tee为阳性第四格宾语，在定冠词 den 之后，形容词词尾必然是 -en。"
+                }
+            },
+            19: {
+                title: "形容词词尾变化：不定冠词修饰 (Adjektivdeklination mit unbest. Artikel)",
+                focus: "在 ein/eine 之后，形容词要补足冠词没体现出来的性、数、格特征（如 ein neuer Wagen）。",
+                vocab: [
+                    { word: "die Wohnung", gender: "die", plural: "-en", translation: "公寓", example: "Sie haben eine gemütliche Wohnung gefunden.", category: "名词" },
+                    { word: "gemütlich", gender: "adj", plural: "", translation: "温馨舒适的", example: "Hier ist es sehr gemütlich.", category: "形容词" }
+                ],
+                dictation: {
+                    text: "Wir haben ein großes Zimmer in einer netten Wohngemeinschaft gemietet.",
+                    translation: "我们在一个友好的合租公寓里租了一间大单间。",
+                    hint: "ein großes Zimmer (中性单数第四格不定冠词修饰，加 -es)。"
+                },
+                grammar: {
+                    question: "Sie hat gestern ein schick___ Kleid für das Fest gekauft.",
+                    options: ["e", "es", "en", "er"],
+                    correct: "es",
+                    explanation: "Kleid为中性单数第四格宾语，在不定冠词 ein 后面，形容词需显示中性特征，词尾为 -es。"
+                }
+            },
+            20: {
+                title: "被动语态现在时 (Passiv Präsens)",
+                focus: "被动语态强调动作本身。构成公式：werden (变位) + Partizip II (过去分词放句末)。",
+                vocab: [
+                    { word: "die Reparatur", gender: "die", plural: "-en", translation: "维修，修理", example: "Die Reparatur des Autos ist sehr teuer.", category: "名词" },
+                    { word: "reparieren", gender: "verb", plural: "reparierte, hat repariert", translation: "修理", example: "Kannst du mein Fahrrad reparieren?", category: "动词" }
+                ],
+                dictation: {
+                    text: "Die kaputten Straßen in unserer Stadt werden jetzt endlich repariert.",
+                    translation: "我们城市里那些破损的道路现在终于在进行维修了。",
+                    hint: "复数主语 Straßen 搭配 werden，过去分词 repariert 放在最末尾。"
+                },
+                grammar: {
+                    question: "Das beschädigte Auto ___ in der Werkstatt repariert.",
+                    options: ["wird", "werden", "ist", "hat"],
+                    correct: "wird",
+                    explanation: "单数主语 Auto 对应的 werden 变位为 wird，构成现在时被动语态。"
+                }
+            },
+            21: {
+                title: "被动语态过去时 (Passiv Präteritum)",
+                focus: "常用于书面报道、新闻或讲述过去发生的事情。构成：wurden (过去式变位) + Partizip II。",
+                vocab: [
+                    { word: "der Bahnhof", gender: "der", plural: "-e", translation: "火车站", example: "Der neue Bahnhof wurde gestern feierlich eröffnet.", category: "名词" },
+                    { word: "bauen", gender: "verb", plural: "baute, hat gebaut", translation: "建造，建设", example: "Hier wird ein neues Einkaufszentrum gebaut.", category: "动词" }
+                ],
+                dictation: {
+                    text: "Dieses historische Gebäude wurde im Jahr achtzehnhundert gebaut.",
+                    translation: "这座历史悠久的建筑建于 1800 年。",
+                    hint: "过去发生的被动事实，使用 werden 的过去式 wurde + 过去分词 gebaut。"
+                },
+                grammar: {
+                    question: "Die Briefe ___ gestern vom Postboten abgeholt.",
+                    options: ["wurden", "wurdet", "warden", "werden"],
+                    correct: "wurden",
+                    explanation: "主语是复数 Briefe，且时间词是 yesterday (gestern)，因此使用复数过去时被动助动词 wurden。"
+                }
+            },
+            22: {
+                title: "【第三周复盘测评】高级句型攻坚诊断",
+                focus: "深度测试关系从句、形容词词尾变化与被动语态的组合拳。",
+                vocab: [
+                    { word: "die Herausforderung", gender: "die", plural: "-en", translation: "挑战", example: "Das Bestehen der B1-Prüfung ist eine Herausforderung.", category: "名词" },
+                    { word: "meistern", gender: "verb", plural: "meisterte, hat gemeistert", translation: "克服，掌握", example: "Gemeinsam können wir diese Krise meistern.", category: "动词" }
+                ],
+                dictation: {
+                    text: "Die schwierigen Aufgaben, die uns gestellt wurden, haben wir gut gelöst.",
+                    translation: "分配给我们的那些困难任务，我们都很好地解决了。",
+                    hint: "结合了形容词变化、关系从句和被动语态的 B1 典型综合长难句。"
+                },
+                grammar: {
+                    question: "Er spricht mit dem freundlich___ Polizisten auf der Straße.",
+                    options: ["e", "er", "en", "es"],
+                    correct: "en",
+                    explanation: "Polizist 是阳性，这里是第三格 (mit dem)，在定冠词后形容词词尾绝对是 -en。"
+                }
+            },
+            23: {
+                title: "虚拟二式：礼貌与愿望 (Konjunktiv II: Höflichkeit & Wunsch)",
+                focus: "用 hätte, wäre 和 würde + 不定式来表达极度礼貌的请求或虚拟愿望（口语高分项）。",
+                vocab: [
+                    { word: "die Hilfe", gender: "die", plural: "(Sg.)", translation: "帮助", example: "Ich danke Ihnen herzlich für Ihre große Hilfe.", category: "名词" },
+                    { word: "empfehlen", gender: "verb", plural: "empfahl, hat empfohlen", translation: "推荐", example: "Was können Sie mir empfehlen?", category: "动词" }
+                ],
+                dictation: {
+                    text: "Ich hätte gerne ein Glas Wasser, wenn es Ihnen keine Umstände macht.",
+                    translation: "如果给您不添麻烦的话，我想要一杯水。",
+                    hint: "Ich hätte gerne 是比 Ich möchte 更地道的餐厅/日常点单极其礼貌的虚拟表达。"
+                },
+                grammar: {
+                    question: "___ Sie mir bitte helfen? Ich kann den Weg nicht finden.",
+                    options: ["Werden", "Würden", "Hatten", "Wollten"],
+                    correct: "Würden",
+                    explanation: "Würden Sie... 是极度客气、礼貌询问他人是否能提供协助的标准句型。"
+                }
+            },
+            24: {
+                title: "虚拟二式：反事实假设 (Konjunktiv II: Wenn-Sätze)",
+                focus: "表达与现在或过去事实相反的假设。Wenn ich reich wäre, würde ich...（如果我有钱...）。",
+                vocab: [
+                    { word: "die Million", gender: "die", plural: "-en", translation: "百万", example: "Er hat eine Million Euro im Lotto gewonnen.", category: "名词" },
+                    { word: "reisen", gender: "verb", plural: "reiste, ist gereist", translation: "旅行", example: "Ich reise sehr gerne in asiatische Länder.", category: "动词" }
+                ],
+                dictation: {
+                    text: "Wenn ich mehr Zeit hätte, würde ich eine lange Weltreise machen.",
+                    translation: "如果我有更多时间，我会进行一次长途环球旅行。",
+                    hint: "事实是现在没时间。虚拟二式用 haben -> hätte 以及 würde + 不定式 machen。"
+                },
+                grammar: {
+                    question: "Wenn ich du ___ , würde ich sofort zum Arzt gehen.",
+                    options: ["bin", "war", "wäre", "hätte"],
+                    correct: "wäre",
+                    explanation: "“如果我是你”（事实不可能是），表示与事实相反的虚拟状态，sein 变为 wäre。"
+                }
+            },
+            25: {
+                title: "第二格与介词结合 (Genitiv & Präpositionen)",
+                focus: "掌握 B1 标配的第二格 (Genitiv) 介词：wegen, trotz, während, statt。",
+                vocab: [
+                    { word: "das Wetter", gender: "das", plural: "(Sg.)", translation: "天气", example: "Trotz des schlechten Wetters gehen wir wandern.", category: "名词" },
+                    { word: "trotz", gender: "prep", plural: "", translation: "尽管 (+ Genitiv)", example: "Trotz der Grippe geht er zur Arbeit.", category: "介词" }
+                ],
+                dictation: {
+                    text: "Wegen des starken Regens mussten wir das geplante Fußballspiel absagen.",
+                    translation: "因为暴雨，我们不得不取消计划好的足球赛。",
+                    hint: "wegen 后面带第二格 (des starken Regens)，阳性/中性名词单数尾部要加 -s。"
+                },
+                grammar: {
+                    question: "Während ___ Deutschkurses dürfen die Teilnehmer kein Handy benutzen.",
+                    options: ["den", "dem", "des", "der"],
+                    correct: "des",
+                    explanation: "während 是第二格介词，Deutschkurs（阳性）的第二格定冠词是 des，且名词尾加 -es。"
+                }
+            },
+            26: {
+                title: "名动结合固定搭配 (Nomen-Verb-Verbindungen)",
+                focus: "在 B1 高级表达中，用名词+动词代替单动词。如 Interesse haben 代替 sich interessieren。",
+                vocab: [
+                    { word: "die Sorge", gender: "die", plural: "-n", translation: "担心，忧虑", example: "Machen Sie sich keine Sorgen um mich.", category: "名词" },
+                    { word: "lösen", gender: "verb", plural: "löste, hat gelöst", translation: "解决", example: "Wir müssen eine Lösung für dieses Problem finden.", category: "动词" }
+                ],
+                dictation: {
+                    text: "Ich möchte eine wichtige Frage zum Ablauf der heutigen Prüfung stellen.",
+                    screenshot: "",
+                    translation: "我想就今天考试的流程提一个重要问题。",
+                    hint: "eine Frage stellen 等同于 fragen (提问)。"
+                },
+                grammar: {
+                    question: "Sie müssen heute eine wichtige Entscheidung ___ .",
+                    options: ["machen", "haben", "treffen", "tun"],
+                    correct: "treffen",
+                    explanation: "eine Entscheidung treffen 属于固定名动搭配，意为“做出决定”。"
+                }
+            },
+            27: {
+                title: "口语通关秘籍：展示结构 (Sprechen: Präsentation)",
+                focus: "掌握 B1 口语第二部分（作简短陈述报告）的承上启下连接词（红利表达）。",
+                vocab: [
+                    { word: "der Vorteil", gender: "der", plural: "-e", translation: "优点，长处", example: "Ein großer Vorteil ist die Flexibilität.", category: "名词" },
+                    { word: "der Nachteil", gender: "der", plural: "-e", translation: "缺点，短处", example: "Ein Nachteil ist der hohe Preis.", category: "名词" }
+                ],
+                dictation: {
+                    text: "Meiner Meinung nach hat diese moderne Technologie sowohl Vorteile als auch Nachteile.",
+                    translation: "在我看来，这项现代技术既有优点也有缺点。",
+                    hint: "sowohl...als auch 是 B1 双重连词，意为“既...又...”。"
+                },
+                grammar: {
+                    question: "In meinem Heimatland ___ fast alle Leute mit dem eigenen Auto zur Arbeit.",
+                    options: ["fahren", "reisen", "gehen", "fliegen"],
+                    correct: "fahren",
+                    explanation: "口语陈述个人家乡情况。开着交通工具（Auto）上班变位用 fahren。"
+                }
+            },
+            28: {
+                title: "写作高分模板：求职信与请假条 (Schreiben: Formelle Briefe)",
+                focus: "背诵公文、邮件写作的标准句型，拿下写作第一大题与第二大题的格式分。",
+                vocab: [
+                    { word: "die Einladung", gender: "die", plural: "-en", translation: "邀请，请帖", example: "Vielen Dank für die nette Einladung.", category: "名词" },
+                    { word: "entschuldigen", gender: "verb", plural: "entschuldigte, hat entschuldigt", translation: "原谅，请假", example: "Bitte entschuldigen Sie mein verspätetes Erscheinen.", category: "动词" }
+                ],
+                dictation: {
+                    text: "Ich schreibe Ihnen, weil ich am kommenden Montag leider nicht zum Dienst kommen kann.",
+                    translation: "我给您写信是因为下周一我实在无法来上班了。",
+                    hint: "正式请假条开篇语。注意 weil 引导从句，动词置尾。"
+                },
+                grammar: {
+                    question: "Ich freue mich sehr ___ Ihre baldige und positive Antwort.",
+                    options: ["auf", "über", "an", "für"],
+                    correct: "auf",
+                    explanation: "写信落款常用客套句。freuen auf 表示对未来回复（Antwort）的期盼。"
+                }
+            },
+            29: {
+                title: "易混淆词汇绝对辨析 (Problemverben: werden, bekommen etc.)",
+                focus: "彻底厘清 bekommen（收到）、werden（变成、将要）和 sein/haben 各种时态词义。",
+                vocab: [
+                    { word: "erhalten", gender: "verb", plural: "erhielt, hat erhalten", translation: "收到，获得 (比 bekommen 正式)", example: "Ich habe Ihre Nachricht erhalten.", category: "动词" },
+                    { word: "die Wahrheit", gender: "die", plural: "-en", translation: "事实，真理", example: "Sagen Sie mir bitte die ganze Wahrheit.", category: "名词" }
+                ],
+                dictation: {
+                    text: "Es wird im Winter immer sehr früh dunkel, sodass wir oft drinnen bleiben.",
+                    translation: "冬天天黑得很早，以至于我们经常呆在室内。",
+                    hint: "werden 充当状态发生变化（变黑 dunkel werden）的实意动词。"
+                },
+                grammar: {
+                    question: "Ich ___ gestern ein wunderbares Geschenk von meiner Oma bekommen.",
+                    options: ["bin", "wurde", "habe", "hatte"],
+                    correct: "habe",
+                    explanation: "bekommen（收到）的现在完成时助动词用 haben (Ich habe bekommen)。千万不要和 become（变成 -> werden）混淆。"
+                }
+            },
+            30: {
+                title: "【终极毕业挑战】B1 真实考题全真模拟",
+                focus: "全覆盖语法和高强度多角度听写，检验 30 天的高强度冲刺终极成果！",
+                vocab: [
+                    { word: "der Erfolg", gender: "der", plural: "-e", translation: "成功", example: "Ich drücke Ihnen die Daumen für die Prüfung!", category: "名词" },
+                    { word: "bestehen", gender: "verb", plural: "bestand, hat bestanden", translation: "考过，克服", example: "Sie haben die B1-Hürde erfolgreich bestanden!", category: "动词" }
+                ],
+                dictation: {
+                    text: "Wenn ich die B1-Prüfung bestehe, werde ich mich sofort um einen Studienplatz bewerben.",
+                    translation: "如果我通过了 B1 考试，我将立刻去申请大学学位。",
+                    hint: "终极句型：条件从句 + 双主语控制 + 复合将来时结构。"
+                },
+                grammar: {
+                    question: "Wenn wir jeden Tag fleißig gelernt ___, hätten wir die Prüfung noch leichter bestanden.",
+                    options: ["haben", "hätten", "hast", "hätte"],
+                    correct: "hätten",
+                    explanation: "本句是对过去事实的虚拟假设（如果当初学了的话...），在过去完成时虚拟式中助动词用 hätten。"
+                }
+            }
+        };
+
+        function App() {
+            // State: Bootcamp tracking
+            const [selectedDay, setSelectedDay] = useState(1);
+            const [completedDays, setCompletedDays] = useState(() => {
+                const saved = localStorage.getItem('de_b1_completed_days');
+                return saved ? JSON.parse(saved) : [];
+            });
+
+            // Study tabs state
+            const [activeTab, setActiveTab] = useState('bootcamp');
+            
+            // Interaction States
+            const [isFlipped, setIsFlipped] = useState(false);
+            
+            // Pagination States for High-Intensity Mode
+            const [dictationIndex, setDictationIndex] = useState(0);
+            const [grammarIndex, setGrammarIndex] = useState(0);
+
+            const [userTranscript, setUserTranscript] = useState('');
+            const [listenSpeed, setListenSpeed] = useState(0.8);
+            const [listeningResult, setListeningResult] = useState(null); 
+            const [showHint, setShowHint] = useState(false);
+            
+            // Grammar States
+            const [selectedAnswer, setSelectedAnswer] = useState(null);
+            const [isAnswerSubmitted, setIsAnswerSubmitted] = useState(false);
+
+            // Audio synthesis helper
+            const playAudio = (text, speed = 1.0) => {
+                if ('speechSynthesis' in window) {
+                    window.speechSynthesis.cancel();
+                    const utterance = new SpeechSynthesisUtterance(text);
+                    utterance.lang = 'de-DE';
+                    utterance.rate = speed;
+                    
+                    const voices = window.speechSynthesis.getVoices();
+                    const deVoice = voices.find(voice => voice.lang.startsWith('de'));
+                    if (deVoice) utterance.voice = deVoice;
+
+                    window.speechSynthesis.speak(utterance);
+                } else {
+                    alert("您的浏览器不支持语音功能，推荐使用 Chrome/Edge。");
+                }
+            };
+
+            // Audio test
+            const handleSpeechTest = () => {
+                playAudio("Bereit für die dreißig Tage B1 Challenge? Los geht's!", 0.9);
+            };
+
+            // Save completed days to localStorage
+            useEffect(() => {
+                localStorage.setItem('de_b1_completed_days', JSON.stringify(completedDays));
+            }, [completedDays]);
+
+            // Track state reset when Day changes
+            useEffect(() => {
+                setIsFlipped(false);
+                setUserTranscript('');
+                setListeningResult(null);
+                setShowHint(false);
+                setSelectedAnswer(null);
+                setIsAnswerSubmitted(false);
+                setDictationIndex(0);
+                setGrammarIndex(0);
+            }, [selectedDay]);
+
+            // Data extraction & Backward Compatibility for Days 2-30
+            const dayData = bootCampCurriculum[selectedDay] || bootCampCurriculum[1];
+            const dictationArray = Array.isArray(dayData.dictations) ? dayData.dictations : (dayData.dictation ? [dayData.dictation] : []);
+            const grammarArray = Array.isArray(dayData.grammars) ? dayData.grammars : (dayData.grammar ? [dayData.grammar] : []);
+            
+            const currentDictation = dictationArray[dictationIndex] || {};
+            const currentGrammar = grammarArray[grammarIndex] || {};
+
+            // Mark a Day complete
+            const toggleDayComplete = (day) => {
+                if (completedDays.includes(day)) {
+                    setCompletedDays(completedDays.filter(d => d !== day));
+                } else {
+                    setCompletedDays([...completedDays, day]);
+                }
+            };
+
+            // Listening verify logic
+            const verifyDictation = () => {
+                if (!currentDictation.text) return;
+                const target = currentDictation.text
+                    .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g,"")
+                    .toLowerCase()
+                    .trim();
+                const user = userTranscript
+                    .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g,"")
+                    .toLowerCase()
+                    .trim();
+                
+                if (target === user) {
+                    setListeningResult('correct');
+                } else {
+                    const targetWords = target.split(/\s+/);
+                    const userWords = user.split(/\s+/);
+                    const matches = userWords.filter(word => targetWords.includes(word));
+                    if (matches.length > targetWords.length * 0.5) {
+                        setListeningResult('partial');
+                    } else {
+                        setListeningResult('incorrect');
+                    }
+                }
+            };
+
+            // Navigation helpers
+            const handlePrevDay = () => {
+                if (selectedDay > 1) setSelectedDay(selectedDay - 1);
+            };
+
+            const handleNextDay = () => {
+                if (selectedDay < 30) setSelectedDay(selectedDay + 1);
+            };
+
+            // High-Intensity Pagination Handlers
+            const handleNextDictation = () => {
+                if (dictationIndex < dictationArray.length - 1) {
+                    setDictationIndex(prev => prev + 1);
+                    setUserTranscript('');
+                    setListeningResult(null);
+                    setShowHint(false);
+                }
+            };
+            const handlePrevDictation = () => {
+                if (dictationIndex > 0) {
+                    setDictationIndex(prev => prev - 1);
+                    setUserTranscript('');
+                    setListeningResult(null);
+                    setShowHint(false);
+                }
+            };
+
+            const handleNextGrammar = () => {
+                if (grammarIndex < grammarArray.length - 1) {
+                    setGrammarIndex(prev => prev + 1);
+                    setSelectedAnswer(null);
+                    setIsAnswerSubmitted(false);
+                }
+            };
+            const handlePrevGrammar = () => {
+                if (grammarIndex > 0) {
+                    setGrammarIndex(prev => prev - 1);
+                    setSelectedAnswer(null);
+                    setIsAnswerSubmitted(false);
+                }
+            };
+
+            // Helper to get week category
+            const getWeekLabel = (day) => {
+                if (day <= 7) return "第一阶段：A2-B1 词汇时态跨越";
+                if (day <= 15) return "第二阶段：B1 五大逻辑从句";
+                if (day <= 22) return "第三阶段：B1 进阶关系句与形容词变化";
+                return "第四阶段：B1 终结虚拟式、被动语态与实战模版";
+            };
+
+            // Calculate metrics
+            const completionPercentage = Math.round((completedDays.length / 30) * 100);
+
+            return (
+                <div className="min-h-screen flex flex-col bg-slate-550">
+                    {/* Header Banner */}
+                    <header className="bg-gradient-to-r from-red-600 via-amber-500 to-black text-white py-6 shadow-md">
+                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+                            <div className="flex items-center space-x-3 mb-4 md:mb-0">
+                                <span className="text-4xl">🦅</span>
+                                <div>
+                                    <h1 className="text-2xl font-bold tracking-tight flex items-center gap-2">
+                                        Deutsch B1 30-Day Boot Camp
+                                    </h1>
+                                    <p className="text-xs text-amber-100 font-medium">
+                                        专为 A1.2 - A2 基础学习者设计的高强度冲刺复习画布
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="flex items-center space-x-3">
+                                <button 
+                                    onClick={handleSpeechTest}
+                                    className="bg-white/20 hover:bg-white/30 text-white font-medium py-1.5 px-3 rounded-lg text-xs transition flex items-center gap-1.5"
+                                >
+                                    <span className="inline-block w-2.5 h-2.5 bg-green-400 rounded-full animate-pulse"></span>
+                                    测试系统真人女音 (DE)
+                                </button>
+                                <span className="bg-black/40 text-amber-300 font-bold px-3 py-1 rounded-full text-xs">
+                                    冲刺进度：{completionPercentage}%
+                                </span>
+                            </div>
+                        </div>
+                    </header>
+
+                    {/* Navigation Tabs */}
+                    <div className="bg-white border-b border-gray-200 sticky top-0 z-40 shadow-sm">
+                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <nav className="flex space-x-6 py-3.5" aria-label="Tabs">
+                                <button
+                                    onClick={() => setActiveTab('bootcamp')}
+                                    className={`flex items-center gap-2 px-3 py-2 font-semibold text-sm rounded-lg transition ${activeTab === 'bootcamp' ? 'bg-amber-500 text-white shadow-sm' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'}`}
+                                >
+                                    📅 30天冲刺特训大纲
+                                </button>
+                                <button
+                                    onClick={() => setActiveTab('dayReview')}
+                                    className={`flex items-center gap-2 px-3 py-2 font-semibold text-sm rounded-lg transition ${activeTab === 'dayReview' ? 'bg-amber-500 text-white shadow-sm' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'}`}
+                                >
+                                    📖 Day {selectedDay} 核心精练营
+                                </button>
+                                <button
+                                    onClick={() => setActiveTab('stats')}
+                                    className={`flex items-center gap-2 px-3 py-2 font-semibold text-sm rounded-lg transition ${activeTab === 'stats' ? 'bg-amber-500 text-white shadow-sm' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'}`}
+                                >
+                                    📊 我的特训分析
+                                </button>
+                            </nav>
+                        </div>
+                    </div>
+
+                    {/* Main Content */}
+                    <main className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+                        
+                        {}
+                        {activeTab === 'bootcamp' && (
+                            <div className="space-y-8">
+                                {/* Introduction Banner */}
+                                <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                                    <div>
+                                        <h2 className="text-xl font-bold text-gray-800 flex items-center gap-2">
+                                            <span>🎯</span> 30天高强度备考路线
+                                        </h2>
+                                        <p className="text-sm text-gray-500 mt-1 max-w-2xl">
+                                            点击下方对应天数，可以直接加载当天的专属词汇、听力实验室与核心语法挑战。建议每天专攻一格，并在掌握后勾选“标记完成”。
+                                        </p>
+                                    </div>
+                                    <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 text-center w-full md:w-auto">
+                                        <span className="text-2xl font-black text-amber-500 block">{completedDays.length} / 30</span>
+                                        <span className="text-xs text-gray-400 font-medium">已攻克天数</span>
+                                    </div>
+                                </div>
+
+                                {/* Interactive Grid of 30 Days */}
+                                <div className="space-y-6">
+                                    {/* Week 1 */}
+                                    <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                                        <h3 className="text-sm font-bold uppercase tracking-wider text-red-600 mb-4">
+                                            第 1 - 7 天：A2-B1 词汇时态跨越桥梁 (Perfekt, Präteritum, 介词)
+                                        </h3>
+                                        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-3">
+                                            {Array.from({ length: 7 }, (_, i) => i + 1).map(day => (
+                                                <div 
+                                                    key={day}
+                                                    onClick={() => { setSelectedDay(day); setActiveTab('dayReview'); }}
+                                                    className={`p-3 rounded-xl border-2 text-center cursor-pointer transition ${
+                                                        selectedDay === day ? 'border-amber-500 bg-amber-50' : 
+                                                        completedDays.includes(day) ? 'border-green-300 bg-green-50' : 'border-gray-100 hover:border-gray-200'
+                                                    }`}
+                                                >
+                                                    <span className="text-xs text-gray-400 block font-bold">DAY</span>
+                                                    <span className="text-2xl font-black text-slate-800">{day}</span>
+                                                    <span className="text-[10px] text-gray-500 truncate block mt-1" title={bootCampCurriculum[day].title}>
+                                                        {bootCampCurriculum[day].title.split(" ")[0]}
+                                                    </span>
+                                                    {completedDays.includes(day) && (
+                                                        <span className="text-xs block text-green-600 mt-1">✓ 已通关</span>
+                                                    )}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    {/* Week 2 */}
+                                    <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                                        <h3 className="text-sm font-bold uppercase tracking-wider text-amber-600 mb-4">
+                                            第 8 - 15 天：B1 绝杀主从句 (weil, obwohl, damit, dass, als, ob)
+                                        </h3>
+                                        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-3">
+                                            {Array.from({ length: 8 }, (_, i) => i + 8).map(day => (
+                                                <div 
+                                                    key={day}
+                                                    onClick={() => { setSelectedDay(day); setActiveTab('dayReview'); }}
+                                                    className={`p-3 rounded-xl border-2 text-center cursor-pointer transition ${
+                                                        selectedDay === day ? 'border-amber-500 bg-amber-50' : 
+                                                        completedDays.includes(day) ? 'border-green-300 bg-green-50' : 'border-gray-100 hover:border-gray-200'
+                                                    }`}
+                                                >
+                                                    <span className="text-xs text-gray-400 block font-bold">DAY</span>
+                                                    <span className="text-2xl font-black text-slate-800">{day}</span>
+                                                    <span className="text-[10px] text-gray-500 truncate block mt-1" title={bootCampCurriculum[day].title}>
+                                                        {bootCampCurriculum[day].title.split(" ")[0]}
+                                                    </span>
+                                                    {completedDays.includes(day) && (
+                                                        <span className="text-xs block text-green-600 mt-1">✓ 已通关</span>
+                                                    )}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    {/* Week 3 */}
+                                    <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                                        <h3 className="text-sm font-bold uppercase tracking-wider text-emerald-600 mb-4">
+                                            第 16 - 22 天：B1 进阶语法 (关系代词、形容词尾变化、被动语态)
+                                        </h3>
+                                        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-3">
+                                            {Array.from({ length: 7 }, (_, i) => i + 16).map(day => (
+                                                <div 
+                                                    key={day}
+                                                    onClick={() => { setSelectedDay(day); setActiveTab('dayReview'); }}
+                                                    className={`p-3 rounded-xl border-2 text-center cursor-pointer transition ${
+                                                        selectedDay === day ? 'border-amber-500 bg-amber-50' : 
+                                                        completedDays.includes(day) ? 'border-green-300 bg-green-50' : 'border-gray-100 hover:border-gray-200'
+                                                    }`}
+                                                >
+                                                    <span className="text-xs text-gray-400 block font-bold">DAY</span>
+                                                    <span className="text-2xl font-black text-slate-800">{day}</span>
+                                                    <span className="text-[10px] text-gray-500 truncate block mt-1" title={bootCampCurriculum[day].title}>
+                                                        {bootCampCurriculum[day].title.split(" ")[0]}
+                                                    </span>
+                                                    {completedDays.includes(day) && (
+                                                        <span className="text-xs block text-green-600 mt-1">✓ 已通关</span>
+                                                    )}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    {/* Week 4 */}
+                                    <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                                        <h3 className="text-sm font-bold uppercase tracking-wider text-violet-600 mb-4">
+                                            第 23 - 30 天：B1 终结者 (虚拟二式、第二格、口语写作实战模拟)
+                                        </h3>
+                                        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-3">
+                                            {Array.from({ length: 8 }, (_, i) => i + 23).map(day => (
+                                                <div 
+                                                    key={day}
+                                                    onClick={() => { setSelectedDay(day); setActiveTab('dayReview'); }}
+                                                    className={`p-3 rounded-xl border-2 text-center cursor-pointer transition ${
+                                                        selectedDay === day ? 'border-amber-500 bg-amber-50' : 
+                                                        completedDays.includes(day) ? 'border-green-300 bg-green-50' : 'border-gray-100 hover:border-gray-200'
+                                                    }`}
+                                                >
+                                                    <span className="text-xs text-gray-400 block font-bold">DAY</span>
+                                                    <span className="text-2xl font-black text-slate-800">{day}</span>
+                                                    <span className="text-[10px] text-gray-500 truncate block mt-1" title={bootCampCurriculum[day].title}>
+                                                        {bootCampCurriculum[day].title.split(" ")[0]}
+                                                    </span>
+                                                    {completedDays.includes(day) && (
+                                                        <span className="text-xs block text-green-600 mt-1">✓ 已通关</span>
+                                                    )}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {}
+                        {activeTab === 'dayReview' && (
+                            <div className="space-y-8 animate-fadeIn">
+                                {/* Daily Header Navigation */}
+                                <div className="bg-slate-800 text-white p-6 rounded-2xl shadow-md flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                                    <div>
+                                        <span className="text-xs font-bold text-amber-400 uppercase tracking-widest block">
+                                            {getWeekLabel(selectedDay)}
+                                        </span>
+                                        <h2 className="text-2xl font-black flex items-center gap-2 mt-1">
+                                            <span>⚡</span> Day {selectedDay}: {bootCampCurriculum[selectedDay].title}
+                                        </h2>
+                                        <p className="text-xs text-slate-300 mt-1.5 leading-relaxed max-w-xl">
+                                            <strong>今日学习重点：</strong> {bootCampCurriculum[selectedDay].focus}
+                                        </p>
+                                    </div>
+                                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full md:w-auto">
+                                        <div className="flex gap-2 justify-between">
+                                            <button 
+                                                onClick={handlePrevDay} 
+                                                disabled={selectedDay === 1}
+                                                className="bg-slate-700 hover:bg-slate-600 disabled:opacity-40 font-bold px-3 py-2 rounded-lg text-xs flex-grow sm:flex-grow-0 transition"
+                                            >
+                                                ◀ 前一天
+                                            </button>
+                                            <button 
+                                                onClick={handleNextDay} 
+                                                disabled={selectedDay === 30}
+                                                className="bg-slate-700 hover:bg-slate-600 disabled:opacity-40 font-bold px-3 py-2 rounded-lg text-xs flex-grow sm:flex-grow-0 transition"
+                                            >
+                                                后一天 ▶
+                                            </button>
+                                        </div>
+                                        <button 
+                                            onClick={() => toggleDayComplete(selectedDay)}
+                                            className={`px-4 py-2 rounded-lg font-bold text-xs transition ${
+                                                completedDays.includes(selectedDay) 
+                                                ? 'bg-green-600 hover:bg-green-700 text-white' 
+                                                : 'bg-amber-500 hover:bg-amber-600 text-black'
+                                            }`}
+                                        >
+                                            {completedDays.includes(selectedDay) ? '✓ 已标记完成' : '⛳ 标记今日已掌握'}
+                                        </button>
+                                    </div>
+                                </div>
+
+                                {/* Tri-Fold Workout Sections */}
+                                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                                    
+                                    {/* SECTION A: VOCABULARY CARD */}
+                                    <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex flex-col justify-between">
+                                        <div className="flex-grow flex flex-col h-full">
+                                            <div className="flex justify-between items-center mb-4 border-b border-slate-50 pb-2">
+                                                <h3 className="font-bold text-gray-800 text-sm flex items-center gap-1.5">
+                                                    <span>📓</span> 模块 1：高频考点词汇
+                                                </h3>
+                                                <span className="text-xs text-amber-600 font-bold bg-amber-50 px-2 py-1 rounded">共 {dayData.vocab.length} 词</span>
+                                            </div>
+
+                                            {/* Flashcards Box - Scrollable for massive amounts */}
+                                            <div className="space-y-4 max-h-[420px] overflow-y-auto pr-2 custom-scrollbar flex-grow">
+                                                {dayData.vocab.map((v, index) => (
+                                                    <div 
+                                                        key={index}
+                                                        className="p-4 bg-slate-50 hover:bg-slate-100/70 border border-slate-100 rounded-xl transition duration-200"
+                                                    >
+                                                        <div className="flex justify-between items-start gap-2">
+                                                            <div className="flex items-center gap-1.5 flex-wrap">
+                                                                <span className={`text-[10px] px-2 py-0.5 rounded font-black uppercase tracking-wider ${
+                                                                    v.gender === 'der' ? 'bg-blue-100 text-blue-800' :
+                                                                    v.gender === 'die' ? 'bg-red-100 text-red-800' :
+                                                                    v.gender === 'das' ? 'bg-green-100 text-green-800' :
+                                                                    v.gender.startsWith('verb') ? 'bg-indigo-100 text-indigo-800' :
+                                                                    'bg-slate-200 text-slate-800'
+                                                                }`}>
+                                                                    {v.gender}
+                                                                </span>
+                                                                <span className="text-xs text-slate-400 italic">({v.category})</span>
+                                                            </div>
+                                                            <button 
+                                                                onClick={() => playAudio(v.word, 0.95)}
+                                                                className="text-xs text-amber-600 hover:text-amber-700 font-bold flex-shrink-0"
+                                                                title="发音"
+                                                            >
+                                                                🔊 发音
+                                                            </button>
+                                                        </div>
+                                                        <h4 className="text-xl font-black text-slate-800 mt-2">{v.word}</h4>
+                                                        {v.plural && <p className="text-xs text-slate-400 mt-0.5">变化/复数：{v.plural}</p>}
+                                                        <p className="text-sm font-semibold text-amber-900 mt-1.5 border-t border-slate-200/50 pt-1.5">【义】{v.translation}</p>
+                                                        <p className="text-xs text-slate-500 italic mt-1 leading-relaxed">
+                                                            例："{v.example}"
+                                                        </p>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        <div className="mt-6 bg-slate-50 p-3 rounded-lg border border-dashed border-slate-200 text-center flex-shrink-0">
+                                            <p className="text-[11px] text-gray-500 leading-relaxed">
+                                                💡 <strong>30天高效背诵诀窍</strong>：记忆德语名词必须连带<strong>词性(der/die/das)</strong>和<strong>复数</strong>。
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    {/* SECTION B: LISTENING DICTATION */}
+                                    <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex flex-col justify-between">
+                                        <div className="flex-grow">
+                                            <div className="flex justify-between items-center mb-4 border-b border-slate-50 pb-2">
+                                                <h3 className="font-bold text-gray-800 text-sm flex items-center gap-1.5">
+                                                    <span>🎧</span> 模块 2：智能听写实验室
+                                                </h3>
+                                                <span className="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded">第 {dictationIndex + 1} / {dictationArray.length} 句</span>
+                                            </div>
+
+                                            {dictationArray.length > 0 ? (
+                                                <>
+                                                    {/* Audio Panel */}
+                                                    <div className="bg-slate-50 p-5 rounded-xl flex flex-col items-center justify-center space-y-4 border border-slate-100">
+                                                        <button 
+                                                            onClick={() => playAudio(currentDictation.text, listenSpeed)}
+                                                            className="bg-amber-500 hover:bg-amber-600 text-white rounded-full p-5 shadow-md transition-transform hover:scale-105"
+                                                            title="播放听力音频"
+                                                        >
+                                                            <span className="text-2xl">🔊</span>
+                                                        </button>
+                                                        
+                                                        <div className="flex items-center gap-4 w-full max-w-xs">
+                                                            <label className="text-[11px] font-bold text-slate-500 whitespace-nowrap">听写语速: {listenSpeed}x</label>
+                                                            <input 
+                                                                type="range" 
+                                                                min="0.5" 
+                                                                max="1.2" 
+                                                                step="0.1" 
+                                                                value={listenSpeed} 
+                                                                onChange={(e) => setListenSpeed(parseFloat(e.target.value))}
+                                                                className="w-full accent-amber-500 h-1"
+                                                            />
+                                                        </div>
+                                                    </div>
+
+                                                    {/* Input Area */}
+                                                    <div className="space-y-3 mt-4">
+                                                        <label className="block text-xs font-bold text-slate-600">请听写出你听到的整句德语：</label>
+                                                        <textarea 
+                                                            rows="3"
+                                                            value={userTranscript}
+                                                            onChange={(e) => setUserTranscript(e.target.value)}
+                                                            placeholder="在这里写下德语句子 (注意名词首字母大写和动词变位...)"
+                                                            className="w-full p-3 border border-gray-200 rounded-xl focus:outline-none focus:border-amber-500 text-xs"
+                                                        ></textarea>
+                                                    </div>
+
+                                                    {/* Verification Results */}
+                                                    {listeningResult && (
+                                                        <div className={`p-4 mt-3 rounded-xl text-xs leading-relaxed ${
+                                                            listeningResult === 'correct' ? 'bg-green-50 text-green-800 border border-green-200' :
+                                                            listeningResult === 'partial' ? 'bg-amber-50 text-amber-800 border border-amber-200' :
+                                                            'bg-red-50 text-red-800 border border-red-200'
+                                                        }`}>
+                                                            <p className="font-bold text-sm mb-1">
+                                                                {listeningResult === 'correct' ? '✅ 一字不差，完美!' :
+                                                                listeningResult === 'partial' ? '⚠️ 拼写基本吻合，注意语法尾缀/字母拼写' : '❌ 再努力细听一次哦'}
+                                                            </p>
+                                                            <p className="mt-1 font-mono break-all font-semibold bg-white/70 p-2 rounded">
+                                                                {currentDictation.text}
+                                                            </p>
+                                                            <p className="mt-1.5 text-[11px] text-gray-500">
+                                                                <strong>中文翻译：</strong> {currentDictation.translation}
+                                                            </p>
+                                                        </div>
+                                                    )}
+                                                </>
+                                            ) : (
+                                                <p className="text-xs text-gray-500 text-center mt-10">今日暂无听力任务。</p>
+                                            )}
+                                        </div>
+
+                                        <div className="flex flex-col gap-3 pt-4 border-t border-slate-100 mt-4 flex-shrink-0">
+                                            <div className="flex justify-between items-center w-full">
+                                                <button 
+                                                    onClick={() => setShowHint(!showHint)}
+                                                    className="text-[11px] font-semibold text-amber-600 hover:text-amber-700 underline"
+                                                >
+                                                    {showHint ? "隐藏核心语法提示" : "显示核心语法提示"}
+                                                </button>
+                                                <button 
+                                                    onClick={verifyDictation}
+                                                    className="bg-slate-800 hover:bg-slate-900 text-white font-bold py-1.5 px-3.5 rounded-lg text-xs transition"
+                                                >
+                                                    验证句子拼写
+                                                </button>
+                                            </div>
+
+                                            {/* Pagination Controls */}
+                                            {dictationArray.length > 1 && (
+                                                <div className="flex justify-between items-center mt-2 bg-slate-50 rounded-lg p-1 border border-slate-200">
+                                                    <button onClick={handlePrevDictation} disabled={dictationIndex === 0} className="px-3 py-1 text-xs font-bold text-slate-600 hover:text-slate-900 disabled:opacity-30">◀ 上一句</button>
+                                                    <button onClick={handleNextDictation} disabled={dictationIndex === dictationArray.length - 1} className="px-3 py-1 text-xs font-bold text-slate-600 hover:text-slate-900 disabled:opacity-30">下一句 ▶</button>
+                                                </div>
+                                            )}
+
+                                            {showHint && currentDictation.hint && (
+                                                <div className="p-3 bg-amber-50 border border-amber-100 rounded-lg text-[11px] text-amber-900">
+                                                    {currentDictation.hint}
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+
+                                    {/* SECTION C: GRAMMAR DRILL */}
+                                    <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex flex-col justify-between">
+                                        <div className="flex-grow">
+                                            <div className="flex justify-between items-center mb-4 border-b border-slate-50 pb-2">
+                                                <h3 className="font-bold text-gray-800 text-sm flex items-center gap-1.5">
+                                                    <span>🧩</span> 模块 3：高频考点突破
+                                                </h3>
+                                                <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded">第 {grammarIndex + 1} / {grammarArray.length} 题</span>
+                                            </div>
+
+                                            {grammarArray.length > 0 ? (
+                                                <>
+                                                    {/* Question Statement */}
+                                                    <div className="space-y-4">
+                                                        <h4 className="text-xs font-bold text-amber-600 uppercase tracking-widest">
+                                                            今日语法挑战
+                                                        </h4>
+                                                        <div className="text-sm font-semibold text-slate-800 leading-relaxed bg-slate-50 p-4 rounded-xl border border-slate-100">
+                                                            {currentGrammar.question}
+                                                        </div>
+
+                                                        {/* Options */}
+                                                        <div className="grid grid-cols-1 gap-2 pt-2">
+                                                            {currentGrammar.options.map((option, idx) => {
+                                                                let btnStyle = "border-gray-200 hover:bg-slate-50 text-gray-700";
+                                                                if (selectedAnswer === option) {
+                                                                    btnStyle = "border-amber-500 bg-amber-50 text-amber-900 font-bold";
+                                                                }
+                                                                if (isAnswerSubmitted) {
+                                                                    if (option === currentGrammar.correct) {
+                                                                        btnStyle = "border-green-500 bg-green-50 text-green-900 font-extrabold";
+                                                                    } else if (selectedAnswer === option) {
+                                                                        btnStyle = "border-red-400 bg-red-50 text-red-900";
+                                                                    } else {
+                                                                        btnStyle = "border-gray-100 text-gray-400";
+                                                                    }
+                                                                }
+
+                                                                return (
+                                                                    <button
+                                                                        key={idx}
+                                                                        onClick={() => { if (!isAnswerSubmitted) setSelectedAnswer(option); }}
+                                                                        disabled={isAnswerSubmitted}
+                                                                        className={`w-full text-left p-3 rounded-xl border-2 transition text-xs ${btnStyle}`}
+                                                                    >
+                                                                        {option}
+                                                                    </button>
+                                                                );
+                                                            })}
+                                                        </div>
+                                                    </div>
+
+                                                    {/* Explanations */}
+                                                    {isAnswerSubmitted && (
+                                                        <div className="p-3 mt-4 rounded-xl bg-blue-50 text-blue-900 border border-blue-100 text-xs">
+                                                            <p className="font-bold flex items-center gap-1">
+                                                                <span>💡</span> 语法解析说：
+                                                            </p>
+                                                            <p className="mt-1 leading-relaxed text-[11px] text-blue-800 font-medium">
+                                                                {currentGrammar.explanation}
+                                                            </p>
+                                                        </div>
+                                                    )}
+                                                </>
+                                            ) : (
+                                                <p className="text-xs text-gray-500 text-center mt-10">今日暂无语法考题。</p>
+                                            )}
+                                        </div>
+
+                                        <div className="flex flex-col gap-3 pt-4 border-t border-slate-100 mt-6 flex-shrink-0">
+                                            <div className="flex justify-end w-full">
+                                                {!isAnswerSubmitted ? (
+                                                    <button
+                                                        onClick={() => setIsAnswerSubmitted(true)}
+                                                        disabled={selectedAnswer === null}
+                                                        className="bg-amber-500 disabled:opacity-50 hover:bg-amber-600 text-black font-bold py-1.5 px-4 rounded-lg text-xs transition"
+                                                    >
+                                                        提交答案
+                                                    </button>
+                                                ) : (
+                                                    <span className="text-xs text-green-600 font-bold flex items-center gap-1">
+                                                        ✓ 已解析本题
+                                                    </span>
+                                                )}
+                                            </div>
+
+                                            {/* Pagination Controls */}
+                                            {grammarArray.length > 1 && (
+                                                <div className="flex justify-between items-center mt-1 bg-slate-50 rounded-lg p-1 border border-slate-200">
+                                                    <button onClick={handlePrevGrammar} disabled={grammarIndex === 0} className="px-3 py-1 text-xs font-bold text-slate-600 hover:text-slate-900 disabled:opacity-30">◀ 上一题</button>
+                                                    <button onClick={handleNextGrammar} disabled={grammarIndex === grammarArray.length - 1} className="px-3 py-1 text-xs font-bold text-slate-600 hover:text-slate-900 disabled:opacity-30">下一题 ▶</button>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        )}
+
+                        {}
+                        {activeTab === 'stats' && (
+                            <div className="space-y-6 animate-fadeIn">
+                                <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                                    <h3 className="text-xl font-bold text-gray-800 mb-2">📈 我的高强度 30 天备战分析</h3>
+                                    <p className="text-xs text-gray-500">
+                                        基于本地的学习进度跟踪，为你规划德语 B1 模块攻占画像。
+                                    </p>
+                                </div>
+
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                    {/* Overall Completion Progress card */}
+                                    <div className="bg-gradient-to-br from-amber-50 to-orange-50 p-6 rounded-2xl border border-amber-100 flex flex-col justify-between">
+                                        <div>
+                                            <h4 className="font-bold text-amber-900 text-base">🏅 整体通关达成率</h4>
+                                            <p className="text-xs text-amber-700 leading-relaxed mt-2">
+                                                只有将当天内容完全弄懂、写下无错听力、做对选择题后，才建议标记为通关状态。
+                                            </p>
+                                        </div>
+                                        <div className="mt-6">
+                                            <div className="flex justify-between text-xs text-amber-800 font-bold mb-1">
+                                                <span>30天完结度</span>
+                                                <span>{completionPercentage}%</span>
+                                            </div>
+                                            <div className="w-full bg-amber-200 rounded-full h-3">
+                                                <div className="bg-amber-600 h-3 rounded-full transition-all duration-500" style={{ width: `${completionPercentage}%` }}></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Stages Details and stats */}
+                                    <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm md:col-span-2">
+                                        <h4 className="font-bold text-slate-800 text-sm mb-4">🔬 四大周期分段完成情况</h4>
+                                        <div className="space-y-4 text-xs">
+                                            {/* Period 1 */}
+                                            <div>
+                                                <div className="flex justify-between mb-1 text-slate-600 font-semibold">
+                                                    <span>第一周期 (A2-B1 架桥期 / Day 1-7)</span>
+                                                    <span>
+                                                        {completedDays.filter(d => d >= 1 && d <= 7).length} / 7 天
+                                                    </span>
+                                                </div>
+                                                <div className="w-full bg-slate-100 rounded-full h-2">
+                                                    <div className="bg-red-500 h-2 rounded-full" style={{ width: `${(completedDays.filter(d => d >= 1 && d <= 7).length / 7) * 100}%` }}></div>
+                                                </div>
+                                            </div>
+                                            {/* Period 2 */}
+                                            <div>
+                                                <div className="flex justify-between mb-1 text-slate-600 font-semibold">
+                                                    <span>第二周期 (B1 五大从句核心突破 / Day 8-15)</span>
+                                                    <span>
+                                                        {completedDays.filter(d => d >= 8 && d <= 15).length} / 8 天
+                                                    </span>
+                                                </div>
+                                                <div className="w-full bg-slate-100 rounded-full h-2">
+                                                    <div className="bg-amber-500 h-2 rounded-full" style={{ width: `${(completedDays.filter(d => d >= 8 && d <= 15).length / 8) * 100}%` }}></div>
+                                                </div>
+                                            </div>
+                                            {/* Period 3 */}
+                                            <div>
+                                                <div className="flex justify-between mb-1 text-slate-600 font-semibold">
+                                                    <span>第三周期 (B1 高阶语法进阶 / Day 16-22)</span>
+                                                    <span>
+                                                        {completedDays.filter(d => d >= 16 && d <= 22).length} / 7 天
+                                                    </span>
+                                                </div>
+                                                <div className="w-full bg-slate-100 rounded-full h-2">
+                                                    <div className="bg-emerald-500 h-2 rounded-full" style={{ width: `${(completedDays.filter(d => d >= 16 && d <= 22).length / 7) * 100}%` }}></div>
+                                                </div>
+                                            </div>
+                                            {/* Period 4 */}
+                                            <div>
+                                                <div className="flex justify-between mb-1 text-slate-600 font-semibold">
+                                                    <span>第四周期 (B1 实战突击与模版 / Day 23-30)</span>
+                                                    <span>
+                                                        {completedDays.filter(d => d >= 23 && d <= 30).length} / 8 天
+                                                    </span>
+                                                </div>
+                                                <div className="w-full bg-slate-100 rounded-full h-2">
+                                                    <div className="bg-violet-500 h-2 rounded-full" style={{ width: `${(completedDays.filter(d => d >= 23 && d <= 30).length / 8) * 100}%` }}></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                    </main>
+
+                    {/* Footer */}
+                    <footer className="bg-slate-900 text-slate-400 py-6 mt-12 border-t border-slate-800 text-center text-xs">
+                        <div className="max-w-7xl mx-auto px-4">
+                            <p>© 2026 Deutsch B1 30-Day Boot Camp. 开启高强度德语自我蜕变之战！</p>
+                            <p className="mt-2 text-[10px] text-slate-500">
+                                建议将每天的学习成果在真实的真题模拟（如 Goethe 官网模拟卷）中进行实战反馈，祝你备战胜利！
+                            </p>
+                        </div>
+                    </footer>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

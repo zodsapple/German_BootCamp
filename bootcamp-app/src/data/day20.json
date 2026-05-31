@@ -1,0 +1,43 @@
+{
+  "day": 20,
+  "title": "被动语态现在时 (Passiv Präsens)",
+  "focus": "被动语态强调动作本身。构成公式：werden (变位) + Partizip II (过去分词放句末)。",
+  "vocab": [
+    {
+      "word": "die Reparatur",
+      "gender": "die",
+      "plural": "-en",
+      "translation": "维修，修理",
+      "example": "Die Reparatur des Autos ist sehr teuer.",
+      "category": "名词"
+    },
+    {
+      "word": "reparieren",
+      "gender": "verb",
+      "plural": "reparierte, hat repariert",
+      "translation": "修理",
+      "example": "Kannst du mein Fahrrad reparieren?",
+      "category": "动词"
+    }
+  ],
+  "dictations": [
+    {
+      "text": "Die kaputten Straßen in unserer Stadt werden jetzt endlich repariert.",
+      "translation": "我们城市里那些破损的道路现在终于在进行维修了。",
+      "hint": "复数主语 Straßen 搭配 werden，过去分词 repariert 放在最末尾。"
+    }
+  ],
+  "grammars": [
+    {
+      "question": "Das beschädigte Auto ___ in der Werkstatt repariert.",
+      "options": [
+        "wird",
+        "werden",
+        "ist",
+        "hat"
+      ],
+      "correct": "wird",
+      "explanation": "单数主语 Auto 对应的 werden 变位为 wird，构成现在时被动语态。"
+    }
+  ]
+}

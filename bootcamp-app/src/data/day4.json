@@ -1,0 +1,269 @@
+{
+  "day": 4,
+  "title": "Konjunktiv II – Höflichkeit und irreale Wünsche (虚拟式第二人称 – 礼貌与非现实愿望)",
+  "focus": "学习用虚拟式第二人称表达礼貌请求和非现实愿望，掌握常见动词的变位形式。",
+  "vocab": [
+    {
+      "word": "können",
+      "gender": "verb",
+      "plural": "konnte (Prät.), gekonnt (Part.)",
+      "translation": "能够，可以",
+      "example": "Könntest du mir bitte helfen?",
+      "category": "动词"
+    },
+    {
+      "word": "dürfen",
+      "gender": "verb",
+      "plural": "durfte (Prät.), gedurft (Part.)",
+      "translation": "允许，可以",
+      "example": "Dürfte ich hier sitzen?",
+      "category": "动词"
+    },
+    {
+      "word": "mögen",
+      "gender": "verb",
+      "plural": "mochte (Prät.), gemocht (Part.)",
+      "translation": "喜欢",
+      "example": "Ich möchte gerne ein Glas Wasser.",
+      "category": "动词"
+    },
+    {
+      "word": "werden",
+      "gender": "verb",
+      "plural": "würde (Konj.II), geworden (Part.)",
+      "translation": "成为，将",
+      "example": "Ich würde gern nach Berlin reisen.",
+      "category": "动词"
+    },
+    {
+      "word": "haben",
+      "gender": "verb",
+      "plural": "hätte (Konj.II), gehabt (Part.)",
+      "translation": "有",
+      "example": "Hättest du Zeit für mich?",
+      "category": "动词"
+    },
+    {
+      "word": "sein",
+      "gender": "verb",
+      "plural": "wäre (Konj.II), gewesen (Part.)",
+      "translation": "是",
+      "example": "Ich wäre gern dabei.",
+      "category": "动词"
+    },
+    {
+      "word": "geben",
+      "gender": "verb",
+      "plural": "gäbe (Konj.II), gegeben (Part.)",
+      "translation": "给予",
+      "example": "Es gäbe mehr Möglichkeiten.",
+      "category": "动词"
+    },
+    {
+      "word": "kommen",
+      "gender": "verb",
+      "plural": "käme (Konj.II), gekommen (Part.)",
+      "translation": "来",
+      "example": "Käme er morgen?",
+      "category": "动词"
+    },
+    {
+      "word": "gehen",
+      "gender": "verb",
+      "plural": "ginge (Konj.II), gegangen (Part.)",
+      "translation": "去",
+      "example": "Ginge es auch später?",
+      "category": "动词"
+    },
+    {
+      "word": "machen",
+      "gender": "verb",
+      "plural": "machte (Prät.), gemacht (Part.)",
+      "translation": "做",
+      "example": "Ich würde das nicht machen.",
+      "category": "动词"
+    },
+    {
+      "word": "sagen",
+      "gender": "verb",
+      "plural": "sagte (Prät.), gesagt (Part.)",
+      "translation": "说",
+      "example": "Das würde ich nicht sagen.",
+      "category": "动词"
+    },
+    {
+      "word": "wissen",
+      "gender": "verb",
+      "plural": "wüsste (Konj.II), gewusst (Part.)",
+      "translation": "知道",
+      "example": "Ich wüsste gerne mehr.",
+      "category": "动词"
+    },
+    {
+      "word": "finden",
+      "gender": "verb",
+      "plural": "fände (Konj.II), gefunden (Part.)",
+      "translation": "认为，找到",
+      "example": "Ich fände das schön.",
+      "category": "动词"
+    },
+    {
+      "word": "helfen",
+      "gender": "verb",
+      "plural": "hülfe/hälfe (Konj.II), geholfen (Part.)",
+      "translation": "帮助",
+      "example": "Könntest du mir helfen?",
+      "category": "动词"
+    },
+    {
+      "word": "der Wunsch",
+      "gender": "der",
+      "plural": "Wünsche",
+      "translation": "愿望",
+      "example": "Ich habe einen großen Wunsch.",
+      "category": "名词"
+    },
+    {
+      "word": "die Höflichkeit",
+      "gender": "die",
+      "plural": "—",
+      "translation": "礼貌",
+      "example": "Höflichkeit ist wichtig.",
+      "category": "名词"
+    },
+    {
+      "word": "die Bitte",
+      "gender": "die",
+      "plural": "Bitten",
+      "translation": "请求",
+      "example": "Das ist meine Bitte.",
+      "category": "名词"
+    },
+    {
+      "word": "die Möglichkeit",
+      "gender": "die",
+      "plural": "Möglichkeiten",
+      "translation": "可能性",
+      "example": "Es gibt viele Möglichkeiten.",
+      "category": "名词"
+    },
+    {
+      "word": "irreal",
+      "gender": "adj",
+      "plural": "—",
+      "translation": "非现实的",
+      "example": "Das ist ein irrealer Wunsch.",
+      "category": "形容词"
+    },
+    {
+      "word": "echt",
+      "gender": "adj",
+      "plural": "—",
+      "translation": "真实的",
+      "example": "Ist das echt?",
+      "category": "形容词"
+    },
+    {
+      "word": "freundlich",
+      "gender": "adj",
+      "plural": "—",
+      "translation": "友好的",
+      "example": "Seien Sie bitte freundlich.",
+      "category": "形容词"
+    },
+    {
+      "word": "gern",
+      "gender": "adv",
+      "plural": "—",
+      "translation": "喜欢，乐意",
+      "example": "Ich würde gern kommen.",
+      "category": "副词"
+    },
+    {
+      "word": "vielleicht",
+      "gender": "adv",
+      "plural": "—",
+      "translation": "也许",
+      "example": "Vielleicht wäre es besser.",
+      "category": "副词"
+    },
+    {
+      "word": "sonst",
+      "gender": "adv",
+      "plural": "—",
+      "translation": "否则",
+      "example": "Sonst könnte ich nicht.",
+      "category": "副词"
+    },
+    {
+      "word": "die Konjunktion",
+      "gender": "die",
+      "plural": "Konjunktionen",
+      "translation": "连词",
+      "example": "Wenn ich Zeit hätte, würde ich kommen.",
+      "category": "名词"
+    }
+  ],
+  "dictations": [
+    {
+      "text": "Könnten Sie mir bitte den Weg zum Bahnhof erklären?",
+      "translation": "您能告诉我去火车站的路吗？",
+      "hint": "使用können的虚拟式表达礼貌请求，注意Sie大写。"
+    },
+    {
+      "text": "Ich hätte gern ein Glas Rotwein, bitte.",
+      "translation": "我想要一杯红葡萄酒。",
+      "hint": "hätte是haben的虚拟式，表示礼貌的愿望。"
+    },
+    {
+      "text": "Wenn ich mehr Zeit hätte, würde ich öfter reisen.",
+      "translation": "如果我有更多时间，我会更经常旅行。",
+      "hint": "虚拟式用于非现实条件句，注意würde+Infinitiv结构。"
+    },
+    {
+      "text": "Wären Sie so freundlich, das Fenster zu schließen?",
+      "translation": "您能友好地关上窗户吗？",
+      "hint": "wären是sein的虚拟式，用于礼貌请求。"
+    },
+    {
+      "text": "Es wäre schön, wenn du morgen kommen könntest.",
+      "translation": "如果你明天能来就好了。",
+      "hint": "虚拟式表达愿望，注意wäre和könntest。"
+    }
+  ],
+  "grammars": [
+    {
+      "question": "Ich ___ gern ein Eis, bitte.",
+      "options": [
+        "hätte",
+        "habe",
+        "hat",
+        "habt"
+      ],
+      "correct": "hätte",
+      "explanation": "此处表达礼貌愿望，需用虚拟式hätte。"
+    },
+    {
+      "question": "___ du mir bitte helfen?",
+      "options": [
+        "Kannst",
+        "Könntest",
+        "Konntest",
+        "Kann"
+      ],
+      "correct": "Könntest",
+      "explanation": "礼貌请求应用können的虚拟式第二人称单数könntest。"
+    },
+    {
+      "question": "Wenn ich Zeit ___, käme ich mit.",
+      "options": [
+        "habe",
+        "hätte",
+        "hatte",
+        "habt"
+      ],
+      "correct": "hätte",
+      "explanation": "非现实条件句用虚拟式hätte。"
+    }
+  ]
+}

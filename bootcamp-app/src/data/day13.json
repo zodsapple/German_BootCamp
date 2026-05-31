@@ -1,0 +1,43 @@
+{
+  "day": 13,
+  "title": "结果与替代连词 (sodass, ohne dass)",
+  "focus": "掌握描述不可避免结果 (sodass) 与伴随否定情况 (ohne zu / ohne dass) 的句式。",
+  "vocab": [
+    {
+      "word": "der Erfolg",
+      "gender": "der",
+      "plural": "-e",
+      "translation": "成功",
+      "example": "Ich wünsche Ihnen viel Erfolg!",
+      "category": "名词"
+    },
+    {
+      "word": "erfolgreich",
+      "gender": "adj",
+      "plural": "",
+      "translation": "成功的",
+      "example": "Sie ist eine erfolgreiche Managerin.",
+      "category": "形容词"
+    }
+  ],
+  "dictations": [
+    {
+      "text": "Er ist aus dem Raum gegangen, ohne ein einziges Wort zu sagen.",
+      "translation": "他一言不发地走出了房间。",
+      "hint": "ohne...zu 表示“没有做某事就...”。主语一致才能用 ohne...zu。"
+    }
+  ],
+  "grammars": [
+    {
+      "question": "Das Auto war sehr teuer, ___ ich mir kein neues Smartphone leisten konnte.",
+      "options": [
+        "sodass",
+        "obwohl",
+        "damit",
+        "weil"
+      ],
+      "correct": "sodass",
+      "explanation": "“车子太贵了，结果/以至于（sodass）我无法负担新手机。”"
+    }
+  ]
+}
