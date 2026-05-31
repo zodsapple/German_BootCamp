@@ -33,15 +33,15 @@ jobs:
         with:
           node-version: 20
           cache: 'npm'
+          cache-dependency-path: bootcamp-app/package-lock.json
 
       - name: Install dependencies
+        working-directory: ./bootcamp-app
         run: npm ci
 
       - name: Build the project
+        working-directory: ./bootcamp-app
         run: npm run build
-        # If your repository is not a root/user page (e.g. https://username.github.io/repo-name/), 
-        # you need to set the base path in vite.config.js or via command line.
-        # Example: run: npm run build -- --base=/repo-name/
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -49,7 +49,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist'
+          path: './bootcamp-app/dist'
 
       - name: Deploy to GitHub Pages
         id: deployment
