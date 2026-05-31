@@ -37,7 +37,7 @@ jobs:
 
       - name: Install dependencies
         working-directory: ./bootcamp-app
-        run: npm ci
+        run: npm install
 
       - name: Build the project
         working-directory: ./bootcamp-app
