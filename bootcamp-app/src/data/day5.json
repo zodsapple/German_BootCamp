@@ -9,7 +9,9 @@
       "plural": "",
       "translation": "（引导从句）",
       "example": "Ich glaube, dass er heute kommt.",
-      "category": "连词"
+      "category": "连词",
+      "example_zh": "我相信他今天来。",
+      "grammar_hint": "dass从句中动词置于句末。"
     },
     {
       "word": "weil",
@@ -17,7 +19,9 @@
       "plural": "",
       "translation": "因为",
       "example": "Er bleibt zu Hause, weil er krank ist.",
-      "category": "连词"
+      "category": "连词",
+      "example_zh": "他待在家里，因为他生病了。",
+      "grammar_hint": "weil引导原因从句，动词置于句末。"
     },
     {
       "word": "obwohl",
@@ -25,7 +29,9 @@
       "plural": "",
       "translation": "虽然",
       "example": "Obwohl es regnet, gehen wir spazieren.",
-      "category": "连词"
+      "category": "连词",
+      "example_zh": "虽然在下雨，我们还是去散步。",
+      "grammar_hint": "obwohl从句动词置于句末；主句正常语序。"
     },
     {
       "word": "wenn",
@@ -33,7 +39,9 @@
       "plural": "",
       "translation": "如果/当",
       "example": "Wenn ich Zeit habe, besuche ich dich.",
-      "category": "连词"
+      "category": "连词",
+      "example_zh": "如果我有时间，我就去看你。",
+      "grammar_hint": "wenn引导条件从句，动词置于句末；主句动词第二位。"
     },
     {
       "word": "als",
@@ -41,7 +49,9 @@
       "plural": "",
       "translation": "当……时（过去一次）",
       "example": "Als ich klein war, wohnte ich in Berlin.",
-      "category": "连词"
+      "category": "连词",
+      "example_zh": "我小时候住在柏林。",
+      "grammar_hint": "als引导过去一次性时间从句，动词置于句末。"
     },
     {
       "word": "da",
@@ -49,7 +59,9 @@
       "plural": "",
       "translation": "因为（原因已知）",
       "example": "Da es spät ist, gehen wir nach Hause.",
-      "category": "连词"
+      "category": "连词",
+      "example_zh": "因为天晚了，我们回家。",
+      "grammar_hint": "da表示已知原因，从句动词置于句末。"
     },
     {
       "word": "damit",
@@ -57,7 +69,9 @@
       "plural": "",
       "translation": "为了",
       "example": "Ich lerne Deutsch, damit ich in Deutschland arbeiten kann.",
-      "category": "连词"
+      "category": "连词",
+      "example_zh": "我学习德语，以便能在德国工作。",
+      "grammar_hint": "damit引导目的从句，动词置于句末，常用情态动词。"
     },
     {
       "word": "ob",
@@ -65,7 +79,9 @@
       "plural": "",
       "translation": "是否",
       "example": "Ich weiß nicht, ob er kommt.",
-      "category": "连词"
+      "category": "连词",
+      "example_zh": "我不知道他是否来。",
+      "grammar_hint": "ob引导间接疑问句，动词置于句末。"
     },
     {
       "word": "bevor",
@@ -73,7 +89,9 @@
       "plural": "",
       "translation": "在……之前",
       "example": "Bevor wir essen, waschen wir die Hände.",
-      "category": "连词"
+      "category": "连词",
+      "example_zh": "吃饭前我们洗手。",
+      "grammar_hint": "bevor引导时间从句，动词置于句末。"
     },
     {
       "word": "nachdem",
@@ -81,7 +99,9 @@
       "plural": "",
       "translation": "在……之后",
       "example": "Nachdem er gegessen hat, geht er schlafen.",
-      "category": "连词"
+      "category": "连词",
+      "example_zh": "他吃完饭后去睡觉。",
+      "grammar_hint": "nachdem从句常用完成时，动词置于句末；主句现在时或过去时。"
     },
     {
       "word": "während",
@@ -89,7 +109,9 @@
       "plural": "",
       "translation": "在……期间",
       "example": "Während ich arbeite, höre ich Musik.",
-      "category": "连词"
+      "category": "连词",
+      "example_zh": "我工作时听音乐。",
+      "grammar_hint": "während引导同时发生的从句，动词置于句末。"
     },
     {
       "word": "seitdem",
@@ -97,7 +119,9 @@
       "plural": "",
       "translation": "自从",
       "example": "Seitdem er in Berlin wohnt, geht er oft ins Museum.",
-      "category": "连词"
+      "category": "连词",
+      "example_zh": "自从他住在柏林，他经常去博物馆。",
+      "grammar_hint": "seitdem引导时间从句，动词置于句末。"
     },
     {
       "word": "bis",
@@ -105,7 +129,9 @@
       "plural": "",
       "translation": "直到",
       "example": "Ich warte, bis du kommst.",
-      "category": "连词"
+      "category": "连词",
+      "example_zh": "我等到你来。",
+      "grammar_hint": "bis引导时间从句，动词置于句末。"
     },
     {
       "word": "indem",
@@ -113,7 +139,9 @@
       "plural": "",
       "translation": "通过……方式",
       "example": "Er spart Geld, indem er weniger ausgibt.",
-      "category": "连词"
+      "category": "连词",
+      "example_zh": "他通过减少支出省钱。",
+      "grammar_hint": "indem引导方式从句，动词置于句末。"
     },
     {
       "word": "sodass",
@@ -121,7 +149,9 @@
       "plural": "",
       "translation": "以致于",
       "example": "Er sprach leise, sodass ich ihn kaum hören konnte.",
-      "category": "连词"
+      "category": "连词",
+      "example_zh": "他说得很轻，以至于我几乎听不见。",
+      "grammar_hint": "sodass引导结果从句，动词置于句末，常与情态动词连用。"
     },
     {
       "word": "trotzdem",
@@ -129,7 +159,9 @@
       "plural": "",
       "translation": "尽管如此",
       "example": "Es regnet, trotzdem gehen wir spazieren.",
-      "category": "副词"
+      "category": "副词",
+      "example_zh": "下雨了，尽管如此我们还是去散步。",
+      "grammar_hint": "trotzdem是副词，不改变语序；主句正常语序。"
     },
     {
       "word": "denn",
@@ -137,7 +169,9 @@
       "plural": "",
       "translation": "因为（并列句）",
       "example": "Er geht ins Bett, denn er ist müde.",
-      "category": "连词"
+      "category": "连词",
+      "example_zh": "他上床睡觉，因为他累了。",
+      "grammar_hint": "denn连接并列句，语序正常（动词第二位）。"
     },
     {
       "word": "deshalb",
@@ -145,7 +179,9 @@
       "plural": "",
       "translation": "因此",
       "example": "Er ist krank, deshalb bleibt er zu Hause.",
-      "category": "副词"
+      "category": "副词",
+      "example_zh": "他生病了，因此待在家里。",
+      "grammar_hint": "deshalb是副词，置于句首引发倒装（动词在主语前）。"
     },
     {
       "word": "trotz",
@@ -153,7 +189,9 @@
       "plural": "",
       "translation": "尽管（加名词）",
       "example": "Trotz des Regens gehen wir spazieren.",
-      "category": "介词"
+      "category": "介词",
+      "example_zh": "尽管下雨，我们还是去散步。",
+      "grammar_hint": "trotz是介词，后接名词（属格）。"
     },
     {
       "word": "außerdem",
@@ -161,7 +199,9 @@
       "plural": "",
       "translation": "此外",
       "example": "Er ist intelligent, außerdem sehr fleißig.",
-      "category": "副词"
+      "category": "副词",
+      "example_zh": "他聪明，此外还很勤奋。",
+      "grammar_hint": "außerdem是副词，不改变语序。"
     },
     {
       "word": "nämlich",
@@ -169,7 +209,9 @@
       "plural": "",
       "translation": "也就是/因为",
       "example": "Er kommt nicht, er ist nämlich krank.",
-      "category": "副词"
+      "category": "副词",
+      "example_zh": "他不来，因为他生病了。",
+      "grammar_hint": "nämlich是副词，解释原因，语序正常。"
     },
     {
       "word": "also",
@@ -177,7 +219,9 @@
       "plural": "",
       "translation": "所以",
       "example": "Sie hat viel gelernt, also besteht sie die Prüfung.",
-      "category": "副词"
+      "category": "副词",
+      "example_zh": "她学了很多，所以通过了考试。",
+      "grammar_hint": "also是副词，可置于句首或句中，句首时引发倒装。"
     },
     {
       "word": "entweder ... oder",
@@ -185,7 +229,9 @@
       "plural": "",
       "translation": "要么……要么",
       "example": "Entweder du kommst mit, oder du bleibst zu Hause.",
-      "category": "连词"
+      "category": "连词",
+      "example_zh": "要么你一起来，要么你待在家里。",
+      "grammar_hint": "entweder...oder连接并列句，语序正常。"
     },
     {
       "word": "weder ... noch",
@@ -193,7 +239,9 @@
       "plural": "",
       "translation": "既不……也不",
       "example": "Er hat weder Zeit noch Geld.",
-      "category": "连词"
+      "category": "连词",
+      "example_zh": "他既没有时间也没有钱。",
+      "grammar_hint": "weder...noch连接并列成分，语序正常。"
     },
     {
       "word": "zwar ... aber",
@@ -201,7 +249,9 @@
       "plural": "",
       "translation": "虽然……但是",
       "example": "Sie ist zwar krank, aber sie arbeitet weiter.",
-      "category": "连词"
+      "category": "连词",
+      "example_zh": "虽然她生病了，但她继续工作。",
+      "grammar_hint": "zwar...aber表示让步转折，语序正常。"
     }
   ],
   "dictations": [

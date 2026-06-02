@@ -9,7 +9,9 @@
       "plural": "konnte (Prät.), gekonnt (Part.)",
       "translation": "能够，可以",
       "example": "Könntest du mir bitte helfen?",
-      "category": "动词"
+      "category": "动词",
+      "example_zh": "你能帮我一下吗？",
+      "grammar_hint": "Könntest是können的虚拟式，用于礼貌请求，动词位于第二位。"
     },
     {
       "word": "dürfen",
@@ -17,7 +19,9 @@
       "plural": "durfte (Prät.), gedurft (Part.)",
       "translation": "允许，可以",
       "example": "Dürfte ich hier sitzen?",
-      "category": "动词"
+      "category": "动词",
+      "example_zh": "我可以坐在这里吗？",
+      "grammar_hint": "Dürfte是dürfen的虚拟式，用于礼貌提问。"
     },
     {
       "word": "mögen",
@@ -25,7 +29,9 @@
       "plural": "mochte (Prät.), gemocht (Part.)",
       "translation": "喜欢",
       "example": "Ich möchte gerne ein Glas Wasser.",
-      "category": "动词"
+      "category": "动词",
+      "example_zh": "我想要一杯水。",
+      "grammar_hint": "Möchte是mögen的虚拟式，表达礼貌愿望。"
     },
     {
       "word": "werden",
@@ -33,7 +39,9 @@
       "plural": "würde (Konj.II), geworden (Part.)",
       "translation": "成为，将",
       "example": "Ich würde gern nach Berlin reisen.",
-      "category": "动词"
+      "category": "动词",
+      "example_zh": "我很想去柏林旅行。",
+      "grammar_hint": "Würde + Infinitiv构成虚拟式将来时。"
     },
     {
       "word": "haben",
@@ -41,7 +49,9 @@
       "plural": "hätte (Konj.II), gehabt (Part.)",
       "translation": "有",
       "example": "Hättest du Zeit für mich?",
-      "category": "动词"
+      "category": "动词",
+      "example_zh": "你有时间给我吗？",
+      "grammar_hint": "Hättest是haben的虚拟式，用于礼貌询问。"
     },
     {
       "word": "sein",
@@ -49,7 +59,9 @@
       "plural": "wäre (Konj.II), gewesen (Part.)",
       "translation": "是",
       "example": "Ich wäre gern dabei.",
-      "category": "动词"
+      "category": "动词",
+      "example_zh": "我很想参加。",
+      "grammar_hint": "Wäre是sein的虚拟式，表达愿望。"
     },
     {
       "word": "geben",
@@ -57,7 +69,9 @@
       "plural": "gäbe (Konj.II), gegeben (Part.)",
       "translation": "给予",
       "example": "Es gäbe mehr Möglichkeiten.",
-      "category": "动词"
+      "category": "动词",
+      "example_zh": "会有更多可能性。",
+      "grammar_hint": "Gäbe是geben的虚拟式，表示非现实存在。"
     },
     {
       "word": "kommen",
@@ -65,7 +79,9 @@
       "plural": "käme (Konj.II), gekommen (Part.)",
       "translation": "来",
       "example": "Käme er morgen?",
-      "category": "动词"
+      "category": "动词",
+      "example_zh": "他明天会来吗？",
+      "grammar_hint": "Käme是kommen的虚拟式，用于非现实疑问。"
     },
     {
       "word": "gehen",
@@ -73,7 +89,9 @@
       "plural": "ginge (Konj.II), gegangen (Part.)",
       "translation": "去",
       "example": "Ginge es auch später?",
-      "category": "动词"
+      "category": "动词",
+      "example_zh": "晚点也可以吗？",
+      "grammar_hint": "Ginge是gehen的虚拟式，礼貌询问可能性。"
     },
     {
       "word": "machen",
@@ -81,7 +99,9 @@
       "plural": "machte (Prät.), gemacht (Part.)",
       "translation": "做",
       "example": "Ich würde das nicht machen.",
-      "category": "动词"
+      "category": "动词",
+      "example_zh": "我不会那样做。",
+      "grammar_hint": "Würde + Infinitiv表达非现实意愿。"
     },
     {
       "word": "sagen",
@@ -89,7 +109,9 @@
       "plural": "sagte (Prät.), gesagt (Part.)",
       "translation": "说",
       "example": "Das würde ich nicht sagen.",
-      "category": "动词"
+      "category": "动词",
+      "example_zh": "我不会那样说。",
+      "grammar_hint": "Würde + Infinitiv表达非现实说法。"
     },
     {
       "word": "wissen",
@@ -97,7 +119,9 @@
       "plural": "wüsste (Konj.II), gewusst (Part.)",
       "translation": "知道",
       "example": "Ich wüsste gerne mehr.",
-      "category": "动词"
+      "category": "动词",
+      "example_zh": "我希望能知道更多。",
+      "grammar_hint": "Wüsste是wissen的虚拟式，表达愿望。"
     },
     {
       "word": "finden",
@@ -105,7 +129,9 @@
       "plural": "fände (Konj.II), gefunden (Part.)",
       "translation": "认为，找到",
       "example": "Ich fände das schön.",
-      "category": "动词"
+      "category": "动词",
+      "example_zh": "我会觉得那很好。",
+      "grammar_hint": "Fände是finden的虚拟式，表达主观看法。"
     },
     {
       "word": "helfen",
@@ -113,7 +139,9 @@
       "plural": "hülfe/hälfe (Konj.II), geholfen (Part.)",
       "translation": "帮助",
       "example": "Könntest du mir helfen?",
-      "category": "动词"
+      "category": "动词",
+      "example_zh": "你能帮我吗？",
+      "grammar_hint": "Könntest是können的虚拟式，礼貌请求。"
     },
     {
       "word": "der Wunsch",
@@ -121,7 +149,9 @@
       "plural": "Wünsche",
       "translation": "愿望",
       "example": "Ich habe einen großen Wunsch.",
-      "category": "名词"
+      "category": "名词",
+      "example_zh": "我有一个很大的愿望。",
+      "grammar_hint": "一般现在时，haben + 第四格宾语。"
     },
     {
       "word": "die Höflichkeit",
@@ -129,7 +159,9 @@
       "plural": "—",
       "translation": "礼貌",
       "example": "Höflichkeit ist wichtig.",
-      "category": "名词"
+      "category": "名词",
+      "example_zh": "礼貌很重要。",
+      "grammar_hint": "Ist是sein的一般现在时。"
     },
     {
       "word": "die Bitte",
@@ -137,7 +169,9 @@
       "plural": "Bitten",
       "translation": "请求",
       "example": "Das ist meine Bitte.",
-      "category": "名词"
+      "category": "名词",
+      "example_zh": "这是我的请求。",
+      "grammar_hint": "一般现在时，物主代词meine。"
     },
     {
       "word": "die Möglichkeit",
@@ -145,7 +179,9 @@
       "plural": "Möglichkeiten",
       "translation": "可能性",
       "example": "Es gibt viele Möglichkeiten.",
-      "category": "名词"
+      "category": "名词",
+      "example_zh": "有很多可能性。",
+      "grammar_hint": "固定句型es gibt + 第四格。"
     },
     {
       "word": "irreal",
@@ -153,7 +189,9 @@
       "plural": "—",
       "translation": "非现实的",
       "example": "Das ist ein irrealer Wunsch.",
-      "category": "形容词"
+      "category": "形容词",
+      "example_zh": "这是一个非现实的愿望。",
+      "grammar_hint": "形容词强变化：irrealer（阳性第一格）。"
     },
     {
       "word": "echt",
@@ -161,7 +199,9 @@
       "plural": "—",
       "translation": "真实的",
       "example": "Ist das echt?",
-      "category": "形容词"
+      "category": "形容词",
+      "example_zh": "这是真的吗？",
+      "grammar_hint": "一般疑问句，动词居首。"
     },
     {
       "word": "freundlich",
@@ -169,7 +209,9 @@
       "plural": "—",
       "translation": "友好的",
       "example": "Seien Sie bitte freundlich.",
-      "category": "形容词"
+      "category": "形容词",
+      "example_zh": "请友好一些。",
+      "grammar_hint": "Sie的命令式：Seien（sein的Sie-命令式）。"
     },
     {
       "word": "gern",
@@ -177,7 +219,9 @@
       "plural": "—",
       "translation": "喜欢，乐意",
       "example": "Ich würde gern kommen.",
-      "category": "副词"
+      "category": "副词",
+      "example_zh": "我很乐意来。",
+      "grammar_hint": "Würde + Infinitiv表达意愿。"
     },
     {
       "word": "vielleicht",
@@ -185,7 +229,9 @@
       "plural": "—",
       "translation": "也许",
       "example": "Vielleicht wäre es besser.",
-      "category": "副词"
+      "category": "副词",
+      "example_zh": "也许更好。",
+      "grammar_hint": "Wäre是sein的虚拟式，表达假设。"
     },
     {
       "word": "sonst",
@@ -193,7 +239,9 @@
       "plural": "—",
       "translation": "否则",
       "example": "Sonst könnte ich nicht.",
-      "category": "副词"
+      "category": "副词",
+      "example_zh": "否则我不能。",
+      "grammar_hint": "Könnte是können的虚拟式，在条件句中。"
     },
     {
       "word": "die Konjunktion",
@@ -201,7 +249,9 @@
       "plural": "Konjunktionen",
       "translation": "连词",
       "example": "Wenn ich Zeit hätte, würde ich kommen.",
-      "category": "名词"
+      "category": "名词",
+      "example_zh": "如果我有时间，我会来。",
+      "grammar_hint": "条件句：hätte（haben虚拟式）、würde + Infinitiv。"
     }
   ],
   "dictations": [

@@ -97,8 +97,18 @@ function App() {
                     utterance.rate = speed;
                     
                     const voices = window.speechSynthesis.getVoices();
-                    const deVoice = voices.find(voice => voice.lang.startsWith('de'));
-                    if (deVoice) utterance.voice = deVoice;
+                    const deVoices = voices.filter(voice => voice.lang.startsWith('de'));
+                    let bestVoice = deVoices.find(voice => 
+                        voice.name.includes('Premium') || 
+                        voice.name.includes('Enhanced') || 
+                        voice.name.includes('Natural')
+                    );
+                    if (!bestVoice && deVoices.length > 0) {
+                        bestVoice = deVoices[0];
+                    }
+                    if (bestVoice) {
+                        utterance.voice = bestVoice;
+                    }
 
                     window.speechSynthesis.speak(utterance);
                 } else {
@@ -524,13 +534,25 @@ function App() {
                                                         <h4 className="text-xl font-black text-slate-800 mt-2">{v.word}</h4>
                                                         {v.plural && <p className="text-xs text-slate-400 mt-0.5">变化/复数：{v.plural}</p>}
                                                         <p className="text-sm font-semibold text-amber-900 mt-1.5 border-t border-slate-200/50 pt-1.5">【义】{v.translation}</p>
-                                                        <div className="flex justify-between items-end mt-1">
-                                                            <p className="text-xs text-slate-500 italic leading-relaxed">
-                                                                例："{v.example}"
-                                                            </p>
+                                                        <div className="flex justify-between items-start mt-1">
+                                                            <div className="flex flex-col gap-1 w-full">
+                                                                <p className="text-xs text-slate-600 italic leading-relaxed">
+                                                                    例："{v.example}"
+                                                                </p>
+                                                                {v.example_zh && (
+                                                                    <p className="text-[11px] text-slate-400 pl-3 border-l-2 border-slate-200">
+                                                                        中译：{v.example_zh}
+                                                                    </p>
+                                                                )}
+                                                                {v.grammar_hint && (
+                                                                    <p className="text-[10px] text-amber-600 font-medium bg-amber-50/50 p-1.5 rounded inline-block mt-0.5">
+                                                                        💡 语法：{v.grammar_hint}
+                                                                    </p>
+                                                                )}
+                                                            </div>
                                                             <button 
                                                                 onClick={() => playAudio(v.example, 0.9)}
-                                                                className="text-[10px] text-amber-600 hover:text-amber-700 font-bold flex-shrink-0 ml-2"
+                                                                className="text-[10px] text-amber-600 hover:text-amber-700 font-bold flex-shrink-0 ml-2 mt-1"
                                                                 title="例句发音"
                                                             >
                                                                 🔊
@@ -820,7 +842,11 @@ function App() {
                                                         <button onClick={() => playAudio(v.word, 0.95)} className="text-[12px] bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded">🔊</button>
                                                     </h5>
                                                     <p className="text-xs text-amber-900 font-bold mt-1.5">{v.translation}</p>
-                                                    <p className="text-[11px] text-slate-500 italic mt-1.5 leading-relaxed bg-white p-1.5 rounded">{v.example}</p>
+                                                    <div className="bg-white p-2 rounded mt-1.5 space-y-1">
+                                                        <p className="text-[11px] text-slate-600 italic leading-relaxed">{v.example}</p>
+                                                        {v.example_zh && <p className="text-[10px] text-slate-400">中译：{v.example_zh}</p>}
+                                                        {v.grammar_hint && <p className="text-[9px] text-amber-600 bg-amber-50/50 p-1 rounded inline-block">💡 语法：{v.grammar_hint}</p>}
+                                                    </div>
                                                 </div>
                                             ))}
                                             {(!favorites.vocab || favorites.vocab.length === 0) && <p className="text-xs text-slate-400 text-center mt-10">暂无收藏</p>}

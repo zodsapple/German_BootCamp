@@ -709,8 +709,18 @@
                     utterance.rate = speed;
                     
                     const voices = window.speechSynthesis.getVoices();
-                    const deVoice = voices.find(voice => voice.lang.startsWith('de'));
-                    if (deVoice) utterance.voice = deVoice;
+                    const deVoices = voices.filter(voice => voice.lang.startsWith('de'));
+                    let bestVoice = deVoices.find(voice => 
+                        voice.name.includes('Premium') || 
+                        voice.name.includes('Enhanced') || 
+                        voice.name.includes('Natural')
+                    );
+                    if (!bestVoice && deVoices.length > 0) {
+                        bestVoice = deVoices[0];
+                    }
+                    if (bestVoice) {
+                        utterance.voice = bestVoice;
+                    }
 
                     window.speechSynthesis.speak(utterance);
                 } else {

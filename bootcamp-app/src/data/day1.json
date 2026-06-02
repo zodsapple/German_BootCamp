@@ -9,6 +9,8 @@
       "plural": "-e",
       "translation": "日常生活",
       "example": "Der Alltag in Deutschland ist manchmal stressig.",
+      "example_zh": "在德国的日常生活有时压力很大。",
+      "grammar_hint": "Alltag 是主语（第一格），系动词 ist 搭配形容词 stressig。",
       "category": "名词"
     },
     {
@@ -17,6 +19,8 @@
       "plural": "-en",
       "translation": "习惯",
       "example": "Er hat die Gewohnheit, früh aufzustehen.",
+      "example_zh": "他有早起的习惯。",
+      "grammar_hint": "带 zu 的不定式从句 (zu + aufstehen 的分离前缀之间: auf-zu-stehen) 作为 Gewohnheit 的定语。",
       "category": "名词"
     },
     {
@@ -25,6 +29,8 @@
       "plural": "stand auf, ist aufgestanden",
       "translation": "起床，起立",
       "example": "Ich bin heute um 6 Uhr aufgestanden.",
+      "example_zh": "我今天早上6点起床了。",
+      "grammar_hint": "现在完成时，sein + 位置变化动词，分离前缀auf-置于句末。",
       "category": "分离动词 (sein)"
     },
     {
@@ -33,6 +39,8 @@
       "plural": "zog sich an, hat sich angezogen",
       "translation": "穿衣服 (反身)",
       "example": "Ich ziehe mich schnell an.",
+      "example_zh": "我迅速穿好衣服。",
+      "grammar_hint": "反身动词，mich是第四格反身代词，anziehen是分离动词，前缀an置于句末。",
       "category": "反身动词"
     },
     {
@@ -41,6 +49,8 @@
       "plural": "frühstückte, hat gefrühstückt",
       "translation": "吃早餐",
       "example": "Wir haben gemütlich auf dem Balkon gefrühstückt.",
+      "example_zh": "我们在阳台上舒舒服服地吃了早餐。",
+      "grammar_hint": "现在完成时，haben + 过去分词，规则动词。",
       "category": "规则动词"
     },
     {
@@ -49,6 +59,8 @@
       "plural": "(Sg.)",
       "translation": "交通",
       "example": "Morgens gibt es viel Verkehr auf der Straße.",
+      "example_zh": "早上街上交通繁忙。",
+      "grammar_hint": "es gibt + Akkusativ (viel Verkehr)，固定句型。",
       "category": "名词"
     },
     {
@@ -57,6 +69,8 @@
       "plural": "verpasste, hat verpasst",
       "translation": "错过",
       "example": "Ich habe meinen Zug verpasst.",
+      "example_zh": "我错过了我的火车。",
+      "grammar_hint": "现在完成时，haben + 不可分动词的过去分词（无ge-前缀）。",
       "category": "不可分动词"
     },
     {
@@ -65,6 +79,8 @@
       "plural": "beeilte sich, hat sich beeilt",
       "translation": "赶快，抓紧",
       "example": "Wir müssen uns beeilen, sonst kommen wir zu spät.",
+      "example_zh": "我们必须抓紧，否则我们会迟到。",
+      "grammar_hint": "情态动词müssen + 反身动词原形，反身代词uns为第四格。",
       "category": "反身动词"
     },
     {
@@ -73,6 +89,8 @@
       "plural": "",
       "translation": "准时的",
       "example": "In Deutschland ist es wichtig, pünktlich zu sein.",
+      "example_zh": "在德国，准时很重要。",
+      "grammar_hint": "es ist wichtig + zu不定式，pünktlich zu sein作主语。",
       "category": "形容词"
     },
     {
@@ -81,6 +99,8 @@
       "plural": "entschuldigte sich, hat sich entschuldigt",
       "translation": "道歉",
       "example": "Er hat sich für die Verspätung entschuldigt.",
+      "example_zh": "他为迟到道了歉。",
+      "grammar_hint": "现在完成时，反身动词，sich为第四格，für + Akkusativ。",
       "category": "反身动词"
     },
     {
@@ -89,6 +109,8 @@
       "plural": "-en",
       "translation": "会议，商讨",
       "example": "Die Besprechung fängt um 10 Uhr an.",
+      "example_zh": "会议十点开始。",
+      "grammar_hint": "anfangen是分离动词，fängt...an，主语Die Besprechung是第一格。",
       "category": "名词"
     },
     {
@@ -97,6 +119,8 @@
       "plural": "nahm teil, hat teilgenommen",
       "translation": "参加 (+ Dativ)",
       "example": "Ich nehme an dem Deutschkurs teil.",
+      "example_zh": "我参加德语课程。",
+      "grammar_hint": "teilnehmen an + Dativ，分离动词，前缀teil置于句末。",
       "category": "可分动词"
     },
     {
@@ -105,6 +129,8 @@
       "plural": "erledigte, hat erledigt",
       "translation": "完成，办理好",
       "example": "Ich muss heute noch viele Aufgaben erledigen.",
+      "example_zh": "我今天必须完成很多任务。",
+      "grammar_hint": "情态动词müssen + 不定式erledigen，不可分动词。",
       "category": "不可分动词"
     },
     {
@@ -113,6 +139,8 @@
       "plural": "-e",
       "translation": "下班，休息时间",
       "example": "Endlich Feierabend! Lass uns ein Bier trinken.",
+      "example_zh": "终于下班了！让我们喝杯啤酒吧。",
+      "grammar_hint": "lassen Sie uns / lass uns 表示建议，动词trinken不定式。",
       "category": "名词"
     },
     {
@@ -121,6 +149,8 @@
       "plural": "entspannte sich, hat sich entspannt",
       "translation": "放松",
       "example": "Am Wochenende möchte ich mich nur entspannen.",
+      "example_zh": "周末我只想放松一下。",
+      "grammar_hint": "möchte + 反身动词原形，mich为第四格反身代词。",
       "category": "反身动词"
     },
     {
@@ -129,6 +159,8 @@
       "plural": "-en",
       "translation": "家务",
       "example": "Wer macht bei euch die Hausarbeit?",
+      "example_zh": "你们家谁做家务？",
+      "grammar_hint": "macht是动词，die Hausarbeit是第四格宾语，疑问词Wer主语。",
       "category": "名词"
     },
     {
@@ -137,6 +169,8 @@
       "plural": "",
       "translation": "筋疲力尽的",
       "example": "Nach der Arbeit bin ich oft völlig erschöpft.",
+      "example_zh": "下班后我常常精疲力尽。",
+      "grammar_hint": "bin + 形容词表状态，副词völlig修饰erschöpft。",
       "category": "形容词"
     },
     {
@@ -145,6 +179,8 @@
       "plural": "schlief ein, ist eingeschlafen",
       "translation": "入睡",
       "example": "Gestern bin ich sehr spät eingeschlafen.",
+      "example_zh": "昨天我很晚才睡着。",
+      "grammar_hint": "现在完成时，助动词sein（位置变化），einschlafen是分离动词，eingeschlafen在句末。",
       "category": "可分动词 (sein)"
     },
     {
@@ -153,6 +189,8 @@
       "plural": "träumte, hat geträumt",
       "translation": "梦见，梦想 (+ Dativ)",
       "example": "Ich träume von einem Urlaub am Meer.",
+      "example_zh": "我梦想一个海边假期。",
+      "grammar_hint": "träumen von + Dativ，介词von后接第三格。",
       "category": "动词"
     },
     {
@@ -161,6 +199,8 @@
       "plural": "-en",
       "translation": "决定",
       "example": "Es ist eine schwere Entscheidung.",
+      "example_zh": "这是一个艰难的决定。",
+      "grammar_hint": "es ist + 不定冠词+形容词+名词，系动词ist。",
       "category": "名词"
     },
     {
@@ -169,6 +209,8 @@
       "plural": "entschied, hat entschieden",
       "translation": "做决定",
       "example": "Ich habe mich für diesen Weg entschieden.",
+      "example_zh": "我决定走这条路。",
+      "grammar_hint": "现在完成时，反身动词entscheiden，sich为第四格，für + Akkusativ。",
       "category": "反身动词"
     },
     {
@@ -177,6 +219,8 @@
       "plural": "-en",
       "translation": "准备",
       "example": "Die Vorbereitung auf die B1-Prüfung dauert lange.",
+      "example_zh": "B1考试的准备工作持续很长时间。",
+      "grammar_hint": "Vorbereitung auf + Akkusativ，动词dauert表示持续时间。",
       "category": "名词"
     },
     {
@@ -185,6 +229,8 @@
       "plural": "bereitete vor, hat vorbereitet",
       "translation": "准备 (+ Akkusativ)",
       "example": "Ich bereite mich auf den Test vor.",
+      "example_zh": "我正在准备考试。",
+      "grammar_hint": "分离动词vorbereiten，前缀vor置于句末，反身代词mich第四格，auf + Akkusativ。",
       "category": "可分动词"
     },
     {
@@ -193,6 +239,8 @@
       "plural": "(Sg.)",
       "translation": "注意力，专注",
       "example": "Für diese Aufgabe brauche ich volle Konzentration.",
+      "example_zh": "这项任务需要我全神贯注。",
+      "grammar_hint": "brauchen + Akkusativ (volle Konzentration)，für表示目的。",
       "category": "名词"
     },
     {
@@ -201,6 +249,8 @@
       "plural": "konzentrierte, hat konzentriert",
       "translation": "专注于 (+ Akkusativ)",
       "example": "Bitte konzentriere dich auf die Aufgabe.",
+      "example_zh": "请专注于任务。",
+      "grammar_hint": "命令式，反身动词，dich为第二人称单数第四格反身代词，auf + Akkusativ。",
       "category": "反身动词"
     }
   ],

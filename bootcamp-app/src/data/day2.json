@@ -9,7 +9,9 @@
       "plural": "die Bewerbungen",
       "translation": "申请",
       "example": "Meine Bewerbung wurde angenommen.",
-      "category": "名词"
+      "category": "名词",
+      "example_zh": "我的申请被接受了。",
+      "grammar_hint": "Passiv Präteritum: wurde angenommen"
     },
     {
       "word": "das Vorstellungsgespräch",
@@ -17,7 +19,9 @@
       "plural": "die Vorstellungsgespräche",
       "translation": "面试",
       "example": "Das Vorstellungsgespräch findet morgen statt.",
-      "category": "名词"
+      "category": "名词",
+      "example_zh": "面试明天举行。",
+      "grammar_hint": "stattfinden: trennbares Verb"
     },
     {
       "word": "die Qualifikation",
@@ -25,7 +29,9 @@
       "plural": "die Qualifikationen",
       "translation": "资格，资质",
       "example": "Welche Qualifikationen bringen Sie mit?",
-      "category": "名词"
+      "category": "名词",
+      "example_zh": "您具备哪些资质？",
+      "grammar_hint": "mitbringen + Akk.: trennbares Verb"
     },
     {
       "word": "die Berufserfahrung",
@@ -33,7 +39,9 @@
       "plural": "die Berufserfahrungen",
       "translation": "工作经验",
       "example": "Ich habe fünf Jahre Berufserfahrung in der IT-Branche.",
-      "category": "名词"
+      "category": "名词",
+      "example_zh": "我有五年的IT行业工作经验。",
+      "grammar_hint": "haben + Akk.: Perfektbildung mit haben"
     },
     {
       "word": "die Fähigkeit",
@@ -41,7 +49,9 @@
       "plural": "die Fähigkeiten",
       "translation": "能力",
       "example": "Meine kommunikativen Fähigkeiten sind sehr gut.",
-      "category": "名词"
+      "category": "名词",
+      "example_zh": "我的沟通能力很好。",
+      "grammar_hint": "Adjektivdeklination: kommunikativen (Plural, schwach)"
     },
     {
       "word": "die Stellenanzeige",
@@ -49,7 +59,9 @@
       "plural": "die Stellenanzeigen",
       "translation": "招聘广告",
       "example": "Die Stellenanzeige beschreibt die Anforderungen genau.",
-      "category": "名词"
+      "category": "名词",
+      "example_zh": "招聘广告详细描述了要求。",
+      "grammar_hint": "Verbstellung: Aussagesatz, Verb an Position 2"
     },
     {
       "word": "das Anschreiben",
@@ -57,7 +69,9 @@
       "plural": "die Anschreiben",
       "translation": "求职信",
       "example": "Im Anschreiben sollte man seine Motivation darlegen.",
-      "category": "名词"
+      "category": "名词",
+      "example_zh": "在求职信中应该阐述自己的动机。",
+      "grammar_hint": "sollte: Konjunktiv II, höfliche Empfehlung"
     },
     {
       "word": "der Lebenslauf",
@@ -65,7 +79,9 @@
       "plural": "die Lebensläufe",
       "translation": "简历",
       "example": "Bitte senden Sie mir Ihren Lebenslauf zu.",
-      "category": "名词"
+      "category": "名词",
+      "example_zh": "请将您的简历发送给我。",
+      "grammar_hint": "zusenden: trennbares Verb; Sie-Höflichkeitsform"
     },
     {
       "word": "das Gehalt",
@@ -73,7 +89,9 @@
       "plural": "die Gehälter",
       "translation": "薪水",
       "example": "Können Sie mir etwas über das Gehalt sagen?",
-      "category": "名词"
+      "category": "名词",
+      "example_zh": "您能跟我谈谈薪水方面的事情吗？",
+      "grammar_hint": "Können Sie …? – Höfliche Frage"
     },
     {
       "word": "der Arbeitsvertrag",
@@ -81,7 +99,9 @@
       "plural": "die Arbeitsverträge",
       "translation": "劳动合同",
       "example": "Wir unterschreiben den Arbeitsvertrag nächste Woche.",
-      "category": "名词"
+      "category": "名词",
+      "example_zh": "我们下周签劳动合同。",
+      "grammar_hint": "unterschreiben: starkes Verb, trennbar? Nein, unterschreiben ist untrennbar"
     },
     {
       "word": "die Probezeit",
@@ -89,7 +109,9 @@
       "plural": "die Probezeiten",
       "translation": "试用期",
       "example": "Die Probezeit beträgt sechs Monate.",
-      "category": "名词"
+      "category": "名词",
+      "example_zh": "试用期为六个月。",
+      "grammar_hint": "betragen: starkes Verb, unpersönlich"
     },
     {
       "word": "die Teamfähigkeit",
@@ -97,7 +119,9 @@
       "plural": "die Teamfähigkeiten",
       "translation": "团队合作能力",
       "example": "Teamfähigkeit ist in diesem Job sehr wichtig.",
-      "category": "名词"
+      "category": "名词",
+      "example_zh": "团队合作能力在这个工作中非常重要。",
+      "grammar_hint": "Nullartikel bei abstrakten Nomen"
     },
     {
       "word": "die Kommunikationsfähigkeit",
@@ -105,7 +129,9 @@
       "plural": "die Kommunikationsfähigkeiten",
       "translation": "沟通能力",
       "example": "Ihre Kommunikationsfähigkeit hat mich beeindruckt.",
-      "category": "名词"
+      "category": "名词",
+      "example_zh": "您的沟通能力给我留下了深刻印象。",
+      "grammar_hint": "hat beeindruckt: Perfekt mit haben"
     },
     {
       "word": "die Eigeninitiative",
@@ -113,7 +139,9 @@
       "plural": "die Eigeninitiativen",
       "translation": "主动性",
       "example": "Wir suchen jemanden mit Eigeninitiative.",
-      "category": "名词"
+      "category": "名词",
+      "example_zh": "我们寻找有主动性的人。",
+      "grammar_hint": "Präposition mit Dativ: mit + Dat."
     },
     {
       "word": "die Belastbarkeit",
@@ -121,7 +149,9 @@
       "plural": "die Belastbarkeiten",
       "translation": "抗压能力",
       "example": "Belastbarkeit ist eine wichtige Eigenschaft.",
-      "category": "名词"
+      "category": "名词",
+      "example_zh": "抗压能力是一个重要的特质。",
+      "grammar_hint": "Subjekt im Nominativ"
     },
     {
       "word": "die Flexibilität",
@@ -129,7 +159,9 @@
       "plural": "die Flexibilitäten",
       "translation": "灵活性",
       "example": "Flexibilität wird bei uns großgeschrieben.",
-      "category": "名词"
+      "category": "名词",
+      "example_zh": "我们非常重视灵活性。",
+      "grammar_hint": "wird großgeschrieben: Passiv Präsens"
     },
     {
       "word": "das Ziel",
@@ -137,7 +169,9 @@
       "plural": "die Ziele",
       "translation": "目标",
       "example": "Mein berufliches Ziel ist es, Führungskraft zu werden.",
-      "category": "名词"
+      "category": "名词",
+      "example_zh": "我的职业目标是成为领导。",
+      "grammar_hint": "Infinitivsatz mit zu: es … zu werden"
     },
     {
       "word": "die Karriere",
@@ -145,7 +179,9 @@
       "plural": "die Karrieren",
       "translation": "职业生涯",
       "example": "Ich möchte meine Karriere in diesem Unternehmen fortsetzen.",
-      "category": "名词"
+      "category": "名词",
+      "example_zh": "我想在这家公司继续我的职业生涯。",
+      "grammar_hint": "möchte: Konjunktiv II von mögen"
     },
     {
       "word": "die Verhandlung",
@@ -153,7 +189,9 @@
       "plural": "die Verhandlungen",
       "translation": "谈判",
       "example": "Die Gehaltsverhandlung war erfolgreich.",
-      "category": "名词"
+      "category": "名词",
+      "example_zh": "薪资谈判很成功。",
+      "grammar_hint": "Zusammengesetztes Nomen: Gehalt + Verhandlung"
     },
     {
       "word": "sich bewerben",
@@ -161,7 +199,9 @@
       "plural": "sich bewarb / hat sich beworben",
       "translation": "申请",
       "example": "Ich habe mich auf eine Stelle als Ingenieur beworben.",
-      "category": "反身动词"
+      "category": "反身动词",
+      "example_zh": "我申请了一个工程师职位。",
+      "grammar_hint": "sich bewerben auf + Akk. (reflexiv, Perfekt mit haben)"
     },
     {
       "word": "einladen",
@@ -169,7 +209,9 @@
       "plural": "lud ein / hat eingeladen",
       "translation": "邀请",
       "example": "Der Chef hat mich zum Vorstellungsgespräch eingeladen.",
-      "category": "动词"
+      "category": "动词",
+      "example_zh": "老板邀请我参加面试。",
+      "grammar_hint": "einladen zu + Dat. (trennbares Verb)"
     },
     {
       "word": "sich vorstellen",
@@ -177,7 +219,9 @@
       "plural": "stellte sich vor / hat sich vorgestellt",
       "translation": "自我介绍",
       "example": "Bitte stellen Sie sich kurz vor.",
-      "category": "反身动词"
+      "category": "反身动词",
+      "example_zh": "请您简短地自我介绍。",
+      "grammar_hint": "sich vorstellen: reflexiv, trennbar; Imperativ mit Sie"
     },
     {
       "word": "überzeugen",
@@ -185,7 +229,9 @@
       "plural": "überzeugte / hat überzeugt",
       "translation": "说服，使信服",
       "example": "Sie hat mich mit ihren Argumenten überzeugt.",
-      "category": "动词"
+      "category": "动词",
+      "example_zh": "她用她的论点说服了我。",
+      "grammar_hint": "überzeugen von/mit + Dat. (untrennbares Verb)"
     },
     {
       "word": "verhandeln",
@@ -193,7 +239,9 @@
       "plural": "verhandelte / hat verhandelt",
       "translation": "谈判",
       "example": "Wir müssen über das Gehalt verhandeln.",
-      "category": "动词"
+      "category": "动词",
+      "example_zh": "我们必须就薪水进行谈判。",
+      "grammar_hint": "verhandeln über + Akk. (untrennbares Verb)"
     },
     {
       "word": "motiviert",
@@ -201,7 +249,9 @@
       "plural": "-",
       "translation": "有动力的",
       "example": "Ich bin sehr motiviert, diese Aufgabe zu übernehmen.",
-      "category": "形容词"
+      "category": "形容词",
+      "example_zh": "我非常有动力承担这项任务。",
+      "grammar_hint": "Adjektiv als Prädikativ; Infinitivsatz mit zu"
     },
     {
       "word": "qualifiziert",
@@ -209,7 +259,9 @@
       "plural": "-",
       "translation": "有资格的，合格的",
       "example": "Sind Sie für diese Position qualifiziert?",
-      "category": "形容词"
+      "category": "形容词",
+      "example_zh": "您有资格担任这个职位吗？",
+      "grammar_hint": "qualifiziert sein für + Akk."
     },
     {
       "word": "erfahren",
@@ -217,7 +269,9 @@
       "plural": "-",
       "translation": "有经验的",
       "example": "Wir suchen einen erfahrenen Projektmanager.",
-      "category": "形容词"
+      "category": "形容词",
+      "example_zh": "我们寻找一位有经验的项目经理。",
+      "grammar_hint": "Adjektivdeklination: erfahrenen (Akk. Maskulin, stark)"
     },
     {
       "word": "teamfähig",
@@ -225,7 +279,9 @@
       "plural": "-",
       "translation": "有团队精神的",
       "example": "Er ist sehr teamfähig und arbeitet gern mit anderen zusammen.",
-      "category": "形容词"
+      "category": "形容词",
+      "example_zh": "他很有团队精神，喜欢与他人合作。",
+      "grammar_hint": "arbeiten … zusammen: trennbares Verb"
     }
   ],
   "dictations": [

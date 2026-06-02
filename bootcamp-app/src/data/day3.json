@@ -9,7 +9,9 @@
       "plural": "",
       "translation": "道歉",
       "example": "Ich muss mich bei dir entschuldigen.",
-      "category": "反身动词"
+      "category": "反身动词",
+      "example_zh": "我必须向你道歉。",
+      "grammar_hint": "反身动词+bei+Dativ"
     },
     {
       "word": "sich freuen",
@@ -17,7 +19,9 @@
       "plural": "",
       "translation": "高兴",
       "example": "Wir freuen uns auf den Urlaub.",
-      "category": "反身动词"
+      "category": "反身动词",
+      "example_zh": "我们期待假期。",
+      "grammar_hint": "反身动词+auf+Akkusativ"
     },
     {
       "word": "sich treffen",
@@ -25,7 +29,9 @@
       "plural": "",
       "translation": "见面",
       "example": "Wann treffen wir uns?",
-      "category": "反身动词"
+      "category": "反身动词",
+      "example_zh": "我们什么时候见面？",
+      "grammar_hint": "疑问句动词第二位"
     },
     {
       "word": "sich interessieren",
@@ -33,7 +39,9 @@
       "plural": "",
       "translation": "感兴趣",
       "example": "Ich interessiere mich für Musik.",
-      "category": "反身动词"
+      "category": "反身动词",
+      "example_zh": "我对音乐感兴趣。",
+      "grammar_hint": "反身动词+für+Akkusativ"
     },
     {
       "word": "sich setzen",
@@ -41,7 +49,9 @@
       "plural": "",
       "translation": "坐下",
       "example": "Setz dich bitte!",
-      "category": "反身动词"
+      "category": "反身动词",
+      "example_zh": "请坐！",
+      "grammar_hint": "命令式，反身代词dich"
     },
     {
       "word": "sich waschen",
@@ -49,7 +59,9 @@
       "plural": "",
       "translation": "洗（自己）",
       "example": "Er wäscht sich die Hände.",
-      "category": "反身动词"
+      "category": "反身动词",
+      "example_zh": "他洗手。",
+      "grammar_hint": "反身代词sich为第三格（间接宾语）"
     },
     {
       "word": "sich anziehen",
@@ -57,7 +69,9 @@
       "plural": "",
       "translation": "穿衣",
       "example": "Zieh dich warm an!",
-      "category": "反身动词"
+      "category": "反身动词",
+      "example_zh": "穿暖和点！",
+      "grammar_hint": "命令式，可分动词anziehen"
     },
     {
       "word": "sich erinnern",
@@ -65,7 +79,9 @@
       "plural": "",
       "translation": "记得",
       "example": "Ich erinnere mich an dich.",
-      "category": "反身动词"
+      "category": "反身动词",
+      "example_zh": "我记得你。",
+      "grammar_hint": "反身动词+an+Akkusativ"
     },
     {
       "word": "sich vorstellen",
@@ -73,7 +89,9 @@
       "plural": "",
       "translation": "想象；自我介绍",
       "example": "Kannst du dich vorstellen?",
-      "category": "反身动词"
+      "category": "反身动词",
+      "example_zh": "你能自我介绍吗？",
+      "grammar_hint": "情态动词+反身动词，vorstellen可分"
     },
     {
       "word": "sich kümmern",
@@ -81,7 +99,9 @@
       "plural": "",
       "translation": "关心，照料",
       "example": "Sie kümmert sich um die Kinder.",
-      "category": "反身动词"
+      "category": "反身动词",
+      "example_zh": "她照顾孩子们。",
+      "grammar_hint": "反身动词+um+Akkusativ"
     },
     {
       "word": "sich bedanken",
@@ -89,7 +109,9 @@
       "plural": "",
       "translation": "感谢",
       "example": "Ich bedanke mich für Ihre Hilfe.",
-      "category": "反身动词"
+      "category": "反身动词",
+      "example_zh": "我感谢您的帮助。",
+      "grammar_hint": "反身动词+für+Akkusativ"
     },
     {
       "word": "sich beeilen",
@@ -97,7 +119,9 @@
       "plural": "",
       "translation": "赶紧",
       "example": "Beeil dich, wir haben wenig Zeit!",
-      "category": "反身动词"
+      "category": "反身动词",
+      "example_zh": "快点，我们时间不多了！",
+      "grammar_hint": "命令式，反身动词beeilen"
     },
     {
       "word": "sich ärgern",
@@ -105,7 +129,9 @@
       "plural": "",
       "translation": "生气",
       "example": "Er ärgert sich über den Fehler.",
-      "category": "反身动词"
+      "category": "反身动词",
+      "example_zh": "他对这个错误生气。",
+      "grammar_hint": "反身动词+über+Akkusativ"
     },
     {
       "word": "sich einigen",
@@ -113,7 +139,9 @@
       "plural": "",
       "translation": "达成一致",
       "example": "Wir einigen uns auf einen Preis.",
-      "category": "反身动词"
+      "category": "反身动词",
+      "example_zh": "我们就价格达成一致。",
+      "grammar_hint": "反身动词+auf+Akkusativ"
     },
     {
       "word": "sich gewöhnen",
@@ -121,7 +149,9 @@
       "plural": "",
       "translation": "习惯",
       "example": "Ich gewöhne mich an das neue Klima.",
-      "category": "反身动词"
+      "category": "反身动词",
+      "example_zh": "我习惯新的气候。",
+      "grammar_hint": "反身动词+an+Akkusativ"
     },
     {
       "word": "sich bemühen",
@@ -129,7 +159,9 @@
       "plural": "",
       "translation": "努力",
       "example": "Er bemüht sich um eine Lösung.",
-      "category": "反身动词"
+      "category": "反身动词",
+      "example_zh": "他努力寻求一个解决方案。",
+      "grammar_hint": "反身动词+um+Akkusativ"
     },
     {
       "word": "sich verabreden",
@@ -137,7 +169,9 @@
       "plural": "",
       "translation": "约会，约定",
       "example": "Wir verabreden uns für morgen.",
-      "category": "反身动词"
+      "category": "反身动词",
+      "example_zh": "我们约定明天见面。",
+      "grammar_hint": "反身动词+für+Akkusativ"
     },
     {
       "word": "sich verhalten",
@@ -145,7 +179,9 @@
       "plural": "",
       "translation": "行为，表现",
       "example": "Wie verhält er sich in Stress?",
-      "category": "反身动词"
+      "category": "反身动词",
+      "example_zh": "他在压力下表现如何？",
+      "grammar_hint": "疑问句动词第二位"
     },
     {
       "word": "sich entscheiden",
@@ -153,7 +189,9 @@
       "plural": "",
       "translation": "决定",
       "example": "Ich entscheide mich für den Job.",
-      "category": "反身动词"
+      "category": "反身动词",
+      "example_zh": "我决定选择这份工作。",
+      "grammar_hint": "反身动词+für+Akkusativ"
     },
     {
       "word": "sich verlieben",
@@ -161,7 +199,9 @@
       "plural": "",
       "translation": "爱上",
       "example": "Sie verliebt sich in ihn.",
-      "category": "反身动词"
+      "category": "反身动词",
+      "example_zh": "她爱上了他。",
+      "grammar_hint": "反身动词+in+Akkusativ"
     },
     {
       "word": "sich ausruhen",
@@ -169,7 +209,9 @@
       "plural": "",
       "translation": "休息",
       "example": "Wir ruhen uns nach der Arbeit aus.",
-      "category": "反身动词"
+      "category": "反身动词",
+      "example_zh": "工作后我们休息。",
+      "grammar_hint": "可分动词ausruhen"
     },
     {
       "word": "sich bewerben",
@@ -177,7 +219,9 @@
       "plural": "",
       "translation": "申请",
       "example": "Er bewirbt sich um die Stelle.",
-      "category": "反身动词"
+      "category": "反身动词",
+      "example_zh": "他申请这个职位。",
+      "grammar_hint": "反身动词+um+Akkusativ"
     },
     {
       "word": "sich beschweren",
@@ -185,7 +229,9 @@
       "plural": "",
       "translation": "抱怨",
       "example": "Sie beschwert sich über den Service.",
-      "category": "反身动词"
+      "category": "反身动词",
+      "example_zh": "她抱怨服务。",
+      "grammar_hint": "反身动词+über+Akkusativ"
     },
     {
       "word": "sich wundern",
@@ -193,7 +239,9 @@
       "plural": "",
       "translation": "感到惊讶",
       "example": "Ich wundere mich über seine Reaktion.",
-      "category": "反身动词"
+      "category": "反身动词",
+      "example_zh": "我对他的反应感到惊讶。",
+      "grammar_hint": "反身动词+über+Akkusativ"
     },
     {
       "word": "sich verspäten",
@@ -201,7 +249,9 @@
       "plural": "",
       "translation": "迟到",
       "example": "Der Zug verspätet sich um 10 Minuten.",
-      "category": "反身动词"
+      "category": "反身动词",
+      "example_zh": "火车晚点10分钟。",
+      "grammar_hint": "反身动词，um+时间表示延迟"
     },
     {
       "word": "sich fühlen",
@@ -209,7 +259,9 @@
       "plural": "",
       "translation": "感觉",
       "example": "Ich fühle mich heute nicht wohl.",
-      "category": "反身动词"
+      "category": "反身动词",
+      "example_zh": "我今天感觉不舒服。",
+      "grammar_hint": "反身动词，nicht wohl表示不适"
     }
   ],
   "dictations": [
