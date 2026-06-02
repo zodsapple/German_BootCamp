@@ -315,5 +315,11 @@
       "correct": "als",
       "explanation": "表达过去发生的一次性事件（当我们到达火车站时），必须使用连词 als。"
     }
-  ]
+  ],
+  "reading": {
+    "text": "In Deutschland beginnt der Alltag für viele Menschen sehr früh. Der Wecker klingelt oft schon um sechs Uhr. Nach dem Aufstehen geht man zuerst ins Badezimmer. Dann wird das Frühstück vorbereitet. Ein typisches deutsches Frühstück besteht aus Brot oder Brötchen mit Käse, Wurst oder Marmelade. Dazu trinkt man gerne Kaffee oder Tee. Nach dem Frühstück putzt man sich die Zähne und zieht sich an. Viele Menschen fahren mit dem Fahrrad oder der Straßenbahn zur Arbeit oder zur Universität. Im Verkehr muss man aufpassen, um nicht zu spät zu kommen. Pünktlichkeit ist in der deutschen Kultur sehr wichtig. Wer sich verspätet, sollte sich entschuldigen.",
+    "translation": "在德国，许多人的日常生活开始得很早。闹钟经常在六点钟就响了。起床后，人们首先去浴室。然后准备早餐。典型的德国早餐包括面包或小圆面包，配上奶酪、香肠或果酱。此外，人们喜欢喝咖啡或茶。早餐后，人们刷牙并穿衣。许多人骑自行车或乘有轨电车去上班或上大学。在交通中必须小心，以免迟到。准时在德国文化中非常重要。迟到的人应该道歉。",
+    "grammar": "1. **被动语态的替代形式与被动语态**：文章中使用了 'Dann wird das Frühstück vorbereitet'，这是一个标准的现在时被动语态 (werden + 过去分词)，用于强调动作本身而非执行者。在日常德语中，描述习惯或流程时极其常用。\n2. **不定代词 man 的广泛使用**：例如 'geht man', 'trinkt man', 'putzt man sich', 'muss man aufpassen'。'man' 在德语中作主语，表示泛指的“人们/大家”，动词总是按照第三人称单数变位。当伴随反身动词时，反身代词使用第三人称的 'sich'。\n3. **可分动词与反身动词的结合**：短文中包含大量的可分动词，如 'aufstehen' (起床), 'vorbereiten' (准备), 'anziehen' (穿衣)。并且有些同时是反身动词：'sich anziehen' (给自己穿衣), 'sich die Zähne putzen' (给自己刷牙，注意这里的 die Zähne 是第四格宾语，因此反身代词 sich 这里实际是第三格，但在第三人称下形态不变)。\n4. **带 zu 的不定式从句**：'um nicht zu spät zu kommen' (为了不迟到)。'um... zu...' 结构表示目的，是 B1 阶段必须掌握的句型，意思是“为了...”。\n5. **关系代词 wer 引导的主语从句**：'Wer sich verspätet, sollte sich entschuldigen.' 这里的 Wer 等同于 'Jeder, der...' (任何...的人)，引导整个句子作为后面主句的主语。",
+    "vocab": "• **der Alltag** (A2/B1): 日常生活。复合词 (all + Tag)。\n• **klingeln** (A2): (铃)响。例如闹钟响，或者按门铃。\n• **das Badezimmer** (A1/A2): 浴室。在德国房子中，Badezimmer 通常包含洗手池、淋浴/浴缸和马桶。\n• **vorbereiten** (A2): 准备 (可分动词)。过去分词 vorbereitet。\n• **typisch** (A2): 典型的。形容词，常用来描述特征。\n• **bestehen aus** (B1): 由...组成。固定搭配，介词 aus 后接第三格 (Dativ)。\n• **die Straßenbahn** (A1/A2): 有轨电车。德国城市常见的公共交通工具。\n• **der Verkehr** (A2/B1): 交通。不可数名词，涵盖所有交通状况。\n• **aufpassen** (A2): 注意，留神 (可分动词)。常接介词 auf + Akkusativ。\n• **die Pünktlichkeit** (B1): 准时。由形容词 pünktlich + 词缀 -keit (使变成阴性名词) 构成。\n• **sich verspäten** (B1): 迟到 (反身动词)。名词形式为 die Verspätung。\n• **sich entschuldigen** (A2/B1): 道歉 (反身动词)。常接介词 bei (向某人) 和 für (因某事)。"
+  }
 }

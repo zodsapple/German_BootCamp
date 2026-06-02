@@ -315,5 +315,11 @@
       "correct": "hätte",
       "explanation": "非现实条件句用虚拟式hätte。"
     }
-  ]
+  ],
+  "reading": {
+    "text": "Könnten Sie mir bitte sagen, wo die nächste U-Bahn-Station ist? Ich wäre sehr dankbar, wenn Sie mir helfen könnten. Leider habe ich meinen Stadtplan vergessen. Wenn ich ihn nicht vergessen hätte, würde ich mich besser orientieren können. Es wäre schön, wenn wir uns morgen treffen würden. Aber vielleicht haben Sie keine Zeit. Ich würde gern mehr über die Stadt erfahren. Könntest du mir einige Tipps geben? Ich würde sie gerne ausprobieren.",
+    "translation": "您能告诉我最近的地铁站吗？如果您能帮我，我将非常感激。不幸的是，我忘记了我的城市地图。如果我没有忘记它，我就能更好地辨别方向。如果我们明天能见面就好了。但也许您没有时间。我很想了解更多关于这座城市的信息。你能给我一些建议吗？我很乐意尝试它们。",
+    "grammar": "**Könnten**是*können*的虚拟式第二人称复数，用于礼貌请求，动词位于句首。\n**wäre**是*sein*的虚拟式第一人称单数，表达感谢中的非现实假设。\n**könnten**（第二处）同样是*können*的虚拟式，在从句中位于句末。\n**hätte vergessen**是过去时虚拟式，由*hätte*（haben的虚拟式）加第二分词构成，表示非现实的过去。\n**würde orientieren können**是*würde* + Infinitiv + *können*的结构，表示非现实能力。\n**würde**（第三处）表达非现实愿望，之后跟*treffen würden*（werden的虚拟式）构成未来虚拟式。\n**haben**在这里是现在时，表示真实情况。\n**würde erfahren**是*würde* + Infinitiv，表达愿望。\n**Könntest**是*können*的虚拟式第二人称单数，礼貌请求。\n**würde ausprobieren**是*würde* + Infinitiv，表达意愿。\n注意：所有虚拟式动词都用于非现实或礼貌语境。过去虚拟式*hätte vergessen*表示与过去事实相反。",
+    "vocab": "**die U-Bahn-Station** (名词, f., A2) 地铁站\n**dankbar** (形容词, B1) 感激的；固定搭配：jemandem dankbar sein\n**der Stadtplan** (名词, m., A2) 城市地图；词根：Stadt + Plan\n**vergessen** (动词, A2) 忘记；变位：vergisst, vergaß, hat vergessen\n**orientieren** (反身动词, B1) 辨别方向；固定搭配：sich orientieren\n**das Treffen** (名词, n., A2) 见面；来自动词treffen\n**der Tipp** (名词, m., A2) 建议；复数：Tipps\n**ausprobieren** (动词, B1) 尝试；可分动词：aus|probieren"
+  }
 }
