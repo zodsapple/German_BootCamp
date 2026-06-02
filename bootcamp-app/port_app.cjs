@@ -8,8 +8,8 @@ const scriptStart = htmlContent.indexOf('<script type="text/babel">');
 const scriptEnd = htmlContent.indexOf('</script>', scriptStart);
 
 if (scriptStart === -1 || scriptEnd === -1) {
-    console.error("Could not find React script block.");
-    process.exit(1);
+  console.error("Could not find React script block.");
+  process.exit(1);
 }
 
 let reactCode = htmlContent.substring(scriptStart + 26, scriptEnd);
@@ -20,7 +20,7 @@ reactCode = reactCode.replace(/const\s*{\s*useState\s*,\s*useEffect\s*}\s*=\s*Re
 // Remove the `bootCampCurriculum` object completely.
 const match = reactCode.match(/const bootCampCurriculum = (\{[\s\S]*?\n        \});/);
 if (match) {
-    reactCode = reactCode.replace(match[0], '');
+  reactCode = reactCode.replace(match[0], '');
 }
 
 // Remove ReactDOM.createRoot part at the bottom
