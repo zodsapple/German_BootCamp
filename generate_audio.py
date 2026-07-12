@@ -14,9 +14,14 @@ def generate_mp3(text, filename):
     if os.path.exists(filename):
         return  # Skip if already exists
     
+    # Append a period to prevent gTTS from returning "normal + slow" double pronunciations for single words
+    safe_text = text.strip()
+    if not safe_text[-1] in ['.', '!', '?', '"', "'"]:
+        safe_text += "."
+
     print(f"Generating {filename}...")
     try:
-        tts = gTTS(text=text, lang='de', slow=False)
+        tts = gTTS(text=safe_text, lang='de', slow=False)
         tts.save(filename)
         time.sleep(0.5)  # Rate limiting
     except Exception as e:
