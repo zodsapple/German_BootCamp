@@ -24,3 +24,21 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: #94a3b8;
 }
+
+/* 3D Transform Utilities for Flashcards */
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.perspective-\\[1000px\\] {
+  perspective: 1000px;
+}
+
+.rotateY-180 {
+  transform: rotateY(180deg);
+}

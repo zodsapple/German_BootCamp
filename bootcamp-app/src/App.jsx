@@ -1,5 +1,104 @@
 import { useState, useEffect, useRef } from 'react';
 import confetti from 'canvas-confetti';
+import { motion, useMotionValue, useTransform, AnimatePresence } from 'framer-motion';
+
+// SwipeCard Component
+const SwipeCard = ({ word, onSwipeLeft, onSwipeRight, playAudio }) => {
+    const [isFlipped, setIsFlipped] = useState(false);
+    const x = useMotionValue(0);
+    
+    const rotate = useTransform(x, [-200, 200], [-15, 15]);
+    const backgroundColor = useTransform(
+        x,
+        [-100, 0, 100],
+        ['rgba(254, 242, 242, 1)', 'rgba(255, 255, 255, 1)', 'rgba(240, 253, 244, 1)']
+    );
+    const opacity = useTransform(x, [-200, -150, 0, 150, 200], [0, 1, 1, 1, 0]);
+
+    const handleDragEnd = (event, info) => {
+        const threshold = 100;
+        if (info.offset.x > threshold) {
+            onSwipeRight();
+        } else if (info.offset.x < -threshold) {
+            onSwipeLeft();
+        }
+    };
+
+    return (
+        <motion.div
+            style={{ x, rotate, backgroundColor, opacity }}
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0.8}
+            onDragEnd={handleDragEnd}
+            whileDrag={{ scale: 1.05, cursor: "grabbing" }}
+            initial={{ scale: 0.9, opacity: 0, y: 50 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.8, opacity: 0, transition: { duration: 0.2 } }}
+            onClick={() => setIsFlipped(!isFlipped)}
+            className="absolute inset-0 w-full h-full rounded-[2rem] shadow-2xl border-2 border-slate-100 flex flex-col cursor-grab transition-shadow hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] bg-white"
+        >
+            {!isFlipped ? (
+                <div className="flex-grow flex flex-col items-center justify-center p-8">
+                    <span className={`text-xs px-3 py-1 rounded-full font-black uppercase tracking-wider mb-8 shadow-sm ${
+                        word.gender === 'der' ? 'bg-blue-100 text-blue-800' :
+                        word.gender === 'die' ? 'bg-red-100 text-red-800' :
+                        word.gender === 'das' ? 'bg-green-100 text-green-800' :
+                        word.gender.startsWith('verb') ? 'bg-indigo-100 text-indigo-800' :
+                        'bg-slate-200 text-slate-800'
+                    }`}>
+                        {word.gender}
+                    </span>
+                    <h3 className="text-4xl font-black text-slate-800 text-center mb-3 tracking-tight">{word.word}</h3>
+                    {word.plural && <p className="text-sm font-medium text-slate-400 mb-2">({word.plural})</p>}
+                    <p className="text-xs text-slate-300 absolute bottom-8 font-semibold animate-pulse bg-slate-50 px-4 py-2 rounded-full border border-slate-100">👆 点击查看释义</p>
+                </div>
+            ) : (
+                <div className="flex-grow flex flex-col p-8 overflow-y-auto custom-scrollbar bg-gradient-to-br from-slate-50 to-white rounded-[2rem]">
+                    <div className="flex justify-between items-start w-full border-b-2 border-slate-100 pb-4 mb-5">
+                        <h3 className="text-2xl font-black text-slate-800 flex items-center gap-2">
+                            {word.word}
+                        </h3>
+                        <button 
+                            onClick={(e) => { e.stopPropagation(); playAudio(word.word, 1.0, 0, 'word'); }}
+                            className="bg-amber-100 hover:bg-amber-200 text-amber-700 px-2 py-1.5 rounded-lg transition shadow-sm"
+                        >
+                            🔊
+                        </button>
+                    </div>
+                    
+                    <p className="text-xl font-bold text-amber-900 mb-6 bg-amber-50/50 p-3 rounded-xl border border-amber-100/30">【义】{word.translation}</p>
+                    
+                    <div className="space-y-5">
+                        <div className="bg-white p-4 rounded-xl shadow-sm border border-slate-100">
+                            <p className="text-sm font-medium text-slate-700 leading-relaxed mb-3">
+                                {word.example}
+                            </p>
+                            <button 
+                                onClick={(e) => { e.stopPropagation(); playAudio(word.example, 1.0, 0, 'example'); }}
+                                className="text-[11px] font-bold text-amber-600 bg-amber-50 hover:bg-amber-100 px-2.5 py-1.5 rounded transition"
+                            >
+                                🔊 朗读例句
+                            </button>
+                            {word.example_zh && (
+                                <p className="text-xs font-medium text-slate-500 mt-3 pt-3 border-t border-slate-100">
+                                    {word.example_zh}
+                                </p>
+                            )}
+                        </div>
+                        
+                        {word.grammar_hint && (
+                            <div className="p-4 bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl border border-amber-100/60 shadow-sm">
+                                <p className="text-xs font-black text-amber-800 mb-2">💡 核心语法提醒：</p>
+                                <p className="text-xs text-amber-900 font-medium leading-relaxed">{word.grammar_hint}</p>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            )}
+        </motion.div>
+    );
+};
 
 // Load curriculum data dynamically
 const modules = import.meta.glob('./data/day*.json', { eager: true });
@@ -41,6 +140,10 @@ function App() {
 
     // Interaction States
     const [isFlipped, setIsFlipped] = useState(false);
+
+    // Swipe Game States
+    const [swipeDeck, setSwipeDeck] = useState([]);
+    const [swipeIndex, setSwipeIndex] = useState(0);
 
     // Pagination States for High-Intensity Mode
     const [dictationIndex, setDictationIndex] = useState(0);
@@ -111,54 +214,101 @@ function App() {
         confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
     };
 
-    // Audio synthesis helper
-    const playAudio = (text, speed = 1.0, startIndex = 0) => {
+    // Global Audio Object reference to allow pausing/canceling
+    const currentAudioRef = useRef(null);
+
+    // Audio synthesis helper with MP3 pre-generation fallback
+    const playAudio = (text, speed = 1.0, startIndex = 0, fallbackAudioUrl = null) => {
+        if (currentAudioRef.current) {
+            currentAudioRef.current.pause();
+            currentAudioRef.current.currentTime = 0;
+            currentAudioRef.current = null;
+        }
         if ('speechSynthesis' in window) {
             window.speechSynthesis.cancel();
+        }
 
-            const textToSpeak = text.substring(startIndex);
-            if (!textToSpeak.trim()) return;
+        const fallbackToSpeechSynthesis = () => {
+            if ('speechSynthesis' in window) {
+                const textToSpeak = text.substring(startIndex);
+                if (!textToSpeak.trim()) return;
 
-            const utterance = new SpeechSynthesisUtterance(textToSpeak);
-            utterance.lang = 'de-DE';
-            utterance.rate = speed;
+                const utterance = new SpeechSynthesisUtterance(textToSpeak);
+                utterance.lang = 'de-DE';
+                utterance.rate = speed;
 
-            utterance.onstart = () => { setIsSpeaking(true); setIsPaused(false); if (startIndex === 0) setSpeechProgress(0); };
-            utterance.onend = () => { setIsSpeaking(false); setIsPaused(false); setSpeechProgress(100); setTimeout(() => setSpeechProgress(0), 1000); };
-            utterance.onpause = () => setIsPaused(true);
-            utterance.onresume = () => setIsPaused(false);
-            utterance.onerror = () => { setIsSpeaking(false); setIsPaused(false); setSpeechProgress(0); };
-            utterance.onboundary = (e) => {
-                if (text && text.length > 0 && !isDraggingRef.current) {
-                    const absoluteIndex = startIndex + e.charIndex;
-                    const progress = Math.min((absoluteIndex / text.length) * 100, 100);
-                    setSpeechProgress(progress);
+                utterance.onstart = () => { setIsSpeaking(true); setIsPaused(false); if (startIndex === 0) setSpeechProgress(0); };
+                utterance.onend = () => { setIsSpeaking(false); setIsPaused(false); setSpeechProgress(100); setTimeout(() => setSpeechProgress(0), 1000); };
+                utterance.onpause = () => setIsPaused(true);
+                utterance.onresume = () => setIsPaused(false);
+                utterance.onerror = () => { setIsSpeaking(false); setIsPaused(false); setSpeechProgress(0); };
+                utterance.onboundary = (e) => {
+                    if (text && text.length > 0 && !isDraggingRef.current) {
+                        const absoluteIndex = startIndex + e.charIndex;
+                        const progress = Math.min((absoluteIndex / text.length) * 100, 100);
+                        setSpeechProgress(progress);
+                    }
+                };
+
+                const voices = window.speechSynthesis.getVoices();
+                const deVoices = voices.filter(voice => voice.lang.startsWith('de'));
+                let bestVoice = deVoices.find(voice =>
+                    voice.name.includes('Premium') ||
+                    voice.name.includes('Enhanced') ||
+                    voice.name.includes('Natural')
+                );
+                if (!bestVoice && deVoices.length > 0) {
+                    bestVoice = deVoices[0];
+                }
+                if (bestVoice) {
+                    utterance.voice = bestVoice;
+                }
+
+                window.speechSynthesis.speak(utterance);
+            }
+        };
+
+        if (fallbackAudioUrl) {
+            const audio = new Audio(fallbackAudioUrl);
+            audio.playbackRate = speed;
+            currentAudioRef.current = audio;
+            
+            audio.oncanplaythrough = () => {
+                if (startIndex > 0 && text.length > 0) {
+                    const ratio = startIndex / text.length;
+                    audio.currentTime = audio.duration * ratio;
                 }
             };
 
-            const voices = window.speechSynthesis.getVoices();
-            const deVoices = voices.filter(voice => voice.lang.startsWith('de'));
-            let bestVoice = deVoices.find(voice =>
-                voice.name.includes('Premium') ||
-                voice.name.includes('Enhanced') ||
-                voice.name.includes('Natural')
-            );
-            if (!bestVoice && deVoices.length > 0) {
-                bestVoice = deVoices[0];
-            }
-            if (bestVoice) {
-                utterance.voice = bestVoice;
-            }
+            audio.onplay = () => { setIsSpeaking(true); setIsPaused(false); if (startIndex === 0) setSpeechProgress(0); };
+            audio.onended = () => { setIsSpeaking(false); setIsPaused(false); setSpeechProgress(100); setTimeout(() => setSpeechProgress(0), 1000); };
+            audio.onpause = () => { if (audio.duration && audio.currentTime < audio.duration) setIsPaused(true); };
+            audio.ontimeupdate = () => {
+                if (!isDraggingRef.current && audio.duration) {
+                    const progress = (audio.currentTime / audio.duration) * 100;
+                    setSpeechProgress(progress);
+                }
+            };
+            
+            audio.onerror = () => {
+                console.warn(`Failed to load MP3: ${fallbackAudioUrl}, falling back to Web Speech API.`);
+                currentAudioRef.current = null;
+                fallbackToSpeechSynthesis();
+            };
 
-            window.speechSynthesis.speak(utterance);
+            audio.play().catch(e => {
+                console.warn(`Audio play failed for ${fallbackAudioUrl}, error: ${e}`);
+                currentAudioRef.current = null;
+                fallbackToSpeechSynthesis();
+            });
         } else {
-            alert("您的浏览器不支持语音功能，推荐使用 Chrome/Edge。");
+            fallbackToSpeechSynthesis();
         }
     };
 
     // Audio test
     const handleSpeechTest = () => {
-        playAudio("Bereit für die dreißig Tage B1 Challenge? Los geht's!", 0.9);
+        playAudio("Bereit für die dreißig Tage B1 Challenge? Los geht's!", 1.0);
     };
 
     const togglePauseResume = () => {
@@ -190,7 +340,26 @@ function App() {
         setIsAnswerSubmitted(false);
         setDictationIndex(0);
         setGrammarIndex(0);
+        
+        const data = bootCampCurriculum[selectedDay] || bootCampCurriculum[1];
+        if (data && data.vocab) {
+            setSwipeDeck([...data.vocab]);
+            setSwipeIndex(0);
+        }
     }, [selectedDay]);
+
+    const handleSwipeRight = () => {
+        // Swipe Right (Know)
+        setSwipeIndex(prev => prev + 1);
+    };
+
+    const handleSwipeLeft = (wordObj) => {
+        // Swipe Left (Don't Know) -> Add to favorites
+        if (!isFavorite('vocab', wordObj.word)) {
+            toggleFavorite('vocab', { ...wordObj, _day: selectedDay, _index: swipeIndex }, wordObj.word);
+        }
+        setSwipeIndex(prev => prev + 1);
+    };
 
     // Data extraction & Backward Compatibility for Days 2-30
     const dayData = bootCampCurriculum[selectedDay] || bootCampCurriculum[1];
@@ -348,6 +517,12 @@ function App() {
                             className={`flex items-center gap-2 px-3 py-2 font-semibold text-sm rounded-lg transition ${activeTab === 'favorites' ? 'bg-amber-500 text-white shadow-sm' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'}`}
                         >
                             ⭐ 生词错题本
+                        </button>
+                        <button
+                            onClick={() => setActiveTab('swipe')}
+                            className={`flex items-center gap-2 px-3 py-2 font-semibold text-sm rounded-lg transition ${activeTab === 'swipe' ? 'bg-amber-500 text-white shadow-sm' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'}`}
+                        >
+                            🎴 单词速刷
                         </button>
                     </nav>
                 </div>
@@ -566,14 +741,14 @@ function App() {
                                                         <span className="text-xs text-slate-400 italic">({v.category})</span>
                                                     </div>
                                                     <button
-                                                        onClick={() => playAudio(v.word, 0.95)}
+                                                        onClick={() => playAudio(v.word, 1.0, 0, `/audio/day${selectedDay}/vocab_${index}_word.mp3`)}
                                                         className="text-xs text-amber-600 hover:text-amber-700 font-bold flex-shrink-0"
                                                         title="发音"
                                                     >
                                                         🔊 发音
                                                     </button>
                                                     <button
-                                                        onClick={() => toggleFavorite('vocab', v, v.word)}
+                                                        onClick={() => toggleFavorite('vocab', { ...v, _day: selectedDay, _index: index }, v.word)}
                                                         className="text-lg flex-shrink-0 ml-2"
                                                         title="收藏"
                                                     >
@@ -600,7 +775,7 @@ function App() {
                                                         )}
                                                     </div>
                                                     <button
-                                                        onClick={() => playAudio(v.example, 0.9)}
+                                                        onClick={() => playAudio(v.example, 1.0, 0, `/audio/day${selectedDay}/vocab_${index}_example.mp3`)}
                                                         className="text-[10px] text-amber-600 hover:text-amber-700 font-bold flex-shrink-0 ml-2 mt-1"
                                                         title="例句发音"
                                                     >
@@ -628,15 +803,15 @@ function App() {
                                         </h3>
                                         <div className="flex items-center gap-2">
                                             <span className="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded">第 {dictationIndex + 1} / {dictationArray.length} 句</span>
-                                            {currentDictation.text && (
-                                                <button
-                                                    onClick={() => toggleFavorite('dictation', currentDictation, currentDictation.text)}
-                                                    className="text-lg"
-                                                    title="收藏听写"
+                                            <div className="flex gap-3">
+                                                <button 
+                                                    onClick={() => toggleFavorite('dictation', { ...currentDictation, _day: selectedDay, _index: dictationIndex }, currentDictation.text)}
+                                                    className={`text-xl transition hover:scale-110 ${isFavorite('dictation', currentDictation.text) ? 'text-amber-500' : 'text-slate-300'}`}
+                                                    title={isFavorite('dictation', currentDictation.text) ? "移出本" : "加入本"}
                                                 >
-                                                    {isFavorite('dictation', currentDictation.text) ? '⭐️' : '☆'}
+                                                    {isFavorite('dictation', currentDictation.text) ? '★' : '☆'}
                                                 </button>
-                                            )}
+                                            </div>
                                         </div>
                                     </div>
 
@@ -646,8 +821,8 @@ function App() {
                                             <div className="bg-slate-50 p-5 rounded-xl flex flex-col items-center justify-center space-y-4 border border-slate-100">
                                                 <div className="flex gap-4">
                                                     <button
-                                                        onClick={() => playAudio(currentDictation.text, listenSpeed)}
-                                                        className="bg-amber-500 hover:bg-amber-600 text-white rounded-full p-5 shadow-md transition-transform hover:scale-105 flex items-center justify-center w-16 h-16"
+                                                        onClick={() => playAudio(currentDictation.text, listenSpeed, 0, `/audio/day${selectedDay}/dictation_${dictationIndex}.mp3`)}
+                                                        className={`rounded-full p-5 shadow-md transition-transform flex items-center justify-center w-16 h-16 ${isSpeaking && !isPaused ? 'bg-red-500 text-white animate-pulse' : 'bg-amber-500 hover:bg-amber-600 text-white hover:scale-105'}`}
                                                         title="从头播放"
                                                     >
                                                         <span className="text-2xl">🔊</span>
@@ -672,30 +847,14 @@ function App() {
                                                         onMouseDown={() => { isDraggingRef.current = true; }}
                                                         onTouchStart={() => { isDraggingRef.current = true; }}
                                                         onChange={(e) => {
-                                                            setSpeechProgress(parseFloat(e.target.value));
-                                                        }}
-                                                        onMouseUp={(e) => {
-                                                            isDraggingRef.current = false;
-                                                            const percentage = parseFloat(e.target.value);
+                                                            const newProgress = parseFloat(e.target.value);
+                                                            setSpeechProgress(newProgress);
                                                             const text = currentDictation.text;
-                                                            if (!text) return;
-                                                            let startIndex = Math.floor(text.length * (percentage / 100));
-                                                            while (startIndex > 0 && text[startIndex - 1] !== ' ') {
-                                                                startIndex--;
-                                                            }
-                                                            playAudio(text, listenSpeed, startIndex);
+                                                            const startIndex = Math.floor((newProgress / 100) * text.length);
+                                                            playAudio(text, listenSpeed, startIndex, `/audio/day${selectedDay}/dictation_${dictationIndex}.mp3`);
                                                         }}
-                                                        onTouchEnd={(e) => {
-                                                            isDraggingRef.current = false;
-                                                            const percentage = parseFloat(e.target.value);
-                                                            const text = currentDictation.text;
-                                                            if (!text) return;
-                                                            let startIndex = Math.floor(text.length * (percentage / 100));
-                                                            while (startIndex > 0 && text[startIndex - 1] !== ' ') {
-                                                                startIndex--;
-                                                            }
-                                                            playAudio(text, listenSpeed, startIndex);
-                                                        }}
+                                                        onMouseUp={(e) => { isDraggingRef.current = false; }}
+                                                        onTouchEnd={(e) => { isDraggingRef.current = false; }}
                                                         className="w-full h-1.5 accent-amber-500 bg-slate-200 rounded-full cursor-pointer"
                                                     />
                                                 </div>
@@ -774,9 +933,9 @@ function App() {
                                         </div>
                                     )}
 
-                                    {showHint && currentDictation.hint && (
+                                    {showHint && currentGrammar.hint && (
                                         <div className="p-3 bg-amber-50 border border-amber-100 rounded-lg text-[11px] text-amber-900">
-                                            {currentDictation.hint}
+                                            {currentGrammar.hint}
                                         </div>
                                     )}
                                 </div>
@@ -791,15 +950,22 @@ function App() {
                                         </h3>
                                         <div className="flex items-center gap-2">
                                             <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded">第 {grammarIndex + 1} / {grammarArray.length} 题</span>
-                                            {currentGrammar.question && (
-                                                <button
-                                                    onClick={() => toggleFavorite('grammar', currentGrammar, currentGrammar.question)}
-                                                    className="text-lg"
-                                                    title="收藏语法题"
+                                            <div className="flex gap-3">
+                                                <button 
+                                                    onClick={() => toggleFavorite('grammar', { ...currentGrammar, _day: selectedDay, _index: grammarIndex }, currentGrammar.question)}
+                                                    className={`text-xl transition hover:scale-110 ${isFavorite('grammar', currentGrammar.question) ? 'text-amber-500' : 'text-slate-300'}`}
+                                                    title={isFavorite('grammar', currentGrammar.question) ? "移出本" : "加入本"}
                                                 >
-                                                    {isFavorite('grammar', currentGrammar.question) ? '⭐️' : '☆'}
+                                                    {isFavorite('grammar', currentGrammar.question) ? '★' : '☆'}
                                                 </button>
-                                            )}
+                                                <button 
+                                                    onClick={() => playAudio(currentGrammar.question.replace('___', currentGrammar.correct), 1.0, 0, `/audio/day${selectedDay}/grammar_${grammarIndex}.mp3`)}
+                                                    className="w-10 h-10 rounded-full bg-green-100 text-green-700 flex items-center justify-center text-lg hover:bg-green-200 transition shadow-sm"
+                                                    title="朗读完整原句"
+                                                >    
+                                                    🔊
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -809,15 +975,6 @@ function App() {
                                             <div className="space-y-4">
                                                 <h4 className="text-xs font-bold text-amber-600 uppercase tracking-widest flex justify-between items-center">
                                                     <span>今日语法挑战</span>
-                                                    {isAnswerSubmitted && (
-                                                        <button
-                                                            onClick={() => playAudio(currentGrammar.question.replace('___', currentGrammar.correct), 0.9)}
-                                                            className="text-[10px] text-amber-600 hover:text-amber-700 font-bold bg-amber-50 px-2 py-1 rounded"
-                                                            title="朗读完整原句"
-                                                        >
-                                                            🔊 朗读原句
-                                                        </button>
-                                                    )}
                                                 </h4>
                                                 <div className="text-sm font-semibold text-slate-800 leading-relaxed bg-slate-50 p-4 rounded-xl border border-slate-100">
                                                     {currentGrammar.question}
@@ -917,7 +1074,7 @@ function App() {
                                     <div className="space-y-4 text-sm text-slate-800">
                                         <div className="bg-slate-50 p-5 rounded-xl border border-slate-100 relative group">
                                             <button
-                                                onClick={() => playAudio(currentReading.text, 0.9)}
+                                                onClick={() => playAudio(currentReading.text, 1.0, 0, `/audio/day${selectedDay}/reading.mp3`)}
                                                 className="absolute top-3 right-3 text-xs text-amber-600 hover:text-amber-700 font-bold bg-amber-50 px-2.5 py-1.5 rounded opacity-0 group-hover:opacity-100 transition-opacity"
                                             >
                                                 🔊 朗读
@@ -959,6 +1116,96 @@ function App() {
                     </div>
                 )}
 
+                {activeTab === 'swipe' && (
+                    <div className="space-y-6 animate-fadeIn flex flex-col items-center justify-center py-8">
+                        <div className="text-center mb-6">
+                            <h3 className="text-3xl font-black text-slate-800 flex items-center justify-center gap-3">
+                                🎴 沉浸式速刷 <span className="bg-amber-100 text-amber-800 text-lg px-3 py-1 rounded-full">Day {selectedDay}</span>
+                            </h3>
+                            <p className="text-sm font-medium text-slate-500 mt-3 bg-white px-4 py-2 rounded-full border border-slate-100 shadow-sm inline-block">
+                                <span className="text-red-500 font-bold mr-1">向左滑动 ❌</span> 不认识 (存入错题本)
+                                <span className="mx-3 text-slate-300">|</span>
+                                <span className="text-green-500 font-bold mr-1">向右滑动 ✅</span> 认识
+                            </p>
+                            <div className="mt-4 max-w-xs mx-auto">
+                                <div className="w-full bg-slate-200 rounded-full h-2">
+                                    <div 
+                                        className="bg-amber-500 h-2 rounded-full transition-all duration-300" 
+                                        style={{ width: `${swipeDeck.length > 0 ? (swipeIndex / swipeDeck.length) * 100 : 0}%` }}
+                                    ></div>
+                                </div>
+                                <p className="text-xs font-bold text-slate-400 mt-2">
+                                    {swipeIndex} / {swipeDeck.length} 词
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div className="relative w-full max-w-sm aspect-[3/4] perspective-[1000px] flex items-center justify-center mt-4 h-[450px]">
+                            <AnimatePresence>
+                                {swipeIndex < swipeDeck.length ? (
+                                    <SwipeCard 
+                                        key={swipeIndex} 
+                                        word={swipeDeck[swipeIndex]} 
+                                        onSwipeLeft={() => handleSwipeLeft(swipeDeck[swipeIndex])} 
+                                        onSwipeRight={() => handleSwipeRight()} 
+                                        playAudio={(text, speed, dummyIdx, type) => {
+                                            const url = type === 'word' 
+                                                ? `/audio/day${selectedDay}/vocab_${swipeIndex}_word.mp3` 
+                                                : `/audio/day${selectedDay}/vocab_${swipeIndex}_example.mp3`;
+                                            playAudio(text, 1.0, 0, url);
+                                        }}
+                                    />
+                                ) : (
+                                    <motion.div 
+                                        initial={{ opacity: 0, scale: 0.8 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        className="absolute inset-0 bg-white rounded-[2rem] shadow-xl flex flex-col items-center justify-center p-8 text-center border-2 border-dashed border-slate-200"
+                                    >
+                                        <span className="text-7xl mb-6">🎉</span>
+                                        <h3 className="text-2xl font-black text-slate-800 mb-2">今日速刷完成！</h3>
+                                        <p className="text-slate-500 text-sm mb-8 font-medium leading-relaxed">不认识的生词已自动存入错题本。<br/>您可以去“⭐ 生词错题本”复习。</p>
+                                        <button 
+                                            onClick={() => {
+                                                setSwipeIndex(0);
+                                                triggerSuccess();
+                                            }} 
+                                            className="bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-500 hover:to-orange-600 text-white font-bold py-3 px-8 rounded-xl transition shadow-lg hover:shadow-xl w-full text-base"
+                                        >
+                                            🔄 再刷一遍
+                                        </button>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
+                        
+                        {swipeIndex < swipeDeck.length && (
+                            <div className="flex justify-center items-center gap-8 mt-8">
+                                <button 
+                                    onClick={() => handleSwipeLeft(swipeDeck[swipeIndex])}
+                                    className="w-16 h-16 rounded-full bg-white shadow-md hover:shadow-xl text-red-500 text-2xl hover:scale-110 transition-all border-2 border-red-100 hover:border-red-200 flex items-center justify-center font-bold"
+                                    title="不认识 (加入生词本)"
+                                >
+                                    ❌
+                                </button>
+                                <button 
+                                    onClick={() => playAudio(swipeDeck[swipeIndex].word, 1.0, 0, `/audio/day${selectedDay}/vocab_${swipeIndex}_word.mp3`)}
+                                    className="w-12 h-12 rounded-full bg-white shadow-sm hover:shadow-md text-amber-500 text-xl hover:scale-110 transition-all border border-amber-100 flex items-center justify-center mb-4"
+                                    title="朗读"
+                                >
+                                    🔊
+                                </button>
+                                <button 
+                                    onClick={() => handleSwipeRight()}
+                                    className="w-16 h-16 rounded-full bg-white shadow-md hover:shadow-xl text-green-500 text-2xl hover:scale-110 transition-all border-2 border-green-100 hover:border-green-200 flex items-center justify-center font-bold"
+                                    title="认识"
+                                >
+                                    ✅
+                                </button>
+                            </div>
+                        )}
+                    </div>
+                )}
+
                 {activeTab === 'favorites' && (
                     <div className="space-y-6 animate-fadeIn">
                         <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
@@ -987,7 +1234,7 @@ function App() {
                                             <button onClick={() => toggleFavorite('vocab', v, v.__key)} className="absolute top-2 right-2 text-xs text-slate-400 hover:text-red-500" title="取消收藏">❌</button>
                                             <h5 className="font-black text-slate-800 text-lg flex items-center gap-2">
                                                 {v.word}
-                                                <button onClick={() => playAudio(v.word, 0.95)} className="text-[12px] bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded">🔊</button>
+                                                <button onClick={() => playAudio(v.word, 1.0, 0, v._day ? `/audio/day${v._day}/vocab_${v._index}_word.mp3` : null)} className="text-[12px] bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded">🔊</button>
                                             </h5>
                                             <p className="text-xs text-amber-900 font-bold mt-1.5">{v.translation}</p>
                                             <div className="bg-white p-2 rounded mt-1.5 space-y-1">
@@ -1012,7 +1259,7 @@ function App() {
                                         <div key={idx} className="p-3 bg-slate-50 border border-slate-100 rounded-xl relative hover:border-amber-200 transition">
                                             <button onClick={() => toggleFavorite('dictation', d, d.__key)} className="absolute top-2 right-2 text-xs text-slate-400 hover:text-red-500" title="取消收藏">❌</button>
                                             <p className="font-bold text-sm text-slate-800 pr-4 leading-relaxed">{d.text}</p>
-                                            <button onClick={() => playAudio(d.text, 0.8)} className="mt-2 text-[11px] font-bold bg-amber-500 text-white px-2 py-1 rounded">🔊 慢速朗读</button>
+                                            <button onClick={() => playAudio(d.text, 0.8, 0, d._day ? `/audio/day${d._day}/dictation_${d._index}.mp3` : null)} className="mt-2 text-[11px] font-bold bg-amber-500 text-white px-2 py-1 rounded">🔊 慢速朗读</button>
                                             <p className="text-xs text-amber-900 font-semibold mt-2 pt-2 border-t border-slate-200">{d.translation}</p>
                                         </div>
                                     ))}
@@ -1033,7 +1280,7 @@ function App() {
                                             <p className="font-bold text-xs text-slate-800 pr-4 leading-relaxed">{g.question}</p>
                                             <div className="mt-3 p-2 bg-green-50 border border-green-100 rounded-lg flex justify-between items-center">
                                                 <span className="font-bold text-green-800 text-xs">✓ {g.correct}</span>
-                                                <button onClick={() => playAudio(g.question.replace('___', g.correct), 0.9)} className="text-[10px] font-bold text-green-700 bg-green-100 px-2 py-1 rounded">🔊 朗读原句</button>
+                                                <button onClick={() => playAudio(g.question.replace('___', g.correct), 0.9, 0, g._day ? `/audio/day${g._day}/grammar_${g._index}.mp3` : null)} className="text-[10px] font-bold text-green-700 bg-green-100 px-2 py-1 rounded">🔊 朗读原句</button>
                                             </div>
                                             <p className="text-[10px] text-blue-800 mt-2 leading-relaxed bg-blue-50 p-2 rounded-lg">{g.explanation}</p>
                                         </div>
