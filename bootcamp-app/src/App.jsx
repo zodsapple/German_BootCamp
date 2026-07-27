@@ -3,7 +3,7 @@ import confetti from 'canvas-confetti';
 import { motion, useMotionValue, useTransform, AnimatePresence } from 'framer-motion';
 
 // SwipeCard Component
-const SwipeCard = ({ word, onSwipeLeft, onSwipeRight, playAudio }) => {
+const SwipeCard = ({ word, onSwipeLeft, onSwipeRight, playAudio, playSFX }) => {
     const [isFlipped, setIsFlipped] = useState(false);
     const x = useMotionValue(0);
     
@@ -35,7 +35,10 @@ const SwipeCard = ({ word, onSwipeLeft, onSwipeRight, playAudio }) => {
             initial={{ scale: 0.9, opacity: 0, y: 50 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.8, opacity: 0, transition: { duration: 0.2 } }}
-            onClick={() => setIsFlipped(!isFlipped)}
+            onClick={() => {
+                if (playSFX) playSFX('flip');
+                setIsFlipped(!isFlipped);
+            }}
             className="absolute inset-0 w-full h-full rounded-[2rem] shadow-2xl border-2 border-slate-100 flex flex-col cursor-grab transition-shadow hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] bg-white"
         >
             {!isFlipped ? (
@@ -191,26 +194,106 @@ function App() {
         });
     };
 
-    const triggerSuccess = () => {
+    // Global SFX Audio State (localStorage persistence)
+    const [sfxEnabled, setSfxEnabled] = useState(() => {
+        const saved = localStorage.getItem('de_b1_sfx_enabled');
+        return saved !== null ? JSON.parse(saved) : true;
+    });
+
+    useEffect(() => {
+        localStorage.setItem('de_b1_sfx_enabled', JSON.stringify(sfxEnabled));
+    }, [sfxEnabled]);
+
+    // Web Audio API Synthesizer for UI SFX
+    const playSFX = (type) => {
+        if (!sfxEnabled) return;
         try {
             const AudioContext = window.AudioContext || window.webkitAudioContext;
-            if (AudioContext) {
-                const ctx = new AudioContext();
+            if (!AudioContext) return;
+            const ctx = new AudioContext();
+
+            if (type === 'flip') {
                 const osc = ctx.createOscillator();
                 const gainNode = ctx.createGain();
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(880, ctx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(1760, ctx.currentTime + 0.1);
-                gainNode.gain.setValueAtTime(0, ctx.currentTime);
-                gainNode.gain.linearRampToValueAtTime(0.5, ctx.currentTime + 0.05);
-                gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.5);
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(320, ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(80, ctx.currentTime + 0.08);
+                gainNode.gain.setValueAtTime(0.25, ctx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.08);
                 osc.connect(gainNode);
                 gainNode.connect(ctx.destination);
                 osc.start();
-                osc.stop(ctx.currentTime + 0.5);
+                osc.stop(ctx.currentTime + 0.08);
+            } else if (type === 'swipeRight') {
+                const osc = ctx.createOscillator();
+                const gainNode = ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(440, ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.12);
+                gainNode.gain.setValueAtTime(0.25, ctx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.15);
+                osc.connect(gainNode);
+                gainNode.connect(ctx.destination);
+                osc.start();
+                osc.stop(ctx.currentTime + 0.15);
+            } else if (type === 'swipeLeft') {
+                const osc = ctx.createOscillator();
+                const gainNode = ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(400, ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(180, ctx.currentTime + 0.12);
+                gainNode.gain.setValueAtTime(0.2, ctx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.14);
+                osc.connect(gainNode);
+                gainNode.connect(ctx.destination);
+                osc.start();
+                osc.stop(ctx.currentTime + 0.14);
+            } else if (type === 'correct') {
+                const now = ctx.currentTime;
+                [1046.50, 1318.51].forEach((freq, i) => {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(freq, now + i * 0.08);
+                    gain.gain.setValueAtTime(0.3, now + i * 0.08);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.08 + 0.25);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start(now + i * 0.08);
+                    osc.stop(now + i * 0.08 + 0.25);
+                });
+            } else if (type === 'wrong') {
+                const now = ctx.currentTime;
+                [180, 140].forEach((freq, i) => {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(freq, now + i * 0.1);
+                    gain.gain.setValueAtTime(0.2, now + i * 0.1);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + i * 0.1 + 0.12);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start(now + i * 0.1);
+                    osc.stop(now + i * 0.1 + 0.12);
+                });
+            } else if (type === 'click') {
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(600, ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(200, ctx.currentTime + 0.03);
+                gain.gain.setValueAtTime(0.15, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.03);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start();
+                osc.stop(ctx.currentTime + 0.03);
             }
         } catch (e) { }
+    };
 
+    const triggerSuccess = () => {
+        playSFX('correct');
         confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
     };
 
@@ -350,11 +433,13 @@ function App() {
 
     const handleSwipeRight = () => {
         // Swipe Right (Know)
+        playSFX('swipeRight');
         setSwipeIndex(prev => prev + 1);
     };
 
     const handleSwipeLeft = (wordObj) => {
         // Swipe Left (Don't Know) -> Add to favorites
+        playSFX('swipeLeft');
         if (!isFavorite('vocab', wordObj.word)) {
             toggleFavorite('vocab', { ...wordObj, _day: selectedDay, _index: swipeIndex }, wordObj.word);
         }
@@ -395,6 +480,7 @@ function App() {
             setListeningResult('correct');
             triggerSuccess();
         } else {
+            playSFX('wrong');
             const targetWords = target.split(/\s+/);
             const userWords = user.split(/\s+/);
             const matches = userWords.filter(word => targetWords.includes(word));
@@ -475,7 +561,18 @@ function App() {
                             </p>
                         </div>
                     </div>
-                    <div className="flex items-center space-x-3">
+                    <div className="flex items-center gap-3">
+                        <button
+                            onClick={() => {
+                                const next = !sfxEnabled;
+                                setSfxEnabled(next);
+                                if (next) playSFX('click');
+                            }}
+                            className={`font-medium py-1.5 px-3 rounded-lg text-xs transition flex items-center gap-1.5 ${sfxEnabled ? 'bg-amber-500/20 text-amber-300 border border-amber-400/30' : 'bg-white/10 text-slate-400'}`}
+                            title={sfxEnabled ? "游戏音效已开启（点击关闭）" : "游戏音效已静音（点击开启）"}
+                        >
+                            {sfxEnabled ? '🔊 游戏音效：开' : '🔇 游戏音效：关'}
+                        </button>
                         <button
                             onClick={handleSpeechTest}
                             className="bg-white/20 hover:bg-white/30 text-white font-medium py-1.5 px-3 rounded-lg text-xs transition flex items-center gap-1.5"
@@ -1036,6 +1133,8 @@ function App() {
                                                     setIsAnswerSubmitted(true);
                                                     if (selectedAnswer === currentGrammar.correct) {
                                                         triggerSuccess();
+                                                    } else {
+                                                        playSFX('wrong');
                                                     }
                                                 }}
                                                 disabled={selectedAnswer === null}
@@ -1148,6 +1247,7 @@ function App() {
                                         word={swipeDeck[swipeIndex]} 
                                         onSwipeLeft={() => handleSwipeLeft(swipeDeck[swipeIndex])} 
                                         onSwipeRight={() => handleSwipeRight()} 
+                                        playSFX={playSFX}
                                         playAudio={(text, speed, dummyIdx, type) => {
                                             const url = type === 'word' 
                                                 ? `/audio/day${selectedDay}/vocab_${swipeIndex}_word.mp3` 
