@@ -2,6 +2,14 @@ import { useState, useEffect, useRef } from 'react';
 import confetti from 'canvas-confetti';
 import { motion, useMotionValue, useTransform, AnimatePresence } from 'framer-motion';
 
+// Base URL helper for GitHub Pages / subpath hosting
+const publicUrl = (path) => {
+    if (!path) return '';
+    const base = import.meta.env.BASE_URL || '/';
+    const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+    return `${base}${cleanPath}`;
+};
+
 // SwipeCard Component
 const SwipeCard = ({ word, onSwipeLeft, onSwipeRight, playAudio, playSFX }) => {
     const [isFlipped, setIsFlipped] = useState(false);
@@ -352,7 +360,8 @@ function App() {
         };
 
         if (fallbackAudioUrl) {
-            const audio = new Audio(fallbackAudioUrl);
+            const resolvedAudioUrl = publicUrl(fallbackAudioUrl);
+            const audio = new Audio(resolvedAudioUrl);
             audio.playbackRate = speed;
             currentAudioRef.current = audio;
             
@@ -656,7 +665,7 @@ function App() {
                                         第 1 - 7 天：A2-B1 词汇时态跨越桥梁 (Perfekt, Präteritum, 介词)
                                     </h3>
                                     <div className="flex items-center gap-2.5 bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200/80 rounded-xl px-3 py-1.5 shadow-sm">
-                                        <img src="/gifs/cow_mom_cheer.gif" alt="牛妈督学" className="w-9 h-9 object-contain drop-shadow-sm" />
+                                        <img src={publicUrl('gifs/cow_mom_cheer.gif')} alt="牛妈督学" className="w-9 h-9 object-contain drop-shadow-sm" />
                                         <div className="text-xs">
                                             <span className="font-bold text-amber-900 block">牛妈督学特训站</span>
                                             <span className="text-[10px] text-amber-700">重点攻坚：Day 1 · {bootCampCurriculum[1].title}</span>
@@ -782,7 +791,7 @@ function App() {
                             <div className="flex items-center gap-4">
                                 {selectedDay === 1 && (
                                     <div className="hidden sm:flex flex-col items-center flex-shrink-0 bg-slate-900/80 p-2 rounded-xl border border-amber-500/30 shadow-inner">
-                                        <img src="/gifs/cow_mom_cheer.gif" alt="牛妈督学" className="w-16 h-16 object-contain drop-shadow-md" />
+                                        <img src={publicUrl('gifs/cow_mom_cheer.gif')} alt="牛妈督学" className="w-16 h-16 object-contain drop-shadow-md" />
                                         <span className="text-[9px] text-amber-300 font-bold bg-amber-500/20 px-2 py-0.5 rounded-full mt-1 border border-amber-400/30">
                                             牛妈伴学中
                                         </span>
@@ -1514,7 +1523,7 @@ function App() {
                             <span>豹拉跳舞中 · Wunderbar!</span>
                         </div>
                         <img 
-                            src="/gifs/leopard_dance.gif" 
+                            src={publicUrl('gifs/leopard_dance.gif')} 
                             alt="豹拉跳舞中" 
                             className="w-24 h-24 sm:w-28 sm:h-28 object-contain drop-shadow-2xl cursor-pointer hover:scale-110 transition-transform" 
                             title="豹拉正在伴随德语音频跳舞！点击可再次试听"
@@ -1527,7 +1536,7 @@ function App() {
                             🐆 豹拉待命 (播音频时跳舞，点击试听)
                         </div>
                         <img 
-                            src="/gifs/leopard_static.png" 
+                            src={publicUrl('gifs/leopard_static.png')} 
                             alt="豹拉待命" 
                             className="w-20 h-20 sm:w-24 sm:h-24 object-contain drop-shadow-lg cursor-pointer hover:scale-105 transition-all filter hover:brightness-110 opacity-90" 
                             title="豹拉伴读挂件：播放音频时会自动跳舞！点击测试发音"
