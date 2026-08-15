@@ -649,20 +649,34 @@ function App() {
 
                         {/* Interactive Grid of 30 Days */}
                         <div className="space-y-6">
-                            {/* Week 1 */}
-                            <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
-                                <h3 className="text-sm font-bold uppercase tracking-wider text-red-600 mb-4">
-                                    第 1 - 7 天：A2-B1 词汇时态跨越桥梁 (Perfekt, Präteritum, 介词)
-                                </h3>
+                            {/* Week 1 with Cow Mom mascot */}
+                            <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm relative overflow-hidden">
+                                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4">
+                                    <h3 className="text-sm font-bold uppercase tracking-wider text-red-600">
+                                        第 1 - 7 天：A2-B1 词汇时态跨越桥梁 (Perfekt, Präteritum, 介词)
+                                    </h3>
+                                    <div className="flex items-center gap-2.5 bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200/80 rounded-xl px-3 py-1.5 shadow-sm">
+                                        <img src="/gifs/cow_mom_cheer.gif" alt="牛妈督学" className="w-9 h-9 object-contain drop-shadow-sm" />
+                                        <div className="text-xs">
+                                            <span className="font-bold text-amber-900 block">牛妈督学特训站</span>
+                                            <span className="text-[10px] text-amber-700">重点攻坚：Day 1 · {bootCampCurriculum[1].title}</span>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-3">
                                     {Array.from({ length: 7 }, (_, i) => i + 1).map(day => (
                                         <div
                                             key={day}
                                             onClick={() => { setSelectedDay(day); setActiveTab('dayReview'); }}
-                                            className={`p-3 rounded-xl border-2 text-center cursor-pointer transition ${selectedDay === day ? 'border-amber-500 bg-amber-50' :
+                                            className={`p-3 rounded-xl border-2 text-center cursor-pointer transition relative ${selectedDay === day ? 'border-amber-500 bg-amber-50 shadow-sm' :
                                                 completedDays.includes(day) ? 'border-green-300 bg-green-50' : 'border-gray-100 hover:border-gray-200'
                                                 }`}
                                         >
+                                            {day === 1 && (
+                                                <span className="absolute -top-2.5 -right-1 bg-red-500 text-white text-[9px] font-black px-1.5 py-0.5 rounded-full shadow-sm">
+                                                    ⭐ 极速唤醒
+                                                </span>
+                                            )}
                                             <span className="text-xs text-gray-400 block font-bold">DAY</span>
                                             <span className="text-2xl font-black text-slate-800">{day}</span>
                                             <span className="text-[10px] text-gray-500 truncate block mt-1" title={bootCampCurriculum[day].title}>
@@ -763,18 +777,28 @@ function App() {
                 { }
                 {activeTab === 'dayReview' && (
                     <div className="space-y-8 animate-fadeIn">
-                        {/* Daily Header Navigation */}
-                        <div className="bg-slate-800 text-white p-6 rounded-2xl shadow-md flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                            <div>
-                                <span className="text-xs font-bold text-amber-400 uppercase tracking-widest block">
-                                    {getWeekLabel(selectedDay)}
-                                </span>
-                                <h2 className="text-2xl font-black flex items-center gap-2 mt-1">
-                                    <span>⚡</span> Day {selectedDay}: {bootCampCurriculum[selectedDay].title}
-                                </h2>
-                                <p className="text-xs text-slate-300 mt-1.5 leading-relaxed max-w-xl">
-                                    <strong>今日学习重点：</strong> {bootCampCurriculum[selectedDay].focus}
-                                </p>
+                        {/* Daily Header Navigation with Cow Mom */}
+                        <div className="bg-slate-800 text-white p-6 rounded-2xl shadow-md flex flex-col md:flex-row justify-between items-start md:items-center gap-4 relative overflow-hidden">
+                            <div className="flex items-center gap-4">
+                                {selectedDay === 1 && (
+                                    <div className="hidden sm:flex flex-col items-center flex-shrink-0 bg-slate-900/80 p-2 rounded-xl border border-amber-500/30 shadow-inner">
+                                        <img src="/gifs/cow_mom_cheer.gif" alt="牛妈督学" className="w-16 h-16 object-contain drop-shadow-md" />
+                                        <span className="text-[9px] text-amber-300 font-bold bg-amber-500/20 px-2 py-0.5 rounded-full mt-1 border border-amber-400/30">
+                                            牛妈伴学中
+                                        </span>
+                                    </div>
+                                )}
+                                <div>
+                                    <span className="text-xs font-bold text-amber-400 uppercase tracking-widest block">
+                                        {getWeekLabel(selectedDay)}
+                                    </span>
+                                    <h2 className="text-2xl font-black flex items-center gap-2 mt-1">
+                                        <span>⚡</span> Day {selectedDay}: {bootCampCurriculum[selectedDay].title}
+                                    </h2>
+                                    <p className="text-xs text-slate-300 mt-1.5 leading-relaxed max-w-xl">
+                                        <strong>今日学习重点：</strong> {bootCampCurriculum[selectedDay].focus}
+                                    </p>
+                                </div>
                             </div>
                             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full md:w-auto">
                                 <div className="flex gap-2 justify-between">
@@ -1480,6 +1504,38 @@ function App() {
                 )}
 
             </main>
+
+            {/* Floating Leopard Mascot Companion Widget */}
+            <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end pointer-events-auto select-none group">
+                {isSpeaking && !isPaused ? (
+                    <div className="flex flex-col items-end animate-bounce">
+                        <div className="bg-amber-500 text-white font-bold text-xs px-3 py-1.5 rounded-2xl shadow-xl mb-1 flex items-center gap-1.5 border-2 border-white animate-pulse">
+                            <span>🎵</span>
+                            <span>豹拉跳舞中 · Wunderbar!</span>
+                        </div>
+                        <img 
+                            src="/gifs/leopard_dance.gif" 
+                            alt="豹拉跳舞中" 
+                            className="w-24 h-24 sm:w-28 sm:h-28 object-contain drop-shadow-2xl cursor-pointer hover:scale-110 transition-transform" 
+                            title="豹拉正在伴随德语音频跳舞！点击可再次试听"
+                            onClick={handleSpeechTest}
+                        />
+                    </div>
+                ) : (
+                    <div className="flex flex-col items-end">
+                        <div className="opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900/90 text-amber-300 font-bold text-[11px] px-2.5 py-1 rounded-xl shadow-lg mb-1 border border-slate-700 backdrop-blur-sm">
+                            🐆 豹拉待命 (播音频时跳舞，点击试听)
+                        </div>
+                        <img 
+                            src="/gifs/leopard_static.png" 
+                            alt="豹拉待命" 
+                            className="w-20 h-20 sm:w-24 sm:h-24 object-contain drop-shadow-lg cursor-pointer hover:scale-105 transition-all filter hover:brightness-110 opacity-90" 
+                            title="豹拉伴读挂件：播放音频时会自动跳舞！点击测试发音"
+                            onClick={handleSpeechTest}
+                        />
+                    </div>
+                )}
+            </div>
 
             {/* Footer */}
             <footer className="bg-slate-900 text-slate-400 py-6 mt-12 border-t border-slate-800 text-center text-xs">
