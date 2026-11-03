@@ -1,0 +1,68 @@
+[
+  {
+    "id": "prepositions",
+    "number": "01",
+    "title": "介词 × 冠词",
+    "german": "Präpositionen & Artikel",
+    "description": "der、die、das、die，进了句子怎么变？",
+    "enemy": "大橘",
+    "enemyType": "emperor",
+    "enemyTitle": "冠词守门人",
+    "taunt": "五秒之内，给朕一个交代。",
+    "hitLine": "朕的第三格，竟被你看穿了！",
+    "attackLine": "冠词都没选对，还想过朕这关？",
+    "color": "#e9ad52",
+    "rule": "mit + 第三格 · für + 第四格 · in 表示去向时用第四格。复数第三格常见 den + 名词 -n。",
+    "questions": [
+      {"id":"prep-zug","promptDe":"Ich fahre mit ___ Zug zur Schule.","promptZh":"我坐火车去学校。","noun":"der Zug · 阳性","options":["dem","den","der"],"answer":"dem","solutionDe":"Ich fahre mit dem Zug zur Schule.","solutionZh":"我坐火车去学校。","rule":"mit 后接第三格：der Zug → dem Zug。","chant":"mit dem Zug","chantZh":"坐火车"},
+      {"id":"prep-bahn","promptDe":"Wir fahren mit ___ Bahn.","promptZh":"我们乘轨道交通出行。","noun":"die Bahn · 阴性","options":["der","die","dem"],"answer":"der","solutionDe":"Wir fahren mit der Bahn.","solutionZh":"我们乘轨道交通出行。","rule":"阴性第三格：die Bahn → der Bahn。","chant":"mit der Bahn","chantZh":"乘轨道交通"},
+      {"id":"prep-kino","promptDe":"Ich gehe in ___ Kino.","promptZh":"我走进电影院。（强调目的地）","noun":"das Kino · 中性","options":["das","dem","den"],"answer":"das","solutionDe":"Ich gehe in das Kino.","solutionZh":"我走进电影院。","rule":"这里问“去哪里”：in + 第四格。in das 通常缩合成 ins。","chant":"ins Kino","chantZh":"去电影院"},
+      {"id":"prep-lehrerin","promptDe":"Das Geschenk ist für ___ Lehrerin.","promptZh":"这份礼物是送给那位女老师的。","noun":"die Lehrerin · 阴性","options":["die","der","den"],"answer":"die","solutionDe":"Das Geschenk ist für die Lehrerin.","solutionZh":"这份礼物是送给那位女老师的。","rule":"für 后接第四格；阴性冠词保持 die。","chant":"für die Lehrerin","chantZh":"给那位女老师"},
+      {"id":"prep-freunde","promptDe":"Ich lerne mit ___ Freunden.","promptZh":"我和朋友们一起学习。","noun":"die Freunde · 复数","options":["den","die","dem"],"answer":"den","solutionDe":"Ich lerne mit den Freunden.","solutionZh":"我和朋友们一起学习。","rule":"复数第三格：die Freunde → den Freunden。冠词和名词一起变。","chant":"mit den Freunden","chantZh":"和朋友们一起"}
+    ]
+  },
+  {
+    "id": "adjectives",
+    "number": "02",
+    "title": "形容词变位",
+    "german": "Adjektivendungen",
+    "description": "一个小小的词尾，也能打出一记重击。",
+    "enemy": "皇后",
+    "enemyType": "empress",
+    "enemyTitle": "词尾审判官",
+    "taunt": "词尾错一笔，本宫就出一招。",
+    "hitLine": "这词尾，你倒是记得清楚。",
+    "attackLine": "这般词尾，也敢呈上来？",
+    "color": "#c5a2ee",
+    "rule": "看冠词、性别和格：ein schöner Tag · einen neuen Rucksack · eine rote Jacke · in einem kleinen Haus。",
+    "questions": [
+      {"id":"adj-tag","promptDe":"Das ist ein ___ Tag.","promptZh":"这是美好的一天。","noun":"der Tag · 阳性 · 主格","options":["schöner","schönen","schönes"],"answer":"schöner","solutionDe":"Das ist ein schöner Tag.","solutionZh":"这是美好的一天。","rule":"ein 没有显示阳性主格的词尾，形容词补上 -er：ein schöner Tag。","chant":"ein schöner Tag","chantZh":"美好的一天"},
+      {"id":"adj-rucksack","promptDe":"Ich kaufe einen ___ Rucksack.","promptZh":"我买一个新背包。","noun":"der Rucksack · 阳性 · 第四格","options":["neuen","neuer","neue"],"answer":"neuen","solutionDe":"Ich kaufe einen neuen Rucksack.","solutionZh":"我买一个新背包。","rule":"阳性第四格：einen + 形容词 -en。","chant":"einen neuen Rucksack","chantZh":"一个新背包"},
+      {"id":"adj-jacke","promptDe":"Sie trägt eine ___ Jacke.","promptZh":"她穿着一件红色夹克。","noun":"die Jacke · 阴性 · 第四格","options":["rote","roten","rotes"],"answer":"rote","solutionDe":"Sie trägt eine rote Jacke.","solutionZh":"她穿着一件红色夹克。","rule":"阴性第四格：eine + 形容词 -e。","chant":"eine rote Jacke","chantZh":"一件红色夹克"},
+      {"id":"adj-haus","promptDe":"Wir wohnen in einem ___ Haus.","promptZh":"我们住在一栋小房子里。","noun":"das Haus · 中性 · 第三格","options":["kleinen","kleines","kleine"],"answer":"kleinen","solutionDe":"Wir wohnen in einem kleinen Haus.","solutionZh":"我们住在一栋小房子里。","rule":"这里描述住在哪里，用第三格：einem + 形容词 -en。","chant":"in einem kleinen Haus","chantZh":"在一栋小房子里"},
+      {"id":"adj-buecher","promptDe":"Die ___ Bücher liegen auf dem Tisch.","promptZh":"那些旧书放在桌子上。","noun":"die Bücher · 复数 · 主格","options":["alten","alte","altes"],"answer":"alten","solutionDe":"Die alten Bücher liegen auf dem Tisch.","solutionZh":"那些旧书放在桌子上。","rule":"复数定冠词 die 之后，形容词用 -en：die alten Bücher。","chant":"die alten Bücher","chantZh":"那些旧书"}
+    ]
+  },
+  {
+    "id": "vocabulary",
+    "number": "03",
+    "title": "单词风暴",
+    "german": "Wortschatz-Sturm",
+    "description": "学校与日常生活，看到就要反应过来。",
+    "enemy": "容嬷嬷",
+    "enemyType": "nanny",
+    "enemyTitle": "词汇突袭手",
+    "taunt": "单词记不住？老身替你长长记性。",
+    "hitLine": "哎哟，这个词你居然也认得！",
+    "attackLine": "上过的词，还敢忘？",
+    "color": "#8bd2b5",
+    "rule": "中德双向切换。先认出意思，再跟着节拍读一遍；名词连冠词一起记。词汇取自 Day 1 与 Day 7。",
+    "questions": [
+      {"id":"word-pruefung","promptDe":"Wie heißt das auf Deutsch?","promptZh":"考试","noun":"学校 · 中 → 德","options":["die Prüfung","die Wohnung","die Rechnung"],"answer":"die Prüfung","solutionDe":"Morgen habe ich eine Prüfung.","solutionZh":"明天我有一场考试。","rule":"die Prüfung = 考试。名词和冠词一起记。","chant":"die Prüfung","chantZh":"考试","source":{"day":7,"word":"die Prüfung"}},
+      {"id":"word-puenktlich","promptDe":"pünktlich","promptZh":"这个词是什么意思？","noun":"学校 / 日常 · 德 → 中","options":["准时的","疲惫的","免费的"],"answer":"准时的","solutionDe":"Ich komme pünktlich zur Schule.","solutionZh":"我准时到校。","rule":"pünktlich = 准时的。注意 ü 的发音。","chant":"pünktlich","chantZh":"准时的","source":{"day":1,"word":"pünktlich"}},
+      {"id":"word-hausarbeit","promptDe":"die Hausarbeit","promptZh":"在日常家庭生活里，这个词是什么意思？","noun":"日常生活 · 德 → 中","options":["家务","假期","交通"],"answer":"家务","solutionDe":"Am Samstag mache ich die Hausarbeit.","solutionZh":"周六我做家务。","rule":"日常生活中，die Hausarbeit 指家务；在大学语境里也可以指课程论文。","chant":"die Hausarbeit","chantZh":"家务","source":{"day":1,"word":"die Hausarbeit"}},
+      {"id":"word-kostenlos","promptDe":"Wie heißt das auf Deutsch?","promptZh":"免费的","noun":"日常生活 · 中 → 德","options":["kostenlos","teuer","pünktlich"],"answer":"kostenlos","solutionDe":"Der Eintritt ist kostenlos.","solutionZh":"入场免费。","rule":"kostenlos = 免费的，可以拆成 Kosten（费用）+ -los（无）。","chant":"kostenlos","chantZh":"免费的","source":{"day":7,"word":"kostenlos"}},
+      {"id":"word-verbessern","promptDe":"Wie heißt das auf Deutsch?","promptZh":"改善，提高","noun":"学校 / 日常 · 中 → 德","options":["verbessern","vergessen","verpassen"],"answer":"verbessern","solutionDe":"Ich möchte mein Deutsch verbessern.","solutionZh":"我想提高我的德语。","rule":"verbessern = 改善、提高；verpassen = 错过。","chant":"verbessern","chantZh":"改善，提高","source":{"day":7,"word":"verbessern"}}
+    ]
+  }
+]
