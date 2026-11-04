@@ -5,6 +5,15 @@ export const DIFFICULTIES = {
     hard: { label: '困难', seconds: 5, beats: 8 },
 };
 export const FEEDBACK_SECONDS = BEAT_SECONDS * 4;
+export const PALACE_RANKS = ['初入宫门', '仆人', '宫女', '答应', '常在', '贵人', '嫔', '妃', '贵妃', '皇后', '皇帝'];
+
+export function battleGrade(state) {
+    const total = state.questions.length;
+    const correct = state.answers.filter(answer => answer.correct).length;
+    // A perfect score requires finishing every question correctly, including long rounds.
+    const rating = total > 0 ? Math.min(10, Math.floor(correct / total * 10)) : 0;
+    return { rating, title: PALACE_RANKS[rating], correct, total };
+}
 
 export function initialBattle(difficulty = 'normal') {
     const selected = DIFFICULTIES[difficulty] ? difficulty : 'normal';

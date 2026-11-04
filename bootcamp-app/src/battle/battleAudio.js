@@ -6,7 +6,6 @@ export class BattleAudio {
         this.context = null;
         this.buffers = new Map();
         this.nodes = new Set();
-        this.timer = null;
         this.origin = 0;
         this.muted = false;
         this.clockMode = 'performance';
@@ -24,14 +23,21 @@ export class BattleAudio {
             if (!AudioContext) throw new Error('浏览器暂不支持战斗音频，可以选择静音开战。');
             this.context = new AudioContext();
             this.master = this.context.createGain();
-            this.master.gain.value = this.muted ? 0 : 0.72;
+            this.master.gain.value = this.muted ? 0 : 0.85;
             const compressor = this.context.createDynamicsCompressor();
+            compressor.threshold.value = -16;
+            compressor.knee.value = 12;
+            compressor.ratio.value = 4;
+            compressor.attack.value = 0.003;
+            compressor.release.value = 0.18;
             this.output = compressor;
             this.master.connect(compressor);
             compressor.connect(this.context.destination);
             this.music = this.context.createGain();
-            this.music.gain.value = 0.55;
+            this.music.gain.value = 1;
             this.music.connect(this.master);
+            this.drums = this.context.createGain();
+            this.drums.connect(this.master);
             this.voices = this.context.createGain();
             this.voices.gain.value = 1;
             this.voices.connect(this.master);
@@ -50,26 +56,43 @@ export class BattleAudio {
 
     setMuted(muted) {
         this.muted = muted;
-        if (this.master) this.master.gain.setTargetAtTime(muted ? 0 : 0.72, this.context.currentTime, 0.03);
+        if (this.master) this.master.gain.setTargetAtTime(muted ? 0 : 0.85, this.context.currentTime, 0.03);
+    }
+
+    async load(id, path, trim = false) {
+        if (this.buffers.has(id)) return;
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 20000);
+        try {
+            const response = await fetch(`${import.meta.env.BASE_URL}audio/${path}?v=neural-v1`, { signal: controller.signal });
+            if (!response.ok) throw new Error(`音频加载失败：${id}`);
+            const decoded = await this.context.decodeAudioData(await response.arrayBuffer());
+            this.buffers.set(id, trim ? this.trimSilence(decoded) : decoded);
+        } finally { clearTimeout(timeout); }
     }
 
     async preload(questions, onProgress = () => {}) {
         let loaded = 0;
-        await Promise.all(questions.map(async question => {
-            if (!this.buffers.has(question.id)) {
-                const controller = new AbortController();
-                const timeout = setTimeout(() => controller.abort(), 12000);
-                try {
-                    const response = await fetch(`${import.meta.env.BASE_URL}audio/battle/${question.id}.mp3`, { signal: controller.signal });
-                    if (!response.ok) throw new Error(`语音加载失败：${question.chant}`);
-                    const decoded = await this.context.decodeAudioData(await response.arrayBuffer());
-                    this.buffers.set(question.id, this.trimSilence(decoded));
-                } finally {
-                    clearTimeout(timeout);
-                }
-            }
-            onProgress(++loaded, questions.length);
-        }));
+        await Promise.all([
+            this.load('drums', 'music/drums-96.mp3'),
+            this.load('music', 'music/music-96.mp3'),
+            this.load('bomb-hit', 'music/bomb-hit.mp3'),
+            ...questions.map(async question => {
+                await this.load(question.id, `battle/${question.id}.mp3`, true);
+                if (/^(prep|adj)-/.test(question.id)) await this.load(`echo:${question.id}`, `echoes/${question.id}.mp3`, true);
+                onProgress(++loaded, questions.length);
+            }),
+        ]);
+    }
+
+    async preloadPreview() {
+        await this.load('rap-preview', 'previews/neural-rap-15s.mp3');
+    }
+
+    playPreview() {
+        this.stop();
+        this.speak('rap-preview', this.context.currentTime + 0.06);
+        return this.buffers.get('rap-preview').duration;
     }
 
     trimSilence(buffer) {
@@ -133,42 +156,15 @@ export class BattleAudio {
         source.stop(when + duration);
     }
 
-    scheduleBeat(beat, when) {
-        const step = beat % 16;
-        if (beat % 2 === 0) this.tone(150, when, 0.22, 0.8, 'sine', this.music, 42);
-        if (beat % 2 === 1) {
-            this.hiss(when, 0.13, 0.22, 1500);
-            this.tone(180, when, 0.07, 0.16, 'triangle');
-        }
-        this.hiss(when, 0.045, beat % 2 ? 0.07 : 0.12);
-        this.hiss(when + BEAT_SECONDS / 2, 0.035, 0.045);
-        if (beat % 2 === 0) {
-            const bass = [55, 55, 65.41, 49][Math.floor(step / 4)];
-            this.tone(bass, when, 0.25, 0.24, 'triangle');
-        }
-        if (beat % 4 === 1) {
-            const note = [440, 523.25, 392, 329.63][Math.floor(step / 4)];
-            this.tone(note, when, 0.12, 0.08, 'triangle');
-            this.tone(note * 2, when + BEAT_SECONDS / 2, 0.08, 0.035);
-        }
-    }
-
     start() {
         this.stop();
         this.clockMode = this.context?.state === 'running' ? 'audio' : 'performance';
         this.origin = this.now() + 0.12;
         if (!this.context || this.context.state !== 'running') return this.origin;
         this.music.gain.cancelScheduledValues(this.context.currentTime);
-        this.music.gain.value = 0.55;
-        let beat = 0;
-        const schedule = () => {
-            while (this.origin + beat * BEAT_SECONDS < this.context.currentTime + 0.16) {
-                this.scheduleBeat(beat, this.origin + beat * BEAT_SECONDS);
-                beat++;
-            }
-        };
-        schedule();
-        this.timer = setInterval(schedule, 25);
+        this.music.gain.value = 1;
+        this.play('drums', this.origin, 1, this.drums, true);
+        this.play('music', this.origin, 1, this.music, true);
         return this.origin;
     }
 
@@ -176,51 +172,58 @@ export class BattleAudio {
         return this.origin + Math.ceil(Math.max(0, time - this.origin) / BEAT_SECONDS) * BEAT_SECONDS;
     }
 
-    feedbackEnd(id) {
+    vocalTiming(id) {
         const duration = this.buffers.get(id)?.duration || 1.5;
-        const echo = duration < 1.15 ? BEAT_SECONDS * 2 : 0;
-        const voiceEnd = this.nextBeat(this.now() + 0.06) + duration + echo + 0.18;
-        const earliest = Math.max(this.now() + FEEDBACK_SECONDS, voiceEnd);
+        const when = this.nextBeat(this.now() + 0.36); // Let the impact land before the teaching voice.
+        const echoId = this.buffers.has(`echo:${id}`) ? `echo:${id}` : duration < 1.15 ? id : null;
+        const echoWhen = when + Math.max(2, Math.ceil((duration + 0.08) / BEAT_SECONDS)) * BEAT_SECONDS;
+        const end = echoId ? echoWhen + (this.buffers.get(echoId)?.duration || duration) : when + duration;
+        return { when, duration, echoId, echoWhen, end };
+    }
+
+    feedbackEnd(id) {
+        const earliest = Math.max(this.now() + FEEDBACK_SECONDS, this.vocalTiming(id).end + 0.18);
         return this.origin + Math.ceil((earliest - this.origin) / (BEAT_SECONDS * 4)) * BEAT_SECONDS * 4;
     }
 
-    speak(id, when = this.context?.currentTime || 0, volume = 1) {
+    play(id, when, volume = 1, destination = this.voices, loop = false) {
         const buffer = this.buffers.get(id);
         if (!buffer || !this.context || this.context.state !== 'running') return;
         const source = this.context.createBufferSource();
         const gain = this.context.createGain();
         source.buffer = buffer;
+        source.loop = loop;
+        if (loop) { source.loopStart = 0; source.loopEnd = 15; }
         gain.gain.value = volume;
         source.connect(gain);
-        gain.connect(this.voices);
+        gain.connect(destination);
         this.track(source, [gain]);
         source.start(when);
+    }
+
+    speak(id, when = this.context?.currentTime || 0, volume = 1) {
+        this.play(id, when, volume);
     }
 
     respond(question, correct, combo) {
         if (!this.context || this.context.state !== 'running') return;
         const now = this.context.currentTime;
         if (correct) {
-            this.tone(combo >= 3 ? 110 : 82, now, 0.15, 0.8, 'sine', this.master, 35);
-            this.hiss(now, 0.09, 0.3, 1800, this.master);
+            this.play('bomb-hit', now, combo >= 3 ? 1 : 0.8, this.master);
             [523.25, 659.25, combo >= 3 ? 1046.5 : 783.99].forEach((note, i) => this.tone(note, now + 0.04 + i * 0.055, 0.16, 0.13, 'triangle', this.master));
         } else {
             this.tone(130, now, 0.23, 0.45, 'sawtooth', this.master, 45);
             this.hiss(now, 0.16, 0.25, 800, this.master);
         }
-        const when = this.nextBeat(now + 0.06);
-        const duration = this.buffers.get(question.id)?.duration || 1.5;
+        const { when, echoId, echoWhen, end } = this.vocalTiming(question.id);
         this.music.gain.cancelScheduledValues(now);
-        this.music.gain.setTargetAtTime(0.18, now, 0.025);
-        this.music.gain.setTargetAtTime(0.55, when + duration + 0.12, 0.08);
+        this.music.gain.setTargetAtTime(0.42, now, 0.025);
+        this.music.gain.setTargetAtTime(1, end + 0.12, 0.08);
         this.speak(question.id, when);
-        // Short samples get a quieter call-and-response echo exactly two beats later.
-        if (duration < 1.15) this.speak(question.id, when + BEAT_SECONDS * 2, 0.42);
+        if (echoId) this.speak(echoId, echoWhen, echoId === question.id ? 0.42 : 0.65);
     }
 
     stop() {
-        clearInterval(this.timer);
-        this.timer = null;
         for (const node of this.nodes) {
             try { node.stop(); } catch { /* A finished one-shot may already be stopped. */ }
         }

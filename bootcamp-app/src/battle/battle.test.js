@@ -1,11 +1,25 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, statSync } from 'node:fs';
-import { DIFFICULTIES, BEAT_SECONDS, advanceBattle, enemyHealth, missedQuestions, resolveAnswer, startBattle } from './battleEngine.js';
+import { DIFFICULTIES, BEAT_SECONDS, advanceBattle, battleGrade, enemyHealth, initialBattle, missedQuestions, resolveAnswer, startBattle } from './battleEngine.js';
 import { BattleAudio } from './battleAudio.js';
 import { learningStats, selectQuestions, updateLearning } from './learning.js';
 
 const chapters = JSON.parse(readFileSync(new URL('./questions.json', import.meta.url), 'utf8'));
+
+test('court titles use accuracy out of the planned round and reserve emperor for a perfect round', () => {
+    const grade = (correct, total = 10, score = 99999) => battleGrade({ questions: Array(total), answers: Array.from({ length: correct }, () => ({ correct: true })), score });
+    assert.deepEqual(battleGrade(initialBattle()), { rating: 0, title: '初入宫门', correct: 0, total: 0 });
+    for (const [correct, title] of [[1, '仆人'], [2, '宫女'], [3, '答应'], [4, '常在'], [5, '贵人'], [6, '嫔'], [7, '妃'], [8, '贵妃'], [9, '皇后'], [10, '皇帝']]) {
+        assert.equal(grade(correct).title, title);
+        assert.equal(grade(correct).rating, correct);
+    }
+    assert.equal(grade(5, 5, 0).title, '皇帝');
+    assert.equal(grade(59, 60).title, '皇后');
+    assert.equal(grade(80, 80).title, '皇帝');
+    assert.equal(grade(3, 60).rating, 0); // Unseen questions after an early defeat do not count as correct.
+    assert.deepEqual(grade(9, 10, 100), grade(9, 10, 2000));
+});
 
 test('all 200 bilingual questions have one distinct answer, a topic and the matching MP3', () => {
     assert.deepEqual(chapters.map(chapter => chapter.questions.length), [60, 60, 80]);
@@ -31,6 +45,52 @@ test('all 200 bilingual questions have one distinct answer, a topic and the matc
     }
     for (const chapter of chapters.slice(0, 2)) assert.equal(new Set(chapter.questions.map(question => question.promptDe)).size, chapter.questions.length);
     assert.equal(new Set(chapters[2].questions.map(question => question.chant.toLowerCase())).size, 80);
+});
+
+test('the neural voice bank covers all questions and both grammar chapters have the right response clips', () => {
+    const voices = JSON.parse(readFileSync(new URL('../../public/audio/battle/voices.json', import.meta.url), 'utf8'));
+    assert.equal(voices.questions, 200);
+    assert.equal(voices.lead, 'de-DE-ConradNeural');
+    assert.equal(voices.response, 'de-DE-KatjaNeural');
+    assert.equal(Object.keys(voices.echoes).length, 120);
+    assert.equal(voices.echoes['prep-kino'], 'ins');
+    assert.equal(voices.echoes['adj-tag'], 'schöner');
+    for (const question of chapters.slice(0, 2).flatMap(chapter => chapter.questions)) {
+        assert.ok(voices.echoes[question.id]);
+        assert.ok(statSync(new URL(`../../public/audio/echoes/${question.id}.mp3`, import.meta.url)).size > 1000);
+    }
+});
+
+test('the impact plays only on a correct answer and the teaching voice follows the impact', () => {
+    const audio = new BattleAudio();
+    const hits = [];
+    audio.context = { currentTime: 10, state: 'running' };
+    audio.now = () => 10;
+    audio.origin = 0;
+    audio.music = { gain: { cancelScheduledValues() {}, setTargetAtTime() {} } };
+    audio.tone = () => {};
+    audio.hiss = () => {};
+    audio.play = id => hits.push(id);
+    audio.speak = () => {};
+    const question = chapters[0].questions[0];
+    audio.respond(question, false, 0);
+    assert.equal(hits.length, 0);
+    audio.respond(question, true, 3);
+    assert.deepEqual(hits, ['bomb-hit']);
+    assert.ok(audio.vocalTiming(question.id).when >= 10.36);
+});
+
+test('long grammatical responses finish before the next question, without overlapping the lead', () => {
+    const audio = new BattleAudio();
+    audio.origin = 0;
+    audio.now = () => 2.49;
+    audio.buffers.set('long', { duration: 2.1 });
+    audio.buffers.set('echo:long', { duration: 1.8 });
+    const timing = audio.vocalTiming('long');
+    assert.equal(timing.echoId, 'echo:long');
+    assert.ok(timing.echoWhen >= timing.when + timing.duration + 0.08);
+    assert.ok(audio.feedbackEnd('long') >= timing.end + 0.18);
+    assert.equal(audio.feedbackEnd('long') % (BEAT_SECONDS * 4), 0);
 });
 
 test('eight beats provide exactly five seconds; shuffling preserves answers and source content', () => {

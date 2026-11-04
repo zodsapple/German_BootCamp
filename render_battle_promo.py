@@ -15,8 +15,9 @@ ROOT = Path(__file__).resolve().parent
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--audio", type=Path, default=ROOT / "artifacts/promo-audio.webm")
+    parser.add_argument("--frames", type=Path, default=ROOT / "artifacts/promo-frames")
     args = parser.parse_args()
-    frames_dir = ROOT / "artifacts/promo-frames"
+    frames_dir = args.frames
     metadata = json.loads((frames_dir / "metadata.json").read_text(encoding="utf-8"))
     frames = metadata["frames"]
     first = frames[0]["time"]
@@ -39,7 +40,7 @@ def main():
         "-ss", f"{max(0, first):.3f}", "-i", str(args.audio),
         "-t", "15", "-map", "0:v:0", "-map", "1:a:0",
         "-vf", "scale=720:1280:flags=lanczos:in_range=pc:out_range=tv,fps=30:start_time=0,format=yuv420p",
-        "-af", "alimiter=limit=0.95,apad",
+        "-af", "alimiter=limit=0.95,apad,afade=t=out:st=14.88:d=0.12",
         "-c:v", "libx264", "-preset", "medium", "-crf", "20", "-r", "30", "-fps_mode", "cfr", "-color_range", "tv",
         "-c:a", "aac", "-b:a", "160k", "-movflags", "+faststart",
         "-metadata", "title=Deutsch Palace Duel - 15 second gameplay",

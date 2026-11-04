@@ -1,0 +1,15 @@
+{
+  "duration": 15,
+  "bpm": 96,
+  "lead": "de-DE-ConradNeural",
+  "response": "de-DE-KatjaNeural",
+  "provider": "Microsoft Edge online neural TTS via edge-tts",
+  "phrases": [
+    "Mit dem Zug.",
+    "Mit der Bahn.",
+    "Ins Kino.",
+    "Auf den Tisch.",
+    "Auf dem Tisch."
+  ],
+  "status": "approved voice and rhythm reference"
+}
