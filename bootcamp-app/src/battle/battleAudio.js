@@ -64,7 +64,7 @@ export class BattleAudio {
         const controller = new AbortController();
         const timeout = setTimeout(() => controller.abort(), 20000);
         try {
-            const response = await fetch(`${import.meta.env.BASE_URL}audio/${path}?v=neural-v1`, { signal: controller.signal });
+            const response = await fetch(`${import.meta.env.BASE_URL}audio/${path}?v=neural-v2`, { signal: controller.signal });
             if (!response.ok) throw new Error(`音频加载失败：${id}`);
             const decoded = await this.context.decodeAudioData(await response.arrayBuffer());
             this.buffers.set(id, trim ? this.trimSilence(decoded) : decoded);
@@ -73,16 +73,31 @@ export class BattleAudio {
 
     async preload(questions, onProgress = () => {}) {
         let loaded = 0;
+        let cursor = 0;
+        const worker = async () => {
+            while (cursor < questions.length) {
+                const question = questions[cursor++];
+                await this.load(question.id, `battle/${question.id}.mp3`, true);
+                if (question.grammar) await this.load(`echo:${question.id}`, `echoes/${question.id}.mp3`, true);
+                onProgress(++loaded, questions.length);
+            }
+        };
         await Promise.all([
             this.load('drums', 'music/drums-96.mp3'),
             this.load('music', 'music/music-96.mp3'),
             this.load('bomb-hit', 'music/bomb-hit.mp3'),
-            ...questions.map(async question => {
-                await this.load(question.id, `battle/${question.id}.mp3`, true);
-                if (/^(prep|adj)-/.test(question.id)) await this.load(`echo:${question.id}`, `echoes/${question.id}.mp3`, true);
-                onProgress(++loaded, questions.length);
-            }),
+            ...Array.from({ length: Math.min(4, questions.length) }, worker),
         ]);
+    }
+
+    ready(question) {
+        return this.buffers.has(question.id) && (!question.grammar || this.buffers.has(`echo:${question.id}`));
+    }
+
+    retain(questions) {
+        const keep = new Set(['drums', 'music', 'bomb-hit', 'rap-preview']);
+        for (const question of questions) { keep.add(question.id); keep.add(`echo:${question.id}`); }
+        for (const key of this.buffers.keys()) if (!keep.has(key)) this.buffers.delete(key);
     }
 
     async preloadPreview() {

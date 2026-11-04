@@ -25,12 +25,14 @@ async def main():
     for chapter in chapters:
         for question in chapter["questions"]:
             text = question["chant"]
-            text = text[0].upper() + text[1:] + "."
+            text = text[0].upper() + text[1:]
+            if not text.endswith(('.', '!', '?')):
+                text += '.'
             emphasis = [question["answer"]] if chapter["id"] != "vocabulary" else []
             jobs.append((question["id"], text, "de-DE-ConradNeural", "battle", emphasis))
             if chapter["id"] != "vocabulary":
                 tokens = re.findall(r"[\wäöüÄÖÜß]+", question["chant"])
-                echo = question["answer"] if question["answer"] in tokens else tokens[0]
+                echo = question.get("echo") or (question["answer"] if question["answer"] in tokens else tokens[0])
                 echoes[question["id"]] = echo
                 jobs.append((question["id"] + "-echo", echo + ".", "de-DE-KatjaNeural", "echoes", []))
     semaphore = asyncio.Semaphore(4)
@@ -63,7 +65,7 @@ async def main():
     await asyncio.gather(*(generate(*job) for job in jobs))
     manifest = {q["id"]: q["chant"] for chapter in chapters for q in chapter["questions"]}
     (PUBLIC / "battle/manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    report = {"version": "neural-v1", "lead": "de-DE-ConradNeural", "response": "de-DE-KatjaNeural", "provider": "Microsoft Edge online neural TTS via edge-tts", "questions": len(manifest), "echoes": echoes, "rate": SETTINGS["rate"]}
+    report = {"version": "neural-v2", "lead": "de-DE-ConradNeural", "response": "de-DE-KatjaNeural", "provider": "Microsoft Edge online neural TTS via edge-tts", "questions": len(manifest), "echoes": echoes, "rate": SETTINGS["rate"]}
     (PUBLIC / "battle/voices.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"Complete: {len(manifest)} lead phrases, {len(echoes)} grammar responses", flush=True)
 

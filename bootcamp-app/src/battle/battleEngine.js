@@ -8,22 +8,25 @@ export const FEEDBACK_SECONDS = BEAT_SECONDS * 4;
 export const PALACE_RANKS = ['初入宫门', '仆人', '宫女', '答应', '常在', '贵人', '嫔', '妃', '贵妃', '皇后', '皇帝'];
 
 export function battleGrade(state) {
-    const total = state.questions.length;
+    const planned = state.questions.length;
+    const total = state.answers.length;
     const correct = state.answers.filter(answer => answer.correct).length;
-    // A perfect score requires finishing every question correctly, including long rounds.
-    const rating = total > 0 ? Math.min(10, Math.floor(correct / total * 10)) : 0;
-    return { rating, title: PALACE_RANKS[rating], correct, total };
+    const rating = total > 0 ? Math.min(total === planned ? 10 : 9, Math.floor(correct / total * 10)) : 0;
+    return { rating, title: PALACE_RANKS[rating], correct, total, planned, unanswered: planned - total };
 }
 
 export function initialBattle(difficulty = 'normal') {
     const selected = DIFFICULTIES[difficulty] ? difficulty : 'normal';
-    return { phase: 'lobby', difficulty: selected, seconds: DIFFICULTIES[selected].seconds, index: 0, hearts: 3, combo: 0, bestCombo: 0, score: 0, answers: [], questions: [] };
+    return { phase: 'lobby', mode: 'quick', stageId: null, difficulty: selected, seconds: DIFFICULTIES[selected].seconds, index: 0, hearts: 3, combo: 0, bestCombo: 0, score: 0, answers: [], questions: [] };
 }
 
-export function startBattle(questions, { difficulty = 'normal', random = Math.random } = {}) {
+export function startBattle(questions, { difficulty = 'normal', mode = 'quick', stageId = null, topic = 'all', random = Math.random } = {}) {
     return {
         ...initialBattle(difficulty),
         phase: 'countdown',
+        mode,
+        stageId,
+        topic,
         questions: questions.map(question => {
             const options = [...question.options];
             for (let i = options.length - 1; i > 0; i--) {
@@ -47,7 +50,7 @@ export function resolveAnswer(state, choice, secondsLeft) {
     return {
         ...state,
         phase: 'feedback',
-        hearts: state.hearts - (correct ? 0 : 1),
+        hearts: Math.max(0, state.hearts - (correct ? 0 : 1)),
         combo,
         bestCombo: Math.max(state.bestCombo, combo),
         score: state.score + points,
@@ -57,9 +60,9 @@ export function resolveAnswer(state, choice, secondsLeft) {
 
 export function advanceBattle(state) {
     if (state.phase !== 'feedback') return state;
-    return state.hearts <= 0 || state.index === state.questions.length - 1
+    return (state.mode !== 'full' && state.hearts <= 0) || state.index === state.questions.length - 1
         ? { ...state, phase: 'result' }
-        : { ...state, phase: 'question', index: state.index + 1 };
+        : { ...state, phase: 'question', index: state.index + 1, hearts: state.hearts <= 0 ? 3 : state.hearts };
 }
 
 export function enemyHealth(state) {
@@ -67,6 +70,11 @@ export function enemyHealth(state) {
 }
 
 export function missedQuestions(state) {
-    const answeredCorrectly = new Set(state.answers.filter(answer => answer.correct).map(answer => answer.id));
-    return state.questions.filter(question => !answeredCorrectly.has(question.id));
+    const wrong = new Set(state.answers.filter(answer => !answer.correct).map(answer => answer.id));
+    return state.questions.filter(question => wrong.has(question.id));
+}
+
+export function unansweredQuestions(state) {
+    const answered = new Set(state.answers.map(answer => answer.id));
+    return state.questions.filter(question => !answered.has(question.id));
 }

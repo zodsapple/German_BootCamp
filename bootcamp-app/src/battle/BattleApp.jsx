@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import chapters from './questions.json';
 import { BattleAudio } from './battleAudio.js';
-import { DIFFICULTIES, BEAT_SECONDS, PALACE_RANKS, advanceBattle, battleGrade, enemyHealth, initialBattle, missedQuestions, resolveAnswer, startBattle } from './battleEngine.js';
-import { learningStats, selectQuestions, updateLearning } from './learning.js';
+import { DIFFICULTIES, BEAT_SECONDS, PALACE_RANKS, advanceBattle, battleGrade, enemyHealth, initialBattle, missedQuestions, unansweredQuestions, resolveAnswer, startBattle } from './battleEngine.js';
+import { learningStats, restoreSprint, saveSprint, selectQuestions, updateLearning } from './learning.js';
 import Opponent from './Opponent.jsx';
 import StudyGuide from './StudyGuide.jsx';
 import './battle.css';
@@ -11,6 +11,8 @@ import './readability.css';
 const ACTIVE_PHASES = ['countdown', 'question', 'feedback'];
 const RECORDS_KEY = 'de_palace_battle_v1';
 const LEARNING_KEY = 'de_palace_learning_v1';
+const SPRINTS_KEY = 'de_palace_sprints_v1';
+const AUDIO_BATCH = 12;
 
 function readRecords(key = RECORDS_KEY) {
     try {
@@ -41,6 +43,7 @@ export default function BattleApp({ onExit }) {
     const [capture, setCapture] = useState({ state: 'idle', started: 0 });
     const captureSeconds = new URLSearchParams(window.location.search).get('seconds') === '30' ? 30 : 15;
     const [progress, setProgress] = useState(() => readRecords(LEARNING_KEY));
+    const [sprintSaves, setSprintSaves] = useState(() => readRecords(SPRINTS_KEY));
     const gameRef = useRef(game);
     const audioRef = useRef(null);
     const deadlineRef = useRef(0);
@@ -55,15 +58,25 @@ export default function BattleApp({ onExit }) {
     const question = game.questions[game.index];
     const latest = game.answers.at(-1);
     const active = ACTIVE_PHASES.includes(game.phase);
-    const inBattle = active || game.phase === 'paused';
+    const inBattle = active || game.phase === 'paused' || game.phase === 'buffering';
     const correctCount = game.answers.filter(answer => answer.correct).length;
     const grade = battleGrade(game);
     const defeated = game.phase === 'result' && correctCount === game.questions.length;
     const showFeedback = game.phase === 'feedback' || (game.phase === 'paused' && game.pausedFrom === 'feedback');
+    const pendingSprint = game.phase === 'lobby' && roundMode === 'full' && (sprintSaves[stageId]?.topic || 'all') === topic ? restoreSprint(sprintSaves[stageId], stage.questions) : null;
 
     const commit = useCallback(next => {
         gameRef.current = next;
         setGame(next);
+        if (next.mode === 'full' && next.stageId && next.questions.length && next.phase !== 'loading') {
+            setSprintSaves(previous => {
+                const updated = { ...previous };
+                const saved = saveSprint(next);
+                if (saved) updated[next.stageId] = saved;
+                else delete updated[next.stageId];
+                return updated;
+            });
+        }
     }, []);
 
     useEffect(() => {
@@ -86,6 +99,10 @@ export default function BattleApp({ onExit }) {
     }, [progress]);
 
     useEffect(() => {
+        try { localStorage.setItem(SPRINTS_KEY, JSON.stringify(sprintSaves)); } catch { /* A round can still be played without storage. */ }
+    }, [sprintSaves]);
+
+    useEffect(() => {
         try { localStorage.setItem('de_palace_difficulty', difficulty); } catch { /* Keep the selection in memory. */ }
     }, [difficulty]);
 
@@ -105,13 +122,45 @@ export default function BattleApp({ onExit }) {
     const finish = useCallback(next => {
         audioRef.current.stop();
         setRecords(previous => {
-            const key = `${stageId}:${next.difficulty}:${roundMode}`;
+            const key = `${stageId}:${next.difficulty}:${next.mode}`;
             const old = previous[key];
-            const cleared = next.questions.length === chapters.find(chapter => chapter.id === stageId).questions.length && next.answers.every(answer => answer.correct);
-            return { ...previous, [key]: { score: Math.max(old?.score || 0, next.score), cleared: Boolean(old?.cleared || cleared), bankSize: stage.questions.length } };
+            const cleared = next.questions.length === stage.questions.length && next.answers.length === next.questions.length && next.answers.every(answer => answer.correct);
+            return { ...previous, [key]: { score: Math.max(old?.score || 0, next.score), cleared: Boolean((old?.bankSize === stage.questions.length && old?.cleared) || cleared), bankSize: stage.questions.length } };
         });
         commit(next);
-    }, [commit, stageId, stage.questions.length, roundMode]);
+    }, [commit, stageId, stage.questions.length]);
+
+    const prepareNext = useCallback(async next => {
+        const audio = audioRef.current;
+        if (muted || audio.ready(next.questions[next.index])) {
+            deadlineRef.current = audio.now() + next.seconds;
+            setClock(previous => ({ ...previous, remaining: next.seconds }));
+            commit(next);
+            return;
+        }
+        const request = requestRef.current;
+        const batch = next.questions.slice(next.index, next.index + AUDIO_BATCH);
+        audio.stop();
+        commit({ ...next, phase: 'buffering' });
+        setLoadingCount(0);
+        try {
+            await audio.preload(batch, count => setLoadingCount(count));
+            if (request !== requestRef.current) return;
+            audio.retain(batch);
+            if (document.hidden || audio.context?.state !== 'running') {
+                commit({ ...next, phase: 'paused', pausedFrom: 'countdown' });
+                return;
+            }
+            const origin = audio.start();
+            deadlineRef.current = origin + BEAT_SECONDS * 4;
+            commit({ ...next, phase: document.hidden ? 'paused' : 'countdown', pausedFrom: 'countdown' });
+            if (document.hidden) audio.stop();
+        } catch {
+            if (request !== requestRef.current) return;
+            setError('下一组语音还没准备好。进度已保存，点继续即可重试。');
+            commit({ ...next, phase: 'paused', pausedFrom: 'countdown' });
+        }
+    }, [commit, muted]);
 
     const submit = useCallback(choice => {
         const current = gameRef.current;
@@ -137,7 +186,8 @@ export default function BattleApp({ onExit }) {
             setClock({ remaining, beat: Math.max(0, Math.floor((now - audio.origin) / BEAT_SECONDS)) % 8, count: Math.max(1, Math.ceil(remaining / BEAT_SECONDS)) });
             if (remaining <= 0) {
                 if (current.phase === 'countdown') {
-                    deadlineRef.current += current.seconds;
+                    // A delayed frame must never consume the next question's answer window.
+                    deadlineRef.current = now + current.seconds;
                     setClock(previous => ({ ...previous, remaining: current.seconds }));
                     commit({ ...current, phase: 'question' });
                 } else if (current.phase === 'question') {
@@ -145,11 +195,7 @@ export default function BattleApp({ onExit }) {
                 } else {
                     const next = advanceBattle(current);
                     if (next.phase === 'result') finish(next);
-                    else {
-                        deadlineRef.current += next.seconds;
-                        setClock(previous => ({ ...previous, remaining: next.seconds }));
-                        commit(next);
-                    }
+                    else prepareNext(next);
                 }
                 return;
             }
@@ -157,7 +203,7 @@ export default function BattleApp({ onExit }) {
         };
         frame = requestAnimationFrame(tick);
         return () => cancelAnimationFrame(frame);
-    }, [game.phase, game.index, commit, submit, finish]);
+    }, [game.phase, game.index, commit, submit, finish, prepareNext]);
 
     useEffect(() => {
         const onKey = event => {
@@ -177,14 +223,18 @@ export default function BattleApp({ onExit }) {
         setPreviewing(false);
     };
 
-    const begin = async (questions, silent = false) => {
+    const begin = async (questions, silent = false, continueSprint = false) => {
+        let mode = questions ? 'review' : roundMode;
         let selected = questions || selectQuestions(stage.questions, { progress, mode: roundMode, topic });
         if (!selected.length) {
             selected = selectQuestions(stage.questions, { progress, topic });
             setRoundMode('quick');
+            mode = 'quick';
         }
         if (!selected.length) return;
-        const planned = startBattle(selected, { difficulty });
+        const saved = continueSprint ? restoreSprint(sprintSaves[stageId], stage.questions) : null;
+        const base = startBattle(saved?.questions || selected, { difficulty: saved?.difficulty || difficulty, mode: saved ? 'full' : mode, stageId, topic: saved?.topic || topic });
+        const planned = saved ? { ...base, ...saved, questions: base.questions, phase: 'countdown' } : base;
         const request = ++requestRef.current;
         stopPreview();
         setError('');
@@ -194,9 +244,12 @@ export default function BattleApp({ onExit }) {
         try {
             if (!silent) {
                 await audio.unlock();
-                await audio.preload(selected, count => { if (request === requestRef.current) setLoadingCount(count); });
+                const batch = planned.questions.slice(planned.index, planned.index + AUDIO_BATCH);
+                await audio.preload(batch, count => { if (request === requestRef.current) setLoadingCount(count); });
+                audio.retain(batch);
             }
             if (request !== requestRef.current) return;
+            if (!silent && audio.context?.state !== 'running') throw new Error('音频已被浏览器暂停');
             audio.setMuted(silent || muted);
             if (silent) setMuted(true);
             if (audio.context) audio.context.onstatechange = () => { if (['suspended', 'interrupted'].includes(audio.context?.state)) pause(); };
@@ -220,6 +273,12 @@ export default function BattleApp({ onExit }) {
             if (!muted) await audio.unlock();
             const current = gameRef.current;
             if (current.phase !== 'paused') return;
+            if (!muted) {
+                const batch = current.questions.slice(current.index, current.index + AUDIO_BATCH);
+                await audio.preload(batch);
+                audio.retain(batch);
+                if (audio.context?.state !== 'running') throw new Error('音频仍处于暂停状态');
+            }
             const origin = audio.start();
             if (current.pausedFrom === 'feedback') {
                 const previous = current.answers.at(-1);
@@ -270,7 +329,8 @@ export default function BattleApp({ onExit }) {
             if (wasActive) pause();
             try {
                 await audioRef.current.unlock();
-                if (gameRef.current.questions.length) await audioRef.current.preload(gameRef.current.questions);
+                const current = gameRef.current;
+                if (current.questions.length) await audioRef.current.preload(current.questions.slice(current.index, current.index + AUDIO_BATCH));
             } catch { setError('声音未能恢复，可以保持静音继续。'); return; }
             audioRef.current.setMuted(false);
             setMuted(false);
@@ -314,7 +374,7 @@ export default function BattleApp({ onExit }) {
             <main className="palace-main">
                 <div className="palace-intro">
                     <div><p className="palace-eyebrow">A2—B1 · 普通 10 秒 / 困难 5 秒 · 中德双语</p><h1>{inBattle ? '这一招，用德语接。' : game.phase === 'result' ? defeated ? '漂亮，打得有理有据。' : '记住这一招，再战。' : <>把语法，<em>打成肌肉记忆。</em></>}</h1></div>
-                    <p className="palace-intro-note">{inBattle ? '听鼓点，看语境。选对出手，选错挨打。' : '大橘守冠词，皇后查词尾，容嬷嬷突袭单词。\n这一次，让他们见识你的德语。'}</p>
+                    <p className="palace-intro-note">{inBattle ? game.mode === 'full' ? '全量冲刺不淘汰，进度随答随存。' : '听鼓点，看语境。选对出手，选错挨打。' : '五类语法，400 个单词。\n跟着鼓点，把德语练成反应。'}</p>
                 </div>
 
                 <div className={`palace-layout ${inBattle ? 'is-playing' : ''}`}>
@@ -336,7 +396,7 @@ export default function BattleApp({ onExit }) {
                             {game.combo >= 2 && inBattle && <div className="palace-combo" key={`combo-${game.combo}`}><strong>{game.combo}</strong><span>连击<small>COMBO</small></span></div>}
                             {game.phase === 'countdown' && <div className="palace-countdown" aria-live="polite"><span>跟上节拍</span><strong key={clock.count}>{clock.count > 4 ? 4 : clock.count}</strong><small>准备出招 · MACH DICH BEREIT</small></div>}
                             {game.phase === 'paused' && <div className="palace-pause-overlay"><span>战场已暂停</span><p>歇一拍，回来再接招。</p><button className="palace-primary" onClick={resume}>继续战斗 →</button><button className="palace-text-button" onClick={() => lobby()}>返回选关</button></div>}
-                            {game.phase === 'result' && <div className={`palace-result-stamp ${defeated ? 'is-won' : ''}`}>{defeated ? '击破' : game.hearts <= 0 ? '中招' : '再战'}</div>}
+                            {game.phase === 'result' && <div className={`palace-result-stamp ${defeated ? 'is-won' : ''}`}>{defeated ? '击破' : game.mode === 'full' ? '完练' : game.hearts <= 0 ? '中招' : '再战'}</div>}
                         </div>
 
                         <div className="palace-taunt" aria-live="polite"><span>{stage.enemy}</span><p>「{game.phase === 'feedback' ? latest.correct ? stage.hitLine : stage.attackLine : game.phase === 'result' ? defeated ? '今日算你厉害，下回再来！' : '还有破绽，再练几招。' : stage.taunt}」</p></div>
@@ -345,33 +405,38 @@ export default function BattleApp({ onExit }) {
 
                     <section className="palace-control-panel" aria-label="练习与操作">
                         {game.phase === 'lobby' || game.phase === 'loading' ? <>
-                            <div className="palace-panel-heading"><span className="palace-eyebrow">CHOOSE YOUR BATTLE</span><span className="palace-edition">三关 · {chapters.reduce((total, chapter) => total + chapter.questions.length, 0)} 题</span></div>
+                            <div className="palace-panel-heading"><span className="palace-eyebrow">CHOOSE YOUR BATTLE</span><span className="palace-edition">{chapters.length} 关 · {chapters.reduce((total, chapter) => total + chapter.questions.length, 0)} 题</span></div>
                             <h2>先挑一个，练到会。</h2>
                             <div className="palace-stage-list">{chapters.map(chapter => <button key={chapter.id} className={`palace-stage ${stageId === chapter.id ? 'is-selected' : ''}`} onClick={() => lobby(chapter.id)} disabled={game.phase === 'loading'} aria-pressed={stageId === chapter.id}>
                                 <span className="palace-stage-number">{chapter.number}</span><span className="palace-stage-copy"><strong>{chapter.title}</strong><small>{chapter.enemy} · {chapter.questions.length} 题 · 熟练 {learningStats(chapter.questions, progress).mastered}/{chapter.questions.length}</small></span><span className="palace-stage-arrow">↗</span>
                             </button>)}</div>
                             <p className="palace-stage-description">{stage.description}</p>
                             <div className="palace-difficulty" role="group" aria-label="战斗难度">{Object.entries(DIFFICULTIES).map(([key, item]) => <button key={key} className={difficulty === key ? 'is-selected' : ''} disabled={game.phase === 'loading'} aria-pressed={difficulty === key} onClick={() => setDifficulty(key)}><strong>{item.label}</strong><span>{item.seconds} 秒 / 题</span></button>)}</div>
-                            <div className="palace-practice-options"><label>练习方式<select aria-label="练习方式" value={roundMode} disabled={game.phase === 'loading'} onChange={event => setRoundMode(event.target.value)}><option value="quick">快战 · 每局最多 10 题</option><option value="full">整关训练 · 全部题目</option><option value="review" disabled={stageStats.review === 0}>错题复习 · {stageStats.review} 题待巩固</option></select></label><label>专项主题<select aria-label="专项主题" value={topic} disabled={game.phase === 'loading'} onChange={event => setTopic(event.target.value)}><option value="all">全部主题</option>{topics.map(item => <option key={item}>{item}</option>)}</select></label></div>
+                            <div className="palace-practice-options"><label>练习方式<select aria-label="练习方式" value={roundMode} disabled={game.phase === 'loading'} onChange={event => setRoundMode(event.target.value)}><option value="quick">快战 · 每局最多 10 题</option><option value="full">全量冲刺 · 全部题目不淘汰</option><option value="review" disabled={stageStats.review === 0}>错题复习 · {stageStats.review} 题待巩固</option></select></label><label>专项主题<select aria-label="专项主题" value={topic} disabled={game.phase === 'loading'} onChange={event => setTopic(event.target.value)}><option value="all">全部主题</option>{topics.map(item => <option key={item}>{item}</option>)}</select></label></div>
                             <div className="palace-learning-progress"><span>已练 {stageStats.seen}/{stage.questions.length}</span><span>已熟练 {stageStats.mastered}</span><span>待巩固 {stageStats.review}</span></div>
                             <StudyGuide stageId={stage.id} />
-                            <div className="palace-start-actions"><button className="palace-primary" disabled={game.phase === 'loading'} onClick={() => begin()}>{game.phase === 'loading' ? `正在备战 · ${loadingCount} / ${game.questions.length}` : `向${stage.enemy}出招`}<span>↗</span></button><button className="palace-preview" onClick={preview} disabled={game.phase === 'loading'} aria-pressed={previewing}>{previewing ? '■ 停止试听' : '▶ 先听一段 Rap'}</button></div>
-                            <p className="palace-small-note">本局 {roundSize} 题 · 每题 {settings.seconds} 秒 · 错三次本轮结束</p>
+                            <div className="palace-start-actions"><button className="palace-primary" disabled={game.phase === 'loading'} onClick={() => begin(undefined, false, Boolean(pendingSprint))}>{game.phase === 'loading' ? `正在备战 · ${loadingCount} / ${Math.min(AUDIO_BATCH, game.questions.length - game.index)}` : pendingSprint ? `继续冲刺 · ${pendingSprint.answers.length}/${pendingSprint.questions.length}` : `向${stage.enemy}出招`}<span>↗</span></button><button className="palace-preview" onClick={preview} disabled={game.phase === 'loading'} aria-pressed={previewing}>{previewing ? '■ 停止试听' : '▶ 先听一段 Rap'}</button></div>
+                            {pendingSprint && <button className="palace-restart-sprint" onClick={() => begin()}>重新开始本轮 · 保留学习记录</button>}
+                            <p className="palace-small-note">本局 {roundSize} 题 · 每题 {settings.seconds} 秒 · {roundMode === 'full' ? '不淘汰，体力耗尽自动补满；进度自动保存' : '错三次本轮结束'}</p>
+                            {roundMode === 'full' && <p className="palace-small-note">全部题目都会出场，已学过也能再练。每道题只按本轮实际作答判分，未作答不影响历史记录。</p>}
                         </> : game.phase === 'result' ? <>
                             <span className="palace-eyebrow">ROUND COMPLETE / 本轮战报</span><h2>{defeated ? `${stage.enemy}，接不住了。` : `${stage.enemy}还有破绽可打。`}</h2>
                             <div className={`palace-grade ${grade.rating >= 9 ? 'is-royal' : ''}`} aria-label={`本轮评级 ${grade.rating}分 ${grade.title}`}><div><span>本轮封号</span><strong>{grade.title}</strong></div><p><b>{grade.rating}</b><span>/ 10 分</span></p></div>
-                            <p className="palace-grade-note">按本轮答对题数折算为 10 分，全部答对才能登基。战斗积分：{game.score}</p>
+                            <p className="palace-grade-note">按本轮已作答题的正确率折算为 10 分；未作答不计错。全轮全对才能登基。战斗积分：{game.score}</p>
                             <details className="palace-rank-ladder"><summary>查看宫廷晋升阶梯</summary><ol>{PALACE_RANKS.slice(1).map((title, index) => <li key={title} className={grade.rating === index + 1 ? 'is-current' : ''}><span>{index + 1} 分</span><strong>{title}</strong></li>)}</ol></details>
-                            <div className="palace-result-stats"><div><b>{correctCount}/{game.questions.length}</b><span>答对题数</span></div><div><b>{game.bestCombo}</b><span>最高连击</span></div><div><b>{game.hearts}</b><span>剩余生命</span></div></div>
+                            <div className="palace-result-stats"><div><b>{correctCount}/{game.answers.length}</b><span>答对 / 本轮已答</span></div><div><b>{missedQuestions(game).length}</b><span>本轮答错</span></div><div><b>{unansweredQuestions(game).length}</b><span>尚未作答</span></div></div>
+                            <p className="palace-small-note">计划 {game.questions.length} 题 · 最高连击 {game.bestCombo} · 历史记录只更新实际作答过的题</p>
                             <div className="palace-review-list">{game.questions.map(item => {
                                 const result = game.answers.find(answer => answer.id === item.id);
-                                return <div key={item.id} className={result?.correct ? 'is-correct' : ''}><span>{result?.correct ? '✓' : result ? '↺' : '·'}</span><p><strong lang="de">{item.chant}</strong><small>{item.chantZh}{!result ? ' · 尚未交手' : result.choice === null ? ' · 超时' : !result.correct ? ` · 你选了 ${result.choice}` : ''}</small></p><button aria-label={`朗读 ${item.chant}`} onClick={async () => { try { await audioRef.current.unlock(); await audioRef.current.preload([item]); audioRef.current.speak(item.id); } catch { setError('这条语音暂未加载成功，请重试。'); } }}>♫</button></div>;
+                                return <div key={item.id} className={result?.correct ? 'is-correct' : result ? 'is-wrong' : 'is-unanswered'}><span>{result?.correct ? '✓' : result ? '↺' : '—'}</span><p><strong lang="de">{item.chant}</strong><small>{item.chantZh}{!result ? ` · 未作答${progress[item.id]?.correct ? `，历史答对 ${progress[item.id].correct} 次` : ''}` : result.choice === null ? ' · 本轮超时' : !result.correct ? ` · 本轮选了 ${result.choice}` : ' · 本轮答对'}</small></p><button aria-label={`朗读 ${item.chant}`} onClick={async () => { try { await audioRef.current.unlock(); await audioRef.current.preload([item]); audioRef.current.speak(item.id); } catch { setError('这条语音暂未加载成功，请重试。'); } }}>♫</button></div>;
                             })}</div>
-                            <div className="palace-result-actions"><button className="palace-primary" onClick={() => missedQuestions(game).length ? begin(missedQuestions(game)) : begin()}>{missedQuestions(game).length ? `复仇 · 再练 ${missedQuestions(game).length} 题` : '再打一局'}<span>↗</span></button><button className="palace-preview" onClick={() => lobby(chapters[(chapters.findIndex(item => item.id === stageId) + 1) % chapters.length].id)}>换个对手 →</button></div>
+                            {unansweredQuestions(game).length > 0 && <button className="palace-continue-missing" onClick={() => begin(unansweredQuestions(game))}>继续未答的 {unansweredQuestions(game).length} 题 →</button>}
+                            <div className="palace-result-actions"><button className="palace-primary" onClick={() => missedQuestions(game).length ? begin(missedQuestions(game)) : begin()}>{missedQuestions(game).length ? `复仇 · 只练错题 ${missedQuestions(game).length} 题` : '再打一局'}<span>↗</span></button><button className="palace-preview" onClick={() => lobby(chapters[(chapters.findIndex(item => item.id === stageId) + 1) % chapters.length].id)}>换个对手 →</button></div>
                         </> : <>
-                            <div className="palace-panel-heading palace-round-toolbar"><div><span className="palace-eyebrow">{stage.title} · {DIFFICULTIES[game.difficulty].label} {game.seconds}s</span><span className="palace-edition">第 {game.index + 1} / {game.questions.length} 招</span></div><button className="palace-pause-main" onClick={game.phase === 'paused' ? resume : pause} aria-label={game.phase === 'paused' ? '继续本轮战斗' : '暂停思考'}>{game.phase === 'paused' ? '▶ 继续战斗' : 'Ⅱ 暂停思考'}</button></div>
+                            <div className="palace-panel-heading palace-round-toolbar"><div><span className="palace-eyebrow">{stage.title} · {DIFFICULTIES[game.difficulty].label} {game.seconds}s</span><span className="palace-edition">第 {game.index + 1} / {game.questions.length} 招 · 已答 {game.answers.length}</span></div><button className="palace-pause-main" disabled={game.phase === 'buffering'} onClick={game.phase === 'paused' ? resume : pause} aria-label={game.phase === 'paused' ? '继续本轮战斗' : '暂停思考'}>{game.phase === 'buffering' ? '准备语音…' : game.phase === 'paused' ? '▶ 继续战斗' : 'Ⅱ 暂停思考'}</button></div>
                             <div className={`palace-question-timer ${clock.remaining < 1.5 && game.phase === 'question' ? 'is-urgent' : ''}`}><span>{game.phase === 'countdown' ? '准备出招' : game.phase === 'feedback' ? '听一遍，记住这一招' : game.phase === 'paused' ? '倒计时已暂停' : '敌人正在蓄力'}</span><strong>{game.phase === 'question' ? `${clock.remaining.toFixed(1)}s` : game.phase === 'feedback' ? latest.correct ? '命中 ✓' : latest.choice === null ? '超时 ↺' : '中招 ↺' : '—'}</strong></div>
                             <div className="palace-timer-track"><span style={{ width: game.phase === 'question' ? `${clock.remaining / game.seconds * 100}%` : '100%' }} /></div>
+                            {game.phase === 'buffering' && <p className="palace-loading-note" role="status">下一组语音准备中 · {loadingCount}/{Math.min(AUDIO_BATCH, game.questions.length - game.index)} · 倒计时尚未开始</p>}
                             {question && <div className="palace-question-content" data-question-id={question.id} key={question.id}>
                                 <span className="palace-noun">{question.noun}</span>
                                 <h2 className="palace-question-de"><GermanPrompt text={question.promptDe} answer={showFeedback ? question.answer : null} /></h2>

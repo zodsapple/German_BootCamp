@@ -2,21 +2,26 @@
 
 The app now opens in **德语 · 宫廷对决**, a bilingual A2–B1 rhythm battle prototype. The original 30-day course remains available through **原课程**, or the `#course` URL fragment.
 
-The app includes **200 bilingual questions**, each with a prerecorded German voice sample:
+The app includes **700 bilingual questions**: five grammar chapters with 60 questions each and 400 vocabulary words/chunks, all with prerecorded German speech:
 
 | Battle | Opponent | Content |
 | --- | --- | --- |
 | Prepositions and articles | 大橘 | 60 questions: fixed-case and two-way prepositions, all genders and plurals |
 | Adjective endings | 皇后 | 60 questions: weak, mixed and strong endings across nominative, accusative and dative |
-| Vocabulary storm | 容嬷嬷 | 80 words: 45 drawn from Day 1–10, plus school and daily-life vocabulary; 40 questions in each translation direction |
+| Verbs and tenses | 华妃 | 60 questions: present forms, modals, separable verbs, Perfekt, common Präteritum and werden |
+| Word order and connectors | 沈眉庄 | 60 questions: V2/inversion, questions, verb brackets, subordinate clauses, connectors and zu infinitives |
+| Pronouns and case | 甄嬛 | 60 questions: personal/possessive/reflexive pronouns, accusative/dative and explicit reference |
+| Vocabulary storm | 容嬷嬷 | 400 distinct words/chunks; 177 sourced from Day 1–10 plus common school/daily-life additions; 200 questions in each translation direction |
 
 Choose **Normal: 10 seconds** or **Hard: 5 seconds** per answer. The default short round draws up to ten questions, mixing a few weak questions with fresh content. Full-bank practice, topic filters and a dedicated mistake-review mode are also available.
 
-Correct answers hit immediately; three consecutive correct answers trigger heavy-hit effects. A wrong answer or timeout costs one of three hearts. The result screen offers another round using missed and unseen questions. Scores are stored by chapter, difficulty and practice mode. Each answer saves learning progress immediately; two consecutive correct encounters mark an item as fluent, and a subsequent mistake returns it to review. Review dates after one, three and seven days help prioritize future rounds; no notification or account is required.
+Correct answers hit immediately; three consecutive correct answers trigger heavy-hit effects. A wrong answer or timeout costs a heart. Short battles end after three mistakes. **Full sprints do not eliminate the player**: depleted hearts refill before the next question and the entire selected bank is played, including previously studied words. Results offer separate actions for actual mistakes and unanswered questions. Scores are stored by chapter, difficulty and practice mode. Each actual answer saves learning progress; two consecutive correct encounters mark fluency, and an actual mistake returns the item to review. Review dates after one, three and seven days prioritize future rounds.
+
+The existing learning-storage key and original 200 question IDs remain unchanged. Unanswered items never gain a wrong attempt or reset a correct streak. Full-sprint checkpoints store ordered question IDs and actual answers separately from lifetime learning history. After returning or refreshing, select the same chapter/topic in full-sprint mode and use **继续冲刺** to resume at the next unanswered question. **重新开始本轮** resets that round while keeping learning history.
 
 The large **暂停思考** button stays at the top of the question panel while reading. Feedback has a second large pause button so learners can stop and reflect on the explanation. Pausing freezes combat and stops its audio.
 
-Results now award a court title from accuracy: `floor(correct / planned questions × 10)`, independent of speed/combo battle points. Unanswered questions after defeat remain in the denominator. Scores 1–10 give **仆人、宫女、答应、常在、贵人、嫔、妃、贵妃、皇后、皇帝**; zero is **初入宫门**. A perfect round of any length earns 皇帝. The result screen includes the full promotion ladder.
+Results use actual-answer accuracy: `floor(correct / answered questions × 10)`, independent of speed/combo points. Unanswered questions are excluded from errors and the denominator; partial rounds are capped at nine. Scores 1–10 give **仆人、宫女、答应、常在、贵人、嫔、妃、贵妃、皇后、皇帝**; zero is **初入宫门**. A completed perfect round earns 皇帝. The result screen separates correct/answered, mistakes and unanswered counts and shows the promotion ladder.
 
 The opening study guides explain the article/case table, adjective-ending patterns and vocabulary chunks. German uses the bundled **Atkinson Hyperlegible Next** font; Chinese uses a subset of **Noto Sans SC**, with larger question, answer and explanation text. Font licenses are included under `bootcamp-app/public/fonts`.
 
@@ -26,15 +31,15 @@ From `bootcamp-app`, run `npm install`, then `npm run dev`. Use `npm run build` 
 
 ## Rhythm and voices
 
-The game uses an original **96 BPM** instrumental with separate drum and harmonic stems, and prerecorded German neural phrase samples. ConradNeural leads all 200 phrases; KatjaNeural responds with the key article or adjective in both grammar chapters (120 responses). Vocabulary uses a quieter phrase echo when short enough. Hard mode gives eight beats (five seconds); Normal gives sixteen beats (ten seconds). Feedback lasts at least four beats, extends to a bar boundary, and lets both voices finish. A short bass impact plays only on correct hits, followed by the teaching voice; wrong answers retain their existing cue. The Rap button plays the approved 15-second call-and-response mix.
+The original **96 BPM** instrumental uses separate drum and harmonic stems. ConradNeural leads all 700 phrases; KatjaNeural responds with a grammatical target in all five grammar chapters (300 responses). Vocabulary uses a quieter phrase echo when short enough. Hard mode gives eight beats (five seconds); Normal gives sixteen beats (ten seconds). Feedback extends to a bar boundary and lets both voices finish. A bass impact plays only on correct hits, followed by the teaching voice. The Rap button plays the approved 15-second mix.
 
-Start and Resume unlock one shared Web Audio context directly from a click. Where supported, the optional [Audio Session API](https://developer.mozilla.org/en-US/docs/Web/API/AudioSession/type) declares playback audio and restores the previous session type on exit. Each battle preloads and decodes its MP3 voices, responses, drum/music loops and impact before timing begins; the Rap preview loads its single finished mix. Two 15-second stems loop on the same audio clock; only the harmonic stem ducks during speech so the beat remains clear. Switching away pauses the battle; resuming an unanswered question provides a fresh count-in and a fresh window at the chosen difficulty. Feedback can also be paused for reading. Audio failures expose a silent-play option.
+Start and Resume unlock one shared Web Audio context directly from a click. Where supported, the optional [Audio Session API](https://developer.mozilla.org/en-US/docs/Web/API/AudioSession/type) declares playback audio. Voices load through four workers in windows of twelve questions; earlier buffers are released so a 400-word sprint does not decode the whole bank into memory. If the next window is not ready, combat waits without consuming answer time. Delayed frames never consume the next question's time allowance. Two 15-second stems loop on one audio clock; the harmonic stem ducks during speech. Switching away pauses combat, and resuming provides a fresh count-in and answer window. Feedback can also be paused. Audio failures expose a silent-play option.
 
 Audio assets, the text-to-sample manifest and voice provenance are committed under `bootcamp-app/public/audio/battle`, with responses under `audio/echoes`. Run `python generate_neural_battle_audio.py` from the repository root to regenerate the current bank. It sends only the German phrases to the Microsoft Edge online neural TTS service, caches text/voice settings and word timings locally, emphasizes grammatical words and retries failed requests. The old Google TTS generator remains available for reproducing the earlier prototype. No speech service is called during play.
 
 ### Approved neural Rap
 
-Open **`listen.html`** for the approved 15-second sample. It combines German ConradNeural lead speech with KatjaNeural article responses, article emphasis, an original 96 BPM kick/snare instrumental and ducking under the lead. The same voice and rhythm style now covers all three battle chapters.
+Open **`listen.html`** for the approved 15-second sample. It combines German ConradNeural lead speech with KatjaNeural responses and an original 96 BPM kick/snare instrumental. The same voice and rhythm style covers all six battle chapters.
 
 To reproduce the audio, install `edge-tts==7.3.1`, `numpy` and `imageio-ffmpeg`. Run `python make_neural_rap_preview.py` for the Rap, two instrumental stems and original impact; run `python generate_neural_battle_audio.py` for the bank. Only short German phrases are sent to the Microsoft Edge online neural TTS service. Stems and word timings are cached locally under `artifacts`. The Rap is a 15-second, 48 kHz stereo MP3 plus AAC-LC M4A with fast-start metadata under `public/audio/previews`.
 
