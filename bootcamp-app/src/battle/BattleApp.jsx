@@ -39,6 +39,7 @@ export default function BattleApp({ onExit }) {
     const [error, setError] = useState('');
     const [records, setRecords] = useState(readRecords);
     const [capture, setCapture] = useState({ state: 'idle', started: 0 });
+    const captureSeconds = new URLSearchParams(window.location.search).get('seconds') === '30' ? 30 : 15;
     const [progress, setProgress] = useState(() => readRecords(LEARNING_KEY));
     const gameRef = useRef(game);
     const audioRef = useRef(null);
@@ -283,7 +284,7 @@ export default function BattleApp({ onExit }) {
     const captureAudio = async () => {
         setCapture({ state: 'recording', started: Date.now() });
         try {
-            const blob = await audioRef.current.record(15);
+            const blob = await audioRef.current.record(captureSeconds);
             const url = URL.createObjectURL(blob);
             const filename = blob.type.includes('mp4') ? 'palace-battle-audio.m4a' : 'palace-battle-audio.webm';
             setCapture(previous => ({ ...previous, state: 'done', url, filename }));
@@ -298,7 +299,7 @@ export default function BattleApp({ onExit }) {
 
     return (
         <div className="palace-app">
-            {new URLSearchParams(window.location.search).get('capture') === '1' && <div className={`palace-capture-control is-${capture.state}`} data-started={capture.started}>{capture.url ? <a href={capture.url} download={capture.filename}>下载战斗音轨</a> : <button disabled={!active || muted || capture.state !== 'idle'} onClick={captureAudio}>录制 15 秒战斗音轨</button>}</div>}
+            {new URLSearchParams(window.location.search).get('capture') === '1' && <div className={`palace-capture-control is-${capture.state}`} data-started={capture.started}>{capture.url ? <a href={capture.url} download={capture.filename}>下载战斗音轨</a> : <button disabled={!active || muted || capture.state !== 'idle'} onClick={captureAudio}>录制 {captureSeconds} 秒战斗音轨</button>}</div>}
             <header className="palace-header">
                 <a className="palace-brand" href="#battle" onClick={event => { event.preventDefault(); lobby(); }} aria-label="回到战场首页">
                     <span className="palace-seal">战</span><span>德语 · 宫廷对决<small>DEUTSCH / PALACE DUEL</small></span>

@@ -1,4 +1,4 @@
-"""Encode timestamped browser captures and the game's own audio as a 15s MP4."""
+"""Encode timestamped browser captures and game audio as a portrait promo."""
 
 import argparse
 import json
@@ -20,30 +20,31 @@ def main():
     frames_dir = args.frames
     metadata = json.loads((frames_dir / "metadata.json").read_text(encoding="utf-8"))
     frames = metadata["frames"]
+    seconds = metadata.get("duration", 15)
     first = frames[0]["time"]
     lines = ["ffconcat version 1.0"]
     for index, frame in enumerate(frames):
         normalized = f"normalized-{index:04d}.png"
         with Image.open(frames_dir / frame["file"]) as image:
             image.convert("RGB").resize((540, 960), Image.Resampling.LANCZOS).save(frames_dir / normalized)
-        end = frames[index + 1]["time"] - first if index + 1 < len(frames) else 15
+        end = frames[index + 1]["time"] - first if index + 1 < len(frames) else seconds
         duration = max(0.001, end - (frame["time"] - first))
         lines.extend([f"file '{normalized}'", f"duration {duration:.6f}"])
     lines.append(f"file 'normalized-{len(frames) - 1:04d}.png'")
     concat = frames_dir / "frames.ffconcat"
     concat.write_text("\n".join(lines) + "\n", encoding="utf-8")
-    output = ROOT / "artifacts/palace-duel-15s.mp4"
+    output = ROOT / f"artifacts/palace-duel-{seconds:g}s.mp4"
     ffmpeg = imageio_ffmpeg.get_ffmpeg_exe()
     subprocess.run([
         ffmpeg, "-y", "-hide_banner", "-loglevel", "warning",
         "-f", "concat", "-safe", "0", "-i", str(concat),
         "-ss", f"{max(0, first):.3f}", "-i", str(args.audio),
-        "-t", "15", "-map", "0:v:0", "-map", "1:a:0",
+        "-t", str(seconds), "-map", "0:v:0", "-map", "1:a:0",
         "-vf", "scale=720:1280:flags=lanczos:in_range=pc:out_range=tv,fps=30:start_time=0,format=yuv420p",
-        "-af", "alimiter=limit=0.95,apad,afade=t=out:st=14.88:d=0.12",
+        "-af", f"alimiter=limit=0.95,apad,afade=t=out:st={seconds - 0.18}:d=0.18",
         "-c:v", "libx264", "-preset", "medium", "-crf", "20", "-r", "30", "-fps_mode", "cfr", "-color_range", "tv",
         "-c:a", "aac", "-b:a", "160k", "-movflags", "+faststart",
-        "-metadata", "title=Deutsch Palace Duel - 15 second gameplay",
+        "-metadata", f"title=Deutsch Palace Duel - {seconds:g} second gameplay",
         str(output),
     ], check=True)
     public = ROOT / "bootcamp-app/public/media"
