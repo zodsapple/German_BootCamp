@@ -1,16 +1,20 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import chapters from './questions.json';
 import { BattleAudio } from './battleAudio.js';
-import { ANSWER_SECONDS, BEAT_SECONDS, advanceBattle, enemyHealth, initialBattle, missedQuestions, resolveAnswer, startBattle } from './battleEngine.js';
+import { DIFFICULTIES, BEAT_SECONDS, advanceBattle, enemyHealth, initialBattle, missedQuestions, resolveAnswer, startBattle } from './battleEngine.js';
+import { learningStats, selectQuestions, updateLearning } from './learning.js';
 import Opponent from './Opponent.jsx';
+import StudyGuide from './StudyGuide.jsx';
 import './battle.css';
+import './readability.css';
 
 const ACTIVE_PHASES = ['countdown', 'question', 'feedback'];
 const RECORDS_KEY = 'de_palace_battle_v1';
+const LEARNING_KEY = 'de_palace_learning_v1';
 
-function readRecords() {
+function readRecords(key = RECORDS_KEY) {
     try {
-        const saved = JSON.parse(localStorage.getItem(RECORDS_KEY) || '{}');
+        const saved = JSON.parse(localStorage.getItem(key) || '{}');
         return saved && typeof saved === 'object' && !Array.isArray(saved) ? saved : {};
     } catch { return {}; }
 }
@@ -22,19 +26,31 @@ function GermanPrompt({ text, answer }) {
 
 export default function BattleApp({ onExit }) {
     const [stageId, setStageId] = useState(chapters[0].id);
+    const [difficulty, setDifficulty] = useState(() => {
+        try { return localStorage.getItem('de_palace_difficulty') === 'hard' ? 'hard' : 'normal'; } catch { return 'normal'; }
+    });
+    const [roundMode, setRoundMode] = useState('quick');
+    const [topic, setTopic] = useState('all');
     const [game, setGame] = useState(initialBattle);
-    const [clock, setClock] = useState({ remaining: ANSWER_SECONDS, beat: 0, count: 4 });
+    const [clock, setClock] = useState({ remaining: 10, beat: 0, count: 4 });
     const [muted, setMuted] = useState(false);
     const [previewing, setPreviewing] = useState(false);
     const [loadingCount, setLoadingCount] = useState(0);
     const [error, setError] = useState('');
     const [records, setRecords] = useState(readRecords);
+    const [capture, setCapture] = useState({ state: 'idle', started: 0 });
+    const [progress, setProgress] = useState(() => readRecords(LEARNING_KEY));
     const gameRef = useRef(game);
     const audioRef = useRef(null);
     const deadlineRef = useRef(0);
     const requestRef = useRef(0);
     const previewTimer = useRef(null);
     const stage = chapters.find(chapter => chapter.id === stageId);
+    const settings = DIFFICULTIES[difficulty];
+    const topics = [...new Set(stage.questions.map(item => item.topic || '基础训练'))];
+    const stageStats = learningStats(stage.questions, progress);
+    const scopedQuestions = stage.questions.filter(item => topic === 'all' || (item.topic || '基础训练') === topic);
+    const roundSize = roundMode === 'full' ? scopedQuestions.length : Math.min(10, roundMode === 'review' ? learningStats(scopedQuestions, progress).review : scopedQuestions.length);
     const question = game.questions[game.index];
     const latest = game.answers.at(-1);
     const active = ACTIVE_PHASES.includes(game.phase);
@@ -63,6 +79,14 @@ export default function BattleApp({ onExit }) {
         try { localStorage.setItem(RECORDS_KEY, JSON.stringify(records)); } catch { /* Private browsing can disable storage. */ }
     }, [records]);
 
+    useEffect(() => {
+        try { localStorage.setItem(LEARNING_KEY, JSON.stringify(progress)); } catch { /* Practice remains available without storage. */ }
+    }, [progress]);
+
+    useEffect(() => {
+        try { localStorage.setItem('de_palace_difficulty', difficulty); } catch { /* Keep the selection in memory. */ }
+    }, [difficulty]);
+
     const pause = useCallback(() => {
         const current = gameRef.current;
         if (!ACTIVE_PHASES.includes(current.phase)) return;
@@ -79,12 +103,13 @@ export default function BattleApp({ onExit }) {
     const finish = useCallback(next => {
         audioRef.current.stop();
         setRecords(previous => {
-            const old = previous[stageId];
+            const key = `${stageId}:${next.difficulty}:${roundMode}`;
+            const old = previous[key];
             const cleared = next.questions.length === chapters.find(chapter => chapter.id === stageId).questions.length && next.answers.every(answer => answer.correct);
-            return { ...previous, [stageId]: { score: Math.max(old?.score || 0, next.score), cleared: Boolean(old?.cleared || cleared) } };
+            return { ...previous, [key]: { score: Math.max(old?.score || 0, next.score), cleared: Boolean(old?.cleared || cleared), bankSize: stage.questions.length } };
         });
         commit(next);
-    }, [commit, stageId]);
+    }, [commit, stageId, stage.questions.length, roundMode]);
 
     const submit = useCallback(choice => {
         const current = gameRef.current;
@@ -93,6 +118,7 @@ export default function BattleApp({ onExit }) {
         const next = resolveAnswer(current, choice, deadlineRef.current - audio.now());
         deadlineRef.current = audio.feedbackEnd(current.questions[current.index].id);
         audio.respond(current.questions[current.index], next.answers.at(-1).correct, next.combo);
+        setProgress(previous => updateLearning(previous, [next.answers.at(-1)]));
         commit(next);
     }, [commit]);
 
@@ -109,7 +135,8 @@ export default function BattleApp({ onExit }) {
             setClock({ remaining, beat: Math.max(0, Math.floor((now - audio.origin) / BEAT_SECONDS)) % 8, count: Math.max(1, Math.ceil(remaining / BEAT_SECONDS)) });
             if (remaining <= 0) {
                 if (current.phase === 'countdown') {
-                    deadlineRef.current += ANSWER_SECONDS;
+                    deadlineRef.current += current.seconds;
+                    setClock(previous => ({ ...previous, remaining: current.seconds }));
                     commit({ ...current, phase: 'question' });
                 } else if (current.phase === 'question') {
                     submit(null);
@@ -117,7 +144,8 @@ export default function BattleApp({ onExit }) {
                     const next = advanceBattle(current);
                     if (next.phase === 'result') finish(next);
                     else {
-                        deadlineRef.current += ANSWER_SECONDS;
+                        deadlineRef.current += next.seconds;
+                        setClock(previous => ({ ...previous, remaining: next.seconds }));
                         commit(next);
                     }
                 }
@@ -147,17 +175,24 @@ export default function BattleApp({ onExit }) {
         setPreviewing(false);
     };
 
-    const begin = async (questions = stage.questions, silent = false) => {
+    const begin = async (questions, silent = false) => {
+        let selected = questions || selectQuestions(stage.questions, { progress, mode: roundMode, topic });
+        if (!selected.length) {
+            selected = selectQuestions(stage.questions, { progress, topic });
+            setRoundMode('quick');
+        }
+        if (!selected.length) return;
+        const planned = startBattle(selected, { difficulty });
         const request = ++requestRef.current;
         stopPreview();
         setError('');
         setLoadingCount(0);
-        commit({ ...initialBattle(), phase: 'loading' });
+        commit({ ...planned, phase: 'loading' });
         const audio = audioRef.current;
         try {
             if (!silent) {
                 await audio.unlock();
-                await audio.preload(questions, count => { if (request === requestRef.current) setLoadingCount(count); });
+                await audio.preload(selected, count => { if (request === requestRef.current) setLoadingCount(count); });
             }
             if (request !== requestRef.current) return;
             audio.setMuted(silent || muted);
@@ -165,7 +200,7 @@ export default function BattleApp({ onExit }) {
             if (audio.context) audio.context.onstatechange = () => { if (['suspended', 'interrupted'].includes(audio.context?.state)) pause(); };
             const origin = audio.start();
             deadlineRef.current = origin + BEAT_SECONDS * 4;
-            const next = startBattle(questions);
+            const next = planned;
             commit(document.hidden ? { ...next, phase: 'paused', pausedFrom: 'countdown' } : next);
             window.scrollTo({ top: 0, behavior: 'auto' });
             if (document.hidden) audio.stop();
@@ -173,7 +208,7 @@ export default function BattleApp({ onExit }) {
             if (request !== requestRef.current) return;
             audio.stop();
             setError('声音暂时没准备好。可以重试，或先静音开战；练习进度不受影响。');
-            commit(initialBattle());
+            commit(initialBattle(difficulty));
         }
     };
 
@@ -205,7 +240,7 @@ export default function BattleApp({ onExit }) {
         setError('');
         try {
             await audio.unlock();
-            await audio.preload(stage.questions);
+            await audio.preload(stage.questions.slice(0, 4));
             if (request !== requestRef.current) return;
             setMuted(false);
             audio.setMuted(false);
@@ -222,9 +257,9 @@ export default function BattleApp({ onExit }) {
     const lobby = nextStage => {
         requestRef.current++;
         stopPreview();
-        if (nextStage) setStageId(nextStage);
+        if (nextStage) { setStageId(nextStage); setTopic('all'); setRoundMode('quick'); }
         setError('');
-        commit(initialBattle());
+        commit(initialBattle(difficulty));
         window.scrollTo({ top: 0, behavior: 'auto' });
     };
 
@@ -245,11 +280,29 @@ export default function BattleApp({ onExit }) {
         setMuted(!muted);
     };
 
+    const captureAudio = async () => {
+        setCapture({ state: 'recording', started: Date.now() });
+        try {
+            const blob = await audioRef.current.record(15);
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = blob.type.includes('mp4') ? 'palace-battle-audio.m4a' : 'palace-battle-audio.webm';
+            link.click();
+            setTimeout(() => URL.revokeObjectURL(url), 2000);
+            setCapture(previous => ({ ...previous, state: 'done' }));
+        } catch (failure) {
+            setError(failure.message);
+            setCapture({ state: 'idle', started: 0 });
+        }
+    };
+
     const health = inBattle || game.phase === 'result' ? enemyHealth(game) : 100;
     const impact = game.phase === 'feedback' ? (latest?.correct ? (game.combo >= 3 ? 'heavy' : 'hit') : 'hurt') : '';
 
     return (
         <div className="palace-app">
+            {new URLSearchParams(window.location.search).get('capture') === '1' && <div className={`palace-capture-control is-${capture.state}`} data-started={capture.started}><button disabled={!active || muted || capture.state !== 'idle'} onClick={captureAudio}>录制 15 秒战斗音轨</button></div>}
             <header className="palace-header">
                 <a className="palace-brand" href="#battle" onClick={event => { event.preventDefault(); lobby(); }} aria-label="回到战场首页">
                     <span className="palace-seal">战</span><span>德语 · 宫廷对决<small>DEUTSCH / PALACE DUEL</small></span>
@@ -263,7 +316,7 @@ export default function BattleApp({ onExit }) {
 
             <main className="palace-main">
                 <div className="palace-intro">
-                    <div><p className="palace-eyebrow">A2—B1 · 五秒出招 · 中德双语</p><h1>{inBattle ? '这一招，用德语接。' : game.phase === 'result' ? defeated ? '漂亮，打得有理有据。' : '记住这一招，再战。' : <>把语法，<em>打成肌肉记忆。</em></>}</h1></div>
+                    <div><p className="palace-eyebrow">A2—B1 · 普通 10 秒 / 困难 5 秒 · 中德双语</p><h1>{inBattle ? '这一招，用德语接。' : game.phase === 'result' ? defeated ? '漂亮，打得有理有据。' : '记住这一招，再战。' : <>把语法，<em>打成肌肉记忆。</em></>}</h1></div>
                     <p className="palace-intro-note">{inBattle ? '听鼓点，看语境。选对出手，选错挨打。' : '大橘守冠词，皇后查词尾，容嬷嬷突袭单词。\n这一次，让他们见识你的德语。'}</p>
                 </div>
 
@@ -289,20 +342,23 @@ export default function BattleApp({ onExit }) {
                         </div>
 
                         <div className="palace-taunt" aria-live="polite"><span>{stage.enemy}</span><p>「{game.phase === 'feedback' ? latest.correct ? stage.hitLine : stage.attackLine : game.phase === 'result' ? defeated ? '今日算你厉害，下回再来！' : '还有破绽，再练几招。' : stage.taunt}」</p></div>
-                        <div className="palace-arena-bottom"><div className={`palace-beats ${active || previewing ? 'is-running' : ''}`} aria-label="八拍节奏">{Array.from({ length: 8 }, (_, i) => <span className={clock.beat === i && active ? 'is-beat' : ''} key={i} />)}</div><span>八拍作答 <i>·</i> 四拍回响</span>{active ? <button onClick={pause}>Ⅱ 暂停</button> : <span className="palace-tempo-label">96 BPM / BOOM BAP</span>}</div>
+                        <div className="palace-arena-bottom"><div className={`palace-beats ${active || previewing ? 'is-running' : ''}`} aria-label="战斗节奏">{Array.from({ length: 8 }, (_, i) => <span className={clock.beat === i && active ? 'is-beat' : ''} key={i} />)}</div><span>{inBattle ? DIFFICULTIES[game.difficulty].label : settings.label} {inBattle ? game.seconds : settings.seconds} 秒 <i>·</i> 四拍回响</span>{active ? <button onClick={pause}>Ⅱ 暂停</button> : <span className="palace-tempo-label">96 BPM</span>}</div>
                     </section>
 
                     <section className="palace-control-panel" aria-label="练习与操作">
                         {game.phase === 'lobby' || game.phase === 'loading' ? <>
-                            <div className="palace-panel-heading"><span className="palace-eyebrow">CHOOSE YOUR BATTLE</span><span className="palace-edition">首发试炼 · 15 题</span></div>
+                            <div className="palace-panel-heading"><span className="palace-eyebrow">CHOOSE YOUR BATTLE</span><span className="palace-edition">三关 · {chapters.reduce((total, chapter) => total + chapter.questions.length, 0)} 题</span></div>
                             <h2>先挑一个，练到会。</h2>
                             <div className="palace-stage-list">{chapters.map(chapter => <button key={chapter.id} className={`palace-stage ${stageId === chapter.id ? 'is-selected' : ''}`} onClick={() => lobby(chapter.id)} disabled={game.phase === 'loading'} aria-pressed={stageId === chapter.id}>
-                                <span className="palace-stage-number">{chapter.number}</span><span className="palace-stage-copy"><strong>{chapter.title} {records[chapter.id]?.cleared && <i>✓</i>}</strong><small>{chapter.enemy} · 5 道试炼{records[chapter.id]?.score ? ` · 最高 ${records[chapter.id].score}` : ''}</small></span><span className="palace-stage-arrow">↗</span>
+                                <span className="palace-stage-number">{chapter.number}</span><span className="palace-stage-copy"><strong>{chapter.title}</strong><small>{chapter.enemy} · {chapter.questions.length} 题 · 熟练 {learningStats(chapter.questions, progress).mastered}/{chapter.questions.length}</small></span><span className="palace-stage-arrow">↗</span>
                             </button>)}</div>
                             <p className="palace-stage-description">{stage.description}</p>
-                            <div className="palace-brief"><span>本关招式</span><p>{stage.rule}</p></div>
-                            <div className="palace-start-actions"><button className="palace-primary" disabled={game.phase === 'loading'} onClick={() => begin()}>{game.phase === 'loading' ? `正在备战 · ${loadingCount} / 5` : `向${stage.enemy}出招`}<span>↗</span></button><button className="palace-preview" onClick={preview} disabled={game.phase === 'loading'} aria-pressed={previewing}>{previewing ? '■ 停止试听' : '▶ 先听一段 Rap'}</button></div>
-                            <p className="palace-small-note">点开始后开启声音 · 每题 5 秒 · 错三次本轮结束</p>
+                            <div className="palace-difficulty" role="group" aria-label="战斗难度">{Object.entries(DIFFICULTIES).map(([key, item]) => <button key={key} className={difficulty === key ? 'is-selected' : ''} disabled={game.phase === 'loading'} aria-pressed={difficulty === key} onClick={() => setDifficulty(key)}><strong>{item.label}</strong><span>{item.seconds} 秒 / 题</span></button>)}</div>
+                            <div className="palace-practice-options"><label>练习方式<select aria-label="练习方式" value={roundMode} disabled={game.phase === 'loading'} onChange={event => setRoundMode(event.target.value)}><option value="quick">快战 · 每局最多 10 题</option><option value="full">整关训练 · 全部题目</option><option value="review" disabled={stageStats.review === 0}>错题复习 · {stageStats.review} 题待巩固</option></select></label><label>专项主题<select aria-label="专项主题" value={topic} disabled={game.phase === 'loading'} onChange={event => setTopic(event.target.value)}><option value="all">全部主题</option>{topics.map(item => <option key={item}>{item}</option>)}</select></label></div>
+                            <div className="palace-learning-progress"><span>已练 {stageStats.seen}/{stage.questions.length}</span><span>已熟练 {stageStats.mastered}</span><span>待巩固 {stageStats.review}</span></div>
+                            <StudyGuide stageId={stage.id} />
+                            <div className="palace-start-actions"><button className="palace-primary" disabled={game.phase === 'loading'} onClick={() => begin()}>{game.phase === 'loading' ? `正在备战 · ${loadingCount} / ${game.questions.length}` : `向${stage.enemy}出招`}<span>↗</span></button><button className="palace-preview" onClick={preview} disabled={game.phase === 'loading'} aria-pressed={previewing}>{previewing ? '■ 停止试听' : '▶ 先听一段 Rap'}</button></div>
+                            <p className="palace-small-note">本局 {roundSize} 题 · 每题 {settings.seconds} 秒 · 错三次本轮结束</p>
                         </> : game.phase === 'result' ? <>
                             <span className="palace-eyebrow">ROUND COMPLETE / 本轮战报</span><h2>{defeated ? `${stage.enemy}，接不住了。` : `${stage.enemy}还有破绽可打。`}</h2>
                             <div className="palace-score"><strong>{game.score}</strong><span>本轮得分</span></div>
@@ -313,10 +369,10 @@ export default function BattleApp({ onExit }) {
                             })}</div>
                             <div className="palace-result-actions"><button className="palace-primary" onClick={() => missedQuestions(game).length ? begin(missedQuestions(game)) : begin()}>{missedQuestions(game).length ? `复仇 · 再练 ${missedQuestions(game).length} 题` : '再打一局'}<span>↗</span></button><button className="palace-preview" onClick={() => lobby(chapters[(chapters.findIndex(item => item.id === stageId) + 1) % chapters.length].id)}>换个对手 →</button></div>
                         </> : <>
-                            <div className="palace-panel-heading"><span className="palace-eyebrow">{stage.title}</span><span className="palace-edition">第 {game.index + 1} / {game.questions.length} 招</span></div>
+                            <div className="palace-panel-heading"><span className="palace-eyebrow">{stage.title} · {DIFFICULTIES[game.difficulty].label} {game.seconds}s</span><span className="palace-edition">第 {game.index + 1} / {game.questions.length} 招</span></div>
                             <div className={`palace-question-timer ${clock.remaining < 1.5 && game.phase === 'question' ? 'is-urgent' : ''}`}><span>{game.phase === 'countdown' ? '准备出招' : game.phase === 'feedback' ? '听一遍，记住这一招' : game.phase === 'paused' ? '倒计时已暂停' : '敌人正在蓄力'}</span><strong>{game.phase === 'question' ? `${clock.remaining.toFixed(1)}s` : game.phase === 'feedback' ? latest.correct ? '命中 ✓' : latest.choice === null ? '超时 ↺' : '中招 ↺' : '—'}</strong></div>
-                            <div className="palace-timer-track"><span style={{ width: game.phase === 'question' ? `${clock.remaining / ANSWER_SECONDS * 100}%` : '100%' }} /></div>
-                            {question && <div className="palace-question-content" key={question.id}>
+                            <div className="palace-timer-track"><span style={{ width: game.phase === 'question' ? `${clock.remaining / game.seconds * 100}%` : '100%' }} /></div>
+                            {question && <div className="palace-question-content" data-question-id={question.id} key={question.id}>
                                 <span className="palace-noun">{question.noun}</span>
                                 <h2 className="palace-question-de"><GermanPrompt text={question.promptDe} answer={showFeedback ? question.answer : null} /></h2>
                                 <p className="palace-question-zh">{question.promptZh}</p>
@@ -324,7 +380,7 @@ export default function BattleApp({ onExit }) {
                                 {showFeedback ? <div className={`palace-answer-feedback ${latest.correct ? 'is-correct' : ''}`} role="status"><strong><span lang="de">{question.chant}</span><span>{question.chantZh}</span></strong><p>{question.rule}</p><small lang="de">{question.solutionDe}</small><small>{question.solutionZh}</small>{game.phase === 'feedback' && <button className="palace-read-pause" onClick={pause}>Ⅱ 暂停细看</button>}</div> : <p className="palace-answer-tip">{game.phase === 'countdown' ? '看清语境，等鼓点落下再出手。' : '点击答案即出招 · 也可按键盘 1 / 2 / 3'}</p>}
                             </div>}
                         </>}
-                        {error && <div className="palace-error" role="alert"><p>{error}</p>{game.phase === 'lobby' && <button onClick={() => begin(stage.questions, true)}>静音开战 →</button>}</div>}
+                        {error && <div className="palace-error" role="alert"><p>{error}</p>{game.phase === 'lobby' && <button onClick={() => begin(undefined, true)}>静音开战 →</button>}</div>}
                     </section>
                 </div>
 

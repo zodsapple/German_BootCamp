@@ -8,17 +8,1152 @@
     "enemy": "大橘",
     "enemyType": "emperor",
     "enemyTitle": "冠词守门人",
-    "taunt": "五秒之内，给朕一个交代。",
+    "taunt": "倒计时一到，朕可要出手了。",
     "hitLine": "朕的第三格，竟被你看穿了！",
     "attackLine": "冠词都没选对，还想过朕这关？",
     "color": "#e9ad52",
     "rule": "mit + 第三格 · für + 第四格 · in 表示去向时用第四格。复数第三格常见 den + 名词 -n。",
     "questions": [
-      {"id":"prep-zug","promptDe":"Ich fahre mit ___ Zug zur Schule.","promptZh":"我坐火车去学校。","noun":"der Zug · 阳性","options":["dem","den","der"],"answer":"dem","solutionDe":"Ich fahre mit dem Zug zur Schule.","solutionZh":"我坐火车去学校。","rule":"mit 后接第三格：der Zug → dem Zug。","chant":"mit dem Zug","chantZh":"坐火车"},
-      {"id":"prep-bahn","promptDe":"Wir fahren mit ___ Bahn.","promptZh":"我们乘轨道交通出行。","noun":"die Bahn · 阴性","options":["der","die","dem"],"answer":"der","solutionDe":"Wir fahren mit der Bahn.","solutionZh":"我们乘轨道交通出行。","rule":"阴性第三格：die Bahn → der Bahn。","chant":"mit der Bahn","chantZh":"乘轨道交通"},
-      {"id":"prep-kino","promptDe":"Ich gehe in ___ Kino.","promptZh":"我走进电影院。（强调目的地）","noun":"das Kino · 中性","options":["das","dem","den"],"answer":"das","solutionDe":"Ich gehe in das Kino.","solutionZh":"我走进电影院。","rule":"这里问“去哪里”：in + 第四格。in das 通常缩合成 ins。","chant":"ins Kino","chantZh":"去电影院"},
-      {"id":"prep-lehrerin","promptDe":"Das Geschenk ist für ___ Lehrerin.","promptZh":"这份礼物是送给那位女老师的。","noun":"die Lehrerin · 阴性","options":["die","der","den"],"answer":"die","solutionDe":"Das Geschenk ist für die Lehrerin.","solutionZh":"这份礼物是送给那位女老师的。","rule":"für 后接第四格；阴性冠词保持 die。","chant":"für die Lehrerin","chantZh":"给那位女老师"},
-      {"id":"prep-freunde","promptDe":"Ich lerne mit ___ Freunden.","promptZh":"我和朋友们一起学习。","noun":"die Freunde · 复数","options":["den","die","dem"],"answer":"den","solutionDe":"Ich lerne mit den Freunden.","solutionZh":"我和朋友们一起学习。","rule":"复数第三格：die Freunde → den Freunden。冠词和名词一起变。","chant":"mit den Freunden","chantZh":"和朋友们一起"}
+      {
+        "id": "prep-zug",
+        "promptDe": "Ich fahre mit ___ Zug zur Schule.",
+        "promptZh": "我坐火车去学校。",
+        "noun": "der Zug · 阳性",
+        "options": [
+          "dem",
+          "den",
+          "der"
+        ],
+        "answer": "dem",
+        "solutionDe": "Ich fahre mit dem Zug zur Schule.",
+        "solutionZh": "我坐火车去学校。",
+        "rule": "mit 后接第三格：der Zug → dem Zug。",
+        "chant": "mit dem Zug",
+        "chantZh": "坐火车",
+        "topic": "经典热身",
+        "level": "A2"
+      },
+      {
+        "id": "prep-bahn",
+        "promptDe": "Wir fahren mit ___ Bahn.",
+        "promptZh": "我们乘轨道交通出行。",
+        "noun": "die Bahn · 阴性",
+        "options": [
+          "der",
+          "die",
+          "dem"
+        ],
+        "answer": "der",
+        "solutionDe": "Wir fahren mit der Bahn.",
+        "solutionZh": "我们乘轨道交通出行。",
+        "rule": "阴性第三格：die Bahn → der Bahn。",
+        "chant": "mit der Bahn",
+        "chantZh": "乘轨道交通",
+        "topic": "经典热身",
+        "level": "A2"
+      },
+      {
+        "id": "prep-kino",
+        "promptDe": "Ich gehe in ___ Kino.",
+        "promptZh": "我走进电影院。（强调目的地）",
+        "noun": "das Kino · 中性",
+        "options": [
+          "das",
+          "dem",
+          "den"
+        ],
+        "answer": "das",
+        "solutionDe": "Ich gehe in das Kino.",
+        "solutionZh": "我走进电影院。",
+        "rule": "这里问“去哪里”：in + 第四格。in das 通常缩合成 ins。",
+        "chant": "ins Kino",
+        "chantZh": "去电影院",
+        "topic": "经典热身",
+        "level": "A2"
+      },
+      {
+        "id": "prep-lehrerin",
+        "promptDe": "Das Geschenk ist für ___ Lehrerin.",
+        "promptZh": "这份礼物是送给那位女老师的。",
+        "noun": "die Lehrerin · 阴性",
+        "options": [
+          "die",
+          "der",
+          "den"
+        ],
+        "answer": "die",
+        "solutionDe": "Das Geschenk ist für die Lehrerin.",
+        "solutionZh": "这份礼物是送给那位女老师的。",
+        "rule": "für 后接第四格；阴性冠词保持 die。",
+        "chant": "für die Lehrerin",
+        "chantZh": "给那位女老师",
+        "topic": "经典热身",
+        "level": "A2"
+      },
+      {
+        "id": "prep-freunde",
+        "promptDe": "Ich lerne mit ___ Freunden.",
+        "promptZh": "我和朋友们一起学习。",
+        "noun": "die Freunde · 复数",
+        "options": [
+          "den",
+          "die",
+          "dem"
+        ],
+        "answer": "den",
+        "solutionDe": "Ich lerne mit den Freunden.",
+        "solutionZh": "我和朋友们一起学习。",
+        "rule": "复数第三格：die Freunde → den Freunden。冠词和名词一起变。",
+        "chant": "mit den Freunden",
+        "chantZh": "和朋友们一起",
+        "topic": "经典热身",
+        "level": "A2"
+      },
+      {
+        "id": "prep-bus",
+        "promptDe": "Heute fahre ich mit ___ Bus zum Bahnhof.",
+        "promptZh": "今天我乘公共汽车去火车站。",
+        "noun": "der Bus · 阳性 · 第三格",
+        "options": [
+          "der",
+          "den",
+          "dem"
+        ],
+        "answer": "dem",
+        "solutionDe": "Heute fahre ich mit dem Bus zum Bahnhof.",
+        "solutionZh": "今天我乘公共汽车去火车站。",
+        "rule": "mit 固定接第三格：der Bus → dem Bus。",
+        "chant": "mit dem Bus",
+        "chantZh": "乘公共汽车",
+        "topic": "固定第三格介词：mit",
+        "level": "A2"
+      },
+      {
+        "id": "prep-fahrrad",
+        "promptDe": "Meine Schwester fährt mit ___ Fahrrad zur Arbeit.",
+        "promptZh": "我姐姐骑自行车去上班。",
+        "noun": "das Fahrrad · 中性 · 第三格",
+        "options": [
+          "dem",
+          "den",
+          "das"
+        ],
+        "answer": "dem",
+        "solutionDe": "Meine Schwester fährt mit dem Fahrrad zur Arbeit.",
+        "solutionZh": "我姐姐骑自行车去上班。",
+        "rule": "mit 固定接第三格：das Fahrrad → dem Fahrrad。",
+        "chant": "mit dem Fahrrad",
+        "chantZh": "骑自行车",
+        "topic": "固定第三格介词：mit",
+        "level": "A2"
+      },
+      {
+        "id": "prep-eltern",
+        "promptDe": "Ich esse heute mit ___ Eltern zu Abend.",
+        "promptZh": "今天我和父母一起吃晚饭。",
+        "noun": "die Eltern · 复数 · 第三格",
+        "options": [
+          "dem",
+          "die",
+          "den"
+        ],
+        "answer": "den",
+        "solutionDe": "Ich esse heute mit den Eltern zu Abend.",
+        "solutionZh": "今天我和父母一起吃晚饭。",
+        "rule": "mit 固定接第三格：die Eltern → den Eltern。复数第三格用 den；名词通常加 -n，原来以 -n 或 -s 结尾时不再加。",
+        "chant": "mit den Eltern",
+        "chantZh": "和父母一起",
+        "topic": "固定第三格介词：mit",
+        "level": "A2"
+      },
+      {
+        "id": "prep-lehrer",
+        "promptDe": "Ich habe heute Unterricht bei ___ Lehrer.",
+        "promptZh": "今天我上那位男老师的课。",
+        "noun": "der Lehrer · 阳性 · 第三格",
+        "options": [
+          "der",
+          "den",
+          "dem"
+        ],
+        "answer": "dem",
+        "solutionDe": "Ich habe heute Unterricht bei dem Lehrer.",
+        "solutionZh": "今天我上那位男老师的课。",
+        "rule": "bei 固定接第三格：der Lehrer → dem Lehrer。",
+        "chant": "bei dem Lehrer",
+        "chantZh": "跟那位男老师上课",
+        "topic": "固定第三格介词：bei",
+        "level": "A2"
+      },
+      {
+        "id": "prep-familie",
+        "promptDe": "Am Wochenende bin ich bei ___ Familie.",
+        "promptZh": "周末我和家人待在一起。",
+        "noun": "die Familie · 阴性 · 第三格",
+        "options": [
+          "der",
+          "dem",
+          "die"
+        ],
+        "answer": "der",
+        "solutionDe": "Am Wochenende bin ich bei der Familie.",
+        "solutionZh": "周末我和家人待在一起。",
+        "rule": "bei 固定接第三格：die Familie → der Familie。",
+        "chant": "bei der Familie",
+        "chantZh": "和家人在一起",
+        "topic": "固定第三格介词：bei",
+        "level": "A2"
+      },
+      {
+        "id": "prep-fruehstueck",
+        "promptDe": "Wir sprechen bei ___ Frühstück über den Ausflug.",
+        "promptZh": "我们在吃早饭时谈论这次出游。",
+        "noun": "das Frühstück · 中性 · 第三格",
+        "options": [
+          "den",
+          "das",
+          "dem"
+        ],
+        "answer": "dem",
+        "solutionDe": "Wir sprechen bei dem Frühstück über den Ausflug.",
+        "solutionZh": "我们在吃早饭时谈论这次出游。",
+        "rule": "bei 固定接第三格：das Frühstück → dem Frühstück。",
+        "chant": "bei dem Frühstück",
+        "chantZh": "在吃早饭时",
+        "topic": "固定第三格介词：bei",
+        "level": "A2"
+      },
+      {
+        "id": "prep-grosseltern",
+        "promptDe": "Die Kinder schlafen heute bei ___ Großeltern.",
+        "promptZh": "孩子们今晚在祖父母家过夜。",
+        "noun": "die Großeltern · 复数 · 第三格",
+        "options": [
+          "die",
+          "den",
+          "dem"
+        ],
+        "answer": "den",
+        "solutionDe": "Die Kinder schlafen heute bei den Großeltern.",
+        "solutionZh": "孩子们今晚在祖父母家过夜。",
+        "rule": "bei 固定接第三格：die Großeltern → den Großeltern。复数第三格用 den；名词通常加 -n，原来以 -n 或 -s 结尾时不再加。",
+        "chant": "bei den Großeltern",
+        "chantZh": "在祖父母家",
+        "topic": "固定第三格介词：bei",
+        "level": "A2"
+      },
+      {
+        "id": "prep-unterricht",
+        "promptDe": "Nach ___ Unterricht gehe ich nach Hause.",
+        "promptZh": "下课后我回家。",
+        "noun": "der Unterricht · 阳性 · 第三格",
+        "options": [
+          "den",
+          "dem",
+          "der"
+        ],
+        "answer": "dem",
+        "solutionDe": "Nach dem Unterricht gehe ich nach Hause.",
+        "solutionZh": "下课后我回家。",
+        "rule": "nach 固定接第三格：der Unterricht → dem Unterricht。",
+        "chant": "nach dem Unterricht",
+        "chantZh": "下课后",
+        "topic": "固定第三格介词：nach",
+        "level": "A2"
+      },
+      {
+        "id": "prep-schule",
+        "promptDe": "Nach ___ Schule spiele ich Fußball.",
+        "promptZh": "放学后我踢足球。",
+        "noun": "die Schule · 阴性 · 第三格",
+        "options": [
+          "dem",
+          "die",
+          "der"
+        ],
+        "answer": "der",
+        "solutionDe": "Nach der Schule spiele ich Fußball.",
+        "solutionZh": "放学后我踢足球。",
+        "rule": "nach 固定接第三格：die Schule → der Schule。",
+        "chant": "nach der Schule",
+        "chantZh": "放学后",
+        "topic": "固定第三格介词：nach",
+        "level": "A2"
+      },
+      {
+        "id": "prep-essen",
+        "promptDe": "Nach ___ Essen räumen wir den Tisch ab.",
+        "promptZh": "吃完饭后我们收拾餐桌。",
+        "noun": "das Essen · 中性 · 第三格",
+        "options": [
+          "das",
+          "dem",
+          "den"
+        ],
+        "answer": "dem",
+        "solutionDe": "Nach dem Essen räumen wir den Tisch ab.",
+        "solutionZh": "吃完饭后我们收拾餐桌。",
+        "rule": "nach 固定接第三格：das Essen → dem Essen。",
+        "chant": "nach dem Essen",
+        "chantZh": "吃完饭后",
+        "topic": "固定第三格介词：nach",
+        "level": "A2"
+      },
+      {
+        "id": "prep-ferien",
+        "promptDe": "Nach ___ Ferien beginnt der Deutschkurs.",
+        "promptZh": "假期结束后德语课开始。",
+        "noun": "die Ferien · 复数 · 第三格",
+        "options": [
+          "den",
+          "dem",
+          "die"
+        ],
+        "answer": "den",
+        "solutionDe": "Nach den Ferien beginnt der Deutschkurs.",
+        "solutionZh": "假期结束后德语课开始。",
+        "rule": "nach 固定接第三格：die Ferien → den Ferien。复数第三格用 den；名词通常加 -n，原来以 -n 或 -s 结尾时不再加。",
+        "chant": "nach den Ferien",
+        "chantZh": "假期结束后",
+        "topic": "固定第三格介词：nach",
+        "level": "A2"
+      },
+      {
+        "id": "prep-supermarkt",
+        "promptDe": "Ich komme gerade aus ___ Supermarkt.",
+        "promptZh": "我刚从超市出来。",
+        "noun": "der Supermarkt · 阳性 · 第三格",
+        "options": [
+          "dem",
+          "der",
+          "den"
+        ],
+        "answer": "dem",
+        "solutionDe": "Ich komme gerade aus dem Supermarkt.",
+        "solutionZh": "我刚从超市出来。",
+        "rule": "aus 固定接第三格：der Supermarkt → dem Supermarkt。",
+        "chant": "aus dem Supermarkt",
+        "chantZh": "从超市出来",
+        "topic": "固定第三格介词：aus",
+        "level": "A2"
+      },
+      {
+        "id": "prep-kueche",
+        "promptDe": "Aus ___ Küche kommt ein guter Duft.",
+        "promptZh": "厨房里飘出一阵香味。",
+        "noun": "die Küche · 阴性 · 第三格",
+        "options": [
+          "die",
+          "der",
+          "dem"
+        ],
+        "answer": "der",
+        "solutionDe": "Aus der Küche kommt ein guter Duft.",
+        "solutionZh": "厨房里飘出一阵香味。",
+        "rule": "aus 固定接第三格：die Küche → der Küche。",
+        "chant": "aus der Küche",
+        "chantZh": "从厨房里",
+        "topic": "固定第三格介词：aus",
+        "level": "A2"
+      },
+      {
+        "id": "prep-haus",
+        "promptDe": "Der Junge kommt aus ___ Haus.",
+        "promptZh": "那个男孩从房子里出来。",
+        "noun": "das Haus · 中性 · 第三格",
+        "options": [
+          "dem",
+          "den",
+          "das"
+        ],
+        "answer": "dem",
+        "solutionDe": "Der Junge kommt aus dem Haus.",
+        "solutionZh": "那个男孩从房子里出来。",
+        "rule": "aus 固定接第三格：das Haus → dem Haus。",
+        "chant": "aus dem Haus",
+        "chantZh": "从房子里出来",
+        "topic": "固定第三格介词：aus",
+        "level": "A2"
+      },
+      {
+        "id": "prep-taschen",
+        "promptDe": "Wir holen die Bücher aus ___ Taschen.",
+        "promptZh": "我们从包里拿出书。",
+        "noun": "die Taschen · 复数 · 第三格",
+        "options": [
+          "dem",
+          "die",
+          "den"
+        ],
+        "answer": "den",
+        "solutionDe": "Wir holen die Bücher aus den Taschen.",
+        "solutionZh": "我们从包里拿出书。",
+        "rule": "aus 固定接第三格：die Taschen → den Taschen。复数第三格用 den；名词通常加 -n，原来以 -n 或 -s 结尾时不再加。",
+        "chant": "aus den Taschen",
+        "chantZh": "从那些包里",
+        "topic": "固定第三格介词：aus",
+        "level": "A2"
+      },
+      {
+        "id": "prep-bahnhof",
+        "promptDe": "Von ___ Bahnhof sind es zehn Minuten zu Fuß.",
+        "promptZh": "从火车站步行要十分钟。",
+        "noun": "der Bahnhof · 阳性 · 第三格",
+        "options": [
+          "der",
+          "den",
+          "dem"
+        ],
+        "answer": "dem",
+        "solutionDe": "Von dem Bahnhof sind es zehn Minuten zu Fuß.",
+        "solutionZh": "从火车站步行要十分钟。",
+        "rule": "von 固定接第三格：der Bahnhof → dem Bahnhof。",
+        "chant": "von dem Bahnhof",
+        "chantZh": "从火车站",
+        "topic": "固定第三格介词：von",
+        "level": "A2"
+      },
+      {
+        "id": "prep-haltestelle",
+        "promptDe": "Von ___ Haltestelle gehen wir direkt zur Schule.",
+        "promptZh": "我们从公交站直接走去学校。",
+        "noun": "die Haltestelle · 阴性 · 第三格",
+        "options": [
+          "der",
+          "dem",
+          "die"
+        ],
+        "answer": "der",
+        "solutionDe": "Von der Haltestelle gehen wir direkt zur Schule.",
+        "solutionZh": "我们从公交站直接走去学校。",
+        "rule": "von 固定接第三格：die Haltestelle → der Haltestelle。",
+        "chant": "von der Haltestelle",
+        "chantZh": "从公交站",
+        "topic": "固定第三格介词：von",
+        "level": "A2"
+      },
+      {
+        "id": "prep-training",
+        "promptDe": "Mein Bruder kommt gerade von ___ Training.",
+        "promptZh": "我弟弟刚训练完回来。",
+        "noun": "das Training · 中性 · 第三格",
+        "options": [
+          "den",
+          "das",
+          "dem"
+        ],
+        "answer": "dem",
+        "solutionDe": "Mein Bruder kommt gerade von dem Training.",
+        "solutionZh": "我弟弟刚训练完回来。",
+        "rule": "von 固定接第三格：das Training → dem Training。",
+        "chant": "von dem Training",
+        "chantZh": "从训练场回来",
+        "topic": "固定第三格介词：von",
+        "level": "A2"
+      },
+      {
+        "id": "prep-nachbarn",
+        "promptDe": "Das Paket ist von ___ Nachbarn.",
+        "promptZh": "这个包裹是邻居们寄来的。",
+        "noun": "die Nachbarn · 复数 · 第三格",
+        "options": [
+          "die",
+          "den",
+          "dem"
+        ],
+        "answer": "den",
+        "solutionDe": "Das Paket ist von den Nachbarn.",
+        "solutionZh": "这个包裹是邻居们寄来的。",
+        "rule": "von 固定接第三格：die Nachbarn → den Nachbarn。复数第三格用 den；名词通常加 -n，原来以 -n 或 -s 结尾时不再加。",
+        "chant": "von den Nachbarn",
+        "chantZh": "来自邻居们",
+        "topic": "固定第三格介词：von",
+        "level": "A2"
+      },
+      {
+        "id": "prep-arzt",
+        "promptDe": "Ich gehe morgen zu ___ Arzt.",
+        "promptZh": "我明天去看那位医生。",
+        "noun": "der Arzt · 阳性 · 第三格",
+        "options": [
+          "den",
+          "dem",
+          "der"
+        ],
+        "answer": "dem",
+        "solutionDe": "Ich gehe morgen zu dem Arzt.",
+        "solutionZh": "我明天去看那位医生。",
+        "rule": "zu 固定接第三格：der Arzt → dem Arzt。",
+        "chant": "zu dem Arzt",
+        "chantZh": "去看那位医生",
+        "topic": "固定第三格介词：zu",
+        "level": "A2"
+      },
+      {
+        "id": "prep-apotheke",
+        "promptDe": "Wir gehen zuerst zu ___ Apotheke.",
+        "promptZh": "我们先去那家药店。",
+        "noun": "die Apotheke · 阴性 · 第三格",
+        "options": [
+          "dem",
+          "die",
+          "der"
+        ],
+        "answer": "der",
+        "solutionDe": "Wir gehen zuerst zu der Apotheke.",
+        "solutionZh": "我们先去那家药店。",
+        "rule": "zu 固定接第三格：die Apotheke → der Apotheke。",
+        "chant": "zu der Apotheke",
+        "chantZh": "去那家药店",
+        "topic": "固定第三格介词：zu",
+        "level": "A2"
+      },
+      {
+        "id": "prep-rathaus",
+        "promptDe": "Der Bus fährt direkt zu ___ Rathaus.",
+        "promptZh": "这辆公共汽车直达市政厅。",
+        "noun": "das Rathaus · 中性 · 第三格",
+        "options": [
+          "das",
+          "dem",
+          "den"
+        ],
+        "answer": "dem",
+        "solutionDe": "Der Bus fährt direkt zu dem Rathaus.",
+        "solutionZh": "这辆公共汽车直达市政厅。",
+        "rule": "zu 固定接第三格：das Rathaus → dem Rathaus。",
+        "chant": "zu dem Rathaus",
+        "chantZh": "去市政厅",
+        "topic": "固定第三格介词：zu",
+        "level": "A2"
+      },
+      {
+        "id": "prep-freunden",
+        "promptDe": "Am Samstag fahren wir zu ___ Freunden.",
+        "promptZh": "周六我们去朋友们家。",
+        "noun": "die Freunde · 复数 · 第三格",
+        "options": [
+          "den",
+          "dem",
+          "die"
+        ],
+        "answer": "den",
+        "solutionDe": "Am Samstag fahren wir zu den Freunden.",
+        "solutionZh": "周六我们去朋友们家。",
+        "rule": "zu 固定接第三格：die Freunde → den Freunden。复数第三格用 den；名词通常加 -n，原来以 -n 或 -s 结尾时不再加。",
+        "chant": "zu den Freunden",
+        "chantZh": "去朋友们家",
+        "topic": "固定第三格介词：zu",
+        "level": "A2"
+      },
+      {
+        "id": "prep-vater",
+        "promptDe": "Dieses Buch ist für ___ Vater.",
+        "promptZh": "这本书是给那位父亲的。",
+        "noun": "der Vater · 阳性 · 第四格",
+        "options": [
+          "dem",
+          "der",
+          "den"
+        ],
+        "answer": "den",
+        "solutionDe": "Dieses Buch ist für den Vater.",
+        "solutionZh": "这本书是给那位父亲的。",
+        "rule": "für 固定接第四格：der Vater → den Vater。",
+        "chant": "für den Vater",
+        "chantZh": "给那位父亲",
+        "topic": "固定第四格介词：für",
+        "level": "A2"
+      },
+      {
+        "id": "prep-pruefung",
+        "promptDe": "Ich lerne für ___ Prüfung.",
+        "promptZh": "我在为那场考试学习。",
+        "noun": "die Prüfung · 阴性 · 第四格",
+        "options": [
+          "die",
+          "der",
+          "dem"
+        ],
+        "answer": "die",
+        "solutionDe": "Ich lerne für die Prüfung.",
+        "solutionZh": "我在为那场考试学习。",
+        "rule": "für 固定接第四格：die Prüfung → die Prüfung。",
+        "chant": "für die Prüfung",
+        "chantZh": "为那场考试",
+        "topic": "固定第四格介词：für",
+        "level": "A2"
+      },
+      {
+        "id": "prep-kind",
+        "promptDe": "Wir kaufen ein Eis für ___ Kind.",
+        "promptZh": "我们给那个孩子买一个冰激凌。",
+        "noun": "das Kind · 中性 · 第四格",
+        "options": [
+          "dem",
+          "den",
+          "das"
+        ],
+        "answer": "das",
+        "solutionDe": "Wir kaufen ein Eis für das Kind.",
+        "solutionZh": "我们给那个孩子买一个冰激凌。",
+        "rule": "für 固定接第四格：das Kind → das Kind。",
+        "chant": "für das Kind",
+        "chantZh": "给那个孩子",
+        "topic": "固定第四格介词：für",
+        "level": "A2"
+      },
+      {
+        "id": "prep-gaeste",
+        "promptDe": "Ich koche heute für ___ Gäste.",
+        "promptZh": "今天我为客人们做饭。",
+        "noun": "die Gäste · 复数 · 第四格",
+        "options": [
+          "dem",
+          "die",
+          "den"
+        ],
+        "answer": "die",
+        "solutionDe": "Ich koche heute für die Gäste.",
+        "solutionZh": "今天我为客人们做饭。",
+        "rule": "für 固定接第四格：die Gäste → die Gäste。",
+        "chant": "für die Gäste",
+        "chantZh": "为客人们",
+        "topic": "固定第四格介词：für",
+        "level": "A2"
+      },
+      {
+        "id": "prep-schluessel",
+        "promptDe": "Ohne ___ Schlüssel kann ich die Tür nicht öffnen.",
+        "promptZh": "没有那把钥匙，我打不开门。",
+        "noun": "der Schlüssel · 阳性 · 第四格",
+        "options": [
+          "der",
+          "den",
+          "dem"
+        ],
+        "answer": "den",
+        "solutionDe": "Ohne den Schlüssel kann ich die Tür nicht öffnen.",
+        "solutionZh": "没有那把钥匙，我打不开门。",
+        "rule": "ohne 固定接第四格：der Schlüssel → den Schlüssel。",
+        "chant": "ohne den Schlüssel",
+        "chantZh": "没有那把钥匙",
+        "topic": "固定第四格介词：ohne",
+        "level": "A2"
+      },
+      {
+        "id": "prep-tasche",
+        "promptDe": "Sie geht heute ohne ___ Tasche aus dem Haus.",
+        "promptZh": "她今天没带那个包就出门了。",
+        "noun": "die Tasche · 阴性 · 第四格",
+        "options": [
+          "der",
+          "dem",
+          "die"
+        ],
+        "answer": "die",
+        "solutionDe": "Sie geht heute ohne die Tasche aus dem Haus.",
+        "solutionZh": "她今天没带那个包就出门了。",
+        "rule": "ohne 固定接第四格：die Tasche → die Tasche。",
+        "chant": "ohne die Tasche",
+        "chantZh": "不带那个包",
+        "topic": "固定第四格介词：ohne",
+        "level": "A2"
+      },
+      {
+        "id": "prep-handy",
+        "promptDe": "Ohne ___ Handy finde ich die Adresse nicht.",
+        "promptZh": "没有手机，我找不到那个地址。",
+        "noun": "das Handy · 中性 · 第四格",
+        "options": [
+          "den",
+          "das",
+          "dem"
+        ],
+        "answer": "das",
+        "solutionDe": "Ohne das Handy finde ich die Adresse nicht.",
+        "solutionZh": "没有手机，我找不到那个地址。",
+        "rule": "ohne 固定接第四格：das Handy → das Handy。",
+        "chant": "ohne das Handy",
+        "chantZh": "没有手机",
+        "topic": "固定第四格介词：ohne",
+        "level": "A2"
+      },
+      {
+        "id": "prep-buecher",
+        "promptDe": "Ohne ___ Bücher können wir die Aufgabe nicht machen.",
+        "promptZh": "没有那些书，我们做不了这道题。",
+        "noun": "die Bücher · 复数 · 第四格",
+        "options": [
+          "die",
+          "den",
+          "dem"
+        ],
+        "answer": "die",
+        "solutionDe": "Ohne die Bücher können wir die Aufgabe nicht machen.",
+        "solutionZh": "没有那些书，我们做不了这道题。",
+        "rule": "ohne 固定接第四格：die Bücher → die Bücher。",
+        "chant": "ohne die Bücher",
+        "chantZh": "没有那些书",
+        "topic": "固定第四格介词：ohne",
+        "level": "A2"
+      },
+      {
+        "id": "prep-park",
+        "promptDe": "Wir gehen durch ___ Park zur Schule.",
+        "promptZh": "我们穿过公园去学校。",
+        "noun": "der Park · 阳性 · 第四格",
+        "options": [
+          "den",
+          "dem",
+          "der"
+        ],
+        "answer": "den",
+        "solutionDe": "Wir gehen durch den Park zur Schule.",
+        "solutionZh": "我们穿过公园去学校。",
+        "rule": "durch 固定接第四格：der Park → den Park。",
+        "chant": "durch den Park",
+        "chantZh": "穿过公园",
+        "topic": "固定第四格介词：durch",
+        "level": "A2"
+      },
+      {
+        "id": "prep-tuer",
+        "promptDe": "Die Schüler kommen durch ___ Tür ins Zimmer.",
+        "promptZh": "学生们从那扇门走进房间。",
+        "noun": "die Tür · 阴性 · 第四格",
+        "options": [
+          "dem",
+          "die",
+          "der"
+        ],
+        "answer": "die",
+        "solutionDe": "Die Schüler kommen durch die Tür ins Zimmer.",
+        "solutionZh": "学生们从那扇门走进房间。",
+        "rule": "durch 固定接第四格：die Tür → die Tür。",
+        "chant": "durch die Tür",
+        "chantZh": "穿过那扇门",
+        "topic": "固定第四格介词：durch",
+        "level": "A2"
+      },
+      {
+        "id": "prep-fenster",
+        "promptDe": "Durch ___ Fenster sehe ich den Bahnhof.",
+        "promptZh": "透过那扇窗，我看得到火车站。",
+        "noun": "das Fenster · 中性 · 第四格",
+        "options": [
+          "das",
+          "dem",
+          "den"
+        ],
+        "answer": "das",
+        "solutionDe": "Durch das Fenster sehe ich den Bahnhof.",
+        "solutionZh": "透过那扇窗，我看得到火车站。",
+        "rule": "durch 固定接第四格：das Fenster → das Fenster。",
+        "chant": "durch das Fenster",
+        "chantZh": "透过那扇窗",
+        "topic": "固定第四格介词：durch",
+        "level": "A2"
+      },
+      {
+        "id": "prep-strassen",
+        "promptDe": "Wir fahren langsam durch ___ Straßen.",
+        "promptZh": "我们慢慢驶过那些街道。",
+        "noun": "die Straßen · 复数 · 第四格",
+        "options": [
+          "den",
+          "dem",
+          "die"
+        ],
+        "answer": "die",
+        "solutionDe": "Wir fahren langsam durch die Straßen.",
+        "solutionZh": "我们慢慢驶过那些街道。",
+        "rule": "durch 固定接第四格：die Straßen → die Straßen。",
+        "chant": "durch die Straßen",
+        "chantZh": "穿过那些街道",
+        "topic": "固定第四格介词：durch",
+        "level": "A2"
+      },
+      {
+        "id": "prep-wind",
+        "promptDe": "Auf dem Heimweg fahre ich gegen ___ Wind.",
+        "promptZh": "回家路上我逆风骑行。",
+        "noun": "der Wind · 阳性 · 第四格",
+        "options": [
+          "dem",
+          "der",
+          "den"
+        ],
+        "answer": "den",
+        "solutionDe": "Auf dem Heimweg fahre ich gegen den Wind.",
+        "solutionZh": "回家路上我逆风骑行。",
+        "rule": "gegen 固定接第四格：der Wind → den Wind。",
+        "chant": "gegen den Wind",
+        "chantZh": "逆着风",
+        "topic": "固定第四格介词：gegen",
+        "level": "A2"
+      },
+      {
+        "id": "prep-wand",
+        "promptDe": "Der Ball fliegt gegen ___ Wand.",
+        "promptZh": "球飞向墙并撞在墙上。",
+        "noun": "die Wand · 阴性 · 第四格",
+        "options": [
+          "die",
+          "der",
+          "dem"
+        ],
+        "answer": "die",
+        "solutionDe": "Der Ball fliegt gegen die Wand.",
+        "solutionZh": "球飞向墙并撞在墙上。",
+        "rule": "gegen 固定接第四格：die Wand → die Wand。",
+        "chant": "gegen die Wand",
+        "chantZh": "撞向墙壁",
+        "topic": "固定第四格介词：gegen",
+        "level": "A2"
+      },
+      {
+        "id": "prep-tor",
+        "promptDe": "Der Ball rollt gegen ___ Tor.",
+        "promptZh": "球滚向球门并撞在球门上。",
+        "noun": "das Tor · 中性 · 第四格",
+        "options": [
+          "dem",
+          "den",
+          "das"
+        ],
+        "answer": "das",
+        "solutionDe": "Der Ball rollt gegen das Tor.",
+        "solutionZh": "球滚向球门并撞在球门上。",
+        "rule": "gegen 固定接第四格：das Tor → das Tor。",
+        "chant": "gegen das Tor",
+        "chantZh": "撞向球门",
+        "topic": "固定第四格介词：gegen",
+        "level": "A2"
+      },
+      {
+        "id": "prep-regeln",
+        "promptDe": "Einige Schüler protestieren gegen ___ Regeln.",
+        "promptZh": "一些学生反对这些规定。",
+        "noun": "die Regeln · 复数 · 第四格",
+        "options": [
+          "dem",
+          "die",
+          "den"
+        ],
+        "answer": "die",
+        "solutionDe": "Einige Schüler protestieren gegen die Regeln.",
+        "solutionZh": "一些学生反对这些规定。",
+        "rule": "gegen 固定接第四格：die Regeln → die Regeln。",
+        "chant": "gegen die Regeln",
+        "chantZh": "反对这些规定",
+        "topic": "固定第四格介词：gegen",
+        "level": "B1"
+      },
+      {
+        "id": "prep-tisch",
+        "promptDe": "Die Familie sitzt um ___ Tisch.",
+        "promptZh": "一家人围坐在桌子旁。",
+        "noun": "der Tisch · 阳性 · 第四格",
+        "options": [
+          "der",
+          "den",
+          "dem"
+        ],
+        "answer": "den",
+        "solutionDe": "Die Familie sitzt um den Tisch.",
+        "solutionZh": "一家人围坐在桌子旁。",
+        "rule": "um 固定接第四格：der Tisch → den Tisch。",
+        "chant": "um den Tisch",
+        "chantZh": "围着桌子",
+        "topic": "固定第四格介词：um",
+        "level": "A2"
+      },
+      {
+        "id": "prep-schulgebaeude",
+        "promptDe": "Wir gehen einmal um ___ Schule.",
+        "promptZh": "我们绕学校走一圈。",
+        "noun": "die Schule · 阴性 · 第四格",
+        "options": [
+          "der",
+          "dem",
+          "die"
+        ],
+        "answer": "die",
+        "solutionDe": "Wir gehen einmal um die Schule.",
+        "solutionZh": "我们绕学校走一圈。",
+        "rule": "um 固定接第四格：die Schule → die Schule。",
+        "chant": "um die Schule",
+        "chantZh": "绕着学校",
+        "topic": "固定第四格介词：um",
+        "level": "A2"
+      },
+      {
+        "id": "prep-haus-runde",
+        "promptDe": "Der Hund läuft um ___ Haus herum.",
+        "promptZh": "狗绕着房子跑。",
+        "noun": "das Haus · 中性 · 第四格",
+        "options": [
+          "den",
+          "das",
+          "dem"
+        ],
+        "answer": "das",
+        "solutionDe": "Der Hund läuft um das Haus herum.",
+        "solutionZh": "狗绕着房子跑。",
+        "rule": "um 固定接第四格：das Haus → das Haus。",
+        "chant": "um das Haus",
+        "chantZh": "绕着房子",
+        "topic": "固定第四格介词：um",
+        "level": "A2"
+      },
+      {
+        "id": "prep-baeume",
+        "promptDe": "Die Kinder laufen um ___ Bäume herum.",
+        "promptZh": "孩子们绕着那些树跑。",
+        "noun": "die Bäume · 复数 · 第四格",
+        "options": [
+          "die",
+          "den",
+          "dem"
+        ],
+        "answer": "die",
+        "solutionDe": "Die Kinder laufen um die Bäume herum.",
+        "solutionZh": "孩子们绕着那些树跑。",
+        "rule": "um 固定接第四格：die Bäume → die Bäume。",
+        "chant": "um die Bäume",
+        "chantZh": "绕着那些树",
+        "topic": "固定第四格介词：um",
+        "level": "A2"
+      },
+      {
+        "id": "prep-in-position",
+        "promptDe": "Die Kinder rennen in ___ Turnhalle.",
+        "promptZh": "孩子们在体育馆里面跑来跑去。（活动范围在里面）",
+        "noun": "die Turnhalle · 阴性 · 第三格",
+        "options": [
+          "der",
+          "dem",
+          "die"
+        ],
+        "answer": "der",
+        "solutionDe": "Die Kinder rennen in der Turnhalle.",
+        "solutionZh": "孩子们在体育馆里面跑来跑去。（活动范围在里面）",
+        "rule": "in 是双向介词；这里说明位置，用第三格：die Turnhalle → der Turnhalle。即使有运动，只要描述活动地点，仍用第三格。",
+        "chant": "in der Turnhalle",
+        "chantZh": "在体育馆里面",
+        "topic": "双向介词 in：位置",
+        "level": "B1"
+      },
+      {
+        "id": "prep-in-richtung",
+        "promptDe": "Wir gehen in ___ Klassenzimmer.",
+        "promptZh": "我们走进教室。（从外面进入）",
+        "noun": "das Klassenzimmer · 中性 · 第四格",
+        "options": [
+          "den",
+          "das",
+          "dem"
+        ],
+        "answer": "das",
+        "solutionDe": "Wir gehen in das Klassenzimmer.",
+        "solutionZh": "我们走进教室。（从外面进入）",
+        "rule": "in 是双向介词；这里说明方向，用第四格：das Klassenzimmer → das Klassenzimmer。",
+        "chant": "in das Klassenzimmer",
+        "chantZh": "走进教室",
+        "topic": "双向介词 in：方向",
+        "level": "A2"
+      },
+      {
+        "id": "prep-auf-position",
+        "promptDe": "Die Kinder laufen auf ___ Spielplatz.",
+        "promptZh": "孩子们在游乐场里跑来跑去。（活动范围在游乐场内）",
+        "noun": "der Spielplatz · 阳性 · 第三格",
+        "options": [
+          "der",
+          "den",
+          "dem"
+        ],
+        "answer": "dem",
+        "solutionDe": "Die Kinder laufen auf dem Spielplatz.",
+        "solutionZh": "孩子们在游乐场里跑来跑去。（活动范围在游乐场内）",
+        "rule": "auf 是双向介词；这里说明位置，用第三格：der Spielplatz → dem Spielplatz。即使有运动，只要描述活动地点，仍用第三格。",
+        "chant": "auf dem Spielplatz",
+        "chantZh": "在游乐场里",
+        "topic": "双向介词 auf：位置",
+        "level": "B1"
+      },
+      {
+        "id": "prep-auf-richtung",
+        "promptDe": "Ich stelle die Tasche auf ___ Stuhl.",
+        "promptZh": "我把包放到椅子上。（从别处放上去）",
+        "noun": "der Stuhl · 阳性 · 第四格",
+        "options": [
+          "den",
+          "dem",
+          "der"
+        ],
+        "answer": "den",
+        "solutionDe": "Ich stelle die Tasche auf den Stuhl.",
+        "solutionZh": "我把包放到椅子上。（从别处放上去）",
+        "rule": "auf 是双向介词；这里说明方向，用第四格：der Stuhl → den Stuhl。",
+        "chant": "auf den Stuhl",
+        "chantZh": "放到椅子上",
+        "topic": "双向介词 auf：方向",
+        "level": "A2"
+      },
+      {
+        "id": "prep-an-position",
+        "promptDe": "Wir warten an ___ Haltestelle.",
+        "promptZh": "我们在公交站等候。（说明位置）",
+        "noun": "die Haltestelle · 阴性 · 第三格",
+        "options": [
+          "dem",
+          "die",
+          "der"
+        ],
+        "answer": "der",
+        "solutionDe": "Wir warten an der Haltestelle.",
+        "solutionZh": "我们在公交站等候。（说明位置）",
+        "rule": "an 是双向介词；这里说明位置，用第三格：die Haltestelle → der Haltestelle。即使有运动，只要描述活动地点，仍用第三格。",
+        "chant": "an der Haltestelle",
+        "chantZh": "在公交站",
+        "topic": "双向介词 an：位置",
+        "level": "A2"
+      },
+      {
+        "id": "prep-an-richtung",
+        "promptDe": "Sie stellt den Tisch an ___ Fenster.",
+        "promptZh": "她把桌子搬到窗边。（移到窗旁）",
+        "noun": "das Fenster · 中性 · 第四格",
+        "options": [
+          "das",
+          "dem",
+          "den"
+        ],
+        "answer": "das",
+        "solutionDe": "Sie stellt den Tisch an das Fenster.",
+        "solutionZh": "她把桌子搬到窗边。（移到窗旁）",
+        "rule": "an 是双向介词；这里说明方向，用第四格：das Fenster → das Fenster。",
+        "chant": "an das Fenster",
+        "chantZh": "搬到窗边",
+        "topic": "双向介词 an：方向",
+        "level": "A2"
+      },
+      {
+        "id": "prep-unter-position",
+        "promptDe": "Der Hund liegt unter ___ Tisch.",
+        "promptZh": "狗躺在桌子下面。（说明位置）",
+        "noun": "der Tisch · 阳性 · 第三格",
+        "options": [
+          "den",
+          "dem",
+          "der"
+        ],
+        "answer": "dem",
+        "solutionDe": "Der Hund liegt unter dem Tisch.",
+        "solutionZh": "狗躺在桌子下面。（说明位置）",
+        "rule": "unter 是双向介词；这里说明位置，用第三格：der Tisch → dem Tisch。即使有运动，只要描述活动地点，仍用第三格。",
+        "chant": "unter dem Tisch",
+        "chantZh": "在桌子下面",
+        "topic": "双向介词 unter：位置",
+        "level": "A2"
+      },
+      {
+        "id": "prep-unter-richtung",
+        "promptDe": "Wir laufen unter ___ Bäume.",
+        "promptZh": "我们跑到那些树下。（从空地进入树荫下）",
+        "noun": "die Bäume · 复数 · 第四格",
+        "options": [
+          "dem",
+          "die",
+          "den"
+        ],
+        "answer": "die",
+        "solutionDe": "Wir laufen unter die Bäume.",
+        "solutionZh": "我们跑到那些树下。（从空地进入树荫下）",
+        "rule": "unter 是双向介词；这里说明方向，用第四格：die Bäume → die Bäume。",
+        "chant": "unter die Bäume",
+        "chantZh": "跑到那些树下",
+        "topic": "双向介词 unter：方向",
+        "level": "A2"
+      },
+      {
+        "id": "prep-vor-position",
+        "promptDe": "Die Jugendlichen tanzen vor ___ Kino.",
+        "promptZh": "年轻人在电影院前面跳舞。（一直在该区域活动）",
+        "noun": "das Kino · 中性 · 第三格",
+        "options": [
+          "das",
+          "dem",
+          "den"
+        ],
+        "answer": "dem",
+        "solutionDe": "Die Jugendlichen tanzen vor dem Kino.",
+        "solutionZh": "年轻人在电影院前面跳舞。（一直在该区域活动）",
+        "rule": "vor 是双向介词；这里说明位置，用第三格：das Kino → dem Kino。即使有运动，只要描述活动地点，仍用第三格。",
+        "chant": "vor dem Kino",
+        "chantZh": "在电影院前面",
+        "topic": "双向介词 vor：位置",
+        "level": "B1"
+      },
+      {
+        "id": "prep-vor-richtung",
+        "promptDe": "Ich stelle die Schuhe vor ___ Tür.",
+        "promptZh": "我把鞋放到门前。（移到门前）",
+        "noun": "die Tür · 阴性 · 第四格",
+        "options": [
+          "der",
+          "dem",
+          "die"
+        ],
+        "answer": "die",
+        "solutionDe": "Ich stelle die Schuhe vor die Tür.",
+        "solutionZh": "我把鞋放到门前。（移到门前）",
+        "rule": "vor 是双向介词；这里说明方向，用第四格：die Tür → die Tür。",
+        "chant": "vor die Tür",
+        "chantZh": "放到门前",
+        "topic": "双向介词 vor：方向",
+        "level": "A2"
+      },
+      {
+        "id": "prep-neben-position",
+        "promptDe": "Die Kinder spielen neben ___ Autos.",
+        "promptZh": "孩子们在那些汽车旁玩耍。（说明活动地点）",
+        "noun": "die Autos · 复数 · 第三格",
+        "options": [
+          "dem",
+          "die",
+          "den"
+        ],
+        "answer": "den",
+        "solutionDe": "Die Kinder spielen neben den Autos.",
+        "solutionZh": "孩子们在那些汽车旁玩耍。（说明活动地点）",
+        "rule": "neben 是双向介词；这里说明位置，用第三格：die Autos → den Autos。即使有运动，只要描述活动地点，仍用第三格。",
+        "chant": "neben den Autos",
+        "chantZh": "在那些汽车旁",
+        "topic": "双向介词 neben：位置",
+        "level": "A2"
+      },
+      {
+        "id": "prep-neben-richtung",
+        "promptDe": "Ich lege den Ball neben ___ Schrank.",
+        "promptZh": "我把球放到柜子旁边。（移到柜旁）",
+        "noun": "der Schrank · 阳性 · 第四格",
+        "options": [
+          "der",
+          "den",
+          "dem"
+        ],
+        "answer": "den",
+        "solutionDe": "Ich lege den Ball neben den Schrank.",
+        "solutionZh": "我把球放到柜子旁边。（移到柜旁）",
+        "rule": "neben 是双向介词；这里说明方向，用第四格：der Schrank → den Schrank。",
+        "chant": "neben den Schrank",
+        "chantZh": "放到柜子旁边",
+        "topic": "双向介词 neben：方向",
+        "level": "A2"
+      }
     ]
   },
   {
@@ -36,11 +1171,1146 @@
     "color": "#c5a2ee",
     "rule": "看冠词、性别和格：ein schöner Tag · einen neuen Rucksack · eine rote Jacke · in einem kleinen Haus。",
     "questions": [
-      {"id":"adj-tag","promptDe":"Das ist ein ___ Tag.","promptZh":"这是美好的一天。","noun":"der Tag · 阳性 · 主格","options":["schöner","schönen","schönes"],"answer":"schöner","solutionDe":"Das ist ein schöner Tag.","solutionZh":"这是美好的一天。","rule":"ein 没有显示阳性主格的词尾，形容词补上 -er：ein schöner Tag。","chant":"ein schöner Tag","chantZh":"美好的一天"},
-      {"id":"adj-rucksack","promptDe":"Ich kaufe einen ___ Rucksack.","promptZh":"我买一个新背包。","noun":"der Rucksack · 阳性 · 第四格","options":["neuen","neuer","neue"],"answer":"neuen","solutionDe":"Ich kaufe einen neuen Rucksack.","solutionZh":"我买一个新背包。","rule":"阳性第四格：einen + 形容词 -en。","chant":"einen neuen Rucksack","chantZh":"一个新背包"},
-      {"id":"adj-jacke","promptDe":"Sie trägt eine ___ Jacke.","promptZh":"她穿着一件红色夹克。","noun":"die Jacke · 阴性 · 第四格","options":["rote","roten","rotes"],"answer":"rote","solutionDe":"Sie trägt eine rote Jacke.","solutionZh":"她穿着一件红色夹克。","rule":"阴性第四格：eine + 形容词 -e。","chant":"eine rote Jacke","chantZh":"一件红色夹克"},
-      {"id":"adj-haus","promptDe":"Wir wohnen in einem ___ Haus.","promptZh":"我们住在一栋小房子里。","noun":"das Haus · 中性 · 第三格","options":["kleinen","kleines","kleine"],"answer":"kleinen","solutionDe":"Wir wohnen in einem kleinen Haus.","solutionZh":"我们住在一栋小房子里。","rule":"这里描述住在哪里，用第三格：einem + 形容词 -en。","chant":"in einem kleinen Haus","chantZh":"在一栋小房子里"},
-      {"id":"adj-buecher","promptDe":"Die ___ Bücher liegen auf dem Tisch.","promptZh":"那些旧书放在桌子上。","noun":"die Bücher · 复数 · 主格","options":["alten","alte","altes"],"answer":"alten","solutionDe":"Die alten Bücher liegen auf dem Tisch.","solutionZh":"那些旧书放在桌子上。","rule":"复数定冠词 die 之后，形容词用 -en：die alten Bücher。","chant":"die alten Bücher","chantZh":"那些旧书"}
+      {
+        "id": "adj-tag",
+        "promptDe": "Das ist ein ___ Tag.",
+        "promptZh": "这是美好的一天。",
+        "noun": "der Tag · 阳性 · 主格",
+        "options": [
+          "schöner",
+          "schönen",
+          "schönes"
+        ],
+        "answer": "schöner",
+        "solutionDe": "Das ist ein schöner Tag.",
+        "solutionZh": "这是美好的一天。",
+        "rule": "ein 没有显示阳性主格的词尾，形容词补上 -er：ein schöner Tag。",
+        "chant": "ein schöner Tag",
+        "chantZh": "美好的一天",
+        "topic": "经典词尾热身",
+        "level": "A2"
+      },
+      {
+        "id": "adj-rucksack",
+        "promptDe": "Ich kaufe einen ___ Rucksack.",
+        "promptZh": "我买一个新背包。",
+        "noun": "der Rucksack · 阳性 · 第四格",
+        "options": [
+          "neuen",
+          "neuer",
+          "neue"
+        ],
+        "answer": "neuen",
+        "solutionDe": "Ich kaufe einen neuen Rucksack.",
+        "solutionZh": "我买一个新背包。",
+        "rule": "阳性第四格：einen + 形容词 -en。",
+        "chant": "einen neuen Rucksack",
+        "chantZh": "一个新背包",
+        "topic": "经典词尾热身",
+        "level": "A2"
+      },
+      {
+        "id": "adj-jacke",
+        "promptDe": "Sie trägt eine ___ Jacke.",
+        "promptZh": "她穿着一件红色夹克。",
+        "noun": "die Jacke · 阴性 · 第四格",
+        "options": [
+          "rote",
+          "roten",
+          "rotes"
+        ],
+        "answer": "rote",
+        "solutionDe": "Sie trägt eine rote Jacke.",
+        "solutionZh": "她穿着一件红色夹克。",
+        "rule": "阴性第四格：eine + 形容词 -e。",
+        "chant": "eine rote Jacke",
+        "chantZh": "一件红色夹克",
+        "topic": "经典词尾热身",
+        "level": "A2"
+      },
+      {
+        "id": "adj-haus",
+        "promptDe": "Wir wohnen in einem ___ Haus.",
+        "promptZh": "我们住在一栋小房子里。",
+        "noun": "das Haus · 中性 · 第三格",
+        "options": [
+          "kleinen",
+          "kleines",
+          "kleine"
+        ],
+        "answer": "kleinen",
+        "solutionDe": "Wir wohnen in einem kleinen Haus.",
+        "solutionZh": "我们住在一栋小房子里。",
+        "rule": "这里描述住在哪里，用第三格：einem + 形容词 -en。",
+        "chant": "in einem kleinen Haus",
+        "chantZh": "在一栋小房子里",
+        "topic": "经典词尾热身",
+        "level": "A2"
+      },
+      {
+        "id": "adj-buecher",
+        "promptDe": "Die ___ Bücher liegen auf dem Tisch.",
+        "promptZh": "那些旧书放在桌子上。",
+        "noun": "die Bücher · 复数 · 主格",
+        "options": [
+          "alten",
+          "alte",
+          "altes"
+        ],
+        "answer": "alten",
+        "solutionDe": "Die alten Bücher liegen auf dem Tisch.",
+        "solutionZh": "那些旧书放在桌子上。",
+        "rule": "复数定冠词 die 之后，形容词用 -en：die alten Bücher。",
+        "chant": "die alten Bücher",
+        "chantZh": "那些旧书",
+        "topic": "经典词尾热身",
+        "level": "A2"
+      },
+      {
+        "id": "adj-schueler",
+        "promptDe": "Der ___ Schüler sitzt neben mir.",
+        "promptZh": "那位新同学坐在我旁边。",
+        "noun": "der Schüler · 阳性 · 主格",
+        "options": [
+          "neue",
+          "neuen",
+          "neuer"
+        ],
+        "answer": "neue",
+        "solutionDe": "Der neue Schüler sitzt neben mir.",
+        "solutionZh": "那位新同学坐在我旁边。",
+        "rule": "定冠词后用弱变化；阳性主格的形容词词尾是 -e：der neue Schüler。",
+        "chant": "der neue Schüler",
+        "chantZh": "那位新同学",
+        "topic": "定冠词弱变化：阳性主格",
+        "level": "A2"
+      },
+      {
+        "id": "adj-lehrerin",
+        "promptDe": "Die ___ Lehrerin erklärt die Aufgabe.",
+        "promptZh": "那位友善的女老师讲解题目。",
+        "noun": "die Lehrerin · 阴性 · 主格",
+        "options": [
+          "freundlichen",
+          "freundlicher",
+          "freundliche"
+        ],
+        "answer": "freundliche",
+        "solutionDe": "Die freundliche Lehrerin erklärt die Aufgabe.",
+        "solutionZh": "那位友善的女老师讲解题目。",
+        "rule": "定冠词后用弱变化；阴性主格的形容词词尾是 -e：die freundliche Lehrerin。",
+        "chant": "die freundliche Lehrerin",
+        "chantZh": "那位友善的女老师",
+        "topic": "定冠词弱变化：阴性主格",
+        "level": "A2"
+      },
+      {
+        "id": "adj-fahrrad",
+        "promptDe": "Das ___ Fahrrad steht vor der Schule.",
+        "promptZh": "那辆红色自行车停在学校前面。",
+        "noun": "das Fahrrad · 中性 · 主格",
+        "options": [
+          "roter",
+          "rote",
+          "roten"
+        ],
+        "answer": "rote",
+        "solutionDe": "Das rote Fahrrad steht vor der Schule.",
+        "solutionZh": "那辆红色自行车停在学校前面。",
+        "rule": "定冠词后用弱变化；中性主格的形容词词尾是 -e：das rote Fahrrad。",
+        "chant": "das rote Fahrrad",
+        "chantZh": "那辆红色自行车",
+        "topic": "定冠词弱变化：中性主格",
+        "level": "A2"
+      },
+      {
+        "id": "adj-busse",
+        "promptDe": "Die ___ Busse fahren alle zehn Minuten.",
+        "promptZh": "那些新公共汽车每十分钟一班。",
+        "noun": "die Busse · 复数 · 主格",
+        "options": [
+          "neuen",
+          "neue",
+          "neuer"
+        ],
+        "answer": "neuen",
+        "solutionDe": "Die neuen Busse fahren alle zehn Minuten.",
+        "solutionZh": "那些新公共汽车每十分钟一班。",
+        "rule": "定冠词后用弱变化；复数主格的形容词词尾是 -en：die neuen Busse。",
+        "chant": "die neuen Busse",
+        "chantZh": "那些新公共汽车",
+        "topic": "定冠词弱变化：复数主格",
+        "level": "A2"
+      },
+      {
+        "id": "adj-kaffee",
+        "promptDe": "Ich trinke den ___ Kaffee langsam.",
+        "promptZh": "我慢慢喝那杯热咖啡。",
+        "noun": "der Kaffee · 阳性 · 第四格",
+        "options": [
+          "heiße",
+          "heißer",
+          "heißen"
+        ],
+        "answer": "heißen",
+        "solutionDe": "Ich trinke den heißen Kaffee langsam.",
+        "solutionZh": "我慢慢喝那杯热咖啡。",
+        "rule": "定冠词后用弱变化；阳性第四格的形容词词尾是 -en：den heißen Kaffee。",
+        "chant": "den heißen Kaffee",
+        "chantZh": "那杯热咖啡",
+        "topic": "定冠词弱变化：阳性第四格",
+        "level": "A2"
+      },
+      {
+        "id": "adj-milch",
+        "promptDe": "Sie stellt die ___ Milch in den Kühlschrank.",
+        "promptZh": "她把那瓶冷牛奶放进冰箱。",
+        "noun": "die Milch · 阴性 · 第四格",
+        "options": [
+          "kalter",
+          "kalte",
+          "kalten"
+        ],
+        "answer": "kalte",
+        "solutionDe": "Sie stellt die kalte Milch in den Kühlschrank.",
+        "solutionZh": "她把那瓶冷牛奶放进冰箱。",
+        "rule": "定冠词后用弱变化；阴性第四格的形容词词尾是 -e：die kalte Milch。",
+        "chant": "die kalte Milch",
+        "chantZh": "那瓶冷牛奶",
+        "topic": "定冠词弱变化：阴性第四格",
+        "level": "A2"
+      },
+      {
+        "id": "adj-brot",
+        "promptDe": "Wir kaufen das ___ Brot für das Abendessen.",
+        "promptZh": "我们买那个新鲜面包当晚餐。",
+        "noun": "das Brot · 中性 · 第四格",
+        "options": [
+          "frische",
+          "frischen",
+          "frischer"
+        ],
+        "answer": "frische",
+        "solutionDe": "Wir kaufen das frische Brot für das Abendessen.",
+        "solutionZh": "我们买那个新鲜面包当晚餐。",
+        "rule": "定冠词后用弱变化；中性第四格的形容词词尾是 -e：das frische Brot。",
+        "chant": "das frische Brot",
+        "chantZh": "那个新鲜面包",
+        "topic": "定冠词弱变化：中性第四格",
+        "level": "A2"
+      },
+      {
+        "id": "adj-aepfel",
+        "promptDe": "Ich nehme die ___ Äpfel.",
+        "promptZh": "我拿那些绿色的苹果。",
+        "noun": "die Äpfel · 复数 · 第四格",
+        "options": [
+          "grüne",
+          "grüner",
+          "grünen"
+        ],
+        "answer": "grünen",
+        "solutionDe": "Ich nehme die grünen Äpfel.",
+        "solutionZh": "我拿那些绿色的苹果。",
+        "rule": "定冠词后用弱变化；复数第四格的形容词词尾是 -en：die grünen Äpfel。",
+        "chant": "die grünen Äpfel",
+        "chantZh": "那些绿色的苹果",
+        "topic": "定冠词弱变化：复数第四格",
+        "level": "A2"
+      },
+      {
+        "id": "adj-bruder",
+        "promptDe": "Ich helfe dem ___ Bruder bei den Hausaufgaben.",
+        "promptZh": "我帮那个小弟弟做家庭作业。",
+        "noun": "der Bruder · 阳性 · 第三格",
+        "options": [
+          "kleiner",
+          "kleinen",
+          "kleine"
+        ],
+        "answer": "kleinen",
+        "solutionDe": "Ich helfe dem kleinen Bruder bei den Hausaufgaben.",
+        "solutionZh": "我帮那个小弟弟做家庭作业。",
+        "rule": "定冠词后用弱变化；阳性第三格的形容词词尾是 -en：dem kleinen Bruder。第三格在定冠词后，形容词一律用 -en。",
+        "chant": "dem kleinen Bruder",
+        "chantZh": "那个小弟弟",
+        "topic": "定冠词弱变化：阳性第三格",
+        "level": "A2"
+      },
+      {
+        "id": "adj-nachbarin",
+        "promptDe": "Wir danken der ___ Nachbarin für ihre Hilfe.",
+        "promptZh": "我们感谢那位年长的女邻居给予帮助。",
+        "noun": "die Nachbarin · 阴性 · 第三格",
+        "options": [
+          "alten",
+          "alte",
+          "alter"
+        ],
+        "answer": "alten",
+        "solutionDe": "Wir danken der alten Nachbarin für ihre Hilfe.",
+        "solutionZh": "我们感谢那位年长的女邻居给予帮助。",
+        "rule": "定冠词后用弱变化；阴性第三格的形容词词尾是 -en：der alten Nachbarin。第三格在定冠词后，形容词一律用 -en。",
+        "chant": "der alten Nachbarin",
+        "chantZh": "那位年长的女邻居",
+        "topic": "定冠词弱变化：阴性第三格",
+        "level": "A2"
+      },
+      {
+        "id": "adj-kind",
+        "promptDe": "Die Mutter gibt dem ___ Kind Wasser.",
+        "promptZh": "母亲给那个生病的孩子喝水。",
+        "noun": "das Kind · 中性 · 第三格",
+        "options": [
+          "kranke",
+          "kranker",
+          "kranken"
+        ],
+        "answer": "kranken",
+        "solutionDe": "Die Mutter gibt dem kranken Kind Wasser.",
+        "solutionZh": "母亲给那个生病的孩子喝水。",
+        "rule": "定冠词后用弱变化；中性第三格的形容词词尾是 -en：dem kranken Kind。第三格在定冠词后，形容词一律用 -en。",
+        "chant": "dem kranken Kind",
+        "chantZh": "那个生病的孩子",
+        "topic": "定冠词弱变化：中性第三格",
+        "level": "A2"
+      },
+      {
+        "id": "adj-kindern",
+        "promptDe": "Der Lehrer erklärt den ___ Kindern die Aufgabe.",
+        "promptZh": "老师给那些小孩子讲解题目。",
+        "noun": "die Kinder · 复数 · 第三格",
+        "options": [
+          "kleiner",
+          "kleinen",
+          "kleine"
+        ],
+        "answer": "kleinen",
+        "solutionDe": "Der Lehrer erklärt den kleinen Kindern die Aufgabe.",
+        "solutionZh": "老师给那些小孩子讲解题目。",
+        "rule": "定冠词后用弱变化；复数第三格的形容词词尾是 -en：den kleinen Kindern。第三格在定冠词后，形容词一律用 -en。复数第三格的名词通常还要加 -n，原来以 -n 或 -s 结尾时不再加。",
+        "chant": "den kleinen Kindern",
+        "chantZh": "那些小孩子",
+        "topic": "定冠词弱变化：复数第三格",
+        "level": "A2"
+      },
+      {
+        "id": "adj-zug",
+        "promptDe": "Der ___ Zug kommt um acht Uhr an.",
+        "promptZh": "那列速度快的火车八点到站。",
+        "noun": "der Zug · 阳性 · 主格",
+        "options": [
+          "schnelle",
+          "schnellen",
+          "schneller"
+        ],
+        "answer": "schnelle",
+        "solutionDe": "Der schnelle Zug kommt um acht Uhr an.",
+        "solutionZh": "那列速度快的火车八点到站。",
+        "rule": "定冠词后用弱变化；阳性主格的形容词词尾是 -e：der schnelle Zug。",
+        "chant": "der schnelle Zug",
+        "chantZh": "那列速度快的火车",
+        "topic": "定冠词弱变化：阳性主格",
+        "level": "A2"
+      },
+      {
+        "id": "adj-tasche",
+        "promptDe": "Die ___ Tasche liegt auf dem Boden.",
+        "promptZh": "那个沉重的包放在地上。",
+        "noun": "die Tasche · 阴性 · 主格",
+        "options": [
+          "schweren",
+          "schwerer",
+          "schwere"
+        ],
+        "answer": "schwere",
+        "solutionDe": "Die schwere Tasche liegt auf dem Boden.",
+        "solutionZh": "那个沉重的包放在地上。",
+        "rule": "定冠词后用弱变化；阴性主格的形容词词尾是 -e：die schwere Tasche。",
+        "chant": "die schwere Tasche",
+        "chantZh": "那个沉重的包",
+        "topic": "定冠词弱变化：阴性主格",
+        "level": "A2"
+      },
+      {
+        "id": "adj-heft",
+        "promptDe": "Das ___ Heft gehört meiner Schwester.",
+        "promptZh": "那个蓝色练习本是我姐姐的。",
+        "noun": "das Heft · 中性 · 主格",
+        "options": [
+          "blauer",
+          "blaue",
+          "blauen"
+        ],
+        "answer": "blaue",
+        "solutionDe": "Das blaue Heft gehört meiner Schwester.",
+        "solutionZh": "那个蓝色练习本是我姐姐的。",
+        "rule": "定冠词后用弱变化；中性主格的形容词词尾是 -e：das blaue Heft。",
+        "chant": "das blaue Heft",
+        "chantZh": "那个蓝色练习本",
+        "topic": "定冠词弱变化：中性主格",
+        "level": "A2"
+      },
+      {
+        "id": "adj-schuhe",
+        "promptDe": "Die ___ Schuhe passen gut.",
+        "promptZh": "那双黑色鞋子很合脚。",
+        "noun": "die Schuhe · 复数 · 主格",
+        "options": [
+          "schwarzen",
+          "schwarze",
+          "schwarzer"
+        ],
+        "answer": "schwarzen",
+        "solutionDe": "Die schwarzen Schuhe passen gut.",
+        "solutionZh": "那双黑色鞋子很合脚。",
+        "rule": "定冠词后用弱变化；复数主格的形容词词尾是 -en：die schwarzen Schuhe。",
+        "chant": "die schwarzen Schuhe",
+        "chantZh": "那双黑色鞋子",
+        "topic": "定冠词弱变化：复数主格",
+        "level": "A2"
+      },
+      {
+        "id": "adj-mantel",
+        "promptDe": "Im Winter trage ich den ___ Mantel.",
+        "promptZh": "冬天我穿那件暖和的大衣。",
+        "noun": "der Mantel · 阳性 · 第四格",
+        "options": [
+          "warme",
+          "warmer",
+          "warmen"
+        ],
+        "answer": "warmen",
+        "solutionDe": "Im Winter trage ich den warmen Mantel.",
+        "solutionZh": "冬天我穿那件暖和的大衣。",
+        "rule": "定冠词后用弱变化；阳性第四格的形容词词尾是 -en：den warmen Mantel。",
+        "chant": "den warmen Mantel",
+        "chantZh": "那件暖和的大衣",
+        "topic": "定冠词弱变化：阳性第四格",
+        "level": "A2"
+      },
+      {
+        "id": "adj-bluse",
+        "promptDe": "Sie probiert die ___ Bluse an.",
+        "promptZh": "她试穿那件白色女式衬衫。",
+        "noun": "die Bluse · 阴性 · 第四格",
+        "options": [
+          "weißer",
+          "weiße",
+          "weißen"
+        ],
+        "answer": "weiße",
+        "solutionDe": "Sie probiert die weiße Bluse an.",
+        "solutionZh": "她试穿那件白色女式衬衫。",
+        "rule": "定冠词后用弱变化；阴性第四格的形容词词尾是 -e：die weiße Bluse。",
+        "chant": "die weiße Bluse",
+        "chantZh": "那件白色女式衬衫",
+        "topic": "定冠词弱变化：阴性第四格",
+        "level": "A2"
+      },
+      {
+        "id": "adj-paket",
+        "promptDe": "Wir holen das ___ Paket bei der Post ab.",
+        "promptZh": "我们到邮局领取那个大包裹。",
+        "noun": "das Paket · 中性 · 第四格",
+        "options": [
+          "große",
+          "großen",
+          "großer"
+        ],
+        "answer": "große",
+        "solutionDe": "Wir holen das große Paket bei der Post ab.",
+        "solutionZh": "我们到邮局领取那个大包裹。",
+        "rule": "定冠词后用弱变化；中性第四格的形容词词尾是 -e：das große Paket。",
+        "chant": "das große Paket",
+        "chantZh": "那个大包裹",
+        "topic": "定冠词弱变化：中性第四格",
+        "level": "A2"
+      },
+      {
+        "id": "adj-freunden",
+        "promptDe": "Ich erzähle den ___ Freunden von meiner Reise.",
+        "promptZh": "我向那些好朋友讲述我的旅行。",
+        "noun": "die Freunde · 复数 · 第三格",
+        "options": [
+          "gute",
+          "guter",
+          "guten"
+        ],
+        "answer": "guten",
+        "solutionDe": "Ich erzähle den guten Freunden von meiner Reise.",
+        "solutionZh": "我向那些好朋友讲述我的旅行。",
+        "rule": "定冠词后用弱变化；复数第三格的形容词词尾是 -en：den guten Freunden。第三格在定冠词后，形容词一律用 -en。复数第三格的名词通常还要加 -n，原来以 -n 或 -s 结尾时不再加。",
+        "chant": "den guten Freunden",
+        "chantZh": "那些好朋友",
+        "topic": "定冠词弱变化：复数第三格",
+        "level": "A2"
+      },
+      {
+        "id": "adj-mann",
+        "promptDe": "Vor dem Haus wartet ein ___ Mann.",
+        "promptZh": "房子前面等着一位老人。",
+        "noun": "der Mann · 阳性 · 主格",
+        "options": [
+          "alten",
+          "alter",
+          "alte"
+        ],
+        "answer": "alter",
+        "solutionDe": "Vor dem Haus wartet ein alter Mann.",
+        "solutionZh": "房子前面等着一位老人。",
+        "rule": "ein 没有格词尾，形容词补出阳性主格的标记 -er：ein alter Mann。",
+        "chant": "ein alter Mann",
+        "chantZh": "一位老人",
+        "topic": "不定冠词混合变化：阳性主格",
+        "level": "A2"
+      },
+      {
+        "id": "adj-frau",
+        "promptDe": "Eine ___ Frau zeigt uns den Weg.",
+        "promptZh": "一位年轻女士给我们指路。",
+        "noun": "die Frau · 阴性 · 主格",
+        "options": [
+          "junge",
+          "jungen",
+          "junger"
+        ],
+        "answer": "junge",
+        "solutionDe": "Eine junge Frau zeigt uns den Weg.",
+        "solutionZh": "一位年轻女士给我们指路。",
+        "rule": "ein 类冠词后的混合变化：阴性主格的形容词用 -e：eine junge Frau。",
+        "chant": "eine junge Frau",
+        "chantZh": "一位年轻女士",
+        "topic": "不定冠词混合变化：阴性主格",
+        "level": "A2"
+      },
+      {
+        "id": "adj-zimmer",
+        "promptDe": "Ein ___ Zimmer ist mir wichtig.",
+        "promptZh": "一个明亮的房间对我很重要。",
+        "noun": "das Zimmer · 中性 · 主格",
+        "options": [
+          "helle",
+          "hellen",
+          "helles"
+        ],
+        "answer": "helles",
+        "solutionDe": "Ein helles Zimmer ist mir wichtig.",
+        "solutionZh": "一个明亮的房间对我很重要。",
+        "rule": "ein 没有格词尾，形容词补出中性主格的标记 -es：ein helles Zimmer。",
+        "chant": "ein helles Zimmer",
+        "chantZh": "一个明亮的房间",
+        "topic": "不定冠词混合变化：中性主格",
+        "level": "A2"
+      },
+      {
+        "id": "adj-computer",
+        "promptDe": "Ich brauche einen ___ Computer für die Schule.",
+        "promptZh": "我需要一台新电脑用于学习。",
+        "noun": "der Computer · 阳性 · 第四格",
+        "options": [
+          "neuer",
+          "neuen",
+          "neue"
+        ],
+        "answer": "neuen",
+        "solutionDe": "Ich brauche einen neuen Computer für die Schule.",
+        "solutionZh": "我需要一台新电脑用于学习。",
+        "rule": "ein 类冠词后的混合变化：阳性第四格的形容词用 -en：einen neuen Computer。",
+        "chant": "einen neuen Computer",
+        "chantZh": "一台新电脑",
+        "topic": "不定冠词混合变化：阳性第四格",
+        "level": "A2"
+      },
+      {
+        "id": "adj-suppe",
+        "promptDe": "Zum Mittagessen koche ich eine ___ Suppe.",
+        "promptZh": "午餐我煮一份热汤。",
+        "noun": "die Suppe · 阴性 · 第四格",
+        "options": [
+          "warme",
+          "warmen",
+          "warmer"
+        ],
+        "answer": "warme",
+        "solutionDe": "Zum Mittagessen koche ich eine warme Suppe.",
+        "solutionZh": "午餐我煮一份热汤。",
+        "rule": "ein 类冠词后的混合变化：阴性第四格的形容词用 -e：eine warme Suppe。",
+        "chant": "eine warme Suppe",
+        "chantZh": "一份热汤",
+        "topic": "不定冠词混合变化：阴性第四格",
+        "level": "A2"
+      },
+      {
+        "id": "adj-hemd",
+        "promptDe": "Er trägt heute ein ___ Hemd.",
+        "promptZh": "他今天穿着一件蓝色衬衫。",
+        "noun": "das Hemd · 中性 · 第四格",
+        "options": [
+          "blaue",
+          "blauen",
+          "blaues"
+        ],
+        "answer": "blaues",
+        "solutionDe": "Er trägt heute ein blaues Hemd.",
+        "solutionZh": "他今天穿着一件蓝色衬衫。",
+        "rule": "ein 没有格词尾，形容词补出中性第四格的标记 -es：ein blaues Hemd。",
+        "chant": "ein blaues Hemd",
+        "chantZh": "一件蓝色衬衫",
+        "topic": "不定冠词混合变化：中性第四格",
+        "level": "A2"
+      },
+      {
+        "id": "adj-freund",
+        "promptDe": "Ich spreche mit einem ___ Freund.",
+        "promptZh": "我和一位好朋友聊天。",
+        "noun": "der Freund · 阳性 · 第三格",
+        "options": [
+          "guter",
+          "guten",
+          "gute"
+        ],
+        "answer": "guten",
+        "solutionDe": "Ich spreche mit einem guten Freund.",
+        "solutionZh": "我和一位好朋友聊天。",
+        "rule": "ein 类冠词后的混合变化：阳性第三格的形容词用 -en：mit einem guten Freund。",
+        "chant": "mit einem guten Freund",
+        "chantZh": "和一位好朋友",
+        "topic": "不定冠词混合变化：阳性第三格",
+        "level": "A2"
+      },
+      {
+        "id": "adj-wohnung",
+        "promptDe": "Sie lebt in einer ___ Wohnung.",
+        "promptZh": "她住在一套小公寓里。",
+        "noun": "die Wohnung · 阴性 · 第三格",
+        "options": [
+          "kleinen",
+          "kleine",
+          "kleiner"
+        ],
+        "answer": "kleinen",
+        "solutionDe": "Sie lebt in einer kleinen Wohnung.",
+        "solutionZh": "她住在一套小公寓里。",
+        "rule": "ein 类冠词后的混合变化：阴性第三格的形容词用 -en：in einer kleinen Wohnung。",
+        "chant": "in einer kleinen Wohnung",
+        "chantZh": "在一套小公寓里",
+        "topic": "不定冠词混合变化：阴性第三格",
+        "level": "A2"
+      },
+      {
+        "id": "adj-hotel",
+        "promptDe": "Wir übernachten in einem ___ Hotel.",
+        "promptZh": "我们在一家安静的旅馆过夜。",
+        "noun": "das Hotel · 中性 · 第三格",
+        "options": [
+          "ruhige",
+          "ruhiger",
+          "ruhigen"
+        ],
+        "answer": "ruhigen",
+        "solutionDe": "Wir übernachten in einem ruhigen Hotel.",
+        "solutionZh": "我们在一家安静的旅馆过夜。",
+        "rule": "ein 类冠词后的混合变化：中性第三格的形容词用 -en：in einem ruhigen Hotel。",
+        "chant": "in einem ruhigen Hotel",
+        "chantZh": "在一家安静的旅馆",
+        "topic": "不定冠词混合变化：中性第三格",
+        "level": "A2"
+      },
+      {
+        "id": "adj-keine-schueler",
+        "promptDe": "Heute sind keine ___ Schüler in der Klasse.",
+        "promptZh": "今天班里没有新同学。",
+        "noun": "die Schüler · 复数 · 主格",
+        "options": [
+          "neuer",
+          "neuen",
+          "neue"
+        ],
+        "answer": "neuen",
+        "solutionDe": "Heute sind keine neuen Schüler in der Klasse.",
+        "solutionZh": "今天班里没有新同学。",
+        "rule": "kein 属于 ein 类限定词；复数主格的形容词用 -en：keine neuen Schüler。ein 本身没有复数形式。",
+        "chant": "keine neuen Schüler",
+        "chantZh": "没有新同学",
+        "topic": "不定冠词混合变化：复数主格",
+        "level": "B1"
+      },
+      {
+        "id": "adj-keine-stifte",
+        "promptDe": "Ich brauche keine ___ Stifte.",
+        "promptZh": "我不需要红色笔。",
+        "noun": "die Stifte · 复数 · 第四格",
+        "options": [
+          "roten",
+          "rote",
+          "roter"
+        ],
+        "answer": "roten",
+        "solutionDe": "Ich brauche keine roten Stifte.",
+        "solutionZh": "我不需要红色笔。",
+        "rule": "kein 属于 ein 类限定词；复数第四格的形容词用 -en：keine roten Stifte。ein 本身没有复数形式。",
+        "chant": "keine roten Stifte",
+        "chantZh": "不需要红色笔",
+        "topic": "不定冠词混合变化：复数第四格",
+        "level": "B1"
+      },
+      {
+        "id": "adj-keinen-kindern",
+        "promptDe": "Wir geben keinen ___ Kindern unsere Adresse.",
+        "promptZh": "我们不会把地址告诉任何陌生孩子。",
+        "noun": "die Kinder · 复数 · 第三格",
+        "options": [
+          "fremde",
+          "fremder",
+          "fremden"
+        ],
+        "answer": "fremden",
+        "solutionDe": "Wir geben keinen fremden Kindern unsere Adresse.",
+        "solutionZh": "我们不会把地址告诉任何陌生孩子。",
+        "rule": "kein 属于 ein 类限定词；复数第三格用 keinen，形容词用 -en：keinen fremden Kindern。ein 本身没有复数形式；Kinder 的第三格复数还要加 -n，变为 Kindern。",
+        "chant": "keinen fremden Kindern",
+        "chantZh": "不给陌生孩子",
+        "topic": "不定冠词混合变化：复数第三格",
+        "level": "B1"
+      },
+      {
+        "id": "adj-salat",
+        "promptDe": "Ein ___ Salat steht auf dem Tisch.",
+        "promptZh": "桌上摆着一份新鲜沙拉。",
+        "noun": "der Salat · 阳性 · 主格",
+        "options": [
+          "frischen",
+          "frischer",
+          "frische"
+        ],
+        "answer": "frischer",
+        "solutionDe": "Ein frischer Salat steht auf dem Tisch.",
+        "solutionZh": "桌上摆着一份新鲜沙拉。",
+        "rule": "ein 没有格词尾，形容词补出阳性主格的标记 -er：ein frischer Salat。",
+        "chant": "ein frischer Salat",
+        "chantZh": "一份新鲜沙拉",
+        "topic": "不定冠词混合变化：阳性主格",
+        "level": "A2"
+      },
+      {
+        "id": "adj-lampe",
+        "promptDe": "Eine ___ Lampe hängt über dem Tisch.",
+        "promptZh": "桌子上方挂着一盏现代风格的灯。",
+        "noun": "die Lampe · 阴性 · 主格",
+        "options": [
+          "moderne",
+          "modernen",
+          "moderner"
+        ],
+        "answer": "moderne",
+        "solutionDe": "Eine moderne Lampe hängt über dem Tisch.",
+        "solutionZh": "桌子上方挂着一盏现代风格的灯。",
+        "rule": "ein 类冠词后的混合变化：阴性主格的形容词用 -e：eine moderne Lampe。",
+        "chant": "eine moderne Lampe",
+        "chantZh": "一盏现代风格的灯",
+        "topic": "不定冠词混合变化：阴性主格",
+        "level": "A2"
+      },
+      {
+        "id": "adj-kissen",
+        "promptDe": "Auf dem Sofa liegt ein ___ Kissen.",
+        "promptZh": "沙发上放着一个柔软的靠垫。",
+        "noun": "das Kissen · 中性 · 主格",
+        "options": [
+          "weiche",
+          "weichen",
+          "weiches"
+        ],
+        "answer": "weiches",
+        "solutionDe": "Auf dem Sofa liegt ein weiches Kissen.",
+        "solutionZh": "沙发上放着一个柔软的靠垫。",
+        "rule": "ein 没有格词尾，形容词补出中性主格的标记 -es：ein weiches Kissen。",
+        "chant": "ein weiches Kissen",
+        "chantZh": "一个柔软的靠垫",
+        "topic": "不定冠词混合变化：中性主格",
+        "level": "A2"
+      },
+      {
+        "id": "adj-tisch",
+        "promptDe": "Für die Küche suchen wir einen ___ Tisch.",
+        "promptZh": "我们想找一张便宜的餐桌放在厨房。",
+        "noun": "der Tisch · 阳性 · 第四格",
+        "options": [
+          "billiger",
+          "billigen",
+          "billige"
+        ],
+        "answer": "billigen",
+        "solutionDe": "Für die Küche suchen wir einen billigen Tisch.",
+        "solutionZh": "我们想找一张便宜的餐桌放在厨房。",
+        "rule": "ein 类冠词后的混合变化：阳性第四格的形容词用 -en：einen billigen Tisch。",
+        "chant": "einen billigen Tisch",
+        "chantZh": "一张便宜的桌子",
+        "topic": "不定冠词混合变化：阳性第四格",
+        "level": "A2"
+      },
+      {
+        "id": "adj-uebung",
+        "promptDe": "Die Lehrerin gibt uns eine ___ Übung.",
+        "promptZh": "女老师给我们一道简单的练习题。",
+        "noun": "die Übung · 阴性 · 第四格",
+        "options": [
+          "leichte",
+          "leichten",
+          "leichter"
+        ],
+        "answer": "leichte",
+        "solutionDe": "Die Lehrerin gibt uns eine leichte Übung.",
+        "solutionZh": "女老师给我们一道简单的练习题。",
+        "rule": "ein 类冠词后的混合变化：阴性第四格的形容词用 -e：eine leichte Übung。",
+        "chant": "eine leichte Übung",
+        "chantZh": "一道简单的练习题",
+        "topic": "不定冠词混合变化：阴性第四格",
+        "level": "A2"
+      },
+      {
+        "id": "adj-kino",
+        "promptDe": "Der Film läuft in einem ___ Kino.",
+        "promptZh": "这部电影在一家小电影院上映。",
+        "noun": "das Kino · 中性 · 第三格",
+        "options": [
+          "kleine",
+          "kleiner",
+          "kleinen"
+        ],
+        "answer": "kleinen",
+        "solutionDe": "Der Film läuft in einem kleinen Kino.",
+        "solutionZh": "这部电影在一家小电影院上映。",
+        "rule": "ein 类冠词后的混合变化：中性第三格的形容词用 -en：in einem kleinen Kino。",
+        "chant": "in einem kleinen Kino",
+        "chantZh": "在一家小电影院",
+        "topic": "不定冠词混合变化：中性第三格",
+        "level": "A2"
+      },
+      {
+        "id": "adj-stark-kaffee",
+        "promptDe": "Hier schmeckt ___ Kaffee besonders gut.",
+        "promptZh": "这里的新鲜咖啡特别好喝。",
+        "noun": "der Kaffee · 阳性 · 主格",
+        "options": [
+          "frischen",
+          "frischer",
+          "frische"
+        ],
+        "answer": "frischer",
+        "solutionDe": "Hier schmeckt frischer Kaffee besonders gut.",
+        "solutionZh": "这里的新鲜咖啡特别好喝。",
+        "rule": "没有冠词时用强变化；形容词承担阳性主格标记，词尾是 -er：frischer Kaffee。",
+        "chant": "frischer Kaffee",
+        "chantZh": "新鲜咖啡",
+        "topic": "无冠词强变化：阳性主格",
+        "level": "B1"
+      },
+      {
+        "id": "adj-stark-milch",
+        "promptDe": "Im Kühlschrank steht ___ Milch.",
+        "promptZh": "冰箱里放着冷牛奶。",
+        "noun": "die Milch · 阴性 · 主格",
+        "options": [
+          "kalte",
+          "kalten",
+          "kalter"
+        ],
+        "answer": "kalte",
+        "solutionDe": "Im Kühlschrank steht kalte Milch.",
+        "solutionZh": "冰箱里放着冷牛奶。",
+        "rule": "没有冠词时用强变化；形容词承担阴性主格标记，词尾是 -e：kalte Milch。",
+        "chant": "kalte Milch",
+        "chantZh": "冷牛奶",
+        "topic": "无冠词强变化：阴性主格",
+        "level": "B1"
+      },
+      {
+        "id": "adj-stark-wasser",
+        "promptDe": "Auf dem Tisch steht ___ Wasser.",
+        "promptZh": "桌上放着新鲜饮用水。",
+        "noun": "das Wasser · 中性 · 主格",
+        "options": [
+          "frische",
+          "frischen",
+          "frisches"
+        ],
+        "answer": "frisches",
+        "solutionDe": "Auf dem Tisch steht frisches Wasser.",
+        "solutionZh": "桌上放着新鲜饮用水。",
+        "rule": "没有冠词时用强变化；形容词承担中性主格标记，词尾是 -es：frisches Wasser。",
+        "chant": "frisches Wasser",
+        "chantZh": "新鲜饮用水",
+        "topic": "无冠词强变化：中性主格",
+        "level": "B1"
+      },
+      {
+        "id": "adj-stark-kinder",
+        "promptDe": "Im Park spielen ___ Kinder.",
+        "promptZh": "公园里有小孩子在玩。",
+        "noun": "die Kinder · 复数 · 主格",
+        "options": [
+          "kleiner",
+          "kleine",
+          "kleinen"
+        ],
+        "answer": "kleine",
+        "solutionDe": "Im Park spielen kleine Kinder.",
+        "solutionZh": "公园里有小孩子在玩。",
+        "rule": "没有冠词时用强变化；形容词承担复数主格标记，词尾是 -e：kleine Kinder。",
+        "chant": "kleine Kinder",
+        "chantZh": "小孩子",
+        "topic": "无冠词强变化：复数主格",
+        "level": "B1"
+      },
+      {
+        "id": "adj-stark-tee",
+        "promptDe": "Ich trinke morgens ___ Tee.",
+        "promptZh": "我早上喝绿茶。",
+        "noun": "der Tee · 阳性 · 第四格",
+        "options": [
+          "grünen",
+          "grüne",
+          "grüner"
+        ],
+        "answer": "grünen",
+        "solutionDe": "Ich trinke morgens grünen Tee.",
+        "solutionZh": "我早上喝绿茶。",
+        "rule": "没有冠词时用强变化；形容词承担阳性第四格标记，词尾是 -en：grünen Tee。",
+        "chant": "grünen Tee",
+        "chantZh": "绿茶",
+        "topic": "无冠词强变化：阳性第四格",
+        "level": "B1"
+      },
+      {
+        "id": "adj-stark-musik",
+        "promptDe": "Beim Lernen höre ich ___ Musik.",
+        "promptZh": "学习时我听轻柔的音乐。",
+        "noun": "die Musik · 阴性 · 第四格",
+        "options": [
+          "leise",
+          "leisen",
+          "leises"
+        ],
+        "answer": "leise",
+        "solutionDe": "Beim Lernen höre ich leise Musik.",
+        "solutionZh": "学习时我听轻柔的音乐。",
+        "rule": "无冠词时，阴性第四格的形容词用 -e。leise 的变位词干是 leis-，加 -e 得 leise：leise Musik。",
+        "chant": "leise Musik",
+        "chantZh": "轻柔的音乐",
+        "topic": "无冠词强变化：阴性第四格",
+        "level": "B1"
+      },
+      {
+        "id": "adj-stark-brot",
+        "promptDe": "Zum Frühstück esse ich ___ Brot.",
+        "promptZh": "早餐我吃新鲜面包。",
+        "noun": "das Brot · 中性 · 第四格",
+        "options": [
+          "frischen",
+          "frisches",
+          "frische"
+        ],
+        "answer": "frisches",
+        "solutionDe": "Zum Frühstück esse ich frisches Brot.",
+        "solutionZh": "早餐我吃新鲜面包。",
+        "rule": "没有冠词时用强变化；形容词承担中性第四格标记，词尾是 -es：frisches Brot。",
+        "chant": "frisches Brot",
+        "chantZh": "新鲜面包",
+        "topic": "无冠词强变化：中性第四格",
+        "level": "B1"
+      },
+      {
+        "id": "adj-stark-tomaten",
+        "promptDe": "Für den Salat kaufe ich ___ Tomaten.",
+        "promptZh": "为了做沙拉，我买红色番茄。",
+        "noun": "die Tomaten · 复数 · 第四格",
+        "options": [
+          "rote",
+          "roten",
+          "roter"
+        ],
+        "answer": "rote",
+        "solutionDe": "Für den Salat kaufe ich rote Tomaten.",
+        "solutionZh": "为了做沙拉，我买红色番茄。",
+        "rule": "没有冠词时用强变化；形容词承担复数第四格标记，词尾是 -e：rote Tomaten。",
+        "chant": "rote Tomaten",
+        "chantZh": "红色番茄",
+        "topic": "无冠词强变化：复数第四格",
+        "level": "B1"
+      },
+      {
+        "id": "adj-stark-heissem",
+        "promptDe": "Mit ___ Kaffee beginnt mein Tag.",
+        "promptZh": "我的一天从热咖啡开始。",
+        "noun": "der Kaffee · 阳性 · 第三格",
+        "options": [
+          "heiße",
+          "heißen",
+          "heißem"
+        ],
+        "answer": "heißem",
+        "solutionDe": "Mit heißem Kaffee beginnt mein Tag.",
+        "solutionZh": "我的一天从热咖啡开始。",
+        "rule": "没有冠词时用强变化；形容词承担阳性第三格标记，词尾是 -em：mit heißem Kaffee。",
+        "chant": "mit heißem Kaffee",
+        "chantZh": "用热咖啡开启一天",
+        "topic": "无冠词强变化：阳性第三格",
+        "level": "B1"
+      },
+      {
+        "id": "adj-stark-suppe",
+        "promptDe": "Zu ___ Suppe passt frisches Brot.",
+        "promptZh": "新鲜面包很适合配热汤。",
+        "noun": "die Suppe · 阴性 · 第三格",
+        "options": [
+          "warmen",
+          "warmer",
+          "warme"
+        ],
+        "answer": "warmer",
+        "solutionDe": "Zu warmer Suppe passt frisches Brot.",
+        "solutionZh": "新鲜面包很适合配热汤。",
+        "rule": "没有冠词时用强变化；形容词承担阴性第三格标记，词尾是 -er：zu warmer Suppe。",
+        "chant": "zu warmer Suppe",
+        "chantZh": "搭配热汤",
+        "topic": "无冠词强变化：阴性第三格",
+        "level": "B1"
+      },
+      {
+        "id": "adj-stark-kaltem",
+        "promptDe": "Ich wasche das Gemüse mit ___ Wasser.",
+        "promptZh": "我用冷水洗蔬菜。",
+        "noun": "das Wasser · 中性 · 第三格",
+        "options": [
+          "kaltem",
+          "kalte",
+          "kalten"
+        ],
+        "answer": "kaltem",
+        "solutionDe": "Ich wasche das Gemüse mit kaltem Wasser.",
+        "solutionZh": "我用冷水洗蔬菜。",
+        "rule": "没有冠词时用强变化；形容词承担中性第三格标记，词尾是 -em：mit kaltem Wasser。",
+        "chant": "mit kaltem Wasser",
+        "chantZh": "用冷水",
+        "topic": "无冠词强变化：中性第三格",
+        "level": "B1"
+      },
+      {
+        "id": "adj-stark-freunden",
+        "promptDe": "Mit ___ Freunden macht der Ausflug Spaß.",
+        "promptZh": "和好朋友一起出游很开心。",
+        "noun": "die Freunde · 复数 · 第三格",
+        "options": [
+          "gute",
+          "guter",
+          "guten"
+        ],
+        "answer": "guten",
+        "solutionDe": "Mit guten Freunden macht der Ausflug Spaß.",
+        "solutionZh": "和好朋友一起出游很开心。",
+        "rule": "没有冠词时用强变化；形容词承担复数第三格标记，词尾是 -en：mit guten Freunden。复数第三格的名词通常还要加 -n，原来以 -n 或 -s 结尾时不再加。",
+        "chant": "mit guten Freunden",
+        "chantZh": "和好朋友一起",
+        "topic": "无冠词强变化：复数第三格",
+        "level": "B1"
+      },
+      {
+        "id": "adj-stark-kaese",
+        "promptDe": "Auf dem Brot liegt ___ Käse.",
+        "promptZh": "面包上放着软奶酪。",
+        "noun": "der Käse · 阳性 · 主格",
+        "options": [
+          "weichen",
+          "weicher",
+          "weiche"
+        ],
+        "answer": "weicher",
+        "solutionDe": "Auf dem Brot liegt weicher Käse.",
+        "solutionZh": "面包上放着软奶酪。",
+        "rule": "没有冠词时用强变化；形容词承担阳性主格标记，词尾是 -er：weicher Käse。",
+        "chant": "weicher Käse",
+        "chantZh": "软奶酪",
+        "topic": "无冠词强变化：阳性主格",
+        "level": "B1"
+      },
+      {
+        "id": "adj-stark-luft",
+        "promptDe": "Durch das offene Fenster kommt ___ Luft.",
+        "promptZh": "新鲜空气从打开的窗户吹进来。",
+        "noun": "die Luft · 阴性 · 主格",
+        "options": [
+          "frische",
+          "frischen",
+          "frischer"
+        ],
+        "answer": "frische",
+        "solutionDe": "Durch das offene Fenster kommt frische Luft.",
+        "solutionZh": "新鲜空气从打开的窗户吹进来。",
+        "rule": "没有冠词时用强变化；形容词承担阴性主格标记，词尾是 -e：frische Luft。",
+        "chant": "frische Luft",
+        "chantZh": "新鲜空气",
+        "topic": "无冠词强变化：阴性主格",
+        "level": "B1"
+      },
+      {
+        "id": "adj-stark-obst",
+        "promptDe": "Auf dem Markt kaufe ich ___ Obst.",
+        "promptZh": "我在市场买新鲜水果。",
+        "noun": "das Obst · 中性 · 第四格",
+        "options": [
+          "frische",
+          "frischen",
+          "frisches"
+        ],
+        "answer": "frisches",
+        "solutionDe": "Auf dem Markt kaufe ich frisches Obst.",
+        "solutionZh": "我在市场买新鲜水果。",
+        "rule": "没有冠词时用强变化；形容词承担中性第四格标记，词尾是 -es：frisches Obst。",
+        "chant": "frisches Obst",
+        "chantZh": "新鲜水果",
+        "topic": "无冠词强变化：中性第四格",
+        "level": "B1"
+      },
+      {
+        "id": "adj-stark-broetchen",
+        "promptDe": "Zum Frühstück essen wir ___ Brötchen.",
+        "promptZh": "早餐我们吃热面包卷。",
+        "noun": "die Brötchen · 复数 · 第四格",
+        "options": [
+          "warmer",
+          "warme",
+          "warmen"
+        ],
+        "answer": "warme",
+        "solutionDe": "Zum Frühstück essen wir warme Brötchen.",
+        "solutionZh": "早餐我们吃热面包卷。",
+        "rule": "没有冠词时用强变化；形容词承担复数第四格标记，词尾是 -e：warme Brötchen。",
+        "chant": "warme Brötchen",
+        "chantZh": "热面包卷",
+        "topic": "无冠词强变化：复数第四格",
+        "level": "B1"
+      },
+      {
+        "id": "adj-stark-wetter",
+        "promptDe": "Bei ___ Wetter bleiben wir zu Hause.",
+        "promptZh": "天气不好时我们待在家里。",
+        "noun": "das Wetter · 中性 · 第三格",
+        "options": [
+          "schlechtem",
+          "schlechte",
+          "schlechten"
+        ],
+        "answer": "schlechtem",
+        "solutionDe": "Bei schlechtem Wetter bleiben wir zu Hause.",
+        "solutionZh": "天气不好时我们待在家里。",
+        "rule": "没有冠词时用强变化；形容词承担中性第三格标记，词尾是 -em：bei schlechtem Wetter。",
+        "chant": "bei schlechtem Wetter",
+        "chantZh": "天气不好时",
+        "topic": "无冠词强变化：中性第三格",
+        "level": "B1"
+      }
     ]
   },
   {
@@ -48,7 +2318,7 @@
     "number": "03",
     "title": "单词风暴",
     "german": "Wortschatz-Sturm",
-    "description": "学校与日常生活，看到就要反应过来。",
+    "description": "学校、家庭、交通与购物，看到就要反应过来。",
     "enemy": "容嬷嬷",
     "enemyType": "nanny",
     "enemyTitle": "词汇突袭手",
@@ -56,13 +2326,1708 @@
     "hitLine": "哎哟，这个词你居然也认得！",
     "attackLine": "上过的词，还敢忘？",
     "color": "#8bd2b5",
-    "rule": "中德双向切换。先认出意思，再跟着节拍读一遍；名词连冠词一起记。词汇取自 Day 1 与 Day 7。",
+    "rule": "中德双向训练；名词连冠词记，动词连搭配记。词汇结合Day 1–10与A2–B1学校生活场景。",
     "questions": [
-      {"id":"word-pruefung","promptDe":"Wie heißt das auf Deutsch?","promptZh":"考试","noun":"学校 · 中 → 德","options":["die Prüfung","die Wohnung","die Rechnung"],"answer":"die Prüfung","solutionDe":"Morgen habe ich eine Prüfung.","solutionZh":"明天我有一场考试。","rule":"die Prüfung = 考试。名词和冠词一起记。","chant":"die Prüfung","chantZh":"考试","source":{"day":7,"word":"die Prüfung"}},
-      {"id":"word-puenktlich","promptDe":"pünktlich","promptZh":"这个词是什么意思？","noun":"学校 / 日常 · 德 → 中","options":["准时的","疲惫的","免费的"],"answer":"准时的","solutionDe":"Ich komme pünktlich zur Schule.","solutionZh":"我准时到校。","rule":"pünktlich = 准时的。注意 ü 的发音。","chant":"pünktlich","chantZh":"准时的","source":{"day":1,"word":"pünktlich"}},
-      {"id":"word-hausarbeit","promptDe":"die Hausarbeit","promptZh":"在日常家庭生活里，这个词是什么意思？","noun":"日常生活 · 德 → 中","options":["家务","假期","交通"],"answer":"家务","solutionDe":"Am Samstag mache ich die Hausarbeit.","solutionZh":"周六我做家务。","rule":"日常生活中，die Hausarbeit 指家务；在大学语境里也可以指课程论文。","chant":"die Hausarbeit","chantZh":"家务","source":{"day":1,"word":"die Hausarbeit"}},
-      {"id":"word-kostenlos","promptDe":"Wie heißt das auf Deutsch?","promptZh":"免费的","noun":"日常生活 · 中 → 德","options":["kostenlos","teuer","pünktlich"],"answer":"kostenlos","solutionDe":"Der Eintritt ist kostenlos.","solutionZh":"入场免费。","rule":"kostenlos = 免费的，可以拆成 Kosten（费用）+ -los（无）。","chant":"kostenlos","chantZh":"免费的","source":{"day":7,"word":"kostenlos"}},
-      {"id":"word-verbessern","promptDe":"Wie heißt das auf Deutsch?","promptZh":"改善，提高","noun":"学校 / 日常 · 中 → 德","options":["verbessern","vergessen","verpassen"],"answer":"verbessern","solutionDe":"Ich möchte mein Deutsch verbessern.","solutionZh":"我想提高我的德语。","rule":"verbessern = 改善、提高；verpassen = 错过。","chant":"verbessern","chantZh":"改善，提高","source":{"day":7,"word":"verbessern"}}
+      {
+        "id": "word-pruefung",
+        "promptDe": "Wie heißt das auf Deutsch?",
+        "promptZh": "考试",
+        "noun": "学校 · 中 → 德",
+        "options": [
+          "die Prüfung",
+          "die Wohnung",
+          "die Rechnung"
+        ],
+        "answer": "die Prüfung",
+        "solutionDe": "Morgen habe ich eine Prüfung.",
+        "solutionZh": "明天我有一场考试。",
+        "rule": "die Prüfung = 考试。名词和冠词一起记。",
+        "chant": "die Prüfung",
+        "chantZh": "考试",
+        "source": {
+          "day": 7,
+          "word": "die Prüfung"
+        },
+        "topic": "学校",
+        "level": "A2"
+      },
+      {
+        "id": "word-puenktlich",
+        "promptDe": "pünktlich",
+        "promptZh": "这个词是什么意思？",
+        "noun": "学校 / 日常 · 德 → 中",
+        "options": [
+          "准时的",
+          "疲惫的",
+          "免费的"
+        ],
+        "answer": "准时的",
+        "solutionDe": "Ich komme pünktlich zur Schule.",
+        "solutionZh": "我准时到校。",
+        "rule": "pünktlich = 准时的。注意 ü 的发音。",
+        "chant": "pünktlich",
+        "chantZh": "准时的",
+        "source": {
+          "day": 1,
+          "word": "pünktlich"
+        },
+        "topic": "日常",
+        "level": "A2"
+      },
+      {
+        "id": "word-hausarbeit",
+        "promptDe": "die Hausarbeit",
+        "promptZh": "在日常家庭生活里，这个词是什么意思？",
+        "noun": "日常生活 · 德 → 中",
+        "options": [
+          "家务",
+          "假期",
+          "交通"
+        ],
+        "answer": "家务",
+        "solutionDe": "Am Samstag mache ich die Hausarbeit.",
+        "solutionZh": "周六我做家务。",
+        "rule": "日常生活中，die Hausarbeit 指家务；在大学语境里也可以指课程论文。",
+        "chant": "die Hausarbeit",
+        "chantZh": "家务",
+        "source": {
+          "day": 1,
+          "word": "die Hausarbeit"
+        },
+        "topic": "家庭",
+        "level": "A2"
+      },
+      {
+        "id": "word-kostenlos",
+        "promptDe": "Wie heißt das auf Deutsch?",
+        "promptZh": "免费的",
+        "noun": "日常生活 · 中 → 德",
+        "options": [
+          "kostenlos",
+          "teuer",
+          "pünktlich"
+        ],
+        "answer": "kostenlos",
+        "solutionDe": "Der Eintritt ist kostenlos.",
+        "solutionZh": "入场免费。",
+        "rule": "kostenlos = 免费的，可以拆成 Kosten（费用）+ -los（无）。",
+        "chant": "kostenlos",
+        "chantZh": "免费的",
+        "source": {
+          "day": 7,
+          "word": "kostenlos"
+        },
+        "topic": "购物",
+        "level": "A2"
+      },
+      {
+        "id": "word-verbessern",
+        "promptDe": "Wie heißt das auf Deutsch?",
+        "promptZh": "改善，提高",
+        "noun": "学校 / 日常 · 中 → 德",
+        "options": [
+          "verbessern",
+          "vergessen",
+          "verpassen"
+        ],
+        "answer": "verbessern",
+        "solutionDe": "Ich möchte mein Deutsch verbessern.",
+        "solutionZh": "我想提高我的德语。",
+        "rule": "verbessern = 改善、提高；verpassen = 错过。",
+        "chant": "verbessern",
+        "chantZh": "改善，提高",
+        "source": {
+          "day": 7,
+          "word": "verbessern"
+        },
+        "topic": "学校",
+        "level": "B1"
+      },
+      {
+        "id": "word-alltag",
+        "promptDe": "der Alltag",
+        "promptZh": "这个词或词组是什么意思？",
+        "noun": "日常 · 德 → 中",
+        "options": [
+          "日常生活",
+          "假期，休假",
+          "考试"
+        ],
+        "answer": "日常生活",
+        "solutionDe": "Musik gehört zu meinem Alltag.",
+        "solutionZh": "音乐是我日常生活的一部分。",
+        "rule": "der Alltag 指平常的日子；im Alltag 表示“在日常生活中”。",
+        "chant": "der Alltag",
+        "chantZh": "日常生活",
+        "topic": "日常",
+        "level": "A2",
+        "source": {
+          "day": 1,
+          "word": "der Alltag"
+        }
+      },
+      {
+        "id": "word-gewohnheit",
+        "promptDe": "Wie heißt das auf Deutsch?",
+        "promptZh": "习惯",
+        "noun": "日常 · 中 → 德",
+        "options": [
+          "die Fahrkarte",
+          "die Küche",
+          "die Gewohnheit"
+        ],
+        "answer": "die Gewohnheit",
+        "solutionDe": "Tägliches Lesen ist eine gute Gewohnheit.",
+        "solutionZh": "每天阅读是一个好习惯。",
+        "rule": "记住搭配 eine gute Gewohnheit haben（有一个好习惯）；复数是 die Gewohnheiten。",
+        "chant": "die Gewohnheit",
+        "chantZh": "习惯",
+        "topic": "日常",
+        "level": "B1",
+        "source": {
+          "day": 1,
+          "word": "die Gewohnheit"
+        }
+      },
+      {
+        "id": "word-aufstehen",
+        "promptDe": "aufstehen",
+        "promptZh": "在早晨的作息安排中，这个动词是什么意思？",
+        "noun": "家庭 · 德 → 中",
+        "options": [
+          "换乘",
+          "起床",
+          "入睡"
+        ],
+        "answer": "起床",
+        "solutionDe": "Ich stehe jeden Morgen um sieben Uhr auf.",
+        "solutionZh": "我每天早上七点起床。",
+        "rule": "aufstehen 是分离动词：ich stehe ... auf；也可表示“起立”。",
+        "chant": "aufstehen",
+        "chantZh": "起床",
+        "topic": "家庭",
+        "level": "A2",
+        "source": {
+          "day": 1,
+          "word": "aufstehen"
+        }
+      },
+      {
+        "id": "word-anziehen",
+        "promptDe": "Wie heißt das auf Deutsch?",
+        "promptZh": "穿衣服",
+        "noun": "家庭 · 中 → 德",
+        "options": [
+          "sich anziehen",
+          "frühstücken",
+          "sich entschuldigen"
+        ],
+        "answer": "sich anziehen",
+        "solutionDe": "Ich ziehe mich nach dem Frühstück an.",
+        "solutionZh": "我吃完早饭后穿衣服。",
+        "rule": "反身代词随主语变化：ich ziehe mich an，du ziehst dich an；an 在句末。",
+        "chant": "sich anziehen",
+        "chantZh": "穿衣服",
+        "topic": "家庭",
+        "level": "A2",
+        "source": {
+          "day": 1,
+          "word": "sich anziehen"
+        }
+      },
+      {
+        "id": "word-fruehstuecken",
+        "promptDe": "frühstücken",
+        "promptZh": "这个词或词组是什么意思？",
+        "noun": "饮食 · 德 → 中",
+        "options": [
+          "咳嗽",
+          "下车",
+          "吃早餐"
+        ],
+        "answer": "吃早餐",
+        "solutionDe": "Am Sonntag frühstücken wir zusammen.",
+        "solutionZh": "星期天我们一起吃早餐。",
+        "rule": "frühstücken 是动词；名词“早餐”是 das Frühstück。",
+        "chant": "frühstücken",
+        "chantZh": "吃早餐",
+        "topic": "饮食",
+        "level": "A2",
+        "source": {
+          "day": 1,
+          "word": "frühstücken"
+        }
+      },
+      {
+        "id": "word-verkehr",
+        "promptDe": "Wie heißt das auf Deutsch?",
+        "promptZh": "交通",
+        "noun": "交通 · 中 → 德",
+        "options": [
+          "das Gemüse",
+          "der Verkehr",
+          "der Unterricht"
+        ],
+        "answer": "der Verkehr",
+        "solutionDe": "Morgens gibt es hier viel Verkehr.",
+        "solutionZh": "这里早上交通繁忙。",
+        "rule": "viel Verkehr 表示“交通繁忙、车多”；Verkehr 通常用单数。",
+        "chant": "der Verkehr",
+        "chantZh": "交通",
+        "topic": "交通",
+        "level": "A2",
+        "source": {
+          "day": 1,
+          "word": "der Verkehr"
+        }
+      },
+      {
+        "id": "word-verpassen",
+        "promptDe": "verpassen",
+        "promptZh": "在乘坐公共交通的语境里，这个动词是什么意思？",
+        "noun": "交通 · 德 → 中",
+        "options": [
+          "错过车次",
+          "修理",
+          "付款"
+        ],
+        "answer": "错过车次",
+        "solutionDe": "Ich habe den Bus verpasst.",
+        "solutionZh": "我错过了那班公共汽车。",
+        "rule": "搭配 den Bus oder den Zug verpassen；ver- 不可分，过去分词是 verpasst。",
+        "chant": "verpassen",
+        "chantZh": "错过车次",
+        "topic": "交通",
+        "level": "A2",
+        "source": {
+          "day": 1,
+          "word": "verpassen"
+        }
+      },
+      {
+        "id": "word-beeilen",
+        "promptDe": "Wie heißt das auf Deutsch?",
+        "promptZh": "赶快，抓紧",
+        "noun": "交通 · 中 → 德",
+        "options": [
+          "sich ausruhen",
+          "sich bedanken",
+          "sich beeilen"
+        ],
+        "answer": "sich beeilen",
+        "solutionDe": "Wir müssen uns beeilen.",
+        "solutionZh": "我们必须抓紧时间。",
+        "rule": "ich beeile mich，wir beeilen uns；反身代词要与主语对应。",
+        "chant": "sich beeilen",
+        "chantZh": "赶快，抓紧",
+        "topic": "交通",
+        "level": "A2",
+        "source": {
+          "day": 1,
+          "word": "sich beeilen"
+        }
+      },
+      {
+        "id": "word-entschuldigen",
+        "promptDe": "sich entschuldigen",
+        "promptZh": "这个词或词组是什么意思？",
+        "noun": "社交 · 德 → 中",
+        "options": [
+          "穿衣服",
+          "道歉",
+          "见面"
+        ],
+        "answer": "道歉",
+        "solutionDe": "Ich entschuldige mich für die Verspätung.",
+        "solutionZh": "我为迟到道歉。",
+        "rule": "sich bei jemandem entschuldigen 表示向某人道歉；für 后说明道歉的原因。",
+        "chant": "sich entschuldigen",
+        "chantZh": "道歉",
+        "topic": "社交",
+        "level": "A2",
+        "source": {
+          "day": 1,
+          "word": "sich entschuldigen"
+        }
+      },
+      {
+        "id": "word-entspannen",
+        "promptDe": "Wie heißt das auf Deutsch?",
+        "promptZh": "放松",
+        "noun": "健康 · 中 → 德",
+        "options": [
+          "sich entspannen",
+          "sich beeilen",
+          "sich bedanken"
+        ],
+        "answer": "sich entspannen",
+        "solutionDe": "Nach der Schule entspanne ich mich.",
+        "solutionZh": "放学后我放松一下。",
+        "rule": "ich entspanne mich；sich entspannen 强调缓解紧张，不等同于 einschlafen（入睡）。",
+        "chant": "sich entspannen",
+        "chantZh": "放松",
+        "topic": "健康",
+        "level": "A2",
+        "source": {
+          "day": 1,
+          "word": "sich entspannen"
+        }
+      },
+      {
+        "id": "word-einschlafen",
+        "promptDe": "einschlafen",
+        "promptZh": "这个词或词组是什么意思？",
+        "noun": "健康 · 德 → 中",
+        "options": [
+          "起床",
+          "吃早餐",
+          "入睡"
+        ],
+        "answer": "入睡",
+        "solutionDe": "Das Kind schläft schnell ein.",
+        "solutionZh": "那个孩子很快就睡着了。",
+        "rule": "einschlafen 表示“开始睡着”，schlafen 表示“处于睡眠中”；ich schlafe ein。",
+        "chant": "einschlafen",
+        "chantZh": "入睡",
+        "topic": "健康",
+        "level": "A2",
+        "source": {
+          "day": 1,
+          "word": "einschlafen"
+        }
+      },
+      {
+        "id": "word-vorbereitung",
+        "promptDe": "Wie heißt das auf Deutsch?",
+        "promptZh": "准备工作",
+        "noun": "学校 · 中 → 德",
+        "options": [
+          "die Fahrkarte",
+          "die Vorbereitung",
+          "die Verspätung"
+        ],
+        "answer": "die Vorbereitung",
+        "solutionDe": "Die Vorbereitung auf die Prüfung dauert eine Woche.",
+        "solutionZh": "备考需要一周时间。",
+        "rule": "搭配 die Vorbereitung auf + 第四格，如 auf die Prüfung（为考试做准备）。",
+        "chant": "die Vorbereitung",
+        "chantZh": "准备工作",
+        "topic": "学校",
+        "level": "B1",
+        "source": {
+          "day": 1,
+          "word": "die Vorbereitung"
+        }
+      },
+      {
+        "id": "word-konzentration",
+        "promptDe": "die Konzentration",
+        "promptZh": "在课堂学习的语境里，这个词是什么意思？",
+        "noun": "学校 · 德 → 中",
+        "options": [
+          "专注力",
+          "邀请函",
+          "公交站"
+        ],
+        "answer": "专注力",
+        "solutionDe": "Für diese Aufgabe brauche ich Ruhe und Konzentration.",
+        "solutionZh": "做这道题，我需要安静和专注。",
+        "rule": "搭配 gute Konzentration（良好的专注力）；学习语境里指注意力，不是化学中的浓度。",
+        "chant": "die Konzentration",
+        "chantZh": "专注力",
+        "topic": "学校",
+        "level": "B1",
+        "source": {
+          "day": 1,
+          "word": "die Konzentration"
+        }
+      },
+      {
+        "id": "word-erschoepft",
+        "promptDe": "Wie heißt das auf Deutsch?",
+        "promptZh": "筋疲力尽的",
+        "noun": "健康 · 中 → 德",
+        "options": [
+          "hungrig",
+          "pünktlich",
+          "erschöpft"
+        ],
+        "answer": "erschöpft",
+        "solutionDe": "Nach dem langen Tag bin ich erschöpft.",
+        "solutionZh": "忙了一整天后，我筋疲力尽。",
+        "rule": "erschöpft 常与 sein 搭配，表示体力或精力耗尽。",
+        "chant": "erschöpft",
+        "chantZh": "筋疲力尽的",
+        "topic": "健康",
+        "level": "B1",
+        "source": {
+          "day": 1,
+          "word": "erschöpft"
+        }
+      },
+      {
+        "id": "word-ziel",
+        "promptDe": "das Ziel",
+        "promptZh": "在制定学习计划的语境里，这个词是什么意思？",
+        "noun": "学校 · 德 → 中",
+        "options": [
+          "厨房",
+          "目标",
+          "课程表"
+        ],
+        "answer": "目标",
+        "solutionDe": "Mein Ziel ist eine gute Note.",
+        "solutionZh": "我的目标是取得一个好成绩。",
+        "rule": "搭配 ein Ziel erreichen（实现目标）；在出行语境里 Ziel 也可指目的地。",
+        "chant": "das Ziel",
+        "chantZh": "目标",
+        "topic": "学校",
+        "level": "A2",
+        "source": {
+          "day": 2,
+          "word": "das Ziel"
+        }
+      },
+      {
+        "id": "word-einladen",
+        "promptDe": "Wie heißt das auf Deutsch?",
+        "promptZh": "邀请",
+        "noun": "社交 · 中 → 德",
+        "options": [
+          "einladen",
+          "verkaufen",
+          "aufstehen"
+        ],
+        "answer": "einladen",
+        "solutionDe": "Ich lade meine Freunde zum Essen ein.",
+        "solutionZh": "我邀请朋友们来吃饭。",
+        "rule": "einladen 是分离动词：ich lade ... ein；jemanden zum Essen einladen 是邀请某人吃饭。",
+        "chant": "einladen",
+        "chantZh": "邀请",
+        "topic": "社交",
+        "level": "A2",
+        "source": {
+          "day": 2,
+          "word": "einladen"
+        }
+      },
+      {
+        "id": "word-vorstellen",
+        "promptDe": "sich vorstellen",
+        "promptZh": "在新同学第一次见面的语境里，这个词组是什么意思？",
+        "noun": "社交 · 德 → 中",
+        "options": [
+          "休息",
+          "赶快，抓紧",
+          "自我介绍"
+        ],
+        "answer": "自我介绍",
+        "solutionDe": "Am ersten Kurstag stelle ich mich vor.",
+        "solutionZh": "上课第一天，我做自我介绍。",
+        "rule": "ich stelle mich vor 表示自我介绍；ich stelle mir etwas vor 表示想象某事，反身代词的格不同。",
+        "chant": "sich vorstellen",
+        "chantZh": "自我介绍",
+        "topic": "社交",
+        "level": "A2",
+        "source": {
+          "day": 2,
+          "word": "sich vorstellen"
+        }
+      },
+      {
+        "id": "word-motiviert",
+        "promptDe": "Wie heißt das auf Deutsch?",
+        "promptZh": "有动力的",
+        "noun": "学校 · 中 → 德",
+        "options": [
+          "kostenlos",
+          "motiviert",
+          "durstig"
+        ],
+        "answer": "motiviert",
+        "solutionDe": "Die Schüler sind heute sehr motiviert.",
+        "solutionZh": "学生们今天很有学习动力。",
+        "rule": "motiviert sein 表示“有动力、积极投入”；常用于学习和练习。",
+        "chant": "motiviert",
+        "chantZh": "有动力的",
+        "topic": "学校",
+        "level": "B1",
+        "source": {
+          "day": 2,
+          "word": "motiviert"
+        }
+      },
+      {
+        "id": "word-treffen",
+        "promptDe": "sich treffen",
+        "promptZh": "这个词或词组是什么意思？",
+        "noun": "社交 · 德 → 中",
+        "options": [
+          "见面",
+          "洗漱，清洗自己",
+          "穿衣服"
+        ],
+        "answer": "见面",
+        "solutionDe": "Wir treffen uns nach der Schule.",
+        "solutionZh": "我们放学后见面。",
+        "rule": "sich mit jemandem treffen 表示与某人见面，mit 后接第三格。",
+        "chant": "sich treffen",
+        "chantZh": "见面",
+        "topic": "社交",
+        "level": "A2",
+        "source": {
+          "day": 3,
+          "word": "sich treffen"
+        }
+      },
+      {
+        "id": "word-setzen",
+        "promptDe": "Wie heißt das auf Deutsch?",
+        "promptZh": "坐下",
+        "noun": "学校 · 中 → 德",
+        "options": [
+          "aufstehen",
+          "husten",
+          "sich setzen"
+        ],
+        "answer": "sich setzen",
+        "solutionDe": "Ich setze mich auf den freien Stuhl.",
+        "solutionZh": "我在那张空椅子上坐下。",
+        "rule": "sich setzen 表示坐下这个动作；sitzen 表示已经坐着。",
+        "chant": "sich setzen",
+        "chantZh": "坐下",
+        "topic": "学校",
+        "level": "A2",
+        "source": {
+          "day": 3,
+          "word": "sich setzen"
+        }
+      },
+      {
+        "id": "word-waschen",
+        "promptDe": "sich waschen",
+        "promptZh": "这个词或词组是什么意思？",
+        "noun": "家庭 · 德 → 中",
+        "options": [
+          "道谢",
+          "洗漱，清洗自己",
+          "见面"
+        ],
+        "answer": "洗漱，清洗自己",
+        "solutionDe": "Ich wasche mich jeden Morgen.",
+        "solutionZh": "我每天早上洗漱。",
+        "rule": "ich wasche mich 表示清洗自己；ich wasche mir die Hände 表示洗手，身体部位作宾语时常用 mir。",
+        "chant": "sich waschen",
+        "chantZh": "洗漱，清洗自己",
+        "topic": "家庭",
+        "level": "A2",
+        "source": {
+          "day": 3,
+          "word": "sich waschen"
+        }
+      },
+      {
+        "id": "word-bedanken",
+        "promptDe": "Wie heißt das auf Deutsch?",
+        "promptZh": "道谢",
+        "noun": "社交 · 中 → 德",
+        "options": [
+          "sich bedanken",
+          "sich beeilen",
+          "sich ausruhen"
+        ],
+        "answer": "sich bedanken",
+        "solutionDe": "Ich bedanke mich bei der Lehrerin für ihre Hilfe.",
+        "solutionZh": "我感谢那位女老师的帮助。",
+        "rule": "sich bei jemandem für etwas bedanken：bei 后是感谢的对象，für 后是感谢的原因。",
+        "chant": "sich bedanken",
+        "chantZh": "道谢",
+        "topic": "社交",
+        "level": "A2",
+        "source": {
+          "day": 3,
+          "word": "sich bedanken"
+        }
+      },
+      {
+        "id": "word-ausruhen",
+        "promptDe": "sich ausruhen",
+        "promptZh": "这个词或词组是什么意思？",
+        "noun": "健康 · 德 → 中",
+        "options": [
+          "赶快，抓紧",
+          "洗漱，清洗自己",
+          "休息"
+        ],
+        "answer": "休息",
+        "solutionDe": "Nach dem Sport ruhe ich mich aus.",
+        "solutionZh": "运动后我休息一下。",
+        "rule": "ausruhen 是分离动词：ich ruhe mich aus；不一定表示睡觉。",
+        "chant": "sich ausruhen",
+        "chantZh": "休息",
+        "topic": "健康",
+        "level": "A2",
+        "source": {
+          "day": 3,
+          "word": "sich ausruhen"
+        }
+      },
+      {
+        "id": "word-fuehlen",
+        "promptDe": "Wie heißt das auf Deutsch?",
+        "promptZh": "感觉，感到",
+        "noun": "健康 · 中 → 德",
+        "options": [
+          "sich treffen",
+          "sich fühlen",
+          "sich anziehen"
+        ],
+        "answer": "sich fühlen",
+        "solutionDe": "Heute fühle ich mich wieder gut.",
+        "solutionZh": "今天我又感觉良好了。",
+        "rule": "sich + 形容词 + fühlen，如 sich müde fühlen（感到疲倦）。",
+        "chant": "sich fühlen",
+        "chantZh": "感觉，感到",
+        "topic": "健康",
+        "level": "A2",
+        "source": {
+          "day": 3,
+          "word": "sich fühlen"
+        }
+      },
+      {
+        "id": "word-helfen",
+        "promptDe": "helfen",
+        "promptZh": "这个词或词组是什么意思？",
+        "noun": "社交 · 德 → 中",
+        "options": [
+          "帮助",
+          "咳嗽",
+          "付款"
+        ],
+        "answer": "帮助",
+        "solutionDe": "Ich helfe meiner Schwester bei den Hausaufgaben.",
+        "solutionZh": "我帮妹妹做家庭作业。",
+        "rule": "helfen 后接第三格的人：ich helfe dir；bei 后说明帮忙做的事情。",
+        "chant": "helfen",
+        "chantZh": "帮助",
+        "topic": "社交",
+        "level": "A2",
+        "source": {
+          "day": 4,
+          "word": "helfen"
+        }
+      },
+      {
+        "id": "word-freundlich",
+        "promptDe": "Wie heißt das auf Deutsch?",
+        "promptZh": "友善的",
+        "noun": "社交 · 中 → 德",
+        "options": [
+          "erschöpft",
+          "hungrig",
+          "freundlich"
+        ],
+        "answer": "freundlich",
+        "solutionDe": "Die Verkäuferin ist sehr freundlich.",
+        "solutionZh": "那位女售货员很友善。",
+        "rule": "freundlich zu jemandem sein 表示对某人友善，zu 后接第三格。",
+        "chant": "freundlich",
+        "chantZh": "友善的",
+        "topic": "社交",
+        "level": "A2",
+        "source": {
+          "day": 4,
+          "word": "freundlich"
+        }
+      },
+      {
+        "id": "word-vielleicht",
+        "promptDe": "vielleicht",
+        "promptZh": "这个词或词组是什么意思？",
+        "noun": "日常 · 德 → 中",
+        "options": [
+          "否则",
+          "也许",
+          "终于"
+        ],
+        "answer": "也许",
+        "solutionDe": "Vielleicht komme ich morgen mit.",
+        "solutionZh": "也许我明天一起去。",
+        "rule": "vielleicht 放在句首时，变位动词仍占第二位：Vielleicht komme ich ...。",
+        "chant": "vielleicht",
+        "chantZh": "也许",
+        "topic": "日常",
+        "level": "A2",
+        "source": {
+          "day": 4,
+          "word": "vielleicht"
+        }
+      },
+      {
+        "id": "word-geld",
+        "promptDe": "Wie heißt das auf Deutsch?",
+        "promptZh": "钱",
+        "noun": "购物 · 中 → 德",
+        "options": [
+          "das Geld",
+          "das Heft",
+          "der Bahnhof"
+        ],
+        "answer": "das Geld",
+        "solutionDe": "Ich brauche noch Geld für die Fahrkarte.",
+        "solutionZh": "我还需要钱买车票。",
+        "rule": "常用搭配 Geld sparen（省钱）、Geld ausgeben（花钱）；Geld 通常用单数。",
+        "chant": "das Geld",
+        "chantZh": "钱",
+        "topic": "购物",
+        "level": "A2",
+        "source": {
+          "day": 7,
+          "word": "das Geld"
+        }
+      },
+      {
+        "id": "word-urlaub",
+        "promptDe": "der Urlaub",
+        "promptZh": "这个词或词组是什么意思？",
+        "noun": "日常 · 德 → 中",
+        "options": [
+          "交通",
+          "家庭作业",
+          "假期，休假"
+        ],
+        "answer": "假期，休假",
+        "solutionDe": "Im Urlaub besuchen wir unsere Freunde.",
+        "solutionZh": "假期里我们去拜访朋友。",
+        "rule": "im Urlaub 表示“在休假期间”；Urlaub 常指工作或日常生活中的休假。",
+        "chant": "der Urlaub",
+        "chantZh": "假期，休假",
+        "topic": "日常",
+        "level": "A2",
+        "source": {
+          "day": 7,
+          "word": "der Urlaub"
+        }
+      },
+      {
+        "id": "word-fleissig",
+        "promptDe": "Wie heißt das auf Deutsch?",
+        "promptZh": "勤奋的",
+        "noun": "学校 · 中 → 德",
+        "options": [
+          "durstig",
+          "fleißig",
+          "kostenlos"
+        ],
+        "answer": "fleißig",
+        "solutionDe": "Meine Schwester lernt fleißig für die Prüfung.",
+        "solutionZh": "我妹妹勤奋备考。",
+        "rule": "fleißig lernen 表示勤奋学习；ß 发清音，注意拼写。",
+        "chant": "fleißig",
+        "chantZh": "勤奋的",
+        "topic": "学校",
+        "level": "A2",
+        "source": {
+          "day": 7,
+          "word": "fleißig"
+        }
+      },
+      {
+        "id": "word-besuchen",
+        "promptDe": "besuchen",
+        "promptZh": "在谈论亲友往来的语境里，这个动词是什么意思？",
+        "noun": "社交 · 德 → 中",
+        "options": [
+          "拜访",
+          "关闭",
+          "换乘"
+        ],
+        "answer": "拜访",
+        "solutionDe": "Am Sonntag besuchen wir unsere Großeltern.",
+        "solutionZh": "星期天我们去拜访祖父母。",
+        "rule": "besuchen 后直接接第四格，不用介词：die Großeltern besuchen；也可表示参观或上课。",
+        "chant": "besuchen",
+        "chantZh": "拜访",
+        "topic": "社交",
+        "level": "A2",
+        "source": {
+          "day": 7,
+          "word": "besuchen"
+        }
+      },
+      {
+        "id": "word-mitkommen",
+        "promptDe": "Wie heißt das auf Deutsch?",
+        "promptZh": "一起去，一起来",
+        "noun": "社交 · 中 → 德",
+        "options": [
+          "einschlafen",
+          "aufräumen",
+          "mitkommen"
+        ],
+        "answer": "mitkommen",
+        "solutionDe": "Kommst du morgen mit?",
+        "solutionZh": "你明天一起去吗？",
+        "rule": "mitkommen 是分离动词：ich komme mit；常用于邀请别人同行。",
+        "chant": "mitkommen",
+        "chantZh": "一起去，一起来",
+        "topic": "社交",
+        "level": "A2",
+        "source": {
+          "day": 7,
+          "word": "mitkommen"
+        }
+      },
+      {
+        "id": "word-anfangen",
+        "promptDe": "anfangen",
+        "promptZh": "这个词或词组是什么意思？",
+        "noun": "学校 · 德 → 中",
+        "options": [
+          "下车",
+          "开始",
+          "停止做某事"
+        ],
+        "answer": "开始",
+        "solutionDe": "Wir fangen jetzt mit der Übung an.",
+        "solutionZh": "我们现在开始做练习。",
+        "rule": "anfangen 是分离动词；mit etwas anfangen 的 mit 后接第三格。",
+        "chant": "anfangen",
+        "chantZh": "开始",
+        "topic": "学校",
+        "level": "A2",
+        "source": {
+          "day": 7,
+          "word": "anfangen"
+        }
+      },
+      {
+        "id": "word-reparieren",
+        "promptDe": "Wie heißt das auf Deutsch?",
+        "promptZh": "修理",
+        "noun": "家庭 · 中 → 德",
+        "options": [
+          "reparieren",
+          "bezahlen",
+          "schließen"
+        ],
+        "answer": "reparieren",
+        "solutionDe": "Mein Vater repariert das Fahrrad.",
+        "solutionZh": "我爸爸修理自行车。",
+        "rule": "reparieren 后接第四格的物品；过去分词是 repariert，没有 ge-。",
+        "chant": "reparieren",
+        "chantZh": "修理",
+        "topic": "家庭",
+        "level": "A2",
+        "source": {
+          "day": 8,
+          "word": "reparieren"
+        }
+      },
+      {
+        "id": "word-verkaufen",
+        "promptDe": "verkaufen",
+        "promptZh": "这个词或词组是什么意思？",
+        "noun": "购物 · 德 → 中",
+        "options": [
+          "邀请",
+          "洗漱，清洗自己",
+          "出售"
+        ],
+        "answer": "出售",
+        "solutionDe": "Der Laden verkauft frisches Gemüse.",
+        "solutionZh": "这家店出售新鲜蔬菜。",
+        "rule": "verkaufen 是“卖”；kaufen 是“买”。ver- 不可分，ich verkaufe。",
+        "chant": "verkaufen",
+        "chantZh": "出售",
+        "topic": "购物",
+        "level": "A2",
+        "source": {
+          "day": 8,
+          "word": "verkaufen"
+        }
+      },
+      {
+        "id": "word-oeffnen",
+        "promptDe": "Wie heißt das auf Deutsch?",
+        "promptZh": "打开",
+        "noun": "家庭 · 中 → 德",
+        "options": [
+          "bezahlen",
+          "öffnen",
+          "schließen"
+        ],
+        "answer": "öffnen",
+        "solutionDe": "Bitte öffne das Fenster.",
+        "solutionZh": "请打开窗户。",
+        "rule": "öffnen 的反义词是 schließen（关闭）；祈使句可说 Öffne bitte das Fenster。",
+        "chant": "öffnen",
+        "chantZh": "打开",
+        "topic": "家庭",
+        "level": "A2",
+        "source": {
+          "day": 8,
+          "word": "öffnen"
+        }
+      },
+      {
+        "id": "word-schliessen",
+        "promptDe": "schließen",
+        "promptZh": "这个词或词组是什么意思？",
+        "noun": "家庭 · 德 → 中",
+        "options": [
+          "关闭",
+          "打开",
+          "修理"
+        ],
+        "answer": "关闭",
+        "solutionDe": "Bitte schließe die Tür.",
+        "solutionZh": "请关门。",
+        "rule": "schließen 的反义词是 öffnen（打开）；ich schließe，du schließt。",
+        "chant": "schließen",
+        "chantZh": "关闭",
+        "topic": "家庭",
+        "level": "A2",
+        "source": {
+          "day": 8,
+          "word": "schließen"
+        }
+      },
+      {
+        "id": "word-warten",
+        "promptDe": "Wie heißt das auf Deutsch?",
+        "promptZh": "等待",
+        "noun": "交通 · 中 → 德",
+        "options": [
+          "sich beeilen",
+          "mitkommen",
+          "warten auf"
+        ],
+        "answer": "warten auf",
+        "solutionDe": "Wir warten auf den Bus.",
+        "solutionZh": "我们在等公共汽车。",
+        "rule": "warten auf 后接第四格：auf den Bus、auf die Bahn。",
+        "chant": "warten auf",
+        "chantZh": "等待",
+        "topic": "交通",
+        "level": "A2",
+        "source": {
+          "day": 9,
+          "word": "warten auf"
+        }
+      },
+      {
+        "id": "word-teilnehmen",
+        "promptDe": "teilnehmen an",
+        "promptZh": "这个词或词组是什么意思？",
+        "noun": "学校 · 德 → 中",
+        "options": [
+          "出售",
+          "参加活动",
+          "修理"
+        ],
+        "answer": "参加活动",
+        "solutionDe": "Ich nehme am Schulfest teil.",
+        "solutionZh": "我参加学校的庆祝活动。",
+        "rule": "teilnehmen 是分离动词；an 后接第三格：an dem Schulfest teilnehmen。",
+        "chant": "teilnehmen an",
+        "chantZh": "参加活动",
+        "topic": "学校",
+        "level": "B1",
+        "source": {
+          "day": 9,
+          "word": "teilnehmen an"
+        }
+      },
+      {
+        "id": "word-aufhoeren",
+        "promptDe": "Wie heißt das auf Deutsch?",
+        "promptZh": "停止做某事",
+        "noun": "健康 · 中 → 德",
+        "options": [
+          "aufhören mit",
+          "anfangen",
+          "sich bedanken"
+        ],
+        "answer": "aufhören mit",
+        "solutionDe": "Ich höre jetzt mit dem Spielen auf.",
+        "solutionZh": "我现在停止玩耍。",
+        "rule": "aufhören 是分离动词；mit 后接第三格：mit dem Spielen aufhören。",
+        "chant": "aufhören mit",
+        "chantZh": "停止做某事",
+        "topic": "健康",
+        "level": "B1",
+        "source": {
+          "day": 10,
+          "word": "aufhören mit"
+        }
+      },
+      {
+        "id": "word-schule",
+        "promptDe": "die Schule",
+        "promptZh": "这个词或词组是什么意思？",
+        "noun": "学校 · 德 → 中",
+        "options": [
+          "药店",
+          "厨房",
+          "学校"
+        ],
+        "answer": "学校",
+        "solutionDe": "Unsere Schule hat eine Bibliothek.",
+        "solutionZh": "我们学校有一个图书馆。",
+        "rule": "zur Schule gehen 表示去上学；in der Schule 表示在学校里。",
+        "chant": "die Schule",
+        "chantZh": "学校",
+        "topic": "学校",
+        "level": "A2"
+      },
+      {
+        "id": "word-unterricht",
+        "promptDe": "Wie heißt das auf Deutsch?",
+        "promptZh": "课堂教学",
+        "noun": "学校 · 中 → 德",
+        "options": [
+          "der Preis",
+          "der Unterricht",
+          "der Verkehr"
+        ],
+        "answer": "der Unterricht",
+        "solutionDe": "Der Unterricht beginnt um acht Uhr.",
+        "solutionZh": "八点开始上课。",
+        "rule": "Unterricht 通常用单数；搭配 Unterricht haben（有课）、am Unterricht teilnehmen（参加课堂学习）。",
+        "chant": "der Unterricht",
+        "chantZh": "课堂教学",
+        "topic": "学校",
+        "level": "A2"
+      },
+      {
+        "id": "word-hausaufgabe",
+        "promptDe": "die Hausaufgabe",
+        "promptZh": "这个词或词组是什么意思？",
+        "noun": "学校 · 德 → 中",
+        "options": [
+          "家庭作业",
+          "家务",
+          "邀请函"
+        ],
+        "answer": "家庭作业",
+        "solutionDe": "Ich mache zuerst meine Hausaufgaben.",
+        "solutionZh": "我先做家庭作业。",
+        "rule": "常用复数 die Hausaufgaben；与 die Hausarbeit（家务）区分。",
+        "chant": "die Hausaufgabe",
+        "chantZh": "家庭作业",
+        "topic": "学校",
+        "level": "A2"
+      },
+      {
+        "id": "word-heft",
+        "promptDe": "Wie heißt das auf Deutsch?",
+        "promptZh": "练习本",
+        "noun": "学校 · 中 → 德",
+        "options": [
+          "das Gemüse",
+          "die Fahrkarte",
+          "das Heft"
+        ],
+        "answer": "das Heft",
+        "solutionDe": "Ich schreibe die neuen Wörter in mein Heft.",
+        "solutionZh": "我把新单词写进练习本里。",
+        "rule": "das Heft 的复数是 die Hefte；常用搭配 ins Heft schreiben（写进本子里）。",
+        "chant": "das Heft",
+        "chantZh": "练习本",
+        "topic": "学校",
+        "level": "A2"
+      },
+      {
+        "id": "word-bleistift",
+        "promptDe": "der Bleistift",
+        "promptZh": "这个词或词组是什么意思？",
+        "noun": "学校 · 德 → 中",
+        "options": [
+          "价格",
+          "铅笔",
+          "火车站"
+        ],
+        "answer": "铅笔",
+        "solutionDe": "Ich schreibe die Antwort mit einem Bleistift.",
+        "solutionZh": "我用铅笔写答案。",
+        "rule": "mit einem Bleistift schreiben 表示用铅笔写；mit 后接第三格。",
+        "chant": "der Bleistift",
+        "chantZh": "铅笔",
+        "topic": "学校",
+        "level": "A2"
+      },
+      {
+        "id": "word-stundenplan",
+        "promptDe": "Wie heißt das auf Deutsch?",
+        "promptZh": "课程表",
+        "noun": "学校 · 中 → 德",
+        "options": [
+          "der Stundenplan",
+          "der Urlaub",
+          "die Rechnung"
+        ],
+        "answer": "der Stundenplan",
+        "solutionDe": "Am Montag steht Deutsch auf dem Stundenplan.",
+        "solutionZh": "周一的课程表上有德语课。",
+        "rule": "auf dem Stundenplan stehen 表示列在课表上；Stundenplan 的复数是 die Stundenpläne。",
+        "chant": "der Stundenplan",
+        "chantZh": "课程表",
+        "topic": "学校",
+        "level": "A2"
+      },
+      {
+        "id": "word-pause",
+        "promptDe": "die Pause",
+        "promptZh": "在学校一天的作息安排中，这个词是什么意思？",
+        "noun": "学校 · 德 → 中",
+        "options": [
+          "考试",
+          "家庭作业",
+          "课间休息"
+        ],
+        "answer": "课间休息",
+        "solutionDe": "Nach der Stunde machen wir eine Pause.",
+        "solutionZh": "这节课后我们休息一下。",
+        "rule": "eine Pause machen 表示休息一下；在学校可指课间休息。",
+        "chant": "die Pause",
+        "chantZh": "课间休息",
+        "topic": "学校",
+        "level": "A2"
+      },
+      {
+        "id": "word-bibliothek",
+        "promptDe": "Wie heißt das auf Deutsch?",
+        "promptZh": "图书馆",
+        "noun": "学校 · 中 → 德",
+        "options": [
+          "die Haltestelle",
+          "die Bibliothek",
+          "die Apotheke"
+        ],
+        "answer": "die Bibliothek",
+        "solutionDe": "Ich leihe ein Buch in der Bibliothek aus.",
+        "solutionZh": "我在图书馆借一本书。",
+        "rule": "in der Bibliothek 是“在图书馆”；ein Buch ausleihen 表示借阅一本书。",
+        "chant": "die Bibliothek",
+        "chantZh": "图书馆",
+        "topic": "学校",
+        "level": "A2"
+      },
+      {
+        "id": "word-radiergummi",
+        "promptDe": "der Radiergummi",
+        "promptZh": "这个词或词组是什么意思？",
+        "noun": "学校 · 德 → 中",
+        "options": [
+          "橡皮擦",
+          "冰箱",
+          "蔬菜"
+        ],
+        "answer": "橡皮擦",
+        "solutionDe": "Kannst du mir den Radiergummi geben?",
+        "solutionZh": "你能把橡皮擦递给我吗？",
+        "rule": "记作 der Radiergummi；常与 der Bleistift（铅笔）一起使用。",
+        "chant": "der Radiergummi",
+        "chantZh": "橡皮擦",
+        "topic": "学校",
+        "level": "A2"
+      },
+      {
+        "id": "word-tafel",
+        "promptDe": "Wie heißt das auf Deutsch?",
+        "promptZh": "黑板",
+        "noun": "学校 · 中 → 德",
+        "options": [
+          "die Küche",
+          "die Fahrkarte",
+          "die Tafel"
+        ],
+        "answer": "die Tafel",
+        "solutionDe": "Die Lehrerin schreibt einen Satz an die Tafel.",
+        "solutionZh": "女老师在黑板上写一个句子。",
+        "rule": "an die Tafel schreiben 表示写到黑板上；an der Tafel stehen 表示站在黑板旁。",
+        "chant": "die Tafel",
+        "chantZh": "黑板",
+        "topic": "学校",
+        "level": "A2"
+      },
+      {
+        "id": "word-kueche",
+        "promptDe": "die Küche",
+        "promptZh": "这个词或词组是什么意思？",
+        "noun": "家庭 · 德 → 中",
+        "options": [
+          "图书馆",
+          "厨房",
+          "学校"
+        ],
+        "answer": "厨房",
+        "solutionDe": "Wir kochen zusammen in der Küche.",
+        "solutionZh": "我们一起在厨房做饭。",
+        "rule": "in der Küche 表示在厨房；die Küche 的复数是 die Küchen。",
+        "chant": "die Küche",
+        "chantZh": "厨房",
+        "topic": "家庭",
+        "level": "A2"
+      },
+      {
+        "id": "word-badezimmer",
+        "promptDe": "Wie heißt das auf Deutsch?",
+        "promptZh": "浴室",
+        "noun": "家庭 · 中 → 德",
+        "options": [
+          "das Badezimmer",
+          "das Heft",
+          "der Bahnhof"
+        ],
+        "answer": "das Badezimmer",
+        "solutionDe": "Im Badezimmer hängt ein großer Spiegel.",
+        "solutionZh": "浴室里挂着一面大镜子。",
+        "rule": "in dem Badezimmer 常缩合为 im Badezimmer；也可简称 das Bad。",
+        "chant": "das Badezimmer",
+        "chantZh": "浴室",
+        "topic": "家庭",
+        "level": "A2"
+      },
+      {
+        "id": "word-kuehlschrank",
+        "promptDe": "der Kühlschrank",
+        "promptZh": "这个词或词组是什么意思？",
+        "noun": "家庭 · 德 → 中",
+        "options": [
+          "铅笔",
+          "洗衣机",
+          "冰箱"
+        ],
+        "answer": "冰箱",
+        "solutionDe": "Die Milch steht im Kühlschrank.",
+        "solutionZh": "牛奶放在冰箱里。",
+        "rule": "im Kühlschrank 表示在冰箱里；in den Kühlschrank stellen 表示放进冰箱。",
+        "chant": "der Kühlschrank",
+        "chantZh": "冰箱",
+        "topic": "家庭",
+        "level": "A2"
+      },
+      {
+        "id": "word-waschmaschine",
+        "promptDe": "Wie heißt das auf Deutsch?",
+        "promptZh": "洗衣机",
+        "noun": "家庭 · 中 → 德",
+        "options": [
+          "die Tafel",
+          "die Waschmaschine",
+          "der Kühlschrank"
+        ],
+        "answer": "die Waschmaschine",
+        "solutionDe": "Die Waschmaschine steht im Badezimmer.",
+        "solutionZh": "洗衣机放在浴室里。",
+        "rule": "die Waschmaschine 的复数是 die Waschmaschinen；Wäsche waschen 表示洗衣服。",
+        "chant": "die Waschmaschine",
+        "chantZh": "洗衣机",
+        "topic": "家庭",
+        "level": "A2"
+      },
+      {
+        "id": "word-aufraeumen",
+        "promptDe": "aufräumen",
+        "promptZh": "这个词或词组是什么意思？",
+        "noun": "家庭 · 德 → 中",
+        "options": [
+          "整理房间",
+          "下车",
+          "付款"
+        ],
+        "answer": "整理房间",
+        "solutionDe": "Am Abend räume ich mein Zimmer auf.",
+        "solutionZh": "晚上我整理自己的房间。",
+        "rule": "aufräumen 是分离动词：ich räume ... auf；常用搭配 das Zimmer aufräumen。",
+        "chant": "aufräumen",
+        "chantZh": "整理房间",
+        "topic": "家庭",
+        "level": "A2"
+      },
+      {
+        "id": "word-nachbarin",
+        "promptDe": "Wie heißt das auf Deutsch?",
+        "promptZh": "女邻居",
+        "noun": "家庭 · 中 → 德",
+        "options": [
+          "die Einladung",
+          "die Bibliothek",
+          "die Nachbarin"
+        ],
+        "answer": "die Nachbarin",
+        "solutionDe": "Unsere Nachbarin gießt die Blumen.",
+        "solutionZh": "我们的女邻居给花浇水。",
+        "rule": "女性是 die Nachbarin，男性是 der Nachbar；女邻居的复数是 die Nachbarinnen。",
+        "chant": "die Nachbarin",
+        "chantZh": "女邻居",
+        "topic": "家庭",
+        "level": "A2"
+      },
+      {
+        "id": "word-bahnhof",
+        "promptDe": "der Bahnhof",
+        "promptZh": "这个词或词组是什么意思？",
+        "noun": "交通 · 德 → 中",
+        "options": [
+          "药店",
+          "火车站",
+          "公交站"
+        ],
+        "answer": "火车站",
+        "solutionDe": "Der Zug kommt am Bahnhof an.",
+        "solutionZh": "火车到站了。",
+        "rule": "am Bahnhof 是“在火车站”；zum Bahnhof 是“去火车站”。",
+        "chant": "der Bahnhof",
+        "chantZh": "火车站",
+        "topic": "交通",
+        "level": "A2"
+      },
+      {
+        "id": "word-haltestelle",
+        "promptDe": "Wie heißt das auf Deutsch?",
+        "promptZh": "公交站",
+        "noun": "交通 · 中 → 德",
+        "options": [
+          "die Haltestelle",
+          "der Bahnhof",
+          "die Küche"
+        ],
+        "answer": "die Haltestelle",
+        "solutionDe": "Wir warten an der Haltestelle.",
+        "solutionZh": "我们在公交站等候。",
+        "rule": "Haltestelle 常指公交车或有轨电车的停靠站；搭配 an der Haltestelle warten。",
+        "chant": "die Haltestelle",
+        "chantZh": "公交站",
+        "topic": "交通",
+        "level": "A2"
+      },
+      {
+        "id": "word-fahrkarte",
+        "promptDe": "die Fahrkarte",
+        "promptZh": "这个词或词组是什么意思？",
+        "noun": "交通 · 德 → 中",
+        "options": [
+          "账单",
+          "邀请函",
+          "车票"
+        ],
+        "answer": "车票",
+        "solutionDe": "Ich kaufe eine Fahrkarte am Automaten.",
+        "solutionZh": "我在自动售票机买一张车票。",
+        "rule": "eine Fahrkarte kaufen 表示买车票；Fahrkarte 是乘坐公共交通的票。",
+        "chant": "die Fahrkarte",
+        "chantZh": "车票",
+        "topic": "交通",
+        "level": "A2"
+      },
+      {
+        "id": "word-verspaetung",
+        "promptDe": "Wie heißt das auf Deutsch?",
+        "promptZh": "晚点，延误",
+        "noun": "交通 · 中 → 德",
+        "options": [
+          "die Pause",
+          "die Verspätung",
+          "die Vorbereitung"
+        ],
+        "answer": "die Verspätung",
+        "solutionDe": "Der Zug hat zehn Minuten Verspätung.",
+        "solutionZh": "火车晚点十分钟。",
+        "rule": "搭配 Verspätung haben；交通语境里指晚点，也可指人迟到。",
+        "chant": "die Verspätung",
+        "chantZh": "晚点，延误",
+        "topic": "交通",
+        "level": "A2"
+      },
+      {
+        "id": "word-umsteigen",
+        "promptDe": "umsteigen",
+        "promptZh": "在乘坐公共交通的语境里，这个动词是什么意思？",
+        "noun": "交通 · 德 → 中",
+        "options": [
+          "换乘",
+          "下车",
+          "入睡"
+        ],
+        "answer": "换乘",
+        "solutionDe": "Am Hauptbahnhof müssen wir umsteigen.",
+        "solutionZh": "我们必须在中央火车站换乘。",
+        "rule": "umsteigen 是分离动词：ich steige ... um；换乘地点可用 in 或 an 说明。",
+        "chant": "umsteigen",
+        "chantZh": "换乘",
+        "topic": "交通",
+        "level": "A2"
+      },
+      {
+        "id": "word-aussteigen",
+        "promptDe": "Wie heißt das auf Deutsch?",
+        "promptZh": "下车",
+        "noun": "交通 · 中 → 德",
+        "options": [
+          "umsteigen",
+          "aufstehen",
+          "aussteigen"
+        ],
+        "answer": "aussteigen",
+        "solutionDe": "An der nächsten Haltestelle steige ich aus.",
+        "solutionZh": "我在下一站下车。",
+        "rule": "aussteigen 是分离动词：ich steige ... aus；aus dem Bus aussteigen 表示从公交车下车。",
+        "chant": "aussteigen",
+        "chantZh": "下车",
+        "topic": "交通",
+        "level": "A2"
+      },
+      {
+        "id": "word-preis",
+        "promptDe": "der Preis",
+        "promptZh": "在商店的语境里，这个词是什么意思？",
+        "noun": "购物 · 德 → 中",
+        "options": [
+          "课程表",
+          "价格",
+          "找回的零钱"
+        ],
+        "answer": "价格",
+        "solutionDe": "Der Preis steht auf dem Schild.",
+        "solutionZh": "价格写在牌子上。",
+        "rule": "购物时 der Preis 指价格；问价可说 Wie viel kostet das?。",
+        "chant": "der Preis",
+        "chantZh": "价格",
+        "topic": "购物",
+        "level": "A2"
+      },
+      {
+        "id": "word-rechnung",
+        "promptDe": "Wie heißt das auf Deutsch?",
+        "promptZh": "账单",
+        "noun": "购物 · 中 → 德",
+        "options": [
+          "die Rechnung",
+          "die Fahrkarte",
+          "die Einladung"
+        ],
+        "answer": "die Rechnung",
+        "solutionDe": "Wir bezahlen die Rechnung zusammen.",
+        "solutionZh": "我们一起付账。",
+        "rule": "搭配 die Rechnung bezahlen（付账）；在餐馆可说 Die Rechnung, bitte。",
+        "chant": "die Rechnung",
+        "chantZh": "账单",
+        "topic": "购物",
+        "level": "A2"
+      },
+      {
+        "id": "word-wechselgeld",
+        "promptDe": "das Wechselgeld",
+        "promptZh": "这个词或词组是什么意思？",
+        "noun": "购物 · 德 → 中",
+        "options": [
+          "价格",
+          "车票",
+          "找回的零钱"
+        ],
+        "answer": "找回的零钱",
+        "solutionDe": "Hier ist Ihr Wechselgeld.",
+        "solutionZh": "这是找给您的零钱。",
+        "rule": "Wechselgeld 指付现金后找回的钱；不等同于“价格”der Preis。",
+        "chant": "das Wechselgeld",
+        "chantZh": "找回的零钱",
+        "topic": "购物",
+        "level": "A2"
+      },
+      {
+        "id": "word-bezahlen",
+        "promptDe": "Wie heißt das auf Deutsch?",
+        "promptZh": "付款",
+        "noun": "购物 · 中 → 德",
+        "options": [
+          "reparieren",
+          "bezahlen",
+          "verkaufen"
+        ],
+        "answer": "bezahlen",
+        "solutionDe": "Kann ich mit Karte bezahlen?",
+        "solutionZh": "我可以刷卡付款吗？",
+        "rule": "mit Karte bezahlen 表示刷卡付款，bar bezahlen 表示付现金。",
+        "chant": "bezahlen",
+        "chantZh": "付款",
+        "topic": "购物",
+        "level": "A2"
+      },
+      {
+        "id": "word-anprobieren",
+        "promptDe": "anprobieren",
+        "promptZh": "这个词或词组是什么意思？",
+        "noun": "购物 · 德 → 中",
+        "options": [
+          "试穿",
+          "整理房间",
+          "邀请"
+        ],
+        "answer": "试穿",
+        "solutionDe": "Ich probiere die Jacke an.",
+        "solutionZh": "我试穿这件夹克。",
+        "rule": "anprobieren 是分离动词：ich probiere ... an；宾语通常是衣物或鞋子。",
+        "chant": "anprobieren",
+        "chantZh": "试穿",
+        "topic": "购物",
+        "level": "A2"
+      },
+      {
+        "id": "word-fruehstueck",
+        "promptDe": "Wie heißt das auf Deutsch?",
+        "promptZh": "早餐",
+        "noun": "饮食 · 中 → 德",
+        "options": [
+          "das Gemüse",
+          "die Rechnung",
+          "das Frühstück"
+        ],
+        "answer": "das Frühstück",
+        "solutionDe": "Das Frühstück steht auf dem Tisch.",
+        "solutionZh": "早餐已经摆在桌上。",
+        "rule": "zum Frühstück 表示“早餐时、当早餐”；动词 frühstücken 表示吃早餐。",
+        "chant": "das Frühstück",
+        "chantZh": "早餐",
+        "topic": "饮食",
+        "level": "A2"
+      },
+      {
+        "id": "word-gemuese",
+        "promptDe": "das Gemüse",
+        "promptZh": "这个词或词组是什么意思？",
+        "noun": "饮食 · 德 → 中",
+        "options": [
+          "找回的零钱",
+          "蔬菜",
+          "早餐"
+        ],
+        "answer": "蔬菜",
+        "solutionDe": "Wir essen jeden Tag frisches Gemüse.",
+        "solutionZh": "我们每天吃新鲜蔬菜。",
+        "rule": "Gemüse 是集合名词，通常用单数：das Gemüse ist frisch。",
+        "chant": "das Gemüse",
+        "chantZh": "蔬菜",
+        "topic": "饮食",
+        "level": "A2"
+      },
+      {
+        "id": "word-durstig",
+        "promptDe": "Wie heißt das auf Deutsch?",
+        "promptZh": "口渴的",
+        "noun": "饮食 · 中 → 德",
+        "options": [
+          "durstig",
+          "hungrig",
+          "motiviert"
+        ],
+        "answer": "durstig",
+        "solutionDe": "Nach dem Laufen bin ich durstig.",
+        "solutionZh": "跑步后我口渴了。",
+        "rule": "durstig sein 表示口渴；也可说 Durst haben。",
+        "chant": "durstig",
+        "chantZh": "口渴的",
+        "topic": "饮食",
+        "level": "A2"
+      },
+      {
+        "id": "word-hungrig",
+        "promptDe": "hungrig",
+        "promptZh": "这个词或词组是什么意思？",
+        "noun": "饮食 · 德 → 中",
+        "options": [
+          "口渴的",
+          "友善的",
+          "饥饿的"
+        ],
+        "answer": "饥饿的",
+        "solutionDe": "Nach dem Sport bin ich hungrig.",
+        "solutionZh": "运动后我饿了。",
+        "rule": "hungrig sein 表示饿了；也可说 Hunger haben。",
+        "chant": "hungrig",
+        "chantZh": "饥饿的",
+        "topic": "饮食",
+        "level": "A2"
+      },
+      {
+        "id": "word-termin",
+        "promptDe": "Wie heißt das auf Deutsch?",
+        "promptZh": "预约时间",
+        "noun": "健康 · 中 → 德",
+        "options": [
+          "die Verspätung",
+          "der Termin",
+          "die Apotheke"
+        ],
+        "answer": "der Termin",
+        "solutionDe": "Ich habe morgen einen Termin beim Arzt.",
+        "solutionZh": "我明天约好了看医生。",
+        "rule": "einen Termin beim Arzt haben 表示与医生约好了时间；einen Termin vereinbaren 表示预约。",
+        "chant": "der Termin",
+        "chantZh": "预约时间",
+        "topic": "健康",
+        "level": "A2"
+      },
+      {
+        "id": "word-apotheke",
+        "promptDe": "die Apotheke",
+        "promptZh": "这个词或词组是什么意思？",
+        "noun": "健康 · 德 → 中",
+        "options": [
+          "药店",
+          "图书馆",
+          "火车站"
+        ],
+        "answer": "药店",
+        "solutionDe": "Ich hole die Medikamente in der Apotheke.",
+        "solutionZh": "我到药店取药。",
+        "rule": "in der Apotheke 表示在药店；zur Apotheke gehen 表示去药店。",
+        "chant": "die Apotheke",
+        "chantZh": "药店",
+        "topic": "健康",
+        "level": "A2"
+      },
+      {
+        "id": "word-husten",
+        "promptDe": "Wie heißt das auf Deutsch?",
+        "promptZh": "咳嗽",
+        "noun": "健康 · 中 → 德",
+        "options": [
+          "frühstücken",
+          "bezahlen",
+          "husten"
+        ],
+        "answer": "husten",
+        "solutionDe": "Das Kind hustet seit gestern.",
+        "solutionZh": "那个孩子从昨天开始咳嗽。",
+        "rule": "husten 是动词；der Husten 是名词“咳嗽”，常用 Husten haben。",
+        "chant": "husten",
+        "chantZh": "咳嗽",
+        "topic": "健康",
+        "level": "A2"
+      },
+      {
+        "id": "word-einladung",
+        "promptDe": "die Einladung",
+        "promptZh": "朋友发来一张卡片约你参加生日聚会，这个词指什么？",
+        "noun": "社交 · 德 → 中",
+        "options": [
+          "车票",
+          "邀请函",
+          "账单"
+        ],
+        "answer": "邀请函",
+        "solutionDe": "Danke für die Einladung zum Essen.",
+        "solutionZh": "谢谢你邀请我吃饭。",
+        "rule": "die Einladung 可指邀请或邀请函；搭配 eine Einladung bekommen（收到邀请）。",
+        "chant": "die Einladung",
+        "chantZh": "邀请函",
+        "topic": "社交",
+        "level": "A2"
+      }
     ]
   }
 ]

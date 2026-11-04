@@ -1,15 +1,19 @@
 export const BPM = 96;
 export const BEAT_SECONDS = 60 / BPM;
-export const ANSWER_SECONDS = BEAT_SECONDS * 8;
+export const DIFFICULTIES = {
+    normal: { label: '普通', seconds: 10, beats: 16 },
+    hard: { label: '困难', seconds: 5, beats: 8 },
+};
 export const FEEDBACK_SECONDS = BEAT_SECONDS * 4;
 
-export function initialBattle() {
-    return { phase: 'lobby', index: 0, hearts: 3, combo: 0, bestCombo: 0, score: 0, answers: [], questions: [] };
+export function initialBattle(difficulty = 'normal') {
+    const selected = DIFFICULTIES[difficulty] ? difficulty : 'normal';
+    return { phase: 'lobby', difficulty: selected, seconds: DIFFICULTIES[selected].seconds, index: 0, hearts: 3, combo: 0, bestCombo: 0, score: 0, answers: [], questions: [] };
 }
 
-export function startBattle(questions, random = Math.random) {
+export function startBattle(questions, { difficulty = 'normal', random = Math.random } = {}) {
     return {
-        ...initialBattle(),
+        ...initialBattle(difficulty),
         phase: 'countdown',
         questions: questions.map(question => {
             const options = [...question.options];
@@ -29,7 +33,8 @@ export function resolveAnswer(state, choice, secondsLeft) {
     const timedOut = secondsLeft <= 0 || choice === null;
     const correct = !timedOut && choice === question.answer;
     const combo = correct ? state.combo + 1 : 0;
-    const points = correct ? 100 + Math.round(Math.max(0, Math.min(ANSWER_SECONDS, secondsLeft)) * 20) + (combo >= 3 ? 50 : 0) : 0;
+    const elapsed = Math.max(0, Math.min(state.seconds, state.seconds - secondsLeft));
+    const points = correct ? 100 + Math.round((1 - elapsed / state.seconds) * 100) + (combo >= 3 ? 50 : 0) : 0;
     return {
         ...state,
         phase: 'feedback',
@@ -37,7 +42,7 @@ export function resolveAnswer(state, choice, secondsLeft) {
         combo,
         bestCombo: Math.max(state.bestCombo, combo),
         score: state.score + points,
-        answers: [...state.answers, { id: question.id, choice: timedOut ? null : choice, correct, seconds: Math.max(0, ANSWER_SECONDS - secondsLeft), points }],
+        answers: [...state.answers, { id: question.id, choice: timedOut ? null : choice, correct, seconds: elapsed, points }],
     };
 }
 

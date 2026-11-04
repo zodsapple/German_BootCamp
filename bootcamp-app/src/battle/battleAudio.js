@@ -26,6 +26,7 @@ export class BattleAudio {
             this.master = this.context.createGain();
             this.master.gain.value = this.muted ? 0 : 0.72;
             const compressor = this.context.createDynamicsCompressor();
+            this.output = compressor;
             this.master.connect(compressor);
             compressor.connect(this.context.destination);
             this.music = this.context.createGain();
@@ -226,7 +227,35 @@ export class BattleAudio {
         this.nodes.clear();
     }
 
+    record(seconds = 15) {
+        if (!this.context || this.context.state !== 'running' || !window.MediaRecorder) return Promise.reject(new Error('请先开始有声战斗，再录制音轨。'));
+        if (this.recorder?.state === 'recording') return Promise.reject(new Error('音轨正在录制。'));
+        const destination = this.context.createMediaStreamDestination();
+        this.output.connect(destination);
+        const mimeType = ['audio/webm;codecs=opus', 'audio/mp4'].find(type => MediaRecorder.isTypeSupported(type));
+        const recorder = new MediaRecorder(destination.stream, mimeType ? { mimeType } : undefined);
+        this.recorder = recorder;
+        return new Promise((resolve, reject) => {
+            const chunks = [];
+            let cleaned = false;
+            const timer = setTimeout(() => { if (recorder.state !== 'inactive') recorder.stop(); }, seconds * 1000);
+            const cleanup = () => {
+                if (cleaned) return;
+                cleaned = true;
+                clearTimeout(timer);
+                try { this.output.disconnect(destination); } catch { /* Closing a context can already disconnect its graph. */ }
+                destination.stream.getTracks().forEach(track => track.stop());
+                this.recorder = null;
+            };
+            recorder.ondataavailable = event => { if (event.data.size) chunks.push(event.data); };
+            recorder.onerror = () => { cleanup(); reject(new Error('音轨录制失败，请重试。')); };
+            recorder.onstop = () => { cleanup(); resolve(new Blob(chunks, { type: recorder.mimeType })); };
+            recorder.start();
+        });
+    }
+
     async close() {
+        if (this.recorder?.state === 'recording') this.recorder.stop();
         this.stop();
         const context = this.context;
         this.context = null;

@@ -1,36 +1,46 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, statSync } from 'node:fs';
-import { ANSWER_SECONDS, BEAT_SECONDS, advanceBattle, enemyHealth, missedQuestions, resolveAnswer, startBattle } from './battleEngine.js';
+import { DIFFICULTIES, BEAT_SECONDS, advanceBattle, enemyHealth, missedQuestions, resolveAnswer, startBattle } from './battleEngine.js';
 import { BattleAudio } from './battleAudio.js';
+import { learningStats, selectQuestions, updateLearning } from './learning.js';
 
 const chapters = JSON.parse(readFileSync(new URL('./questions.json', import.meta.url), 'utf8'));
 
-test('all 15 bilingual questions have one distinct answer and a nonempty MP3', () => {
-    assert.deepEqual(chapters.map(chapter => chapter.questions.length), [5, 5, 5]);
+test('all 200 bilingual questions have one distinct answer, a topic and the matching MP3', () => {
+    assert.deepEqual(chapters.map(chapter => chapter.questions.length), [60, 60, 80]);
+    const manifest = JSON.parse(readFileSync(new URL('../../public/audio/battle/manifest.json', import.meta.url), 'utf8'));
     const ids = new Set();
     for (const chapter of chapters) for (const question of chapter.questions) {
         assert.ok(!ids.has(question.id));
         ids.add(question.id);
         assert.equal(question.options.filter(option => option === question.answer).length, 1);
         assert.equal(new Set(question.options).size, question.options.length);
+        assert.equal(question.options.length, 3);
+        assert.ok(question.topic);
+        assert.ok(['A2', 'B1'].includes(question.level));
         for (const key of ['promptDe', 'promptZh', 'solutionDe', 'solutionZh', 'rule', 'chant', 'chantZh']) assert.ok(question[key]);
         if (question.promptDe.includes('___')) assert.equal(question.promptDe.replace('___', question.answer), question.solutionDe);
         const audio = new URL(`../../public/audio/battle/${question.id}.mp3`, import.meta.url);
         assert.ok(statSync(audio).size > 1000);
+        assert.equal(manifest[question.id], question.chant);
         if (question.source) {
             const day = JSON.parse(readFileSync(new URL(`../data/day${question.source.day}.json`, import.meta.url), 'utf8'));
             assert.ok(day.vocab.some(word => word.word === question.source.word && word.word === question.chant));
         }
     }
+    for (const chapter of chapters.slice(0, 2)) assert.equal(new Set(chapter.questions.map(question => question.promptDe)).size, chapter.questions.length);
+    assert.equal(new Set(chapters[2].questions.map(question => question.chant.toLowerCase())).size, 80);
 });
 
 test('eight beats provide exactly five seconds; shuffling preserves answers and source content', () => {
     assert.equal(BEAT_SECONDS * 8, 5);
-    assert.equal(ANSWER_SECONDS, 5);
+    assert.equal(DIFFICULTIES.hard.seconds, 5);
+    assert.equal(DIFFICULTIES.normal.seconds, 10);
+    assert.equal(BEAT_SECONDS * 16, 10);
     const questions = chapters[0].questions;
     const original = JSON.stringify(questions);
-    const state = startBattle(questions, () => 0);
+    const state = startBattle(questions, { random: () => 0 });
     assert.equal(JSON.stringify(questions), original);
     assert.notDeepEqual(state.questions[0].options, questions[0].options);
     assert.deepEqual(new Set(state.questions[0].options), new Set(questions[0].options));
@@ -38,7 +48,7 @@ test('eight beats provide exactly five seconds; shuffling preserves answers and 
 
 test('one click can score only once; late correct clicks count as timeouts', () => {
     const question = chapters[0].questions[0];
-    const state = { ...startBattle([question]), phase: 'question' };
+    const state = { ...startBattle([question], { difficulty: 'hard' }), phase: 'question' };
     const hit = resolveAnswer(state, question.answer, 4);
     assert.equal(hit.hearts, 3);
     assert.equal(hit.score, 180);
@@ -51,7 +61,7 @@ test('one click can score only once; late correct clicks count as timeouts', () 
 });
 
 test('a perfect round deals all enemy health, earns a third-hit bonus and ends after five questions', () => {
-    let state = { ...startBattle(chapters[1].questions), phase: 'question' };
+    let state = { ...startBattle(chapters[1].questions.slice(0, 5), { difficulty: 'hard' }), phase: 'question' };
     for (let i = 0; i < 5; i++) {
         state = resolveAnswer(state, state.questions[state.index].answer, 3);
         if (i === 2) assert.equal(state.answers.at(-1).points, 210);
@@ -65,7 +75,7 @@ test('a perfect round deals all enemy health, earns a third-hit bonus and ends a
 });
 
 test('three mistakes end a round and revenge includes wrong and unseen questions', () => {
-    let state = { ...startBattle(chapters[2].questions), phase: 'question' };
+    let state = { ...startBattle(chapters[2].questions.slice(0, 5)), phase: 'question' };
     state = advanceBattle(resolveAnswer(state, state.questions[0].answer, 3));
     for (let i = 0; i < 3; i++) state = advanceBattle(resolveAnswer(state, null, 0));
     assert.equal(state.phase, 'result');
@@ -94,4 +104,45 @@ test('feedback includes the whole vocal echo even for an answer just before a ba
     const lastVoice = audio.nextBeat(audio.now() + 0.06) + 1.14 + BEAT_SECONDS * 2;
     assert.ok(end >= lastVoice);
     assert.equal(end % (BEAT_SECONDS * 4), 0);
+});
+
+test('normal allows ten seconds and scores speed as a proportion of its own time limit', () => {
+    const questions = chapters[0].questions.slice(0, 1);
+    const normal = { ...startBattle(questions), phase: 'question' };
+    const hard = { ...startBattle(questions, { difficulty: 'hard' }), phase: 'question' };
+    assert.equal(normal.seconds, 10);
+    assert.equal(hard.seconds, 5);
+    assert.equal(resolveAnswer(normal, questions[0].answer, 8).score, resolveAnswer(hard, questions[0].answer, 4).score);
+    assert.equal(resolveAnswer(normal, questions[0].answer, 0).answers[0].seconds, 10);
+    assert.equal(resolveAnswer(hard, questions[0].answer, 0).answers[0].seconds, 5);
+});
+
+test('short rounds mix weak questions with fresh content, without duplicates or losing the full bank', () => {
+    const bank = chapters[0].questions;
+    const progress = Object.fromEntries(bank.slice(0, 8).map(question => [question.id, { correct: 0, wrong: 1, streak: 0 }]));
+    const round = selectQuestions(bank, { progress, random: () => 0 });
+    assert.equal(round.length, 10);
+    assert.equal(new Set(round.map(question => question.id)).size, 10);
+    assert.equal(round.filter(question => progress[question.id]).length, 3);
+    assert.equal(selectQuestions(bank, { mode: 'full' }).length, 60);
+    assert.equal(selectQuestions(bank, { mode: 'review', progress }).length, 8);
+    const topic = bank.at(-1).topic;
+    assert.ok(selectQuestions(bank, { topic }).every(question => question.topic === topic));
+    assert.deepEqual(selectQuestions(bank, { count: 0 }), []);
+});
+
+test('mistakes persist, two correct encounters mark fluency, and another error returns the question to review', () => {
+    const question = chapters[0].questions[0];
+    const bank = [question];
+    let progress = updateLearning({}, [{ id: question.id, correct: false }], 1000);
+    assert.equal(learningStats(bank, progress).review, 1);
+    progress = updateLearning(progress, [{ id: question.id, correct: true }], 2000);
+    assert.equal(progress[question.id].dueAt, 2000 + 86400000);
+    assert.equal(learningStats(bank, progress).mastered, 0);
+    progress = updateLearning(progress, [{ id: question.id, correct: true }], 3000);
+    assert.equal(learningStats(bank, progress).mastered, 1);
+    assert.equal(learningStats(bank, progress).review, 0);
+    progress = updateLearning(progress, [{ id: question.id, correct: false }], 4000);
+    assert.equal(learningStats(bank, progress).review, 1);
+    assert.equal(learningStats(bank, progress).mastered, 0);
 });

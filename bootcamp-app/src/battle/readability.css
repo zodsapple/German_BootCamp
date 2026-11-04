@@ -1,0 +1,95 @@
+@font-face {
+    font-family: "Palace Chinese";
+    src: url("/fonts/NotoSansSC.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Palace Latin";
+    src: url("/fonts/AtkinsonHyperlegibleNext.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+}
+
+.palace-app { --reading-font: "Palace Latin", "Palace Chinese", sans-serif; font-family: var(--reading-font); font-size: 16px; line-height: 1.65; }
+.palace-app button, .palace-app select { font-family: var(--reading-font); }
+.palace-intro h1, .palace-control-panel h2, .palace-control-panel .palace-question-de,
+.palace-pause-overlay > span, .palace-score > strong, .palace-stage-number,
+.palace-combo > strong, .palace-question-timer > strong { font-family: var(--reading-font); }
+.palace-intro h1 { letter-spacing: 0; font-weight: 750; font-size: clamp(28px, 3vw, 40px); }
+.palace-intro-note, .palace-eyebrow, .palace-edition, .palace-brand small { font-size: 12px; }
+.palace-control-panel { padding: 25px; }
+.palace-control-panel h2 { font-size: 25px; font-weight: 700; margin-bottom: 16px; }
+.palace-stage { padding: 12px 15px; }
+.palace-stage-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.palace-stage { flex-direction: column; align-items: flex-start; justify-content: flex-start; gap: 6px; min-height: 112px; padding: 12px; }
+.palace-stage-number { font-size: 16px; line-height: 1; }
+.palace-stage-arrow { display: none; }
+.palace-layout:not(.is-playing) .palace-arena { align-self: start; min-height: 575px; }
+.palace-stage-copy strong { font-size: 17px; }
+.palace-stage-copy small, .palace-stage-description { font-size: 13px; }
+.palace-stage-copy strong { font-size: 16px; }.palace-stage-copy small { display: block; font-size: 12px; line-height: 1.6; }
+.palace-stage-description { margin: 12px 0; }
+.palace-icon-button, .palace-course, .palace-arena-bottom button { font-size: 13px !important; }
+.palace-primary { font-size: 16px !important; min-height: 50px; }
+.palace-preview { font-size: 13px !important; }
+.palace-small-note, .palace-answer-tip, .palace-footer { font-size: 12px; }
+.palace-health > div:first-child, .palace-health > div:first-child > span { font-size: 11px; }
+.palace-taunt p, .palace-taunt > span, .palace-arena-bottom { font-size: 12px; }
+.palace-taunt { min-height: 51px; }
+.palace-question-timer { font-size: 14px; }
+.palace-question-timer > strong { font-size: 24px; font-weight: 700; }
+.palace-noun { font-size: 13px; font-weight: 500; }
+.palace-control-panel .palace-question-de { font-size: clamp(27px, 2.7vw, 35px); font-weight: 650; line-height: 1.45; letter-spacing: .15px; overflow-wrap: break-word; }
+.palace-question-zh { font-size: 16px; color: #586550; }
+.palace-options > button { min-height: 59px; }
+.palace-options > button > span:not(.palace-option-mark) { font-size: 23px; font-weight: 600; }
+.palace-options kbd { font-size: 13px; width: 25px; height: 27px; }
+.palace-answer-feedback strong { font-size: 19px; flex-wrap: wrap; }
+.palace-answer-feedback strong > span:last-child { font-size: 14px; }
+.palace-answer-feedback p { font-size: 15px; color: #4f6047; }
+.palace-answer-feedback small { font-size: 14px; color: #637155; }
+.palace-read-pause { font-size: 13px !important; padding: 8px 0 0; }
+.palace-review-list { max-height: 340px; }
+.palace-review-list strong { font-size: 16px; }
+.palace-review-list small { font-size: 13px; }
+.palace-result-stats span { font-size: 12px; }
+.palace-difficulty { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin: 14px 0; }
+.palace-difficulty button { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 11px 14px; background: #f7f7ee; border: 1px solid #d8dfce; border-radius: 4px; color: #64725d; }
+.palace-difficulty button.is-selected { background: #e6efdf; border-color: #56745a; color: #2f593d; box-shadow: inset 0 -2px 0 #56745a; }
+.palace-difficulty strong { font-size: 16px; }.palace-difficulty span { font-size: 13px; white-space: nowrap; }
+.palace-practice-options { display: grid; grid-template-columns: 1.2fr 1fr; gap: 10px; }
+.palace-practice-options label { color: #65735e; font-size: 12px; }
+.palace-practice-options select { display: block; margin-top: 5px; width: 100%; max-width: 100%; padding: 9px 25px 9px 8px; font-size: 13px; color: #40563e; border: 1px solid #d9decb; border-radius: 3px; background: #f7f8ef; }
+.palace-learning-progress { display: flex; justify-content: space-between; gap: 8px; padding: 12px 0; color: #758168; font-size: 12px; }
+.palace-study-guide { margin: 0 0 15px; border-top: 1px solid #dde2d0; border-bottom: 1px solid #dde2d0; padding: 10px 0; color: #54674a; font-size: 13px; }
+.palace-study-guide summary { cursor: pointer; font-weight: 650; }
+.palace-study-guide p { margin: 12px 0; }
+.palace-study-guide table { width: 100%; border-collapse: collapse; font-size: 12px; line-height: 1.5; }
+.palace-study-guide th, .palace-study-guide td { padding: 8px 5px; border: 1px solid #dce1ce; text-align: left; }
+.palace-study-guide th { background: #edf1e5; font-weight: 600; }
+.palace-study-guide td { background: #f9faf3; }
+.palace-error { font-size: 14px; }
+.palace-capture-control { position: fixed; bottom: 12px; left: 12px; z-index: 99; }.palace-capture-control button { background: #315e50; color: white; padding: 10px 14px; border-radius: 4px; border: 1px solid #e4dcbb; }.palace-capture-control.is-recording, .palace-capture-control.is-done { visibility: hidden; }
+@media (max-width: 1050px) { .palace-intro-note { max-width: 260px; font-size: 12px; }.palace-panel-heading { flex-wrap: wrap; }.palace-practice-options { grid-template-columns: 1fr; }.palace-start-actions { grid-template-columns: 1fr; } }
+@media (max-width: 760px) {
+    .palace-header { height: 75px; padding-left: 15px; padding-right: 15px; }.palace-brand { font-size: 13px; }.palace-brand small { font-size: 8px; }.palace-icon-button, .palace-course { font-size: 12px !important; }
+    .palace-main { padding-left: 14px; padding-right: 14px; }.palace-intro { padding: 20px 0; }.palace-intro h1 { font-size: clamp(24px, 6.4vw, 32px); }.palace-intro-note { max-width: none; font-size: 12px; }.palace-eyebrow, .palace-edition { font-size: 11px; }
+    .palace-control-panel, .is-playing .palace-control-panel { padding: 18px; }.palace-stage-copy strong { font-size: 17px; }.palace-stage-copy small { font-size: 13px; }
+    .palace-layout:not(.is-playing) .palace-stage { padding: 11px 9px; }.palace-stage-copy strong { font-size: 15px; }.palace-stage-copy small { font-size: 11px; }.palace-layout:not(.is-playing) .palace-arena { min-height: 380px; }
+    .palace-practice-options { grid-template-columns: 1fr 1fr; }.palace-difficulty button { padding: 10px; }.palace-difficulty span { font-size: 12px; }.palace-practice-options select { font-size: 12px; }
+    .palace-start-actions { grid-template-columns: 1fr auto; }.palace-primary { font-size: 15px !important; }.palace-preview { font-size: 12px !important; }
+    .palace-app:has(.is-playing) .palace-intro h1 { font-size: 23px; }.is-playing .palace-health > div:first-child { font-size: 10px; }.is-playing .palace-fight-scene { min-height: 85px; }.is-playing .palace-taunt { min-height: 31px; padding: 6px 10px; }.palace-taunt p, .palace-taunt > span { font-size: 11px; }
+    .palace-arena-bottom { font-size: 11px; }.is-playing .palace-panel-heading { gap: 5px; margin-bottom: 8px; }.palace-question-timer { font-size: 13px; }.palace-question-timer > strong { font-size: 22px; }.palace-noun { font-size: 12px; padding: 4px 7px; }
+    .palace-control-panel .palace-question-de { font-size: 27px; line-height: 1.4; }.palace-question-zh { font-size: 15px; line-height: 1.65; }.palace-options > button { min-height: 53px; padding: 9px 12px; }.palace-options > button > span:not(.palace-option-mark) { font-size: 22px; }.palace-answer-tip { font-size: 12px; }
+    .palace-answer-feedback p { font-size: 14px; }.palace-answer-feedback small { font-size: 13px; }.palace-answer-feedback strong { font-size: 18px; }.palace-answer-feedback strong > span:last-child { font-size: 13px; }.palace-footer { font-size: 11px; }
+}
+@media (max-width: 375px) { .palace-brand { font-size: 11px; }.palace-header-actions { gap: 8px; }.palace-course { padding-left: 8px; }.palace-practice-options { grid-template-columns: 1fr; }.palace-difficulty button { padding: 9px 8px; }.palace-control-panel .palace-question-de { font-size: 25px; } }
+@media (min-width: 480px) and (max-width: 760px) {
+    .is-playing .palace-fight-scene { min-height: 160px; }
+    .is-playing .palace-enemy-figure { width: 170px; bottom: -7px; }
+    .is-playing .palace-player { transform: scale(.65) rotate(-5deg); bottom: 6px; }
+    .is-playing .palace-enemy-title strong { font-size: 27px; }
+}
