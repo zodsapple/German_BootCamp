@@ -94,6 +94,35 @@ export class BattleAudio {
         return this.buffers.has(question.id) && (!question.grammar || this.buffers.has(`echo:${question.id}`));
     }
 
+    async prepareResume(question, timeoutMs = 2000) {
+        let timer;
+        let expired = false;
+        const prepare = async () => {
+            if (this.context?.state !== 'running') await this.unlock();
+            if (expired) return false;
+            if (!this.ready(question)) await this.preload([question]);
+
+            const context = this.context;
+            if (expired || context?.state !== 'running') return false;
+            const time = context.currentTime;
+            // An interrupted browser can report "running" while its clock is frozen.
+            await new Promise(resolve => setTimeout(resolve, 100));
+            return context.state === 'running' && context.currentTime > time;
+        };
+
+        try {
+            return await Promise.race([
+                prepare(),
+                new Promise(resolve => { timer = setTimeout(() => resolve(false), timeoutMs); }),
+            ]);
+        } catch {
+            return false;
+        } finally {
+            expired = true;
+            clearTimeout(timer);
+        }
+    }
+
     retain(questions) {
         const keep = new Set(['drums', 'music', 'bomb-hit', 'rap-preview']);
         for (const question of questions) { keep.add(question.id); keep.add(`echo:${question.id}`); }
@@ -171,11 +200,19 @@ export class BattleAudio {
         source.stop(when + duration);
     }
 
-    start() {
+    start(onInterrupt) {
         this.stop();
-        this.clockMode = this.context?.state === 'running' ? 'audio' : 'performance';
+        this.clockMode = !this.muted && this.context?.state === 'running' ? 'audio' : 'performance';
         this.origin = this.now() + 0.12;
-        if (!this.context || this.context.state !== 'running') return this.origin;
+        if (this.clockMode !== 'audio') return this.origin;
+        if (onInterrupt) {
+            const context = this.context;
+            context.onstatechange = () => {
+                if (this.context === context && this.clockMode === 'audio' && ['suspended', 'interrupted'].includes(context.state)) {
+                    onInterrupt();
+                }
+            };
+        }
         this.music.gain.cancelScheduledValues(this.context.currentTime);
         this.music.gain.value = 1;
         this.play('drums', this.origin, 1, this.drums, true);
@@ -221,7 +258,7 @@ export class BattleAudio {
     }
 
     respond(question, correct, combo) {
-        if (!this.context || this.context.state !== 'running') return;
+        if (this.muted || this.clockMode !== 'audio' || this.context?.state !== 'running') return;
         const now = this.context.currentTime;
         if (correct) {
             this.play('bomb-hit', now, combo >= 3 ? 1 : 0.8, this.master);

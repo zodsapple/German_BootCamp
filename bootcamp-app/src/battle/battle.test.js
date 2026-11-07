@@ -77,6 +77,7 @@ test('the impact plays only on a correct answer and the teaching voice follows t
     const audio = new BattleAudio();
     const hits = [];
     audio.context = { currentTime: 10, state: 'running' };
+    audio.clockMode = 'audio';
     audio.now = () => 10;
     audio.origin = 0;
     audio.music = { gain: { cancelScheduledValues() {}, setTargetAtTime() {} } };
@@ -241,6 +242,42 @@ test('audio interruption keeps the original clock rather than jumping to page ti
     audio.context = { currentTime: 12.5, state: 'suspended' };
     audio.clockMode = 'audio';
     assert.equal(audio.now(), 12.5);
+});
+
+test('resuming a cached question does not wait for future voice downloads', async () => {
+    const audio = new BattleAudio();
+    const question = { id: 'current-word' };
+    audio.context = { state: 'running', get currentTime() { return performance.now() / 1000; } };
+    audio.buffers.set(question.id, { duration: 1 });
+    audio.preload = async () => assert.fail('The current voice is already cached');
+    assert.equal(await audio.prepareResume(question), true);
+
+    audio.buffers.delete(question.id);
+    audio.preload = async questions => {
+        assert.deepEqual(questions, [question]);
+        throw new Error('Voice download failed');
+    };
+    assert.equal(await audio.prepareResume(question), false);
+});
+
+test('a frozen audio clock or pending unlock allows a silent countdown to progress', async () => {
+    const audio = new BattleAudio();
+    const question = { id: 'current-word' };
+    audio.buffers.set(question.id, { duration: 1 });
+    audio.context = { state: 'running', currentTime: 12.5 };
+    assert.equal(await audio.prepareResume(question), false);
+
+    audio.context.state = 'interrupted';
+    audio.unlock = () => new Promise(() => {});
+    assert.equal(await audio.prepareResume(question, 20), false);
+
+    // Even if the browser later reports "running", the muted battle uses page time.
+    audio.context.state = 'running';
+    audio.setMuted(true);
+    const origin = audio.start();
+    assert.equal(audio.clockMode, 'performance');
+    assert.ok(origin >= audio.now());
+    assert.equal(audio.nodes.size, 0);
 });
 
 test('feedback includes the whole vocal echo even for an answer just before a bar boundary', () => {
