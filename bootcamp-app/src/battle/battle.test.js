@@ -54,9 +54,33 @@ test('all 700 bilingual questions have one distinct answer, a topic and the matc
         }
     }
     const words = chapters.find(chapter => chapter.id === 'vocabulary').questions;
-    assert.equal(new Set(words.map(question => question.chant.toLocaleLowerCase('de').replace(/^(der|die|das) /, '').replace(/[()]/g, ''))).size, 400);
+    const wordKeys = words.map(question => question.chant.normalize('NFKC').toLocaleLowerCase('de')
+        .replace(/^(der|die|das|sich) /, '').split(/\s+/)[0]);
+    assert.equal(new Set(wordKeys).size, 400, 'The same noun or verb with a different article or complement should not occupy two slots');
+    assert.equal(new Set(words.map(question => question.chantZh)).size, 400);
     assert.equal(words.filter(question => question.promptDe === 'Wie heißt das auf Deutsch?').length, 200);
     assert.equal(words.filter(question => question.promptDe !== 'Wie heißt das auf Deutsch?').length, 200);
+});
+
+test('an old vocabulary sprint retains its completed words and presents replacements as unanswered', () => {
+    const bank = [
+        { id: 'word-kept' },
+        { id: 'word-next' },
+        { id: 'word-new', replaces: 'word-retired' },
+        { id: 'word-new-later', replaces: 'word-retired-later' },
+    ];
+    const kept = { id: 'word-kept', correct: true, points: 150 };
+    const restored = restoreSprint({
+        ids: ['word-retired', 'word-kept', 'word-next', 'word-retired-later'],
+        answers: [{ id: 'word-retired', correct: true, points: 190 }, kept],
+        score: 340,
+        combo: 2,
+    }, bank);
+    assert.deepEqual(restored.answers, [kept]);
+    assert.deepEqual(restored.questions.map(question => question.id), ['word-kept', 'word-new', 'word-next', 'word-new-later']);
+    assert.equal(restored.index, 1);
+    assert.equal(restored.score, 150);
+    assert.equal(restored.combo, 1);
 });
 
 test('the neural voice bank covers 700 questions and all five grammar chapters have response clips', () => {

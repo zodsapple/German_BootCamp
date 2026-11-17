@@ -49,6 +49,7 @@ export default function BattleApp({ onExit }) {
     const deadlineRef = useRef(0);
     const requestRef = useRef(0);
     const resumingRef = useRef(null);
+    const enablingSoundRef = useRef(false);
     const previewTimer = useRef(null);
     const stage = chapters.find(chapter => chapter.id === stageId);
     const settings = DIFFICULTIES[difficulty];
@@ -133,7 +134,7 @@ export default function BattleApp({ onExit }) {
 
     const prepareNext = useCallback(async next => {
         const audio = audioRef.current;
-        if (muted || audio.ready(next.questions[next.index])) {
+        if (audio.muted || audio.ready(next.questions[next.index])) {
             deadlineRef.current = audio.now() + next.seconds;
             setClock(previous => ({ ...previous, remaining: next.seconds }));
             commit(next);
@@ -161,7 +162,7 @@ export default function BattleApp({ onExit }) {
             setError('下一组语音还没准备好。进度已保存，点继续即可重试。');
             commit({ ...next, phase: 'paused', pausedFrom: 'countdown' });
         }
-    }, [commit, muted, pause]);
+    }, [commit, pause]);
 
     const submit = useCallback(choice => {
         const current = gameRef.current;
@@ -243,16 +244,18 @@ export default function BattleApp({ onExit }) {
         commit({ ...planned, phase: 'loading' });
         const audio = audioRef.current;
         try {
-            if (!silent) {
+            if (silent) {
+                audio.setMuted(true);
+                setMuted(true);
+            }
+            if (!audio.muted) {
                 await audio.unlock();
                 const batch = planned.questions.slice(planned.index, planned.index + AUDIO_BATCH);
                 await audio.preload(batch, count => { if (request === requestRef.current) setLoadingCount(count); });
                 audio.retain(batch);
             }
             if (request !== requestRef.current) return;
-            if (!silent && audio.context?.state !== 'running') throw new Error('音频已被浏览器暂停');
-            audio.setMuted(silent || muted);
-            if (silent) setMuted(true);
+            if (!audio.muted && audio.context?.state !== 'running') throw new Error('音频已被浏览器暂停');
             const origin = audio.start(pause);
             deadlineRef.current = origin + BEAT_SECONDS * 4;
             const next = planned;
@@ -333,14 +336,55 @@ export default function BattleApp({ onExit }) {
 
     const toggleMute = async () => {
         const current = gameRef.current;
-        if (resumingRef.current === current) return;
-        if (muted && ACTIVE_PHASES.includes(current.phase)) {
-            pause();
-            await resume({ sound: true });
+        if (resumingRef.current === current || enablingSoundRef.current) return;
+        if (['loading', 'buffering'].includes(current.phase)) return;
+
+        const audio = audioRef.current;
+        const question = current.questions[current.index];
+        const voiceReady = question && audio.clockMode === 'audio' && audio.ready(question);
+        if (!audio.muted || voiceReady || !ACTIVE_PHASES.includes(current.phase)) {
+            const nextMuted = !audio.muted;
+            audio.setMuted(nextMuted);
+            setMuted(nextMuted);
+            if (!nextMuted) setError('');
             return;
         }
-        audioRef.current.setMuted(!muted);
-        setMuted(!muted);
+
+        // A round that started silently can adopt the audio clock without re-entering countdown.
+        enablingSoundRef.current = true;
+        const request = requestRef.current;
+        let remaining;
+        try {
+            const ready = await audio.prepareResume(question);
+            if (request !== requestRef.current || audioRef.current !== audio || document.hidden) return;
+            if (!ready) {
+                setError('声音暂时无法开启，可以继续作答。');
+                return;
+            }
+
+            const live = gameRef.current;
+            if (ACTIVE_PHASES.includes(live.phase) && audio.clockMode !== 'audio') {
+                if (audio.context?.state !== 'running') return;
+                remaining = deadlineRef.current - audio.now();
+                audio.setMuted(false);
+                audio.start(pause);
+                deadlineRef.current = audio.now() + remaining;
+            } else {
+                audio.setMuted(false);
+            }
+            setMuted(false);
+            setError('');
+        } catch {
+            if (request !== requestRef.current || audioRef.current !== audio) return;
+            audio.setMuted(true);
+            if (remaining !== undefined) {
+                audio.start();
+                deadlineRef.current = audio.now() + remaining;
+            }
+            setError('声音暂时无法开启，可以继续作答。');
+        } finally {
+            enablingSoundRef.current = false;
+        }
     };
 
     const captureAudio = async () => {
@@ -368,7 +412,7 @@ export default function BattleApp({ onExit }) {
                 </a>
                 <div className="palace-header-actions">
                     <span className="palace-tempo"><span />96 BPM</span>
-                    <button className="palace-icon-button" onClick={toggleMute} aria-label={muted ? '开启声音' : '关闭声音'} aria-pressed={!muted}>{muted ? '♩ 声音已关' : '♫ 声音已开'}</button>
+                    <button type="button" className="palace-icon-button" onClick={toggleMute} disabled={['loading', 'buffering'].includes(game.phase)} aria-label={muted ? '开启声音' : '关闭声音'} aria-pressed={!muted}>{muted ? '♩ 声音已关' : '♫ 声音已开'}</button>
                     <button className="palace-course" onClick={() => { requestRef.current++; stopPreview(); onExit(); }}>原课程 ↗</button>
                 </div>
             </header>
@@ -442,7 +486,7 @@ export default function BattleApp({ onExit }) {
                             {question && <div className="palace-question-content" data-question-id={question.id} key={question.id}>
                                 <span className="palace-noun">{question.noun}</span>
                                 <h2 className="palace-question-de"><GermanPrompt text={question.promptDe} answer={showFeedback ? question.answer : null} /></h2>
-                                <p className="palace-question-zh">{question.promptZh}</p>
+                                <p className="palace-question-zh">{question.promptZh}{question.contextDe && <><br /><span lang="de">{question.contextDe}</span></>}</p>
                                 <div className="palace-options">{question.options.map((option, index) => <button key={option} disabled={game.phase !== 'question'} onClick={() => submit(option)} className={showFeedback ? option === question.answer ? 'is-answer' : option === latest.choice ? 'is-wrong' : 'is-dimmed' : ''}><kbd>{index + 1}</kbd><span lang={/\p{Script=Han}/u.test(option) ? 'zh' : 'de'}>{option}</span><span className="palace-option-mark">{showFeedback && option === question.answer ? '✓' : '↗'}</span></button>)}</div>
                                 {showFeedback ? <div className={`palace-answer-feedback ${latest.correct ? 'is-correct' : ''}`} role="status"><strong><span lang="de">{question.chant}</span><span>{question.chantZh}</span></strong><p>{question.rule}</p><small lang="de">{question.solutionDe}</small><small>{question.solutionZh}</small>{game.phase === 'feedback' && <button className="palace-read-pause" onClick={pause}>Ⅱ 暂停，慢慢看解析</button>}</div> : <p className="palace-answer-tip">{game.phase === 'countdown' ? '看清语境，等鼓点落下再出手。' : '点击答案即出招 · 随时点“暂停思考” · 键盘 1 / 2 / 3'}</p>}
                             </div>}

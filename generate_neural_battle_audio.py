@@ -1,5 +1,6 @@
 """Generate the approved neural voice bank and grammatical call-and-response clips."""
 
+import argparse
 import asyncio
 import json
 import re
@@ -14,7 +15,7 @@ PUBLIC = ROOT / "bootcamp-app/public/audio"
 SETTINGS = {"rate": "+6%", "boundary": "WordBoundary"}
 
 
-async def main():
+async def main(only_missing=False):
     STEMS.mkdir(parents=True, exist_ok=True)
     for folder in ("battle", "echoes"):
         (PUBLIC / folder).mkdir(parents=True, exist_ok=True)
@@ -38,6 +39,10 @@ async def main():
     semaphore = asyncio.Semaphore(4)
     done = 0
 
+    def output_path(name, folder):
+        filename = name.removesuffix('-echo') if folder == 'echoes' else name
+        return PUBLIC / folder / f'{filename}.mp3'
+
     async def generate(name, text, voice, folder, emphasis):
         nonlocal done
         async with semaphore:
@@ -55,13 +60,14 @@ async def main():
                             raise
                         await asyncio.sleep(1 + attempt * 2)
             signal = await asyncio.to_thread(decode, name, STEMS, emphasis)
-            target_name = name.removesuffix("-echo") if folder == "echoes" else name
-            target = PUBLIC / folder / f"{target_name}.mp3"
+            target = output_path(name, folder)
             await asyncio.to_thread(subprocess.run, [FFMPEG, "-y", "-v", "error", "-f", "f32le", "-ar", str(SR), "-ac", "1", "-i", "-", "-c:a", "libmp3lame", "-b:a", "128k", str(target)], input=signal.astype("<f4").tobytes(), check=True)
             done += 1
             if done % 20 == 0 or done == len(jobs):
                 print(f"Ready {done}/{len(jobs)}: {name}", flush=True)
 
+    if only_missing:
+        jobs = [job for job in jobs if not output_path(job[0], job[3]).is_file()]
     await asyncio.gather(*(generate(*job) for job in jobs))
     manifest = {q["id"]: q["chant"] for chapter in chapters for q in chapter["questions"]}
     (PUBLIC / "battle/manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -71,4 +77,6 @@ async def main():
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--only-missing', action='store_true', help='Generate clips for new question IDs and refresh the manifests.')
+    asyncio.run(main(parser.parse_args().only_missing))
