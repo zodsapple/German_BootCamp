@@ -268,11 +268,55 @@ test('audio interruption keeps the original clock rather than jumping to page ti
     assert.equal(audio.now(), 12.5);
 });
 
-test('resuming a cached question does not wait for future voice downloads', async () => {
+// Model the two Safari failures: a dead old output, and resume() never settling.
+function mockAudioContexts(t, modes = []) {
+    const contexts = [];
+    const param = () => ({ value: 1, cancelScheduledValues() {}, setTargetAtTime() {} });
+    const node = () => ({ connect() {}, disconnect() {}, gain: param() });
+    class AudioContext {
+        constructor() {
+            this.mode = modes[contexts.length];
+            this.state = 'suspended';
+            this.sampleRate = 64;
+            this.destination = node();
+            this.started = [];
+            this.created = performance.now() / 1000;
+            contexts.push(this);
+        }
+        get currentTime() { return this.mode === 'frozen' ? 12.5 : performance.now() / 1000 - this.created; }
+        resume() {
+            if (this.mode === 'pending') return new Promise(() => {});
+            this.state = 'running';
+            return Promise.resolve();
+        }
+        close() { this.state = 'closed'; return Promise.resolve(); }
+        createGain() { return node(); }
+        createDynamicsCompressor() {
+            return { ...node(), ...Object.fromEntries(['threshold', 'knee', 'ratio', 'attack', 'release'].map(key => [key, param()])) };
+        }
+        createBuffer(channels, length) { return { getChannelData: () => new Float32Array(length) }; }
+        createBufferSource() {
+            return { ...node(), start: () => this.started.push(this.mode === 'silent' ? 'silent' : 'audible'), stop() {} };
+        }
+    }
+    const originalWindow = globalThis.window;
+    globalThis.window = { AudioContext };
+    t.after(() => {
+        if (originalWindow === undefined) delete globalThis.window;
+        else globalThis.window = originalWindow;
+    });
+    return contexts;
+}
+
+function cacheResumeAudio(audio, question) {
+    for (const id of ['drums', 'music', 'bomb-hit', question.id]) audio.buffers.set(id, { duration: 1 });
+}
+
+test('resuming a cached question rebuilds audio without waiting for future voice downloads', async t => {
+    mockAudioContexts(t);
     const audio = new BattleAudio();
     const question = { id: 'current-word' };
-    audio.context = { state: 'running', get currentTime() { return performance.now() / 1000; } };
-    audio.buffers.set(question.id, { duration: 1 });
+    cacheResumeAudio(audio, question);
     audio.preload = async () => assert.fail('The current voice is already cached');
     assert.equal(await audio.prepareResume(question), true);
 
@@ -282,17 +326,45 @@ test('resuming a cached question does not wait for future voice downloads', asyn
         throw new Error('Voice download failed');
     };
     assert.equal(await audio.prepareResume(question), false);
+    await audio.close();
 });
 
-test('a frozen audio clock or pending unlock allows a silent countdown to progress', async () => {
+test('resume replaces frozen, interrupted, closed and silent-running outputs and restarts beat and voice', async t => {
+    const contexts = mockAudioContexts(t, ['frozen', undefined, 'pending', undefined, 'closed', undefined, 'silent', undefined]);
+    for (const failure of ['frozen', 'pending', 'closed', 'silent']) {
+        const audio = new BattleAudio();
+        const question = { id: 'current-word' };
+        cacheResumeAudio(audio, question);
+        const voice = audio.buffers.get(question.id);
+        const previous = new window.AudioContext();
+        previous.state = failure === 'pending' ? 'interrupted' : failure === 'closed' ? 'closed' : 'running';
+        previous.onstatechange = () => assert.fail('A retired output must not pause the restored battle');
+        audio.context = previous;
+
+        const preparing = audio.prepareResume(question);
+        // The new context is unlocked in the original click, before any await.
+        assert.notEqual(audio.context, previous);
+        assert.equal(audio.context.state, 'running');
+        assert.equal(await preparing, true);
+        assert.equal(previous.state, 'closed');
+        assert.equal(previous.onstatechange, null);
+        assert.equal(audio.buffers.get(question.id), voice);
+        audio.setMuted(false);
+        audio.start();
+        audio.speak(question.id, audio.context.currentTime);
+        assert.deepEqual(audio.context.started, ['audible', 'audible', 'audible']);
+        assert.equal(previous.started.length, 0);
+        await audio.close();
+    }
+    assert.equal(contexts.length, 8);
+});
+
+test('a failed fresh output falls back to page time and a later sound-on gesture recovers', async t => {
+    mockAudioContexts(t, ['frozen', 'pending', undefined]);
     const audio = new BattleAudio();
     const question = { id: 'current-word' };
-    audio.buffers.set(question.id, { duration: 1 });
-    audio.context = { state: 'running', currentTime: 12.5 };
+    cacheResumeAudio(audio, question);
     assert.equal(await audio.prepareResume(question), false);
-
-    audio.context.state = 'interrupted';
-    audio.unlock = () => new Promise(() => {});
     assert.equal(await audio.prepareResume(question, 20), false);
 
     // Even if the browser later reports "running", the muted battle uses page time.
@@ -302,6 +374,47 @@ test('a frozen audio clock or pending unlock allows a silent countdown to progre
     assert.equal(audio.clockMode, 'performance');
     assert.ok(origin >= audio.now());
     assert.equal(audio.nodes.size, 0);
+
+    assert.equal(await audio.prepareResume(question), true);
+    audio.setMuted(false);
+    audio.start();
+    assert.equal(audio.clockMode, 'audio');
+    assert.deepEqual(audio.context.started, ['audible', 'audible']);
+    await audio.close();
+});
+
+test('replacing audio during a question preserves remaining time and beat position', () => {
+    const audio = new BattleAudio();
+    audio.context = { currentTime: 120, state: 'running' };
+    audio.clockMode = 'audio';
+    audio.origin = 118;
+    const before = audio.now();
+    const deadline = before + 6;
+    const offset = audio.usePerformanceClock();
+    assert.ok(Math.abs(deadline + offset - audio.now() - 6) < 0.02);
+    assert.ok(Math.abs(audio.now() - audio.origin - 2) < 0.02);
+    audio.context.currentTime = 0;
+    assert.ok(Math.abs(deadline + offset - audio.now() - 6) < 0.02);
+});
+
+test('an unavailable replacement output still permits silent play and a later retry', async t => {
+    mockAudioContexts(t);
+    const audio = new BattleAudio();
+    const question = { id: 'current-word' };
+    cacheResumeAudio(audio, question);
+    await audio.unlock();
+    const AudioContext = window.AudioContext;
+    window.AudioContext = class { constructor() { throw new Error('Audio device unavailable'); } };
+    assert.equal(await audio.prepareResume(question), false);
+    audio.setMuted(true);
+    audio.start();
+    assert.equal(audio.clockMode, 'performance');
+    window.AudioContext = AudioContext;
+    assert.equal(await audio.prepareResume(question), true);
+    audio.setMuted(false);
+    audio.start();
+    assert.equal(audio.clockMode, 'audio');
+    await audio.close();
 });
 
 test('feedback includes the whole vocal echo even for an answer just before a bar boundary', () => {

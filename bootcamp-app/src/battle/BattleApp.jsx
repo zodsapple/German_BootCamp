@@ -272,7 +272,7 @@ export default function BattleApp({ onExit }) {
 
     const resume = async ({ sound = !muted } = {}) => {
         const current = gameRef.current;
-        if (current.phase !== 'paused' || resumingRef.current === current) return;
+        if (current.phase !== 'paused' || resumingRef.current === current || enablingSoundRef.current) return;
         resumingRef.current = current;
         const audio = audioRef.current;
         const question = current.questions[current.index];
@@ -341,8 +341,7 @@ export default function BattleApp({ onExit }) {
 
         const audio = audioRef.current;
         const question = current.questions[current.index];
-        const voiceReady = question && audio.clockMode === 'audio' && audio.ready(question);
-        if (!audio.muted || voiceReady || !ACTIVE_PHASES.includes(current.phase)) {
+        if (!audio.muted || !ACTIVE_PHASES.includes(current.phase)) {
             const nextMuted = !audio.muted;
             audio.setMuted(nextMuted);
             setMuted(nextMuted);
@@ -350,11 +349,13 @@ export default function BattleApp({ onExit }) {
             return;
         }
 
-        // A round that started silently can adopt the audio clock without re-entering countdown.
+        // Keep the current deadline ticking while the old audio context is replaced.
         enablingSoundRef.current = true;
         const request = requestRef.current;
         let remaining;
         try {
+            audio.stop();
+            deadlineRef.current += audio.usePerformanceClock();
             const ready = await audio.prepareResume(question);
             if (request !== requestRef.current || audioRef.current !== audio || document.hidden) return;
             if (!ready) {
@@ -363,7 +364,7 @@ export default function BattleApp({ onExit }) {
             }
 
             const live = gameRef.current;
-            if (ACTIVE_PHASES.includes(live.phase) && audio.clockMode !== 'audio') {
+            if (ACTIVE_PHASES.includes(live.phase)) {
                 if (audio.context?.state !== 'running') return;
                 remaining = deadlineRef.current - audio.now();
                 audio.setMuted(false);

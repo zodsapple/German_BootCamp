@@ -11,13 +11,23 @@ export class BattleAudio {
         this.clockMode = 'performance';
     }
 
-    async unlock() {
+    async unlock({ replace = false } = {}) {
         try {
             if (navigator.audioSession) {
                 this.previousSessionType ??= navigator.audioSession.type;
                 navigator.audioSession.type = 'playback';
             }
         } catch { /* Optional Safari Audio Session API; Web Audio still works without it. */ }
+        if (replace || this.context?.state === 'closed') {
+            this.stop();
+            const previous = this.context;
+            this.context = null;
+            if (previous) {
+                previous.onstatechange = null;
+                // A stalled close/resume promise must not consume this user gesture.
+                if (previous.state !== 'closed') previous.close().catch(() => {});
+            }
+        }
         if (!this.context) {
             const AudioContext = window.AudioContext || window.webkitAudioContext;
             if (!AudioContext) throw new Error('浏览器暂不支持战斗音频，可以选择静音开战。');
@@ -46,17 +56,26 @@ export class BattleAudio {
             for (let i = 0; i < data.length; i++) data[i] = Math.random() * 2 - 1;
         }
         // Called directly by Start / Resume, before fetching any assets.
-        await this.context.resume();
-        if (this.context.state !== 'running') throw new Error('声音尚未启动，请再点一次开战，或选择静音开战。');
+        const context = this.context;
+        await context.resume();
+        if (this.context !== context || context.state !== 'running') throw new Error('声音尚未启动，请再点一次开战，或选择静音开战。');
     }
 
     now() {
         return this.clockMode === 'audio' ? this.context.currentTime : performance.now() / 1000;
     }
 
+    usePerformanceClock() {
+        const before = this.now();
+        this.clockMode = 'performance';
+        const offset = this.now() - before;
+        this.origin += offset;
+        return offset;
+    }
+
     setMuted(muted) {
         this.muted = muted;
-        if (this.master) this.master.gain.setTargetAtTime(muted ? 0 : 0.85, this.context.currentTime, 0.03);
+        if (this.master && this.context) this.master.gain.setTargetAtTime(muted ? 0 : 0.85, this.context.currentTime, 0.03);
     }
 
     async load(id, path, trim = false) {
@@ -98,16 +117,18 @@ export class BattleAudio {
         let timer;
         let expired = false;
         const prepare = async () => {
-            if (this.context?.state !== 'running') await this.unlock();
+            // Safari can keep a running clock on a silent output route. Rebuild on
+            // the Resume / Sound-on gesture, keeping the decoded MP3s in memory.
+            await this.unlock({ replace: true });
             if (expired) return false;
-            if (!this.ready(question)) await this.preload([question]);
+            if (!this.ready(question) || !['drums', 'music', 'bomb-hit'].every(id => this.buffers.has(id))) await this.preload([question]);
 
             const context = this.context;
             if (expired || context?.state !== 'running') return false;
             const time = context.currentTime;
             // An interrupted browser can report "running" while its clock is frozen.
             await new Promise(resolve => setTimeout(resolve, 100));
-            return context.state === 'running' && context.currentTime > time;
+            return !expired && this.context === context && context.state === 'running' && context.currentTime > time;
         };
 
         try {
