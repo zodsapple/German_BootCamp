@@ -243,6 +243,7 @@ export default function BattleApp({ onExit }) {
         setLoadingCount(0);
         commit({ ...planned, phase: 'loading' });
         const audio = audioRef.current;
+        audio.selectBacking();
         try {
             if (silent) {
                 audio.setMuted(true);
@@ -252,6 +253,7 @@ export default function BattleApp({ onExit }) {
                 await audio.unlock();
                 const batch = planned.questions.slice(planned.index, planned.index + AUDIO_BATCH);
                 await audio.preload(batch, count => { if (request === requestRef.current) setLoadingCount(count); });
+                if (request !== requestRef.current) return;
                 audio.retain(batch);
             }
             if (request !== requestRef.current) return;

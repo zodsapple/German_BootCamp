@@ -1,5 +1,12 @@
 import { BEAT_SECONDS, FEEDBACK_SECONDS } from './battleEngine.js';
 
+const BACKINGS = [
+    { id: 'original', bars: 6, stems: ['drums-96', 'music-96'] },
+    ...['breakbeat', 'trap', 'funk', 'latin', 'synthwave', 'house', 'double-time'].map(id => ({
+        id, bars: 8, stems: [`${id}-drums`, `${id}-music`],
+    })),
+];
+
 // One audio clock keeps the beat, voices and combat cues together on mobile.
 export class BattleAudio {
     constructor() {
@@ -9,6 +16,21 @@ export class BattleAudio {
         this.origin = 0;
         this.muted = false;
         this.clockMode = 'performance';
+        this.backing = BACKINGS[0];
+        this.backingQueue = [...BACKINGS];
+    }
+
+    selectBacking(random = Math.random) {
+        // Exhaust the catalogue in random order before repeating a track.
+        const previous = this.backing;
+        const cycleEnded = !this.backingQueue.length;
+        if (cycleEnded) this.backingQueue = [...BACKINGS];
+        const choices = cycleEnded ? this.backingQueue.filter(backing => backing !== previous) : this.backingQueue;
+        this.backing = choices[Math.floor(random() * choices.length)];
+        this.backingQueue.splice(this.backingQueue.indexOf(this.backing), 1);
+        if (previous !== this.backing) {
+            for (const stem of previous.stems) this.buffers.delete(stem);
+        }
     }
 
     async unlock({ replace = false } = {}) {
@@ -102,8 +124,7 @@ export class BattleAudio {
             }
         };
         await Promise.all([
-            this.load('drums', 'music/drums-96.mp3'),
-            this.load('music', 'music/music-96.mp3'),
+            ...this.backing.stems.map(stem => this.load(stem, `music/${stem}.mp3`)),
             this.load('bomb-hit', 'music/bomb-hit.mp3'),
             ...Array.from({ length: Math.min(4, questions.length) }, worker),
         ]);
@@ -121,7 +142,7 @@ export class BattleAudio {
             // the Resume / Sound-on gesture, keeping the decoded MP3s in memory.
             await this.unlock({ replace: true });
             if (expired) return false;
-            if (!this.ready(question) || !['drums', 'music', 'bomb-hit'].every(id => this.buffers.has(id))) await this.preload([question]);
+            if (!this.ready(question) || ![...this.backing.stems, 'bomb-hit'].every(id => this.buffers.has(id))) await this.preload([question]);
 
             const context = this.context;
             if (expired || context?.state !== 'running') return false;
@@ -145,7 +166,7 @@ export class BattleAudio {
     }
 
     retain(questions) {
-        const keep = new Set(['drums', 'music', 'bomb-hit', 'rap-preview']);
+        const keep = new Set([...this.backing.stems, 'bomb-hit', 'rap-preview']);
         for (const question of questions) { keep.add(question.id); keep.add(`echo:${question.id}`); }
         for (const key of this.buffers.keys()) if (!keep.has(key)) this.buffers.delete(key);
     }
@@ -236,8 +257,10 @@ export class BattleAudio {
         }
         this.music.gain.cancelScheduledValues(this.context.currentTime);
         this.music.gain.value = 1;
-        this.play('drums', this.origin, 1, this.drums, true);
-        this.play('music', this.origin, 1, this.music, true);
+        const [drums, music] = this.backing.stems;
+        const loopSeconds = this.backing.bars * BEAT_SECONDS * 4;
+        this.play(drums, this.origin, 1, this.drums, loopSeconds);
+        this.play(music, this.origin, 1, this.music, loopSeconds);
         return this.origin;
     }
 
@@ -259,14 +282,13 @@ export class BattleAudio {
         return this.origin + Math.ceil((earliest - this.origin) / (BEAT_SECONDS * 4)) * BEAT_SECONDS * 4;
     }
 
-    play(id, when, volume = 1, destination = this.voices, loop = false) {
+    play(id, when, volume = 1, destination = this.voices, loopSeconds = 0) {
         const buffer = this.buffers.get(id);
         if (!buffer || !this.context || this.context.state !== 'running') return;
         const source = this.context.createBufferSource();
         const gain = this.context.createGain();
         source.buffer = buffer;
-        source.loop = loop;
-        if (loop) { source.loopStart = 0; source.loopEnd = 15; }
+        if (loopSeconds) { source.loop = true; source.loopEnd = loopSeconds; }
         gain.gain.value = volume;
         source.connect(gain);
         gain.connect(destination);

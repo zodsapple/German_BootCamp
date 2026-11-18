@@ -242,8 +242,8 @@ test('a serialized sprint resumes at its first unanswered item, preserving all s
 test('audio loads through four workers and releases earlier question batches', async () => {
     const audio = new BattleAudio();
     let active = 0, peak = 0;
-    audio.load = async (id) => {
-        const voice = !['drums', 'music', 'bomb-hit'].includes(id);
+    audio.load = async (id, path) => {
+        const voice = !path.startsWith('music/');
         if (voice) { active++; peak = Math.max(peak, active); }
         await new Promise(resolve => setTimeout(resolve, 0));
         audio.buffers.set(id, { duration: 1 });
@@ -309,8 +309,49 @@ function mockAudioContexts(t, modes = []) {
 }
 
 function cacheResumeAudio(audio, question) {
-    for (const id of ['drums', 'music', 'bomb-hit', question.id]) audio.buffers.set(id, { duration: 1 });
+    for (const id of [...audio.backing.stems, 'bomb-hit', question.id]) audio.buffers.set(id, { duration: 1 });
 }
+
+test('eight different backings rotate across battles and the chosen pair survives pause and audio replacement', async t => {
+    mockAudioContexts(t);
+    const audio = new BattleAudio();
+    const question = { id: 'current-word' };
+    const heard = [];
+    const loaded = [];
+    let loops = [];
+    audio.load = async (id, path) => {
+        if (audio.buffers.has(id)) return;
+        if (path.startsWith('music/')) {
+            assert.ok(statSync(new URL(`../../public/audio/${path}`, import.meta.url)).size > 1000);
+            loaded.push(id);
+        }
+        audio.buffers.set(id, { duration: 20 });
+    };
+    audio.play = (id, when, volume, destination, loopEnd) => { loops.push({ id, when, loopEnd }); };
+    await audio.unlock();
+    for (let round = 0; round < 9; round++) {
+        audio.selectBacking(() => round < 8 ? 0 : 0.999);
+        await audio.preload([question]);
+        audio.retain([question]);
+        loops = [];
+        const origin = audio.start();
+        assert.equal(loops.length, 2);
+        assert.ok(loops.every(loop => loop.when === origin && loop.loopEnd === (round === 0 ? 15 : 20)));
+        heard.push(loops.map(loop => loop.id).join(','));
+        assert.equal(audio.buffers.size, 4);
+    }
+    assert.equal(new Set(heard.slice(0, 8)).size, 8);
+    assert.notEqual(heard[7], heard[8]);
+    assert.equal(loaded.length, 19); // Two stems per round and the shared impact.
+
+    audio.stop();
+    assert.equal(await audio.prepareResume(question), true);
+    loops = [];
+    audio.start();
+    assert.equal(loops.map(loop => loop.id).join(','), heard[8]);
+    assert.equal(loaded.length, 19);
+    await audio.close();
+});
 
 test('resuming a cached question rebuilds audio without waiting for future voice downloads', async t => {
     mockAudioContexts(t);
