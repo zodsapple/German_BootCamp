@@ -206,7 +206,8 @@ def preview(drums, music):
         echo = max(2, math.ceil((len(lead) / SR + 0.12) / BEAT)) * BEAT
         place(voices, lead, start + 0.025, 0.69)
         place(voices, answer, start + echo + 0.025, 0.50, 0.13)
-    mix = (drums * 0.84 + music * 0.50 + voices)[:15 * SR].copy()
+    backing = (drums * 0.84 + music * 0.50) * 0.8
+    mix = (backing + voices)[:15 * SR].copy()
     mix[-int(0.15 * SR):] *= np.linspace(1, 0, int(0.15 * SR))[:, None]
     mix *= min(1, 0.88 / np.max(np.abs(mix)))
     encode(AUDIO / "previews/acoustic-rap-15s.mp3", mix, "160k")

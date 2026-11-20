@@ -3,6 +3,7 @@ import { BEAT_SECONDS, FEEDBACK_SECONDS } from './battleEngine.js';
 const BACKINGS = ['piano-swing', 'porch-folk', 'bossa', 'marimba-run', 'handclap-pop', 'harp-dance', 'woodblock-rag', 'kalimba-groove']
     .map(id => ({ stems: [`acoustic/${id}-drums`, `acoustic/${id}-music`] }));
 const BACKING_LOOP_SECONDS = BEAT_SECONDS * 32; // Eight bars, with both stems starting on the same downbeat.
+const BACKING_GAIN = 0.8;
 
 // One audio clock keeps the beat, voices and combat cues together on mobile.
 export class BattleAudio {
@@ -97,12 +98,12 @@ export class BattleAudio {
         if (this.master && this.context) this.master.gain.setTargetAtTime(muted ? 0 : 0.85, this.context.currentTime, 0.03);
     }
 
-    async load(id, path, trim = false) {
+    async load(id, path, trim = false, version = 'neural-v2') {
         if (this.buffers.has(id)) return;
         const controller = new AbortController();
         const timeout = setTimeout(() => controller.abort(), 20000);
         try {
-            const response = await fetch(`${import.meta.env.BASE_URL}audio/${path}?v=neural-v2`, { signal: controller.signal });
+            const response = await fetch(`${import.meta.env.BASE_URL}audio/${path}?v=${version}`, { signal: controller.signal });
             if (!response.ok) throw new Error(`音频加载失败：${id}`);
             const decoded = await this.context.decodeAudioData(await response.arrayBuffer());
             this.buffers.set(id, trim ? this.trimSilence(decoded) : decoded);
@@ -169,7 +170,7 @@ export class BattleAudio {
     }
 
     async preloadPreview() {
-        await this.load('rap-preview', 'previews/acoustic-rap-15s.mp3');
+        await this.load('rap-preview', 'previews/acoustic-rap-15s.mp3', false, 'acoustic-v2');
     }
 
     playPreview() {
@@ -255,8 +256,8 @@ export class BattleAudio {
         this.music.gain.cancelScheduledValues(this.context.currentTime);
         this.music.gain.value = 1;
         const [drums, music] = this.backing.stems;
-        this.play(drums, this.origin, 1, this.drums, BACKING_LOOP_SECONDS);
-        this.play(music, this.origin, 1, this.music, BACKING_LOOP_SECONDS);
+        this.play(drums, this.origin, BACKING_GAIN, this.drums, BACKING_LOOP_SECONDS);
+        this.play(music, this.origin, BACKING_GAIN, this.music, BACKING_LOOP_SECONDS);
         return this.origin;
     }
 
