@@ -130,11 +130,11 @@ test('long grammatical responses finish before the next question, without overla
     assert.equal(audio.feedbackEnd('long') % (BEAT_SECONDS * 4), 0);
 });
 
-test('eight beats provide exactly five seconds; shuffling preserves answers and source content', () => {
-    assert.equal(BEAT_SECONDS * 8, 5);
+test('the new tempo preserves five- and ten-second rounds and shuffling preserves answers', () => {
+    assert.equal(BEAT_SECONDS * DIFFICULTIES.hard.beats, 5);
     assert.equal(DIFFICULTIES.hard.seconds, 5);
     assert.equal(DIFFICULTIES.normal.seconds, 10);
-    assert.equal(BEAT_SECONDS * 16, 10);
+    assert.equal(BEAT_SECONDS * DIFFICULTIES.normal.beats, 10);
     const questions = chapters[0].questions;
     const original = JSON.stringify(questions);
     const state = startBattle(questions, { random: () => 0 });
@@ -336,7 +336,7 @@ test('eight different backings rotate across battles and the chosen pair survive
         loops = [];
         const origin = audio.start();
         assert.equal(loops.length, 2);
-        assert.ok(loops.every(loop => loop.when === origin && loop.loopEnd === (round === 0 ? 15 : 20)));
+        assert.ok(loops.every(loop => loop.when === origin && loop.loopEnd === 16));
         heard.push(loops.map(loop => loop.id).join(','));
         assert.equal(audio.buffers.size, 4);
     }

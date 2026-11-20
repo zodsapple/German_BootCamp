@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import chapters from './questions.json';
 import { BattleAudio } from './battleAudio.js';
-import { DIFFICULTIES, BEAT_SECONDS, PALACE_RANKS, advanceBattle, battleGrade, enemyHealth, initialBattle, missedQuestions, unansweredQuestions, resolveAnswer, startBattle } from './battleEngine.js';
+import { DIFFICULTIES, BPM, BEAT_SECONDS, PALACE_RANKS, advanceBattle, battleGrade, enemyHealth, initialBattle, missedQuestions, unansweredQuestions, resolveAnswer, startBattle } from './battleEngine.js';
 import { learningStats, restoreSprint, saveSprint, selectQuestions, updateLearning } from './learning.js';
 import Opponent from './Opponent.jsx';
 import StudyGuide from './StudyGuide.jsx';
@@ -407,14 +407,14 @@ export default function BattleApp({ onExit }) {
     const impact = game.phase === 'feedback' ? (latest?.correct ? (game.combo >= 3 ? 'heavy' : 'hit') : 'hurt') : '';
 
     return (
-        <div className="palace-app">
+        <div className="palace-app" style={{ '--battle-beat': `${BEAT_SECONDS}s` }}>
             {new URLSearchParams(window.location.search).get('capture') === '1' && <div className={`palace-capture-control is-${capture.state}`} data-started={capture.started}>{capture.url ? <a href={capture.url} download={capture.filename}>下载战斗音轨</a> : <button disabled={!active || muted || capture.state !== 'idle'} onClick={captureAudio}>录制 {captureSeconds} 秒战斗音轨</button>}</div>}
             <header className="palace-header">
                 <a className="palace-brand" href="#battle" onClick={event => { event.preventDefault(); lobby(); }} aria-label="回到战场首页">
                     <span className="palace-seal">战</span><span>德语 · 宫廷对决<small>DEUTSCH / PALACE DUEL</small></span>
                 </a>
                 <div className="palace-header-actions">
-                    <span className="palace-tempo"><span />96 BPM</span>
+                    <span className="palace-tempo"><span />{BPM} BPM</span>
                     <button type="button" className="palace-icon-button" onClick={toggleMute} disabled={['loading', 'buffering'].includes(game.phase)} aria-label={muted ? '开启声音' : '关闭声音'} aria-pressed={!muted}>{muted ? '♩ 声音已关' : '♫ 声音已开'}</button>
                     <button className="palace-course" onClick={() => { requestRef.current++; stopPreview(); onExit(); }}>原课程 ↗</button>
                 </div>
@@ -449,7 +449,7 @@ export default function BattleApp({ onExit }) {
                         </div>
 
                         <div className="palace-taunt" aria-live="polite"><span>{stage.enemy}</span><p>「{game.phase === 'feedback' ? latest.correct ? stage.hitLine : stage.attackLine : game.phase === 'result' ? defeated ? '今日算你厉害，下回再来！' : '还有破绽，再练几招。' : stage.taunt}」</p></div>
-                        <div className="palace-arena-bottom"><div className={`palace-beats ${active || previewing ? 'is-running' : ''}`} aria-label="战斗节奏">{Array.from({ length: 8 }, (_, i) => <span className={clock.beat === i && active ? 'is-beat' : ''} key={i} />)}</div><span>{inBattle ? DIFFICULTIES[game.difficulty].label : settings.label} {inBattle ? game.seconds : settings.seconds} 秒 <i>·</i> 四拍回响</span><span className="palace-tempo-label">{inBattle ? '随时暂停思考' : '96 BPM'}</span></div>
+                        <div className="palace-arena-bottom"><div className={`palace-beats ${active || previewing ? 'is-running' : ''}`} aria-label="战斗节奏">{Array.from({ length: 8 }, (_, i) => <span className={clock.beat === i && active ? 'is-beat' : ''} key={i} />)}</div><span>{inBattle ? DIFFICULTIES[game.difficulty].label : settings.label} {inBattle ? game.seconds : settings.seconds} 秒 <i>·</i> 四拍回响</span><span className="palace-tempo-label">{inBattle ? '随时暂停思考' : `${BPM} BPM`}</span></div>
                     </section>
 
                     <section className="palace-control-panel" aria-label="练习与操作">

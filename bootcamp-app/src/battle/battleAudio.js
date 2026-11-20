@@ -1,11 +1,8 @@
 import { BEAT_SECONDS, FEEDBACK_SECONDS } from './battleEngine.js';
 
-const BACKINGS = [
-    { id: 'original', bars: 6, stems: ['drums-96', 'music-96'] },
-    ...['breakbeat', 'trap', 'funk', 'latin', 'synthwave', 'house', 'double-time'].map(id => ({
-        id, bars: 8, stems: [`${id}-drums`, `${id}-music`],
-    })),
-];
+const BACKINGS = ['piano-swing', 'porch-folk', 'bossa', 'marimba-run', 'handclap-pop', 'harp-dance', 'woodblock-rag', 'kalimba-groove']
+    .map(id => ({ stems: [`acoustic/${id}-drums`, `acoustic/${id}-music`] }));
+const BACKING_LOOP_SECONDS = BEAT_SECONDS * 32; // Eight bars, with both stems starting on the same downbeat.
 
 // One audio clock keeps the beat, voices and combat cues together on mobile.
 export class BattleAudio {
@@ -172,7 +169,7 @@ export class BattleAudio {
     }
 
     async preloadPreview() {
-        await this.load('rap-preview', 'previews/neural-rap-15s.mp3');
+        await this.load('rap-preview', 'previews/acoustic-rap-15s.mp3');
     }
 
     playPreview() {
@@ -258,9 +255,8 @@ export class BattleAudio {
         this.music.gain.cancelScheduledValues(this.context.currentTime);
         this.music.gain.value = 1;
         const [drums, music] = this.backing.stems;
-        const loopSeconds = this.backing.bars * BEAT_SECONDS * 4;
-        this.play(drums, this.origin, 1, this.drums, loopSeconds);
-        this.play(music, this.origin, 1, this.music, loopSeconds);
+        this.play(drums, this.origin, 1, this.drums, BACKING_LOOP_SECONDS);
+        this.play(music, this.origin, 1, this.music, BACKING_LOOP_SECONDS);
         return this.origin;
     }
 

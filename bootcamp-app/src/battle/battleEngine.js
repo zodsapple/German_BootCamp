@@ -1,8 +1,8 @@
-export const BPM = 96;
+export const BPM = 120;
 export const BEAT_SECONDS = 60 / BPM;
 export const DIFFICULTIES = {
-    normal: { label: '普通', seconds: 10, beats: 16 },
-    hard: { label: '困难', seconds: 5, beats: 8 },
+    normal: { label: '普通', seconds: 10, beats: 20 },
+    hard: { label: '困难', seconds: 5, beats: 10 },
 };
 export const FEEDBACK_SECONDS = BEAT_SECONDS * 4;
 export const PALACE_RANKS = ['初入宫门', '仆人', '宫女', '答应', '常在', '贵人', '嫔', '妃', '贵妃', '皇后', '皇帝'];
