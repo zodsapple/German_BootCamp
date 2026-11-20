@@ -3,7 +3,7 @@
   "lead": "de-DE-ConradNeural",
   "response": "de-DE-KatjaNeural",
   "provider": "Microsoft Edge online neural TTS via edge-tts",
-  "questions": 700,
+  "questions": 1300,
   "echoes": {
     "prep-zug": "dem",
     "prep-bahn": "der",

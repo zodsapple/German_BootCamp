@@ -57,6 +57,18 @@ export function learningStats(bank, progress) {
     };
 }
 
+export function sprintKey(stageId, topic = 'all') {
+    return stageId === 'vocabulary' && topic !== 'all' ? `${stageId}:${topic}` : stageId;
+}
+
+export function migrateSprintSaves(saves) {
+    const legacy = saves.vocabulary;
+    if (!legacy?.topic || legacy.topic === 'all') return saves;
+    const { vocabulary, ...remaining } = saves;
+    const key = sprintKey('vocabulary', vocabulary.topic);
+    return { [key]: vocabulary, ...remaining };
+}
+
 export function saveSprint(game, now = Date.now()) {
     if (game.mode !== 'full' || !game.questions.length || game.answers.length >= game.questions.length) return null;
     return {

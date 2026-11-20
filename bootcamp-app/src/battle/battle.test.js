@@ -3,9 +3,10 @@ import assert from 'node:assert/strict';
 import { readFileSync, statSync } from 'node:fs';
 import { DIFFICULTIES, BEAT_SECONDS, advanceBattle, battleGrade, enemyHealth, initialBattle, missedQuestions, unansweredQuestions, resolveAnswer, startBattle } from './battleEngine.js';
 import { BattleAudio } from './battleAudio.js';
-import { learningStats, restoreSprint, saveSprint, selectQuestions, updateLearning } from './learning.js';
+import { learningStats, migrateSprintSaves, restoreSprint, saveSprint, selectQuestions, sprintKey, updateLearning } from './learning.js';
 
 const chapters = JSON.parse(readFileSync(new URL('./questions.json', import.meta.url), 'utf8'));
+const vocabulary = chapters.find(chapter => chapter.id === 'vocabulary');
 
 test('court titles grade only actual answers and reserve emperor for a completed perfect round', () => {
     const grade = (correct, total = 10, score = 99999, answered = total) => battleGrade({ questions: Array(total), answers: Array.from({ length: answered }, (_, i) => ({ correct: i < correct })), score });
@@ -22,8 +23,8 @@ test('court titles grade only actual answers and reserve emperor for a completed
     assert.deepEqual(grade(9, 10, 100), grade(9, 10, 2000));
 });
 
-test('all 700 bilingual questions have one distinct answer, a topic and the matching MP3', () => {
-    assert.deepEqual(chapters.map(chapter => chapter.questions.length), [60, 60, 60, 60, 60, 400]);
+test('the bilingual question bank has 1,300 distinct questions with matching MP3s', () => {
+    assert.deepEqual(chapters.map(chapter => chapter.questions.length), [60, 60, 60, 60, 60, 1000]);
     const manifest = JSON.parse(readFileSync(new URL('../../public/audio/battle/manifest.json', import.meta.url), 'utf8'));
     const ids = new Set();
     for (const chapter of chapters) for (const question of chapter.questions) {
@@ -53,13 +54,37 @@ test('all 700 bilingual questions have one distinct answer, a topic and the matc
             assert.match(question.chantZh, /\p{Script=Han}/u);
         }
     }
-    const words = chapters.find(chapter => chapter.id === 'vocabulary').questions;
+    const words = vocabulary.questions;
     const wordKeys = words.map(question => question.chant.normalize('NFKC').toLocaleLowerCase('de')
         .replace(/^(der|die|das|sich) /, '').split(/\s+/)[0]);
-    assert.equal(new Set(wordKeys).size, 400, 'The same noun or verb with a different article or complement should not occupy two slots');
-    assert.equal(new Set(words.map(question => question.chantZh)).size, 400);
-    assert.equal(words.filter(question => question.promptDe === 'Wie heißt das auf Deutsch?').length, 200);
-    assert.equal(words.filter(question => question.promptDe !== 'Wie heißt das auf Deutsch?').length, 200);
+    assert.equal(new Set(wordKeys).size, 1000, 'The same noun or verb with a different article or complement should not occupy two slots');
+    assert.equal(new Set(words.map(question => question.chantZh)).size, 1000);
+    assert.equal(words.filter(question => question.promptDe === 'Wie heißt das auf Deutsch?').length, 500);
+    assert.equal(words.filter(question => question.promptDe !== 'Wie heißt das auf Deutsch?').length, 500);
+});
+
+test('ten vocabulary sections partition all 1,000 words and save their sprints independently', () => {
+    assert.equal(new Set(vocabulary.sections).size, 10);
+    const ids = new Set();
+    const chapterSaves = {};
+    for (const topic of vocabulary.sections) {
+        const bank = selectQuestions(vocabulary.questions, { mode: 'full', topic });
+        assert.equal(bank.length, 100);
+        assert.ok(bank.every(question => question.topic === topic));
+        for (const question of bank) ids.add(question.id);
+        assert.ok(selectQuestions(vocabulary.questions, { topic }).every(question => question.topic === topic));
+        const game = startBattle(bank, { mode: 'full', stageId: vocabulary.id, topic });
+        chapterSaves[sprintKey(vocabulary.id, topic)] = saveSprint(game);
+    }
+    assert.equal(ids.size, 1000);
+    assert.equal(Object.keys(chapterSaves).length, 10);
+    const legacy = { ids: ['word-pruefung'], answers: [], topic: '学校学习' };
+    const migrated = migrateSprintSaves({ vocabulary: legacy, prepositions: { topic: 'all' } });
+    assert.equal(migrated[sprintKey(vocabulary.id, legacy.topic)], legacy);
+    assert.equal(migrated[sprintKey(vocabulary.id)], undefined);
+    assert.deepEqual(migrated.prepositions, { topic: 'all' });
+    const full = { ...legacy, topic: 'all' };
+    assert.equal(migrateSprintSaves({ vocabulary: full })[sprintKey(vocabulary.id)], full);
 });
 
 test('an old vocabulary sprint retains its completed words and presents replacements as unanswered', () => {
@@ -83,9 +108,9 @@ test('an old vocabulary sprint retains its completed words and presents replacem
     assert.equal(restored.combo, 1);
 });
 
-test('the neural voice bank covers 700 questions and all five grammar chapters have response clips', () => {
+test('the neural voice bank covers all questions and all five grammar chapters have response clips', () => {
     const voices = JSON.parse(readFileSync(new URL('../../public/audio/battle/voices.json', import.meta.url), 'utf8'));
-    assert.equal(voices.questions, 700);
+    assert.equal(voices.questions, 1300);
     assert.equal(voices.lead, 'de-DE-ConradNeural');
     assert.equal(voices.response, 'de-DE-KatjaNeural');
     assert.equal(Object.keys(voices.echoes).length, 300);
@@ -187,17 +212,16 @@ test('three mistakes end a quick round; wrong and unanswered questions remain se
     assert.ok(revenge.questions.every(question => state.answers.some(answer => answer.id === question.id && !answer.correct)));
 });
 
-test('all-word sprint passes question 60, includes previously learned words and finishes all 400 despite errors', () => {
-    const base = chapters.find(chapter => chapter.id === 'vocabulary').questions;
-    const bank = Array.from({ length: 400 }, (_, i) => ({ ...base[i % base.length], id: `sprint-${i}` }));
+test('all-word sprint finishes all 1,000 words despite errors and preserves unanswered history', () => {
+    const bank = vocabulary.questions;
     const history = Object.fromEntries(bank.slice(0, 100).map(question => [question.id, { correct: 2, wrong: 0, streak: 2, lastSeen: 1, dueAt: 99999 }]));
     const before = structuredClone(history);
     const selected = selectQuestions(bank, { progress: history, mode: 'full', random: () => .5 });
-    assert.equal(selected.length, 400);
-    assert.equal(new Set(selected.map(question => question.id)).size, 400);
+    assert.equal(selected.length, 1000);
+    assert.equal(new Set(selected.map(question => question.id)).size, 1000);
     let state = { ...startBattle(selected, { mode: 'full', stageId: 'vocabulary' }), phase: 'question' };
     let progress = history;
-    for (let index = 0; index < 400; index++) {
+    for (let index = 0; index < 1000; index++) {
         const correct = index % 4 === 0;
         state = resolveAnswer(state, correct ? state.questions[state.index].answer : null, correct ? 3 : 0);
         progress = updateLearning(progress, [state.answers.at(-1)], 1000 + index);
@@ -209,25 +233,24 @@ test('all-word sprint passes question 60, includes previously learned words and 
         }
     }
     assert.equal(state.phase, 'result');
-    assert.equal(state.answers.length, 400);
-    assert.equal(missedQuestions(state).length, 300);
+    assert.equal(state.answers.length, 1000);
+    assert.equal(missedQuestions(state).length, 750);
     assert.equal(unansweredQuestions(state).length, 0);
     assert.ok(state.hearts >= 0);
     assert.deepEqual(history, before);
 });
 
 test('a serialized sprint resumes at its first unanswered item, preserving all sixty prior results', () => {
-    const base = chapters[0].questions;
-    const bank = Array.from({ length: 400 }, (_, i) => ({ ...base[i % base.length], id: `resume-${i}` }));
+    const bank = vocabulary.questions.slice(0, 400);
     let state = { ...startBattle(bank, { mode: 'full', stageId: 'vocabulary', difficulty: 'hard' }), phase: 'question' };
     for (let index = 0; index < 60; index++) state = advanceBattle(resolveAnswer(state, index % 3 ? state.questions[index].answer : null, index % 3 ? 2 : 0));
     const saved = JSON.parse(JSON.stringify(saveSprint(state, 1234)));
-    const restored = restoreSprint(saved, bank);
+    const restored = restoreSprint(saved, vocabulary.questions);
     assert.equal(restored.questions.length, 400);
     assert.equal(restored.index, 60);
     assert.equal(restored.answers.filter(answer => answer.correct).length, 40);
     assert.deepEqual(restored.answers, state.answers);
-    assert.equal(restored.questions[restored.index].id, 'resume-60');
+    assert.equal(restored.questions[restored.index].id, bank[60].id);
     assert.equal(restored.difficulty, 'hard');
     assert.equal(restored.score, state.score);
     assert.equal(restoreSprint({ ...saved, ids: [...saved.ids, saved.ids[0]] }, bank), null);
